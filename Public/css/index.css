@@ -38,7 +38,7 @@ a { outline-style:none; color:#333; text-decoration:none }
 /*大背景*/
 
 .banner_mag{position:absolute;z-index:333;left:50%;top:100px;margin-left:-380px;text-align:left;border: solid 1px red}
-.banner_magnr{padding:40px 0px 20px 40px;color:#fff; text-align:left;background-color: #5C5C5C;margin:0 auto;border-radius: 10px;}
+.banner_magnr{padding:40px 0px 20px 40px;color:#fff; text-align:left;background-color: #5C5C5C;margin:0 auto;border-radius: 10px;opacity:0.8;}
 
 .news01{height:54px;}
 /**
@@ -99,6 +99,10 @@ a { outline-style:none; color:#333; text-decoration:none }
         height: 45px;
         font-size: 25px;
     }
+    .lunbocss{
+        background-color: #0A0A0A;
+        opacity:0.8;
+    }
     .search_input{
         height: 45px;
     }
@@ -106,4 +110,18 @@ a { outline-style:none; color:#333; text-decoration:none }
     .navbar-inverse{
 
     }
+    .lunbo_top{
+        position:absolute;z-index:-333;
+    }
+
+    .search_parent{
+        position:relative;
+
+        top:90px;
+    }
+
+a:focus{outline: none;}
+/*调整按钮*/
+
+
 
