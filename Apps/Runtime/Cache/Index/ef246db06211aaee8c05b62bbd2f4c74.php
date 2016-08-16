@@ -1,13 +1,27 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <title>六度写字楼网首页</title>
     <script type="text/javascript" src="/6doffice/Public/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/6doffice/Public/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/6doffice/Public/css/bootstrap.min.css" />
     <script type="text/javascript" src="/6doffice/Public/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/6doffice/Public/css/index.css" />
+    <script type="text/javascript" src="/6doffice/Public/js/jquery.animate-colors.js"></script>
     <style type="text/css">
+
+        /* 超小屏幕（手机，小于 768px） */
+        /* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */
+
+        /* 小屏幕（平板，大于等于 768px） */
+        @media (min-width: 768px){}
+
+        /* 中等屏幕（桌面显示器，大于等于 992px） */
+        @media (min-width:992px) {}
+
+        /* 大屏幕（大桌面显示器，大于等于 1200px） */
+        @media (min-width: 1200px) {  }
 
     </style>
 
@@ -24,6 +38,43 @@
             }
 
         })
+            /*setInterval(function(){
+
+                a++;
+                if(a%2==1) {
+                    $('.banner_magnr').addClass('lunbocss');
+                }
+                if(a%2==0){
+                    $('.banner_magnr').removeClass('lunbocss');
+                }
+
+            },3000)*/
+
+            $("#sfsfcdiv").animate({
+                backgroundColor:'#222222'
+            }, 2000)
+
+
+/*实现背景色渐变 需引入 animate插件*/
+            setInterval(function(){
+
+                a++;
+                if(a%2==1) {
+                    $("#sfsfcdiv").animate({
+                        backgroundColor:'#0A0A0A'
+                    }, 1000)
+                }
+                if(a%2==0){
+                    $("#sfsfcdiv").animate({
+                        backgroundColor:'#5C5C5C'
+                    }, 1000)
+                }
+
+            },2000)
+
+
+
+
 
 
         })
@@ -92,57 +143,58 @@
 
 </style>
 <div class="container-fluid">
-<div class="row lunbo_top" style="margin-left: -30px">
+    <!-- 轮播图被注释 -->
+    <!-- <div class="row lunbo_top" style="margin-left: -30px">
     <div class="col-sm-12" >
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="/6doffice/Public/images/gg1.jpg" alt="..." class="center-block">
-                    <div class="carousel-caption">
-                        新地中心
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/6doffice/Public/images/gg2.jpg" alt="..." class="center-block">
-                    <div class="carousel-caption">
-                        金奥大厦
-                    </div>
-                </div>
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
 
-                <div class="item">
-                    <img src="/6doffice/Public/images/gg1.jpg" alt="..." class="center-block">
-                    <div class="carousel-caption">
-                        金奥大厦
-                    </div>
-                </div>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="/6doffice/Public/images/gg1.jpg" alt="..." class="center-block">
+            <div class="carousel-caption">
+                新地中心
             </div>
+        </div>
+        <div class="item">
+            <img src="/6doffice/Public/images/gg2.jpg" alt="..." class="center-block">
+            <div class="carousel-caption">
+                金奥大厦
+            </div>
+        </div>
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left sha-xia" aria-hidden="true" style="position: relative;left: 20px;top:300px;"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right sha_xia" aria-hidden="true" style="position: relative;right: 20px;top:300px;"></span>
-                <span class="sr-only">Next</span>
-            </a>
+        <div class="item">
+            <img src="/6doffice/Public/images/gg1.jpg" alt="..." class="center-block">
+            <div class="carousel-caption">
+                金奥大厦
+            </div>
         </div>
     </div>
+
+
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left sha-xia" aria-hidden="true" style="position: relative;left: 20px;top:300px;"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right sha_xia" aria-hidden="true" style="position: relative;right: 20px;top:300px;"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
+</div>
+</div> -->
 <div class="row search_parent">
 
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3 col-xs-12">
 
 
-        <div class="banner_magnr">
+        <div class="banner_magnr" id="sfsfcdiv">
             <div class="row">
                 <div id="dsy_D02_01" class="news01">
                 <div class="s1 col-sm-4 hidden-xs"><a target="_self" href="<?php echo U('index');?>">六度写字楼网</a></div>
@@ -191,14 +243,14 @@
                             <li role="presentation"><a href="#" style="color: white">房产快讯</a></li>
                             <li role="presentation"><a href="#" style="color: white">海外房产</a></li>
                             <li role="presentation" class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">
                                     更多 <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">地图找房</a></li>
+                                    <li><a href="#">房产问答</a></li>
+                                    <li><a href="#">房产知识</a></li>
+                                    <li><a href="#">业主论坛</a></li>
                                 </ul>
                             </li>
 

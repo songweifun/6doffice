@@ -1,0 +1,78 @@
+.daohang{
+    margin-bottom: 0px;
+    font-size: 16px;
+}
+.chaoxun_nav a{
+    color: black;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: white;
+    outline: none;
+    font-weight:bold;
+
+}
+
+h5{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+#home{
+    padding-top: 10px;
+    padding-left:13px;
+
+    border-right: solid 1px #D3D3D3;
+    border-left: solid 1px #D3D3D3;
+}
+.set_font_row{
+    font-size: 14px;
+}
+.mengti_l_b{
+    margin-top: 10px;
+    border-bottom:1px dotted #ddd;
+    font-size: 14px;
+}
+
+/*列表页*/
+
+.ml10{margin-left: 10px}
+.mlr5{margin:0 5px;}
+.ml5{ margin-left:5px}
+.mt5{ margin-top:5px}
+.rel{position:relative}
+.mt15{ margin-top:15px}
+.spName,.spAddr{max-width: 330px;overflow: hidden;white-space: nowrap;display: inline-block;text-overflow: ellipsis;}
+.mt10{ margin-top:10px}
+.houseList .list .line{ color:#999; margin:0 8px; font-family:Arial}
+.marr7{color:#333333;}
+.mt12{ margin-top:12px}
+.pt4{padding-top:4px}
+.flaotl{float: left}
+.floatr{ float:right}
+
+.colorGreen{background:#fff;border:1px solid #93c993}
+.colorRed{background:#fff;border:1px solid #f0aa9e}
+.colorBlue{background:#fff;border:1px solid #98b5e9}
+.note{height:20px;margin-right:5px;padding:0 5px;color:#666;font:12px/20px SimSun;font:12px/22px SimSun\9;display:inline-block;*zoom:1; overflow:hidden}
+.houseList .list .info .moreInfo{ width:160px;right:15px;top:48px;position:absolute}
+.price{font:bold 29px/30px Arial; color:#de3438; padding-right:4px}
+.danjia{font:normal 12px/16px Arial}
+
+/*houseList*/
+.houseList .list{padding:0px 0 0px 15px; background:#fff;display:block;clear:both;*zoom:1}
+.houseList .listGray{ background:#f6f6f6}
+
+.houseList .list .title a:visited{color:#551a8b;}
+.houseList .list .info .area{ width:80px; font:bold 16px/18px Arial;right:150px;top:60px;position:absolute; color:#414141}/*150312�޸�*/
+
+.spName{max-width: 300px;}
+.spAddr{max-width: 400px;}
+.houseList .list .note-img img{ position:relative;padding:0 9px 0 6px}
+.houseList .list .info .area p.tag{font:12px/18px Microsoft Yahei;color:#666;}
+
+.houseList .list .info .area2{right:190px;}
+
+
