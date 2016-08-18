@@ -1,0 +1,80 @@
+.dis_nav{
+    display: none;
+}
+/*滚动监听导航名称公司样式*/
+.jt_nav_namef{
+    padding: 5px 15px 5px 25px;
+    color: white;
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+/*滚动监听导航电话样式*/
+.jt_nav_phonef{
+    padding: 5px 15px 5px 25px;
+
+    color: white;
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-size: 20px;
+    margin-right: 100px;
+
+}
+
+.rent_title{
+    font-size: 25px;
+}
+.rent_title_price_area{
+    font-size: 20px;
+
+    color: #FF6600;
+}
+.rent_title_price_area span{
+    font-size: 35px;
+    font-weight: bold;
+    margin-right: 5px;
+
+}
+.rent_title_price_area .sm_price{
+    font-size: 25px;
+    margin-left: 20px;
+}
+.fangyuanmiaoshu,.loupanxinxi,.jiaotongpeitao{
+font-size: 20px;
+    font-weight: bold;
+}
+.desc-con{
+    padding-left: 30px;
+    padding-right: 60px;
+}
+.lou_xin{
+    padding-left: 30px;
+
+}
+
+.fangyuanmiaoshu .glyphicon-unchecked,.loupanxinxi .glyphicon-unchecked,.jiaotongpeitao .glyphicon-unchecked{
+
+    font-weight: 500;
+    color: #CD0000;
+
+}
+.fb_bh{
+    font-size: 12px;
+    color: blue;
+  margin-left: 480px;
+}
+.geng_duo{
+    font-size: 20px;
+    color: blue;
+    margin-left: 630px;
+}
+.xinxi_tab{
+    margin-top: 15px;
+    font-size: 16px;
+}
+#panorama {height: 400px;overflow: hidden;}
+
+
