@@ -84,14 +84,24 @@
 
                     </ul>
                 </li>
-                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>UI Elements</span></a>
+                <!-- 自己添加的栏目 -->
+
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>网站概况</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="general.html"> General</a></li>
-                        <li><a href="buttons.html"> Buttons</a></li>
-                        <li><a href="tabs-accordions.html"> Tabs & Accordions</a></li>
-                        <li><a href="typography.html"> Typography</a></li>
-                        <li><a href="slider.html"> Slider</a></li>
-                        <li><a href="panels.html"> Panels</a></li>
+                        <li><a href="{:U(MODULE_NAME.'/Baseinfo/webInfo')}"> 网站信息</a></li>
+                        <li><a href=""> 网站配置</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>房源管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="general.html"> 出售管理</a></li>
+                        <li><a href="buttons.html"> 出租管理</a></li>
+                        <li><a href="tabs-accordions.html"> 求购管理</a></li>
+                        <li><a href="typography.html"> 求租管理</a></li>
+                        <li><a href="slider.html"> 委托出售</a></li>
+                        <li><a href="panels.html"> 房源虚假举报</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>Components</span></a>

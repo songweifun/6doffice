@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <title>六度写字楼网首页</title>
-    <script type="text/javascript" src="/6doffice/Public/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/6doffice/Public/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/6doffice/Public/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/6doffice/Public/css/index.css" />
-    <script type="text/javascript" src="/6doffice/Public/js/jquery.animate-colors.js"></script>
+    <script type="text/javascript" src="/6doffice/Apps/Index/View/Public/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/6doffice/Apps/Index/View/Public/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/6doffice/Apps/Index/View/Public/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/6doffice/Apps/Index/View/Public/css/index.css" />
+    <script type="text/javascript" src="/6doffice/Apps/Index/View/Public/js/jquery.animate-colors.js"></script>
     <style type="text/css">
 
         /* 超小屏幕（手机，小于 768px） */
@@ -157,20 +157,20 @@
 
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="/6doffice/Public/images/gg1.jpg" alt="..." class="center-block">
+            <img src="/6doffice/Apps/Index/View/Public/images/gg1.jpg" alt="..." class="center-block">
             <div class="carousel-caption">
                 新地中心
             </div>
         </div>
         <div class="item">
-            <img src="/6doffice/Public/images/gg2.jpg" alt="..." class="center-block">
+            <img src="/6doffice/Apps/Index/View/Public/images/gg2.jpg" alt="..." class="center-block">
             <div class="carousel-caption">
                 金奥大厦
             </div>
         </div>
 
         <div class="item">
-            <img src="/6doffice/Public/images/gg1.jpg" alt="..." class="center-block">
+            <img src="/6doffice/Apps/Index/View/Public/images/gg1.jpg" alt="..." class="center-block">
             <div class="carousel-caption">
                 金奥大厦
             </div>
@@ -197,7 +197,7 @@
         <div class="banner_magnr" id="sfsfcdiv">
             <div class="row">
                 <div id="dsy_D02_01" class="news01">
-                <div class="s1 col-sm-4 hidden-xs"><a target="_self" href="<?php echo U('index');?>">六度写字楼网</a></div>
+                <div class="s1 col-sm-4 hidden-xs"><a target="_self" href="{:U('index')}">六度写字楼网</a></div>
                 <div class="s2 col-sm-3 col-xs-12">南京【<a target="_blank" href="">切换城市</a>】</div>
             </div>
             </div>

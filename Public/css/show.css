@@ -1,80 +1,134 @@
-.dis_nav{
-    display: none;
-}
-/*婊氬姩鐩戝惉瀵艰埅鍚嶇О鍏徃鏍峰紡*/
-.jt_nav_namef{
-    padding: 5px 15px 5px 25px;
-    color: white;
-    font-size: 16px;
-    line-height: 22px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-}
-/*婊氬姩鐩戝惉瀵艰埅鐢佃瘽鏍峰紡*/
-.jt_nav_phonef{
-    padding: 5px 15px 5px 25px;
+@charset "gb2312";
+/* CSS Document */
+.content{ width:990px; margin:0 auto; margin-top:10px}
 
-    color: white;
-    font-size: 16px;
-    line-height: 22px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    font-size: 20px;
-    margin-right: 100px;
+.content a { color:#0041d9}
 
-}
-
-.rent_title{
-    font-size: 25px;
-}
-.rent_title_price_area{
-    font-size: 20px;
-
-    color: #FF6600;
-}
-.rent_title_price_area span{
-    font-size: 35px;
-    font-weight: bold;
-    margin-right: 5px;
-
-}
-.rent_title_price_area .sm_price{
-    font-size: 25px;
-    margin-left: 20px;
-}
-.fangyuanmiaoshu,.loupanxinxi,.jiaotongpeitao{
-font-size: 20px;
-    font-weight: bold;
-}
-.desc-con{
-    padding-left: 30px;
-    padding-right: 60px;
-}
-.lou_xin{
-    padding-left: 30px;
-
-}
-
-.fangyuanmiaoshu .glyphicon-unchecked,.loupanxinxi .glyphicon-unchecked,.jiaotongpeitao .glyphicon-unchecked{
-
-    font-weight: 500;
-    color: #CD0000;
-
-}
-.fb_bh{
-    font-size: 12px;
-    color: blue;
-  margin-left: 480px;
-}
-.geng_duo{
-    font-size: 20px;
-    color: blue;
-    margin-left: 630px;
-}
-.xinxi_tab{
-    margin-top: 15px;
-    font-size: 16px;
-}
-#panorama {height: 400px;overflow: hidden;}
+.jisuan,.jiangjia, .fav,.print,.dongtai,.xiangce,.taolun,.zhoubian,.jiaoyu,.yiyuan,.canting,.shangchang,.yinhang,.qq{background:url(../images/ico.gif) no-repeat top }
+/*图片*/
+.pic{ width:524px; height:340px; float:left}
+.pic .focus{ width:524px; height:310px;border:#CCC solid 1px}
+.pic .picnum{ display:block; float:right; margin-top:5PX}
 
 
+#myfocus{width:515px;height:300px;overflow:hidden;padding:4px;font:12px Verdana, Arial, Helvetica, sans-serif;position:relative;}
+#myfocus #myloading{position:absolute;top:0;left:0;z-index:9999;width:462px;height:326px;background:#333;color:#f60;font-size:12px;text-align:center;padding-top:90px;}
+#myfocus #myloading .bg{position:absolute;top:0;left:0;z-index:-1;}/*载入画面*/
+#myfocus .pics{width:515px;height:300px;overflow:hidden;position:relative;}
+#myfocus .pics ul{height:296px;position:absolute;}
+#myfocus .pics ul li{width:515px;height:300px;float:left;position:relative;}
+#myfocus .pics ul li img{width:515px;height:300px; }/*图片大小515px*300px*/
+#myfocus .pics ul li div,#myfocus .pics ul li div span,#myfocus .pics ul li div a{display:block;position:absolute;bottom:0;left:0;width:100%;height:34px;}
+#myfocus .pics ul li div span{filter:alpha(opacity=50);opacity: 0.5;background:#000;}/*文字标题的背景样式*/
+#myfocus .pics ul li div a{line-height:34px;overflow:hidden;padding-left:16px;text-decoration:none;font-size:14px;color:#fff;font-weight:bold;}/*文字标题样式*/
+#myfocus .mybtn{position:absolute;bottom:10px;right:12px;}
+#myfocus .mybtn ul li{text-align:center;float:left;width:18px;height:16px;line-height:16px;margin-left:4px;overflow:hidden;border:1px solid #CCC;background:#ccc;cursor:pointer;}
+
+#myfocus .mybtn ul li.current{background: #900;color:#fff;}
+
+/*简介*/
+.detail{ width:440px; height:310px; float:right;}
+.detail h1{ font-size:24px; height:25px;line-height:25px; padding-left:10px; border-bottom:#CCC solid 1px}
+.detail dl{ padding-left:10px; padding-top:5px; padding-bottom:30px}
+.detail dl dt{ margin-bottom:20px; background:url(../images/ico.gif) no-repeat left top; padding-left:20px}
+.detail dl dt a{ color:#666}
+.detail dl dd { height:27px; line-height:27px; font-size:13px} 
+.detail dl dd span{ color:#f26100}
+.detail dl dd span b{ font-size:20px; font-weight:normal}
+.detail dl dd .jisuan{ padding-left:20px; background-position:0 -50px}
+.detail dl dd .jiangjia{ padding-left:20px; background-position:0 -22px}
+.contact { border:#c8dff6 solid 1px;}
+.contact .tel{ background:#f3f8fe url(../images/tel.gif) no-repeat 30px; display:block; height:65px; padding-left:90px; line-height:28px; border-bottom:#c8dff6 solid 1px; padding-top:10px}
+.contact .tel h2{ font-size:22px; color:#c1272d;}
+.contact .tel span{ color:#666}
+.contact .but{ height:45px; line-height:45px; text-align:center}
+.contact .but .fav{ padding-left:20px; background-position:0 -71px; margin-right:10px}
+.contact .but .print{ padding-left:20px; background-position:0 -92px}
+/*详细介绍*/
+.about{ clear:both}
+.about .a_title{ border-bottom:dashed 1px #CCC; line-height:25px; height:25px}
+.about .a_title h1{ float:left ; font-size:18px; margin-right:30px}
+.about .a_title a{ display:block; float:left ; padding-left:20px; margin-left:15px }
+.about .a_title .dongtai{ background-position:0 -107px}
+.about .a_title .xiangce{ background-position:0 -128px}
+.about .a_title .taolun{ background-position:0 -148px}
+.about .a_title .zhoubian{ background-position:0 -170px}
+.about .a_left{ width:665px; padding-right:10px; padding-left:10px; background:url(../images/s_c_bg.gif) repeat-x; float:left}
+.about .a_left .a_con{ line-height:25px; padding-top:10px}
+.about .a_left .a_detail{ margin-top:10px; width:600px; border-top:#ddd solid 1px}
+.about .a_left .a_detail li{ width:200px; float:left; border-bottom:#ddd solid 1px}
+.about .a_left .news_list{ margin-top:20px}
+.about .a_left .news_list dt{ font-size:20px; font-weight:bold; color:#993333; line-height:35px; height:35px}
+.about .a_left .news_list dd{ height:25px; line-height:25px; color:#666}
+.about .a_left .news_list dd .jiangjia{ margin-left:20px; padding-left:20px; background-position:0 -25px; color:#eb6100}
+.about .a_right{ width:305px; float:right;background:url(../images/s_c_bg.gif) repeat-x;}
+.about .a_right .guanzhu_num{ background:url(../images/gz_bg.gif) no-repeat; width:240px; height:65px; margin:10px auto}
+.about .a_right .guanzhu_num li{
+	float:left; width:120px; text-align:center; padding-top:15px; color:#FFF; font-size:16px; font-weight:bold; line-height:20px
+	}
+.about .a_right .tie_num a{ display:block; padding-left:80px}
+.about .a_right .tie_num a b{ color:#e1522d}
+.about .a_right .ad{ text-align:center; padding-top:10px}
+
+
+/*标题*/
+.title{ height:30px; line-height:30px; background:url(../images/tit_bg.gif) repeat-x; border:#ddd solid 1px; clear:both;}
+.title h1{ font-size:18px; color:#993333; float:left; line-height:30px; padding-left:10px}
+.title a{ display:block; float:left}
+.title span{ float:right; padding-right:10px}
+/*相册*/
+.photos{ margin-top:5px}
+.photos .photo_con{ border:#ddd solid 1px; border-top:none;}
+.photos .photo_con dl { clear:both; padding:10px; height:100%}
+.photos .photo_con dl dt a{ font-size:14px; height:25px; line-height:25px}
+.photos .photo_con dl dd{ float:left; text-align: center; margin:0 10px;width:200px}
+.photos .photo_con dl dd a{line-height:20px; height:20px}
+/*地图*/
+.map{ margin-top:10px}
+.map .map_con{ padding-top:10px}
+.map .map_con #mapDIV{ width:566px; height:247px; float:left}
+.map .map_con .near{ width:410px;float:right}
+.map .map_con .near dt{ color:#c50000}
+.map .map_con .near dd{ margin-top:10px; line-height:20px}
+.map .map_con .near dd span{ padding:2px}
+.map .map_con .near dd .jiaoyu{padding-left:20px; background-position:0 -218px}
+.map .map_con .near dd .shangchang{padding-left:20px; background-position:0 -240px}
+.map .map_con .near dd .yiyuan{padding-left:20px; background-position:0 -262px}
+.map .map_con .near dd .canting{padding-left:20px; background-position:0 -286px}
+
+.map .map_con .near dd .yinhang{padding-left:20px; background-position:0 -306px}
+
+/*讨论*/
+.disc{ margin-top:10px}
+.disc .disc_con{ padding-top:10px}
+.disc .disc_con dl dt{ line-height:25px; border-bottom: #ccc dashed 1px; padding-left:25px}
+.disc .disc_con dl dd{ line-height:30px; width:600px; padding-left:60px}
+.disc .disc_con dl .type{ padding-left:60px}
+.disc .disc_con dl .message span{ display:block; float:left}
+.disc .disc_con dl .row span{ width:300px; display:block; float:left; text-align:right}
+.disc .disc_con dl .row .sex { text-align:left; padding-left:55px; width:245px}
+.disc .disc_con dl .row .sex input{ display:inline; width:20px; }
+.disc .disc_con dl .row span input{ width:205px; height:20px}
+.disc .disc_con dl .address{ text-align:right}
+.disc .disc_con dl .address input{ width:505px; height:20px; }
+.disc .disc_con dl .code{ text-align:right; width:258px}
+.disc .disc_con dl .code input{ width:100px; height:20px; }
+.disc .disc_con dl .code img{ margin-top:5px; margin-left:3px}
+.disc .disc_con dl .but{ padding-left:150px}
+.disc .disc_con dl .but .qq{ padding-left:20px; background-position:0 -195px; padding-top:3px; padding-top:3px}
+.disc .disc_con dl .but .qq b{ color:#039}
+
+/*更多信息*/
+.moreinfo{ }
+.moreinfo_con{ width:400px; padding-left:10px; font-size:13px}
+ 
+.moreinfo_con dl dt a{ color:#666}
+.moreinfo_con dl dd {line-height:27px; font-size:13px} 
+.moreinfo_con dl dd span{ color:#f26100}
+.moreinfo_con dl dd span b{ font-size:20px; font-weight:normal}
+.moreinfo_con dl dd .jiangjia{ padding-left:20px; background-position:0 -22px}
+ .a_detail{ margin-top:10px; width:600px; border-top:#ddd solid 1px}
+.a_detail li{ width:200px; float:left; border-bottom:#ddd solid 1px}
+.moreinfo_con .m_c_deatil{ line-height:30px}
+.moreinfo_con .m_c_deatil a{ display:block; float:left; margin-right:5px; margin-left:5px}
+.moreinfo_con .m_c_deatil span{ display:block; float:left; color:#666}
