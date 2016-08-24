@@ -1,9 +1,9 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title><!--{$cfg.page.title}--> - ÓÃ»§ÖĞĞÄ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - ç”¨æˆ·ä¸­å¿ƒ</title>
     <css file="__PUBLIC__/css/member.css"/>
     <js file="__PUBLIC__/js/jquery.min.js"/>
     <js file="__PUBLIC__/js/map.js"/>
@@ -11,86 +11,86 @@
     <js file="__PUBLIC__/js/thickbox.js"/>
 </head>
 <body>
-<!--{include file="inc/memberHeader.tpl"}-->
+<include file="Common:memberHeader"/>
 <div class="main">
     <div class="page">
-        <!--{include file="inc/member_left.tpl"}-->
+        <include file="Common:member_left"/>
         <div class="memberBox">
             <!--{if $memberInfo.status ==1}-->
             <div class="bigNote" id="bigNote">
-                <div class="noteTxt" style="font-size:14px;">ÄúµÄÕÊºÅÉĞÎ´¿ªÍ¨£¡ÇëÁªÏµ <!--{$cfg.page.rexian}--> ½øĞĞ¿ªÍ¨!</div>
+                <div class="noteTxt" style="font-size:14px;">æ‚¨çš„å¸å·å°šæœªå¼€é€šï¼è¯·è”ç³» <!--{$cfg.page.rexian}--> è¿›è¡Œå¼€é€š!</div>
             </div><br />
 
             <!--{/if}-->
             <!--{if $memberInfo.mobile ==""}-->
             <div class="bigNote" id="bigNote">
-                <div class="noteTxt" style="font-size:14px;">Äú»¹Î´<a href="brokerProfile.php">ÍêÉÆ¾­¼ÍÈË×ÊÁÏ</a>£¡</div>
+                <div class="noteTxt" style="font-size:14px;">æ‚¨è¿˜æœª<a href="brokerProfile.php">å®Œå–„ç»çºªäººèµ„æ–™</a>ï¼</div>
             </div>
             <!--{/if}-->
             <div class="infoTipBox">
-                <div class="loginTip"><!--{$nowTime}-->ºÃ£¬<img src="<!--{if $memberInfo.avatar}--><!--{$cfg.url}-->upfile/<!--{$memberInfo.avatar}--><!--{else}--><!--{$cfg.path.images}-->demoPhoto_52_52.gif<!--{/if}-->" width="20" height="20" align="absmiddle" /><!--{$username}-->&nbsp;<span><a class="underline" href="brokerPhoto.php">ĞŞ¸ÄÎÒµÄÍ·Ïñ</a></span></div>
+                <div class="loginTip"><!--{$nowTime}-->å¥½ï¼Œ<img src="<if condition='$memberInfo.avatar neq null'><!--{$cfg.url}-->upfile/<!--{$memberInfo.avatar}--><else/>__PUBLIC__/images/demoPhoto_52_52.gif</if>" width="20" height="20" align="absmiddle" /><!--{$username}-->&nbsp;<span><a class="underline" href="brokerPhoto.php">ä¿®æ”¹æˆ‘çš„å¤´åƒ</a></span></div>
 
-                <div class="universityTip"><a class="underline" href="<!--{$cfg.url_shop}--><!--{$memberInfo.id}-->" target="_blank">½øÈëÎÒµÄÍøÉÏµêÆÌ</a><span class="shopTip familyAlpha">&nbsp;(<!--{$cfg.url_shop}--><!--{$memberInfo.id}-->)</span></div>
+                <div class="universityTip"><a class="underline" href="<!--{$cfg.url_shop}--><!--{$memberInfo.id}-->" target="_blank">è¿›å…¥æˆ‘çš„ç½‘ä¸Šåº—é“º</a><span class="shopTip familyAlpha">&nbsp;(<!--{$cfg.url_shop}--><!--{$memberInfo.id}-->)</span></div>
                 <br />
                 <br />
 
 
-                <h4>ÕÊºÅĞÅÏ¢</h4>
+                <h4>å¸å·ä¿¡æ¯</h4>
                 <hr>
                 <div class="memberProfile">
                     <ul>
-                        <li>ÓÃ»§ĞÕÃû£º<span class="familyAlpha color999"><!--{$username}--></span></li>
+                        <li>ç”¨æˆ·å§“åï¼š<span class="familyAlpha color999"><!--{$username}--></span></li>
 
-                        <li>ÓÃ»§ÀàĞÍ£º
+                        <li>ç”¨æˆ·ç±»å‹ï¼š
                             <!--{if $memberInfo.vip==1}-->
-                            <span class="familyAlpha color999">ÌåÑéÌ×²Í</span> µ½ÆÚÊ±¼ä£º<span class="familyAlpha color999"><!--{$vip_totime|date_format:"%Y-%m-%d"}--> <a class="underline" href="#" onclick="showBoxType();return false;">Éı¼¶Îª±ê×¼Ì×²Í</a></span>
+                            <span class="familyAlpha color999">ä½“éªŒå¥—é¤</span> åˆ°æœŸæ—¶é—´ï¼š<span class="familyAlpha color999"><!--{$vip_totime|date_format="%Y-%m-%d"}--> <a class="underline" href="#" onclick="showBoxType();return false;">å‡çº§ä¸ºæ ‡å‡†å¥—é¤</a></span>
                             <!--{elseif $memberInfo.vip==2}-->
-                            <span class="familyAlpha color999">±ê×¼Ì×²Í</span> µ½ÆÚÊ±¼ä£º<span class="familyAlpha color999"><!--{$vip_totime|date_format:"%Y-%m-%d"}--></span>
+                            <span class="familyAlpha color999">æ ‡å‡†å¥—é¤</span> åˆ°æœŸæ—¶é—´ï¼š<span class="familyAlpha color999"><!--{$vip_totime|date_format="%Y-%m-%d"}--></span>
                             <!--{else}-->
-                            <span class="familyAlpha color999">ÆÕÍ¨ÓÃ»§</span> <a class="underline" href="#" onclick="showBoxType();return false;">Éı¼¶</a>                 <!--{/if}-->
+                            <span class="familyAlpha color999">æ™®é€šç”¨æˆ·</span> <a class="underline" href="#" onclick="showBoxType();return false;">å‡çº§</a>                 <!--{/if}-->
                         </li>
-                        <li>ÕË»§×´Ì¬£º<span class="familyAlpha color999"> <!--{if $memberInfo.status ==1}-->Î´¿ªÍ¨ <!--{else}-->Õı³£ <!--{/if}--></span></li>
-                        <li>ÕË»§Óà¶î£º<span class="familyAlpha color999"><!--{$memberInfo.money}-->Ôª</span>&nbsp;<span><a class="underline" href="pay.html" target="_blank">ÎÒÒª³äÖµ</a></span></li>
+                        <li>è´¦æˆ·çŠ¶æ€ï¼š<span class="familyAlpha color999"> <!--{if $memberInfo.status ==1}-->æœªå¼€é€š <!--{else}-->æ­£å¸¸ <!--{/if}--></span></li>
+                        <li>è´¦æˆ·ä½™é¢ï¼š<span class="familyAlpha color999"><!--{$memberInfo.money}-->å…ƒ</span>&nbsp;<span><a class="underline" href="pay.html" target="_blank">æˆ‘è¦å……å€¼</a></span></li>
 
-                        <li>·şÎñÌØ³¤£º<span class="familyAlpha color999"><!--{if $memberInfo.specialty}--><!--{$memberInfo.specialty}--><!--{else}-->»¹Ã»ÓĞÉèÖÃ·şÎñÌØ³¤ <a class="underline" href="brokerProfile.php" >ÂíÉÏÉèÖÃ</a><!--{/if}--></span></li>
+                        <li>æœåŠ¡ç‰¹é•¿ï¼š<span class="familyAlpha color999"><!--{if $memberInfo.specialty}--><!--{$memberInfo.specialty}--><!--{else}-->è¿˜æ²¡æœ‰è®¾ç½®æœåŠ¡ç‰¹é•¿ <a class="underline" href="brokerProfile.php" >é©¬ä¸Šè®¾ç½®</a><!--{/if}--></span></li>
 
-                        <li>ÄãµÄµÈ¼¶£º<img src="<!--{$cfg.path.images}-->rank/<!--{$memberInfo.brokerRank}-->.png" align="absmiddle" />&nbsp;<span class="familyAlpha color999">(<!--{$memberInfo.scores}-->»ı·Ö)</span></li>
-                        <li>ÄãµÄÈÏÖ¤£º<!--{if $memberInfo.idcard ==""}--><span>
-                    <a class="underline" href="brokerIdentity.php" ><img src="<!--{$cfg.path.images}-->no_brokerIdentity.png" align="absmiddle" alt="Î´¾­¹ı <!--{$cfg.page.titlec}-->ÊµÃûÈÏÖ¤" /></a>
+                        <li>ä½ çš„ç­‰çº§ï¼š<img src="<!--{$cfg.path.images}-->rank/<!--{$memberInfo.brokerRank}-->.png" align="absmiddle" />&nbsp;<span class="familyAlpha color999">(<!--{$memberInfo.scores}-->ç§¯åˆ†)</span></li>
+                        <li>ä½ çš„è®¤è¯ï¼š<!--{if $memberInfo.idcard ==""}--><span>
+                    <a class="underline" href="brokerIdentity.php" ><img src="<!--{$cfg.path.images}-->no_brokerIdentity.png" align="absmiddle" alt="æœªç»è¿‡ <!--{$cfg.page.titlec}-->å®åè®¤è¯" /></a>
                     </span>
                             <!--{else}-->
-                            <img src="<!--{$cfg.path.images}-->brokerIdentity.png" align="absmiddle" alt="ÒÑÍ¨¹ı <!--{$cfg.page.titlec}-->ÊµÃûÈÏÖ¤" /><!--{/if}-->
+                            <img src="<!--{$cfg.path.images}-->brokerIdentity.png" align="absmiddle" alt="å·²é€šè¿‡ <!--{$cfg.page.titlec}-->å®åè®¤è¯" /><!--{/if}-->
                             &nbsp;
                             <!--{if $memberInfo.aptitude ==""}-->
-                            <span><a class="underline" href="brokerAptitude.php" ><img src="<!--{$cfg.path.images}-->no_brokerAptitude.png" align="absmiddle" alt="Î´¾­¹ı <!--{$cfg.page.titlec}-->Ö´ÒµÈÏÖ¤" /></a></span>
+                            <span><a class="underline" href="brokerAptitude.php" ><img src="<!--{$cfg.path.images}-->no_brokerAptitude.png" align="absmiddle" alt="æœªç»è¿‡ <!--{$cfg.page.titlec}-->æ‰§ä¸šè®¤è¯" /></a></span>
                             <!--{else}-->
-                            <img src="<!--{$cfg.path.images}-->brokerAptitude.png" align="absmiddle" alt="ÒÑÍ¨¹ı <!--{$cfg.page.titlec}-->×ÊÖÊÈÏÖ¤" /><!--{/if}-->&nbsp;</li>
-                        <li>»îÔ¾Ö¸Êı£º<!--{foreach from=$memberInfo.active_str item=item}--><!--{if $item}--><img src="<!--{$cfg.path.images}-->activityYes.gif" title="µ±ÌìÀ´¹ı" /><!--{else}--><img src="<!--{$cfg.path.images}-->activityNo.gif" title="µ±ÌìÃ»À´¹ı" /><!--{/if}--><!--{/foreach}-->&nbsp;&nbsp;ÉÏ´ÎµÇÂ¼£º<span class="familyAlpha color999"><!--{$memberInfo.last_login|date_format:"%Y-%m-%d %T"}--></span>&nbsp;&nbsp;×¢²áÊ±¼ä£º<span class="familyAlpha color999"><!--{$memberInfo.add_time|date_format:"%Y-%m-%d %T"}--></span></li>
+                            <img src="<!--{$cfg.path.images}-->brokerAptitude.png" align="absmiddle" alt="å·²é€šè¿‡ <!--{$cfg.page.titlec}-->èµ„è´¨è®¤è¯" /><!--{/if}-->&nbsp;</li>
+                        <li>æ´»è·ƒæŒ‡æ•°ï¼š<!--{foreach from=$memberInfo.active_str item=item}--><!--{if $item}--><img src="<!--{$cfg.path.images}-->activityYes.gif" title="å½“å¤©æ¥è¿‡" /><!--{else}--><img src="<!--{$cfg.path.images}-->activityNo.gif" title="å½“å¤©æ²¡æ¥è¿‡" /><!--{/if}--><!--{/foreach}-->&nbsp;&nbsp;ä¸Šæ¬¡ç™»å½•ï¼š<span class="familyAlpha color999"><!--{$memberInfo.last_login|date_format="%Y-%m-%d %T"}--></span>&nbsp;&nbsp;æ³¨å†Œæ—¶é—´ï¼š<span class="familyAlpha color999"><!--{$memberInfo.add_time|date_format="%Y-%m-%d %T"}--></span></li>
                     </ul>
                 </div><br />
 
 
-                <h4>³£ÓÃÊÂÎï¹ÜÀí</h4>
+                <h4>å¸¸ç”¨äº‹ç‰©ç®¡ç†</h4>
                 <hr>
                 <ul class="infoTip">
-                    <li><img src="<!--{$cfg.path.images}-->innerMsg.gif" />&nbsp;ÓÊ¼ş£º<span class="familyAlpha weightBold"><!--{$messageCount}-->&nbsp;</span>·â<a class="underline" href="msgInbox.php">Î´¶ÁÓÊ¼ş</a></li>
+                    <li><img src="<!--{$cfg.path.images}-->innerMsg.gif" />&nbsp;é‚®ä»¶ï¼š<span class="familyAlpha weightBold"><!--{$messageCount}-->&nbsp;</span>å°<a class="underline" href="msgInbox.php">æœªè¯»é‚®ä»¶</a></li>
 
-                    <li><img src="<!--{$cfg.path.images}-->memberMsnIcon.gif" />&nbsp;ºÃÓÑ£º<span class="familyAlpha weightBold"><!--{$firendInviteCount}-->&nbsp;</span>¸ö<a class="underline" href="snsInviteIn.php">ºÃÓÑÑûÇë</a></li>
+                    <li><img src="<!--{$cfg.path.images}-->memberMsnIcon.gif" />&nbsp;å¥½å‹ï¼š<span class="familyAlpha weightBold"><!--{$firendInviteCount}-->&nbsp;</span>ä¸ª<a class="underline" href="snsInviteIn.php">å¥½å‹é‚€è¯·</a></li>
                 </ul>
                 <br />
 
-                <h4>·¿Ô´¹ÜÀí</h4>
+                <h4>æˆ¿æºç®¡ç†</h4>
                 <hr>
                 <ul class="houseTip">
-                    <li><a class="underline familyAlpha size14px weightBold" href="manageSale.php">³öÊÛÖĞ(<!--{$saleCount}-->)</a></li>
-                    <li><a class="underline familyAlpha size14px weightBold" href="manageRent.php">³ö×âÖĞ(<!--{$rentCount}-->)</a></li>
-                    <li><a class="underline familyAlpha size14px weightBold" href="manageSaleRecycle.php">³öÊÛÏÂ¼Ü(<!--{$saleRecycleCount}-->)</a></li>
-                    <li><a class="underline familyAlpha size14px weightBold" href="manageRentRecycle.php">³ö×âÏÂ¼Ü(<!--{$rentRecycleCount}-->)</a></li>
+                    <li><a class="underline familyAlpha size14px weightBold" href="manageSale.php">å‡ºå”®ä¸­(<!--{$saleCount}-->)</a></li>
+                    <li><a class="underline familyAlpha size14px weightBold" href="manageRent.php">å‡ºç§Ÿä¸­(<!--{$rentCount}-->)</a></li>
+                    <li><a class="underline familyAlpha size14px weightBold" href="manageSaleRecycle.php">å‡ºå”®ä¸‹æ¶(<!--{$saleRecycleCount}-->)</a></li>
+                    <li><a class="underline familyAlpha size14px weightBold" href="manageRentRecycle.php">å‡ºç§Ÿä¸‹æ¶(<!--{$rentRecycleCount}-->)</a></li>
                 </ul>
                 <br />
                 <ul class="houseTip">
-                    <li><a class="underline familyAlpha size14px weightBold" href="manageSaleTop.php">³öÊÛÖÃ¶¥(<!--{$saleTopCount}-->)</a></li>
-                    <li><a class="underline familyAlpha size14px weightBold" href="manageRentTop.php">³ö×âÖÃ¶¥(<!--{$rentTopCount}-->)</a></li>
+                    <li><a class="underline familyAlpha size14px weightBold" href="manageSaleTop.php">å‡ºå”®ç½®é¡¶(<!--{$saleTopCount}-->)</a></li>
+                    <li><a class="underline familyAlpha size14px weightBold" href="manageRentTop.php">å‡ºç§Ÿç½®é¡¶(<!--{$rentTopCount}-->)</a></li>
                 </ul>
 
             </div>
@@ -105,16 +105,9 @@
 <script language="javascript">
 
     function showBoxType(){
-        TB_show('·şÎñÉı¼¶','vipShop.php?height=170&width=610&modal=true&rnd='+Math.random(),false);
+        TB_show('æœåŠ¡å‡çº§','vipShop.php?height=170&width=610&modal=true&rnd='+Math.random(),false);
     }
 </script>
 <script src="<!--{$cfg.path.js}-->My97DatePicker/WdatePicker.js" language="javascript"></script>
-
-<!-- www.6doffice.net/rent Baidu tongji analytics -->
-<script type="text/javascript">
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc46c1424172e48f1f84adb5f7dda0b22' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
 </body>
 </html>

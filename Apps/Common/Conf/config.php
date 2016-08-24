@@ -19,6 +19,10 @@ return array(
     'HTML_CHARSET'         =>'gb2312',
 
     // 加载扩展配置文件
-    'LOAD_EXT_CONFIG' =>  array('BASE'=>'base'),
+    'LOAD_EXT_CONFIG' =>  array('BASE'=>'base','CITYAREA'=>'cityarea','RANK'=>'rank'),
+    // cookie验证hash值
+    'AUTH_KEY'=>'6d_cc_on_board',
+    //每隔一小时验证cookie信息是否与数据库一致
+    'AUTH_TIME'=>3600,
 
 );

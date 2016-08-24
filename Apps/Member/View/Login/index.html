@@ -30,7 +30,7 @@
         <div class="reg_b11"><font class="t20 b"><font color="#FF0000">免费注册经纪人</font></font></div>
       </div>
       <div class="reg_b31"><font class="t20 b">如果您已拥有帐户，请在下面登录</font></div>
-      <!--{$Think.cookie.think_userid}-->
+      <!--{$Think.cookie.AUTH_MEMBER_NAME}-->
     </div>
     <div class="reg_b">
       <!-- reg -->
@@ -84,7 +84,9 @@
             <div class="reg_b124">
               <select  name="cityarea_id" value="<!--{$Think.post.mobile}-->"  valid="required" errmsg="请选择服务区域!">
                 <option>请选择</option>
-                <!--{html_options options=$cityarea_option selected=$dataInfo.cityarea_id}-->
+                <foreach name="cityarea" item="v">
+                  <option value="<!--{$key}-->"><!--{$v}--></option>
+                </foreach>
               </select>
             </div>
 
@@ -123,7 +125,7 @@
             <div class="reg_b126">
               <input name="verify" type="text" class="input_region_yzm"  id="verifycode"/>
             </div>
-            <div class="reg_b127"><img onclick="this.src=this.src +'/' + Math.random();" id="valid_pic" src="<!--{:U(MODULE_NAME.'/Login/verify')}-->"></div>
+            <div class="reg_b127"><img onclick="this.src=this.src +'/' + Math.random();" id="valid_pic" src="<!--{:U(MODULE_NAME.'/Login/verify',array('id'=>1))}-->"></div>
             <div class="reg_b127" style="float:left; width:61px;"><span><a href="javascript:void(0)" onclick="document.getElementById('valid_pic').src+='/' + Math.random();"><font>换一换</font></a></span></div>
             <div style="float:left; width:110px;" class="reg_b123" id="errMsg_vaild"></div>
           </div>
@@ -160,6 +162,21 @@
             </div>
           </div>
           <div style="height:10px; clear:both; overflow:hidden;"></div>
+
+
+
+          <div class="reg_b32">
+            <div class="reg_b321">验证码：</div>
+            <div class="" style="width:82px;float:left;margin-top: 6px;margin-left:14px;">
+              <input type="text" name="verify2" class="" style="width:76px; _width:77px; height:25px; line-height:25px; background:url(__PUBLIC__/images/input_region_yzm.gif); border:0; padding-left:6px; color:#000; font-size:13px;" >
+            </div>
+            <div class="reg_b127" style="margin-top: 5px"><img onclick="this.src=this.src +'/' + Math.random();" id="valid_pic2" src="<!--{:U(MODULE_NAME.'/Login/verify',array('id'=>2))}-->"></div>
+            <div class="reg_b127" style="float:left; width:61px;margin-top: 5px;margin-left: 10px"><span><a href="javascript:void(0)" onclick="document.getElementById('valid_pic2').src+='/' + Math.random();"><font>换一换</font></a></span></div>
+
+
+          </div>
+
+          <div style="height:11px; clear:both; overflow:hidden;"></div>
           <div class="reg_b32">
             <div class="reg_b321">&nbsp;</div>
             <div class="reg_b324">

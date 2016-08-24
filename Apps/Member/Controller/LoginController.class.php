@@ -21,6 +21,7 @@ class LoginController extends Controller{
 
         //p($webConfig);die();
         $this->title=$page->title.' - 会员登陆';
+        $this->cityarea=C('CITYAREA');
 
 
 
@@ -34,6 +35,7 @@ class LoginController extends Controller{
      * 验证码
      */
     public function verify(){
+        $id=I('get.id','','intval');
         $config = array(
             'imageW'=>75,
             'imageH'=>30,
@@ -44,7 +46,15 @@ class LoginController extends Controller{
 
         );
         $Verify=new \Think\Verify($config);
-        $Verify->entry();
+
+        if($id==1){
+            $Verify->entry(1);
+
+        }elseif($id==2){
+            $Verify->entry(2);
+
+        }
+
     }
     /**
      * 注册用户
@@ -54,7 +64,7 @@ class LoginController extends Controller{
         $username=I('username');
         $passwd=I('passwd');
         $code=I('verify');
-        if(!$this->check_verify($code)){
+        if(!$this->check_verify($code,1)){
             $this->error('验证码错误');
 
         }
@@ -89,11 +99,19 @@ class LoginController extends Controller{
         );
         if($userid=D('MemberRelation')->relation(true)->add($data)){//关联模型插入两个表中
             $this->addLoginLog($username);
+            //登录信息写入cookie
 
-            //登录信息写入cookie添加think_前缀
+            $auth_code = authcode($userid. "\t" . md5($passwd). "\t" .$data['user_type'], 'ENCODE',C('AUTH_KEY'));
+            setcookie('AUTH_MEMBER_STRING',$auth_code,0,'/',C('COOKIE_DOMAIN'));
+            $_COOKIE['AUTH_MEMBER_STRING'] = $auth_code;
+            setcookie('AUTH_MEMBER_NAME',$username,0,'/',C('COOKIE_DOMAIN'));
+            $_COOKIE['AUTH_MEMBER_NAME'] = $username;
+            /*$brokerwhere['id']=$userid;
+            $brokerwhere['user_type']=I('user_type');
+            $realname = M('broker_info')->field('realname')->where($brokerwhere)->find();*/
+            setcookie('AUTH_MEMBER_REALNAME',I('realname'),0,'/',C('COOKIE_DOMAIN'));
+            $_COOKIE['AUTH_MEMBER_REALNAME'] = I('realname');
 
-            cookie('username',$username,array('expire'=>3600,'prefix'=>'think_'));
-            cookie('userid',$userid,array('expire'=>3600,'prefix'=>'think_'));
             //计算并更新用户活跃度
             $dateNow = mktime(0,0,0,date('m'),date('d'),date('Y'));
             $dateBefore =  $dateNow -604800;
@@ -119,7 +137,7 @@ class LoginController extends Controller{
             }
             D('MemberRelation')->where(array('id'=>$userid))->save(array('active_str'=>$active_str,'active_rate'=>$activeRate));
 
-            $this->success('注册成功');
+            $this->success('注册成功',U(MODULE_NAME.'/Index/index'));
         }else{
             $this->error('注册失败');
         }
@@ -133,7 +151,7 @@ class LoginController extends Controller{
         if(!IS_AJAX) $this->error('非法访问');
         $arr=array();
         $code=I('code');
-        if($this->check_verify($code)){
+        if($this->check_verify($code,1)){
             $arr['status']=true;
             $arr['returnMSG']='验证码正确';
         }else{
@@ -167,8 +185,86 @@ class LoginController extends Controller{
         if(!IS_POST) $this->error('非法访问');
         $username=I('username');
         $passwd=I('passwd');
+        $code=I('verify2');
+        $notForget=I('notForget',0,'intval');
 
-        p($_SESSION);
+        if(!$this->check_verify($code,2)) $this ->error('验证码错误');
+        $userarr=D('MemberRelation')->relation(true)->where(array('username'=>$username))->find();
+        //p($userarr);die;
+        if(!$userarr){
+            $this->error('用户名不存在');
+        }else{
+            if(md5($passwd)!=$userarr['passwd']){
+                $this->error('密码错误');
+            }else{
+                //写入cookie
+                if(isset($notForget) && $notForget==1){//记住密码一年
+                    setcookie('AUTH_MEMBER_FORGET',$username,time()+60*60*24*365,'/',C('COOKIE_DOMAIN'));
+                }
+
+                $auth_code = authcode($userarr['id']. "\t" . md5($passwd). "\t" .$userarr['user_type'], 'ENCODE',C('AUTH_KEY'));
+                setcookie('AUTH_MEMBER_STRING',$auth_code,0,'/',C('COOKIE_DOMAIN'));
+                $_COOKIE['AUTH_MEMBER_STRING'] = $auth_code;
+                setcookie('AUTH_MEMBER_NAME',$username,0,'/',C('COOKIE_DOMAIN'));
+                $_COOKIE['AUTH_MEMBER_NAME'] = $username;
+
+                setcookie('AUTH_MEMBER_REALNAME',$userarr['broker_info']['realname'],0,'/',C('COOKIE_DOMAIN'));
+                $_COOKIE['AUTH_MEMBER_REALNAME'] = $userarr['broker_info']['realname'];
+
+
+                //更新最后登陆时间和登陆次数
+                M('member')->where(array('id'=>$userarr['id']))->save(array('last_login'=>time(),'logins'=>$userarr['logins']+1));
+
+                //重新计算用户活跃度
+                //1:记录loginlog
+                $this->addLoginLog($username);
+                //2:计算活跃度
+                if($userarr['user_type']==1){
+                    //7天前
+                    $dateNow = mktime(0,0,0,date('m'),date('d'),date('Y'));
+                    $dateBefore =  $dateNow -518400;
+                    $loginlogdb=M('member_loginlog');
+                    $condition['username'] = $username;
+                    $condition['add_time'] = array('egt',$dateBefore);
+                    $loginlog=$loginlogdb->field('add_time')->where($condition)->order('add_time asc')->select();
+                    $active_arr = array_fill(0, 7, 0);
+                    $activeRate = 0;
+                    foreach($loginlog as $item) {
+                        for ($i = 0; $i <= 6; $i++) {
+                            if ($dateBefore + $i * 86400 == $item) {
+                                $activeRate += 1000 + pow(2, $i);
+                                $active_arr[$i] = 1;
+                                break;
+                            }
+                        }
+                    }
+
+                    if($active_arr){
+                        $active_str = implode('|',$active_arr);
+                    }else{
+                        $active_str = '';
+                    }
+                    D('MemberRelation')->where(array('id'=>$userarr['id']))->save(array('active_str'=>$active_str,'active_rate'=>$activeRate));
+
+                }
+
+
+                $this->success('登录成功正在跳转.....',U(MODULE_NAME.'/Index/index'));
+            }
+        }
+
+    }
+
+    /**
+     * 安全退出
+     */
+    public function logout(){
+        /*if($_COOKIE['AUTH_MEMBER_STRING']){
+            $uid = $this->getAuthInfo('id');
+        }*/
+        setcookie('AUTH_MEMBER_STRING', 0, time()-1,'/',C('COOKIE_DOMAIN'));
+        setcookie('AUTH_MEMBER_NAME',0,time()-1,'/',C('COOKIE_DOMAIN'));
+        setcookie('AUTH_MEMBER_REALNAME',0,time()-1,'/',C('COOKIE_DOMAIN'));
 
     }
 
@@ -185,12 +281,17 @@ class LoginController extends Controller{
         $condition['username'] = $username;
         $condition['add_time'] = $today;
         $loginLogId=$db->field('id')->where($condition)->find();
-        if($loginLogId){
-            $db->where(array('id'=>$loginLogId))->setInc('login_times',1);
+        //p($loginLogId);die;
+        if($loginLogId['id']){
+            $db->where(array('id'=>$loginLogId['id']))->setInc('login_times',1);
         }else{
             $db->data(array('username'=>$username,'login_times'=>1,'add_time'=>$today))->add();
         }
         return true;
     }
+
+
+
+
 
 }

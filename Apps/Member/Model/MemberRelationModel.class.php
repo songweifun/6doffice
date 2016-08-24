@@ -18,4 +18,25 @@ class MemberRelationModel extends RelationModel{
         ),
     );
 
+    /**
+     * 取用户信息
+     * @param string $memberId 用户ID
+     * @param string $field 字段
+     * @access public
+     * @return array
+     */
+    public function getInfo($memberId, $field = '*',$moreInfo=false) {
+        if($moreInfo){
+            $userInfo = M('member')->field($field)->find($memberId);
+
+            $detailInfo = M('broker_info')->field($field)->find($memberId);
+
+            return array_merge((array)$userInfo,(array)$detailInfo);
+
+        }else{
+            return  M('member')->field($field)->find($memberId);
+        }
+
+    }
+
 }
