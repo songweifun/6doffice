@@ -34,5 +34,22 @@ class CommonController extends Controller{
 
         }//
 
+        //公用的数据
+
+        $page=$this;
+        require(APP_PATH.'Common/commonphp/page.php');
+
+        $this->username = $_COOKIE['AUTH_MEMBER_REALNAME'] ? $_COOKIE['AUTH_MEMBER_REALNAME'] :$_COOKIE['AUTH_MEMBER_NAME'];
+        $this->member_id =getAuthInfo('id');
+        //未读邮件
+        $newMsgCount = 0;
+        if($_COOKIE['AUTH_MEMBER_NAME']){
+            $newMsgCount=M('innernote')->where(array('to_del'=>0,'is_new'=>1,'msg_to'=>$_COOKIE['AUTH_MEMBER_NAME']))->count();
+        }
+        $this->msgCount=$newMsgCount;
+
+        $_SESSION["file_info"] = array();
+        $this->assign('session_id', session_id());
+
     }
 }

@@ -118,7 +118,16 @@ class LoginController extends Controller{
             $loginlogdb=M('member_loginlog');
             $condition['username'] = $username;
             $condition['add_time'] = array('egt',$dateBefore);
-            $loginlog=$loginlogdb->field('add_time')->where($condition)->order('add_time asc')->select();
+            $loginlogarr=$loginlogdb->field('add_time')->where($condition)->order('add_time asc')->select();
+            //组合出loginlog一维数组
+            $loginlog=array();
+            foreach($loginlogarr as $v){
+
+                foreach($v as $value){
+                    $loginlog[]=$value;
+                }
+
+            }
             $active_arr = array_fill(0, 7, 0);
             $activeRate = 0;
             foreach($loginlog as $item) {
@@ -223,11 +232,23 @@ class LoginController extends Controller{
                     //7天前
                     $dateNow = mktime(0,0,0,date('m'),date('d'),date('Y'));
                     $dateBefore =  $dateNow -518400;
+                    //echo $dateBefore;
                     $loginlogdb=M('member_loginlog');
                     $condition['username'] = $username;
                     $condition['add_time'] = array('egt',$dateBefore);
-                    $loginlog=$loginlogdb->field('add_time')->where($condition)->order('add_time asc')->select();
+                    $loginlogarr=$loginlogdb->field('add_time')->where($condition)->order('add_time asc')->select();
+                    //组合出loginlog一维数组
+                    $loginlog=array();
+                    foreach($loginlogarr as $v){
+
+                        foreach($v as $value){
+                            $loginlog[]=$value;
+                        }
+
+                    }
+                    //p($loginlog);
                     $active_arr = array_fill(0, 7, 0);
+                    //p($active_arr);
                     $activeRate = 0;
                     foreach($loginlog as $item) {
                         for ($i = 0; $i <= 6; $i++) {
@@ -238,6 +259,7 @@ class LoginController extends Controller{
                             }
                         }
                     }
+                    //p($activeRate);die;
 
                     if($active_arr){
                         $active_str = implode('|',$active_arr);

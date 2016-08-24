@@ -116,4 +116,27 @@ function getCaption($name, $value) {
 	return $result;
 }
 
+/**
+ * 取字典项数组 分组
+ * @param string $name 字典名
+ * @access public
+ * @return array
+ */
+function getArrayGrouped($dd_name) {
+	$dd_idarr=M('dd')->where(array('dd_name'=>$dd_name))->find();
+	$dd_id=$dd_idarr['dd_id'];
+	$dd_array=M('dd_item')->where(array('dd_id'=>$dd_id))->order('list_order')->select();
+	//p($dd_array);die();
+
+	if(is_array($dd_array)){
+		foreach ($dd_array as $a_dditem){
+			$grouped_array[$a_dditem['list_group']][$a_dditem['di_value']] = $a_dditem['di_caption'];
+		}
+		ksort($grouped_array);
+	}
+	//p($grouped_array);die();
+	return $grouped_array;
+
+}
+
 ?>

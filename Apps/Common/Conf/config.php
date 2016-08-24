@@ -10,6 +10,7 @@ return array(
     'DB_USER'               =>  'root',      // 用户名
     'DB_PWD'                =>  'admin888',          // 密码
     'DB_PREFIX'             =>  'fke_',    // 数据库表前缀
+    'SHOW_PAGE_TRACE'=>true,//显示调试页面
 
     /**模板前后缀**/
     'TMPL_L_DELIM'=>'<!--{',
