@@ -11,7 +11,7 @@ use Think\Controller;
 class CommonController extends Controller{
     public function _initialize(){
         if (!$_COOKIE['AUTH_MEMBER_STRING']) {
-            $this->redirect(MODULE_NAME.'/Login/login');
+            $this->redirect(MODULE_NAME.'/Login/index');
 
         }else{
 

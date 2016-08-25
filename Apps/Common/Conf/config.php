@@ -10,7 +10,7 @@ return array(
     'DB_USER'               =>  'root',      // 用户名
     'DB_PWD'                =>  'admin888',          // 密码
     'DB_PREFIX'             =>  'fke_',    // 数据库表前缀
-    'SHOW_PAGE_TRACE'=>true,//显示调试页面
+    //'SHOW_PAGE_TRACE'=>true,//显示调试页面
 
     /**模板前后缀**/
     'TMPL_L_DELIM'=>'<!--{',
@@ -20,7 +20,7 @@ return array(
     'HTML_CHARSET'         =>'gb2312',
 
     // 加载扩展配置文件
-    'LOAD_EXT_CONFIG' =>  array('BASE'=>'base','CITYAREA'=>'cityarea','RANK'=>'rank'),
+    'LOAD_EXT_CONFIG' =>  array('BASE'=>'base','CITYAREA'=>'cityarea','RANK'=>'rank','UPLOADCONF'=>'upload'),
     // cookie验证hash值
     'AUTH_KEY'=>'6d_cc_on_board',
     //每隔一小时验证cookie信息是否与数据库一致

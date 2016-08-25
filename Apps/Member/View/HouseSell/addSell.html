@@ -7,15 +7,15 @@
 
 
 
-    <link href="__PUBLIC__/SWFUpload/css/default.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/SWFUpload/swfupload.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/lib/SWFUpload/js/handlers.js"></script>
+    <link href="__ROOT__/Data/SWFUpload/css/default.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__ROOT__/Data/SWFUpload/swfupload.js"></script>
+    <script type="text/javascript" src="__ROOT__/Data/SWFUpload/js/handlers.js"></script>
     <script type="text/javascript">
         var swfu;
         window.onload = function () {
             swfu = new SWFUpload({
                 // Backend Settings
-                upload_url: "../common/lib/SWFUpload/upload.php?to=uploadHousePicture|house|sell",
+                upload_url: "<!--{:U(MODULE_NAME.'/HouseSell/upload')}-->/to/uploadHousePicture|house|sell/action/doupload",
                 post_params: {"PHPSESSID": "<!--{$session_id}-->"},
 
                 // File Upload Settings
@@ -37,7 +37,7 @@
                 upload_complete_handler : uploadComplete,
 
                 // Button Settings
-                button_image_url : "../common/lib/SWFUpload/images/SmallSpyGlassWithTransperancy_17x18.png",
+                button_image_url : "__ROOT__/Data/SWFUpload/images/SmallSpyGlassWithTransperancy_17x18.png",
                 button_placeholder_id : "spanButtonPlaceholder",
                 button_width: 180,
                 button_height: 18,
@@ -49,8 +49,8 @@
                 button_cursor: SWFUpload.CURSOR.HAND,
 
                 // Flash Settings
-                flash_url : "../common/lib/SWFUpload/swfupload.swf",
-                flash9_url : "../common/lib/SWFUpload/swfupload_FP9.swf",
+                flash_url : "__ROOT__/Data/SWFUpload/swfupload.swf",
+                flash9_url : "__ROOT__/Data/SWFUpload/swfupload_FP9.swf",
 
                 custom_settings : {
                     upload_target : "divFileProgressContainer"
@@ -179,7 +179,7 @@
             </if>
 
 
-            <form id="dataForm" name="dataForm" action="?action=save" method="POST" onsubmit="return checkForm(this)">
+            <form id="dataForm" name="dataForm" action="<!--{:U(MODULE_NAME.'/HouseSell/save')}-->" method="POST" onsubmit="return checkForm(this)">
                 <input type="hidden" name="id" value="<!--{$dataInfo.id}-->">
                 <input type="hidden" name="cid" value="<!--{$Think.get.cid}-->">
                 <input type="hidden" name="to_url" value="<!--{$to_url}-->">
@@ -389,8 +389,8 @@
                     <tr>
                         <td class="row1">户型图：</td>
                         <td colspan="3">
-                            <span class="tip" style="float:left; padding-top:10px;">上传户型图</span><span><iframe name="uploadHouseDrawing" width="100%" height="25" scrolling="No" frameborder="no"  src="<!--{$cfg.url}-->upload.php?to=uploadHouseDrawing|borough|drawing" align="left"></iframe></span><input type="hidden" id="house_drawing" name="house_drawing" value="<!--{$dataInfo.house_drawing}-->"></p>
-                            <p id="house_drawing_dis" style="clear:both;"><notempty name="dataInfo.house_drawing"><img src="<!--{$cfg.url}-->upfile/<!--{$dataInfo.house_drawing}-->" width="120" height="90"></notempty>
+                            <span class="tip" style="float:left; padding-top:10px;">上传户型图</span><span><iframe name="uploadHouseDrawing" width="100%" height="25" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/HouseSell/upload')}-->/to/uploadHouseDrawing|borough|drawing" align="left"></iframe></span><input type="hidden" id="house_drawing" name="house_drawing" value="<!--{$dataInfo.house_drawing}-->"></p>
+                            <p id="house_drawing_dis" style="clear:both;"><notempty name="dataInfo.house_drawing"><img src="__ROOT__/Uploads/<!--{$dataInfo.house_drawing}-->" width="120" height="90"></notempty>
                         </td>
                     </tr>
 
@@ -445,22 +445,22 @@
                         <td colspan="2">
                             <div id="house_picture_dis">
                                 <foreach name="dataInfo.house_pic" item="item">
-                                <div class="upload_shower" id="container_picture_<!--{$smarty.foreach.house_pic.index}-->">
-                                    <a href="<!--{$cfg.url}-->upfile/<!--{$item.pic_url}-->"><img src="<!--{$cfg.url}-->upfile/<!--{$item.pic_url}-->" width="160" height="120"></a>
+                                <div class="upload_shower" id="container_picture_<!--{$key}-->">
+                                    <a href="__ROOT__/Uploads/<!--{$item.pic_url}-->"><img src="__ROOT__/Uploads/<!--{$item.pic_url}-->" width="160" height="120"></a>
                                     <br/><input type="text" name="house_picture_desc[]" value="<!--{$item.pic_desc}-->" size="12">
                                     <input type="hidden" name="house_picture_url[]" value="<!--{$item.pic_url}-->">
                                     <input type="hidden" name="house_picture_thumb[]" value="<!--{$item.pic_thumb}-->">
-                                    <input type="button" name="deletePicture_<!--{$smarty.foreach.house_pic.index}-->" onclick="dropContainer('container_picture_<!--{$smarty.foreach.house_pic.index}-->')" value="删">
+                                    <input type="button" name="deletePicture_<!--{$key}-->" onclick="dropContainer('container_picture_<!--{$key}-->')" value="删">
                                 </div>
                                 </foreach>
                             </div>
                         </td>
                     </tr>
-                    <!--{if !$dataInfo.id}-->
+                    <empty name="dataInfo.id">
                     <tr>
                         <td class="row1">小区照片：</td>
                         <td><span class="tip">&nbsp;小于500K</span><br />
-                            <iframe name="uploadBoroughPicture" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{$cfg.url}-->upload.php?to=uploadBoroughPicture|borough|picture" align="left"></iframe>
+                            <iframe name="uploadBoroughPicture" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/HouseSell/upload')}-->/to/uploadBoroughPicture|borough|picture" align="left"></iframe>
                         </td>
                     </tr>
                     <tr>
@@ -468,7 +468,7 @@
                             <div id="borough_picture_dis"></div>
                         </td>
                     </tr>
-                    <!--{/if}-->
+                    </empty>
                     </tbody>
                 </table>
                 <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
@@ -526,13 +526,13 @@
     function uploadHouseDrawing( furl,fname,thumbUrl ){
         document.getElementById('house_drawing').value = furl;
         //document.getElementById('borough_thumb_desc').value = fname;
-        document.getElementById('house_drawing_dis').innerHTML = '<a href="<!--{$cfg.url}-->upfile/'+furl+'"><img src="<!--{$cfg.url}-->upfile/'+thumbUrl+'" width="120" height="90"></a>';
+        document.getElementById('house_drawing_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="120" height="90"></a>';
     }
     var pictureIndex=<!--{$picture_num}-->;
     var borough_name_val = $('#borough_name').val();
     function uploadHousePicture( furl,fname,thumbUrl ){
         document.getElementById('house_picture_dis').innerHTML += '<div class="upload_shower" id="container_picture_'+pictureIndex+'">\
-	<a href="<!--{$cfg.url}-->upfile/'+furl+'"><img src="<!--{$cfg.url}-->upfile/'+thumbUrl+'" width="160" height="120"></a>\
+	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="house_picture_desc[]" value="'+borough_name_val+'" size="15">\
 	<input type="hidden" name="house_picture_url[]" value="'+furl+'">\
 	<input type="hidden" name="house_picture_thumb[]" value="'+thumbUrl+'">\
@@ -544,7 +544,7 @@
     var boroughIndex=0;
     function uploadBoroughPicture( furl,fname,thumbUrl ){
         document.getElementById('borough_picture_dis').innerHTML += '<div class="upload_shower" id="container_borough_picture_'+boroughIndex+'">\
-	<a href="<!--{$cfg.url}-->upfile/'+furl+'"><img src="<!--{$cfg.url}-->upfile/'+thumbUrl+'" width="160" height="120"></a>\
+	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="borough_picture_desc[]" value="'+borough_name_val+'" size="15">\
 	<input type="hidden" name="borough_picture_url[]" value="'+furl+'">\
 	<input type="hidden" name="borough_picture_thumb[]" value="'+thumbUrl+'">\
