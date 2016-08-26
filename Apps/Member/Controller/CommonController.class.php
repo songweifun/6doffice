@@ -38,6 +38,7 @@ class CommonController extends Controller{
 
         $page=$this;
         require(APP_PATH.'Common/commonphp/page.php');
+        //echo $this->vip2SaleNum;die;
 
         $this->username = $_COOKIE['AUTH_MEMBER_REALNAME'] ? $_COOKIE['AUTH_MEMBER_REALNAME'] :$_COOKIE['AUTH_MEMBER_NAME'];
         $this->member_id =getAuthInfo('id');

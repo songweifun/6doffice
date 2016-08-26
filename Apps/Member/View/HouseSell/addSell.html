@@ -5,6 +5,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><!--{$title}--> - 添加/编辑房源</title>
 
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery-1.2.6.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+
+    <import type="js" file="js.FormValid,js.FV_onBlur"/>
+    <js file="__PUBLIC__/js/Autocompleter/lib/jquery.bgiframe.min.js"/>
+    <js file="__PUBLIC__/js/Autocompleter/jquery.autocomplete.js"/>
+
+    <css file="__PUBLIC__/js/Autocompleter/jquery.autocomplete.css"/>
+    <css file="__PUBLIC__/css/thickbox.css"/>
+    <js file="__PUBLIC__/js/thickbox.js"/>
+
+
+
+
 
 
     <link href="__ROOT__/Data/SWFUpload/css/default.css" rel="stylesheet" type="text/css" />
@@ -83,7 +98,7 @@
             $("#borough_addr_tr").css("display","");
         }
         $().ready(function() {
-            $("#borough_name").autocomplete("ajax.php?action=getBoroughList", {
+            $("#borough_name").autocomplete("<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->/action/getBoroughList", {
                 minChars: 2,
                 width: 260,
                 delay:0,
@@ -102,7 +117,6 @@
 
             $("#borough_name").result(function(event, data, formatted) {
                 if(data[1]=="addBorough"){
-                    //TB_show('增加小区','#TB_inline?height=155&width=400&inlineId=modalWindow',false);
                     TB_show('增加小区','addBorough.php?height=165&width=400&modal=true&rnd='+Math.random(),false);
                     $(this).val('');
                 }else{
@@ -116,7 +130,7 @@
                     pic_desc=pic_desc.split(',');
                     for(i=0;i<pic_thumb.length-1;i++){
                         str+='<li style="width:160px; height:150px;margin-right:15px;float:left; text-align:center;overflow:hidden; margin-top:5px;">\
-				<a href="../upfile/'+pic_url[i]+'" target="_blank"><img src="../upfile/'+pic_thumb[i]+'" width=160 height=120 style="padding-bottom:3px"/></a>\
+				<a href="__ROOT__/Uploads/'+pic_url[i]+'" target="_blank"><img src="__ROOT__/Uploads/'+pic_thumb[i]+'" width=160 height=120 style="padding-bottom:3px"/></a>\
 				<input name="house_drawing" id="house_drawing"type="radio" value="'+pic_url[i]+'" />\
 				<span>'+pic_desc[i]+'</span>\
 				</li>\
@@ -129,8 +143,7 @@
                     $("#borough_addr_tr").css("display","");
                 }
 
-                /*if (data)
-                 $(this).parent().next().find("input").val(data[1]);*/
+
             });
         });
         function checkBoxNum(){

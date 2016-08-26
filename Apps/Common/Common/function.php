@@ -139,4 +139,23 @@ function getArrayGrouped($dd_name) {
 
 }
 
+/**
+ * ×ª±àÂëº¯Êý
+ * @param $vars
+ * @param string $from
+ * @param string $to
+ * @return array|string
+ */
+function charsetIconv($vars,$from='utf-8',$to='utf8') {
+	if (is_array($vars)) {
+		$result = array();
+		foreach ($vars as $key => $value) {
+			$result[$key] = charsetIconv($value);
+		}
+	} else {
+		$result = iconv($from,$to, $vars);
+	}
+	return $result;
+}
+
 ?>

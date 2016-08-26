@@ -15,6 +15,7 @@ class HouseSellController extends CommonController{
 
     //发布出售
     public function addSell(){
+        $page=$this;
         $this->name = 'houseSale';
         //获得保存在cookie中的用户id
         $member_id = getAuthInfo('id');
@@ -40,6 +41,7 @@ class HouseSellController extends CommonController{
                 $where = ' and broker_id = ' . $member_id;
                 $where .= " and status =1 ";
                 $sellCount = D('houseSellView')->getCount(1, $where);
+            //echo $sellCount;die;
 
 
                 //比较房源数量
@@ -53,7 +55,7 @@ class HouseSellController extends CommonController{
                     }
                 } else {
                     if ($sellnum + getAuthInfo('addsale') <= $sellCount) {//addsale是什么
-                        $page->back('你正在出售的房源已经超过了' . $sellnum . '条，请把无效的房源下架后再发布新房源！');
+                        $this->error('你正在出售的房源已经超过了' . $sellnum . '条，请把无效的房源下架后再发布新房源！');
                     }
                 }
         }
@@ -257,6 +259,53 @@ class HouseSellController extends CommonController{
 
 
 
+    }
+
+    /**
+     * ajax查询数据
+     */
+    public function ajax(){
+        //echo "[a,b,c,d,e,fa,jac]";
+        $member_id = getAuthInfo('id');
+        if(I('action')=='getBoroughList'){
+            $borough = M('borough');
+            $_GET["q"] = charsetIconv($_GET["q"]);
+            $q = strtolower($_GET["q"]);
+            if (!$q) return;
+            $where['borough_name']=array('like','%'.$q.'%');
+            $where['borough_letter']=array('like','%'.$q.'%');
+            $where['borough_alias']=array('like','%'.$q.'%');
+            $where['_logic'] = 'OR';
+            $map['_complex']=$where;
+            $map['isdel']=array('neq',1);
+            $datalist=$borough->where($map)->select();
+            //p($datalist);
+            $str = "";
+            foreach ($datalist as $key=>$value) {
+                $boroughImageList = D('Borough')->getImgList($value['id'],1);//获取小区户型图
+                //p($boroughImageList);
+                foreach ($boroughImageList as $k=>$v) {
+                    $pic_thumb.=$v['pic_thumb'].",";
+                    $pic_url.=$v['pic_url'].",";
+                    $pic_desc.=$v['pic_desc'].",";
+                }
+                //echo $pic_thumb;
+                if($value['borough_alias']){
+                    //$str .= $value['borough_name'].'('.$value['borough_alias'].')'."|".$value['id']."|".$value['borough_address']."\n";
+                    $str .= $value['borough_name']."|".$value['id']."|".$value['borough_address']."|".$pic_thumb."|".$pic_url."|".$pic_desc."\n";
+                }else{
+                    $str .= $value['borough_name']."|".$value['id']."|".$value['borough_address']."|".$pic_thumb."|".$pic_url."|".$pic_desc."\n";
+                }
+            }
+
+            $str .= "我要创建新小区|addBorough|addBorough\n";
+            echo $str;
+
+
+
+
+
+        }//if
     }
 
 
