@@ -126,11 +126,7 @@ class HouseSellController extends CommonController{
             $action = "form";
         }
         if($action=="doupload") {
-            echo '<html>';
-            echo '<head>';
-            echo '<title>上传成功</title>';
-            echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=gb2312\">";
-            echo '</head>';
+
 
             $store_info = explode('|', $to);
             $js_func = $store_info[0];
@@ -202,16 +198,28 @@ class HouseSellController extends CommonController{
                                 }
                             }
                         }
-                        //回传参数
-                        echo "<script>
+                        if($js_func=='uploadHousePicture'){
+                            $file_id = md5(rand()*10000000);
+                            echo "FILEID:" . $file_id."||".$f_path['url']."||".$f_path['name']."||".$thumb_path;
+                            return;
+
+                        }
+                            echo '<html>';
+                            echo '<head>';
+                            echo '<title>上传成功</title>';
+                            echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=gb2312\">";
+                            echo '</head>';
+                            //回传参数
+                            echo "<script>
 					var parentForm;
 					if(window.opener){
 						parentForm = window.opener;
 					}else{
 						parentForm = window.parent;
 					}
-					parentForm.".$js_func."('".$f_path['url']."','".$f_path['name']."','".$thumb_path."');
+					parentForm." . $js_func . "('" . $f_path['url'] . "','" . $f_path['name'] . "','" . $thumb_path . "');
 				</script>";
+
 
                     }catch(Exception $e){
                         $this->error( $e->getMessage());
@@ -278,16 +286,17 @@ class HouseSellController extends CommonController{
             $where['_logic'] = 'OR';
             $map['_complex']=$where;
             $map['isdel']=array('neq',1);
-            $datalist=$borough->where($map)->select();
+            $datalist=$borough->field('id,borough_name,borough_address')->where($map)->select();
+            //$this->ajaxReturn($datalist,'jsonp');
             //p($datalist);
             $str = "";
             foreach ($datalist as $key=>$value) {
                 $boroughImageList = D('Borough')->getImgList($value['id'],1);//获取小区户型图
                 //p($boroughImageList);
                 foreach ($boroughImageList as $k=>$v) {
-                    $pic_thumb.=$v['pic_thumb'].",";
-                    $pic_url.=$v['pic_url'].",";
-                    $pic_desc.=$v['pic_desc'].",";
+                    $datalist[$key]['info'][$k]['pic_thumb']=$v['pic_thumb'];
+                    $datalist[$key]['info'][$k]['pic_url']=$v['pic_url'];
+                    $datalist[$key]['info'][$k]['pic_desc']=$v['pic_desc'];
                 }
                 //echo $pic_thumb;
                 if($value['borough_alias']){
@@ -299,7 +308,11 @@ class HouseSellController extends CommonController{
             }
 
             $str .= "我要创建新小区|addBorough|addBorough\n";
-            echo $str;
+            //echo $str;
+            //p($datalist);
+            $datalist[]['borough_name']='我要创建新小区';
+            //p($datalist);die();
+            $this->ajaxReturn($datalist,'jsonp');
 
 
 
@@ -310,9 +323,43 @@ class HouseSellController extends CommonController{
 
 
     /**
+     * 添加小区
+     */
+    public function addBorough(){
+
+        header('content-Type: text/html; charset=utf8');
+
+        $member_id =getAuthInfo('id');
+        $borough = M('borough');
+        $page->$this;
+        $action=I('action');
+
+        if($action == 'save'){
+            //保存在ajax页面
+        }else{
+            $page->name = 'addBorough';
+            //区域，增加小区使用
+            $cityarea_option =getArray('cityarea');
+            $this->assign('cityarea_option', $cityarea_option);
+            //小区物业类型
+            $borough_type_option = getArray('borough_type');
+            $this->assign('borough_type_option', $borough_type_option);
+        }
+
+
+        $this->display();
+    }
+
+
+    /**
      * 添加
      */
     public function save(){
+        $member_id = getAuthInfo('id');
+        $data=array();
+        $data['broker_id']=$member_id;
+        $data['creater']=getAuthInfo('username');
+        $data['company_id']=getAuthInfo('company_id');//将房源和公司联系起来
         p($_POST);
     }
 

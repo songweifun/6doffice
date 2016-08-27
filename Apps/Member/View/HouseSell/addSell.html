@@ -4,18 +4,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><!--{$title}--> - 添加/编辑房源</title>
+    <script>
+        var hosesellajaxurl="<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->"
+        var imagefooturl='__ROOT__/Uploads/'
+        var addBoroughurl="<!--{:U(MODULE_NAME.'/HouseSell/addBorough')}-->"
+    </script>
 
     <css file="__PUBLIC__/css/member.css"/>
-    <js file="__PUBLIC__/js/jquery-1.2.6.min.js"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
     <js file="__PUBLIC__/js/map.js"/>
 
     <import type="js" file="js.FormValid,js.FV_onBlur"/>
-    <js file="__PUBLIC__/js/Autocompleter/lib/jquery.bgiframe.min.js"/>
-    <js file="__PUBLIC__/js/Autocompleter/jquery.autocomplete.js"/>
 
-    <css file="__PUBLIC__/js/Autocompleter/jquery.autocomplete.css"/>
-    <css file="__PUBLIC__/css/thickbox.css"/>
-    <js file="__PUBLIC__/js/thickbox.js"/>
+    <css file="__PUBLIC__/js/uiautocomplete/jquery-ui.css"/>
+    <js file="__PUBLIC__/js/uiautocomplete/jquery-ui.js"/>
+
+
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+
 
 
 
@@ -24,7 +30,7 @@
 
     <link href="__ROOT__/Data/SWFUpload/css/default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="__ROOT__/Data/SWFUpload/swfupload.js"></script>
-    <script type="text/javascript" src="__ROOT__/Data/SWFUpload/js/handlers.js"></script>
+    <!--  swfupload-->
     <script type="text/javascript">
         var swfu;
         window.onload = function () {
@@ -97,55 +103,108 @@
             $("#borough_addr").val(b_addr);
             $("#borough_addr_tr").css("display","");
         }
-        $().ready(function() {
-            $("#borough_name").autocomplete("<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->/action/getBoroughList", {
-                minChars: 2,
-                width: 260,
-                delay:0,
-                mustMatch:true,
-                matchContains: false,
-                scrollHeight: 220,
-                selectFirst:true,
-                scroll: true,
-                formatItem: function(data, i, total) {
-                    if(data[1]=="addBorough"){
-                        return '<strong>'+data[0]+'</strong>';
-                    }
-                    return data[0];
+
+
+        /*$(function(){
+
+            function alertObj(obj){
+                var output = "";
+                for(var i in obj){
+                    var property=obj[i];
+                    output+=i+" = "+property+"\n";
                 }
+                alert(output);
+            }
+
+
+            var cache={}
+
+
+
+            $( "#borough_name" ).autocomplete({
+
+                //请求远程数据
+
+                source: function( request, response ) {
+                    var term = request.term;
+
+                    if(term in cache){ //本地缓存 其实就是用一个数组保存已经发送过请求的key和对应返回的data对象
+                        data = cache[term];
+                        response($.map(data,function(item){
+                            return {label:item.borough_name,value:item.borough_name,info:item.info,address:item.borough_address}
+                        }))
+
+                    }else{
+                        //alert(11111)
+
+                    $.ajax({
+
+                        url:"<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->/action/getBoroughList",
+                        dataType:'jsonp',
+                        data:{
+                          q:request.term
+                        },
+                        success:function(data){
+                            cache[term] = data;
+                            response($.map(data,function(item){
+                                return {label:item.borough_name,value:item.borough_name,info:item.info,address:item.borough_address}
+                            }))//response
+
+
+
+                        }//success
+                    })//ajax
+                    }
+
+                },//source
+                //选择后触发的动作
+                select: function(event, ui) {
+                    //alert(ui.item.info[0].pic_url)
+                    if(ui.item.value=='我要创建新小区'){
+
+                        TB_show('增加小区','<--{:U(MODULE_NAME."/HouseSell/addBorough")}-->/height/165/width/400/modal/true/rnd='+Math.random(),false);
+                        $('#borough_name').val('');
+
+
+
+                    }else{
+                        var str="<div style='width:647px;line-height:30px;color:#999999'>以下为小区上传户型图，如无发布房源户型，请自行上传！</div>";
+                        var len=(ui.item.info)?ui.item.info.length:0;
+                        for(i=0;i<len;i++){
+                            str+='<li style="width:160px; height:150px;margin-right:15px;float:left; text-align:center;overflow:hidden; margin-top:5px;">\
+                    <a href="__ROOT__/Uploads/'+ui.item.info[i].pic_url+'" target="_blank"><img src="__ROOT__/Uploads/'+ui.item.info[i].pic_thumb+'" width=160 height=120 style="padding-bottom:3px"/></a>\
+                    <input name="house_drawing" id="house_drawing"type="radio" value="'+ui.item.info[i].pic_url+'" />\
+                    <span>'+ui.item.info[i].pic_desc+'</span>\
+                    </li>\
+                    ';
+                        }
+                        str+='</ul>';
+                        $("#borough_id").val(ui.item.value);
+                        $("#borough_addr").val(ui.item.address);
+                        $("#house_drawing_dis").html(str);
+                        $("#borough_addr_tr").css("display","");
+                    }
+                },
+                minLength: 2,
+                autoFocus: false,
+                delay: 0,
+                //定位,css设置
+                position: { using:function(pos){
+
+                    var topOffset = $(this).css(pos).offset().top;
+
+                    $(this).css({'top':'topOffset','width':'260','height':'220','overflow':'scroll'});
+                    $(this).children().last().css('color','red');
+
+
+                }},
             });
 
-            $("#borough_name").result(function(event, data, formatted) {
-                if(data[1]=="addBorough"){
-                    TB_show('增加小区','addBorough.php?height=165&width=400&modal=true&rnd='+Math.random(),false);
-                    $(this).val('');
-                }else{
-                    var pic_thumb=data[3];
-                    var pic_url=data[4];
-                    var pic_desc=data[5];
-                    var str="<div style='width:647px;line-height:30px;color:#999999'>以下为小区上传户型图，如无发布房源户型，请自行上传！</div>";
-                    str+="<ul style='width:647px'>";
-                    pic_thumb=pic_thumb.split(',');
-                    pic_url=pic_url.split(',');
-                    pic_desc=pic_desc.split(',');
-                    for(i=0;i<pic_thumb.length-1;i++){
-                        str+='<li style="width:160px; height:150px;margin-right:15px;float:left; text-align:center;overflow:hidden; margin-top:5px;">\
-				<a href="__ROOT__/Uploads/'+pic_url[i]+'" target="_blank"><img src="__ROOT__/Uploads/'+pic_thumb[i]+'" width=160 height=120 style="padding-bottom:3px"/></a>\
-				<input name="house_drawing" id="house_drawing"type="radio" value="'+pic_url[i]+'" />\
-				<span>'+pic_desc[i]+'</span>\
-				</li>\
-				';
-                    }
-                    str+='</ul>';
-                    $("#borough_id").val(data[1]);
-                    $("#borough_addr").val(data[2]);
-                    $("#house_drawing_dis").html(str);
-                    $("#borough_addr_tr").css("display","");
-                }
 
 
-            });
-        });
+        })*/
+
+
         function checkBoxNum(){
             var form = document.forms['dataForm'];
             var i,j=0;
@@ -166,6 +225,8 @@
             $("#h_priceInfo").html("");
         }
     </script>
+
+    <js file="__PUBLIC__/js/member/addsell_atuocomplete.js"/>
 </head>
 <body>
 <include file="Common:memberHeader"/>
@@ -348,7 +409,11 @@
                             <select class="select" name="house_age" valid="required" errmsg="请选择房龄！">
                                 <option value="">请选择</option>
                                 <foreach name="house_age_option" item="v">
-                                    <option value="<!--{$key}-->"><!--{$v}--></option>
+                                    <if condition="$dataInfo.house_age eq $v">
+                                        <option selected="selected" value="<!--{$v}-->"><!--{$v}--></option>
+                                        <else/>
+                                    <option value="<!--{$v}-->"><!--{$v}--></option>
+                                        </if>
                                 </foreach>
 
                             </select>
@@ -425,7 +490,7 @@
                         <td class="row1">房源特色：</td>
                         <td colspan="3">
                             <foreach  name='house_feature_option' item='group'>
-                            <p><!--{$key}-->：&nbsp;
+                            <p><!--{$house_feature_group.$key}-->：&nbsp;
                                 <foreach  name='group' item='house_feature' key='feature_id'>
                                 <if condition="in_array($feature_id,$dataInfo.house_feature)">
                                 <label for="house_feature_<!--{$feature_id}-->"><input  type="checkbox" name="house_feature[]" id="house_feature_<!--{$feature_id}-->" value="<!--{$feature_id}-->" checked onclick="return checkBoxNum()" /><!--{$house_feature}--> </label>
@@ -513,17 +578,20 @@
                 </table>
                 <div class="submitPromsie"><input  id="check_agree" name="check_agree" type="checkbox" checked />
                     我承诺我所发布的房源信息全部属实</div>
-                <!--{if $dataInfo.id}-->
+                <if condition="$dataInfo.id neq null">
                 <div class="submitBtn"><input type="submit" value="确认编辑" /></div>
-                <!--{else}-->
+                <else/>
                 <div class="submitBtn"><input type="submit" value="立即发布" /></div>
-                <!--{/if}-->
+                </if>
             </form>
         </div>
     </div>
 
 </div>
+
+
 <script type="text/javascript">
+
     initValid(document.dataForm);
 
     function checkForm(formDom){
@@ -571,5 +639,7 @@
         parentEle.removeChild(containerEle);
     }
 </script>
+<script type="text/javascript" src="__ROOT__/Data/SWFUpload/js/handlers.js"></script>
+
 </body>
 </html>
