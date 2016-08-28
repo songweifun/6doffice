@@ -10,8 +10,12 @@ use Think\Model\ViewModel;
 class BoroughViewModel extends ViewModel{
     protected $tableName='borough';
     public $viewFields = array(
-        'Blog'=>array('id','name','title'),
-        'Category'=>array('title'=>'category_name', '_on'=>'Blog.category_id=Category.id'),
-        'User'=>array('name'=>'username', '_on'=>'Blog.user_id=User.id'),
+        'borough'=>array('id','name','title'),
+        'borough_info'=>array('title'=>'category_name', '_on'=>'borough.id=borough_info.id'),
+        //'User'=>array('name'=>'username', '_on'=>'Blog.user_id=User.id'),
     );
+
+
+
+
 }

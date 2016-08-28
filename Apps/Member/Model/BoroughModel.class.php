@@ -34,4 +34,17 @@ class BoroughModel extends Model{
         }
     }
 
+
+
+    /**
+     * 根据条件删选相应的字段
+     * @param $where
+     * @param string $field
+     * @return mixed
+     */
+    function getInfo($where, $field = '') {
+        $arr=$this->field($field)->where($where)->find();
+        return $arr[$field];
+    }
+
 }
