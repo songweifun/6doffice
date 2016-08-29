@@ -154,7 +154,7 @@ class HouseSellController extends CommonController{
 
             foreach ($_FILES as $a_file){
                 if($a_file['error']!=UPLOAD_ERR_NO_FILE) {
-                    try{
+
 
                         $upload->rootPath = $this_config['rootPath']; // 设置附件上传根目录
                         $upload->savePath = $this_config['originalPath']; // 设置附件上传（子）目录
@@ -163,7 +163,11 @@ class HouseSellController extends CommonController{
 
 
 
-                        $info = $upload->uploadOne($a_file);
+                        if($info = $upload->uploadOne($a_file)){
+                            //echo "<script> alert('上传成功!'); </script>";
+                        }else{
+                            echo "<script> alert('".$upload->getError()."'); history.back();</script>";
+                        }
                         $fileName=$info['savename'];
                         $f_path['url'] = $this_config['originalPath'].$fileName;
                         $f_path['name'] = $a_file['name'];
@@ -221,9 +225,7 @@ class HouseSellController extends CommonController{
 				</script>";
 
 
-                    }catch(Exception $e){
-                        $this->error( $e->getMessage());
-                    }
+
                 }else{
                     echo "<script>
 					alert('请先浏览文件后点击上传');
@@ -395,9 +397,9 @@ class HouseSellController extends CommonController{
             'house_topfloor'=>I('house_topfloor',0,'intval'),
             'house_floor'=>I('house_floor',0,'intval'),
             'house_age'=>I('house_age'),
-            'house_toward'=>I('house_toward'),
+            'house_toward'=>I('house_toward',0,'intval'),
             'house_fitment'=>I('house_fitment'),
-            'house_feature'=>I('house_feature'),
+            'house_feature'=>$house_feature,
             'house_desc'=>I('house_desc'),
             'borough_id'=>$borough_id,
             'borough_name'=>$borough_name,
@@ -406,13 +408,13 @@ class HouseSellController extends CommonController{
             'owner_name'=>I('owner_name'),
             'owner_phone'=>I('owner_phone'),
             'owner_notes'=>I('owner_notes'),
-            'is_vexation' =>I('vexation'),
+            'is_vexation' =>I('vexation',0,'intval'),
             'company_id' =>$company_id,
         );
         //当不是编辑时 * 减少加急房源条数
         if ( !I('id') && I('vexation') == 1 )
         {
-            //M('member')->where(array('id'=>$broker_id))->setDec('vexation',1);
+            M('member')->where(array('id'=>$broker_id))->setDec('vexation',1);
         }
 
         //取图片第一张作为房源缩略图
@@ -420,6 +422,10 @@ class HouseSellController extends CommonController{
         if($house_picture_thumb[0]){
             $field_array['house_thumb'] =$house_picture_thumb[0];
         }
+
+        $house_picture_url=I('house_picture_url');
+        $house_picture_thumb=I('house_picture_thumb');
+        $house_picture_desc=I('house_picture_desc');
 
         if(I('id')){
             //编辑
@@ -458,9 +464,7 @@ class HouseSellController extends CommonController{
             //$this->db->update($this->tName,$field_array,'id = '.$house_id);
             //$this->db->execute('delete from '.$this->tNamePic.' where housesell_id ='.$house_id);
             //插入房源图片
-            $house_picture_url=I('house_picture_url');
-            $house_picture_thumb=I('house_picture_thumb');
-            $house_picture_desc=I('house_picture_desc');
+
             if(is_array($house_picture_url)){
                 foreach($house_picture_url as $key => $pic_url){
                     $imgField = array(
@@ -471,7 +475,7 @@ class HouseSellController extends CommonController{
                         'creater'=>$creater,
                         'addtime'=>time(),
                     );
-                    $this->db->insert($this->tNamePic,$imgField);
+                    //$this->db->insert($this->tNamePic,$imgField);
                 }
             }
 
@@ -493,7 +497,7 @@ class HouseSellController extends CommonController{
             $field_array['status']=I('status')?I('status'):1;
             $field_array['house_drawing'] = I('house_drawing');
 
-            //插入到房源审核中
+            //插入到房源审核中 将小区图片插入到待审核
             $borough_picture_url=I('borough_picture_url');
             $borough_picture_desc=I('borough_picture_desc');
             $borough_picture_thumb=I('borough_picture_thumb');
@@ -512,20 +516,79 @@ class HouseSellController extends CommonController{
                     $newValue = $borough_picture_desc[$key]."|".$pic_url."|".$borough_picture_thumb[$key];
                     $boroughUpdateField = array(
                         'borough_id'=>$borough_id,
-                        'id'=>'borough_pic',
+                        'field_name'=>'borough_pic',
                         'old_value'=>$old_value,
-                        'value'=>$newValue,
+                        'new_value'=>$newValue,
                         'broker_id'=>$broker_id,
+                        'add_time'=>time(),
                     );
-                    //$borough_update->save($boroughUpdateField);
+                    M('borough_update')->add($boroughUpdateField);
                 }
-            }//if is array
+            }//if is borough_url array
+
+
+            //统计买卖房源数加1
+            $statistics->where(array('stat_index'=>'sellNum'))->setInc('stat_value',1);
+            //对应小区中增加一个房源
+            D('Borough')->where(array('id'=>$borough_id))->setInc('sell_num',1);
+
+            //插入房源图片
+            $picarr=array();
+            if(is_array($house_picture_url)){
+                foreach($house_picture_url as $key => $pic_url){
+                    $imgField = array(
+                        'pic_url'=>$pic_url,
+                        'pic_thumb'=>$house_picture_thumb[$key],
+                        'pic_desc'=>$house_picture_desc[$key],
+                        //'housesell_id'=>$house_id,
+                        'creater'=>$creater,
+                        'addtime'=>time(),
+                    );
+                    //$this->db->insert($this->tNamePic,$imgField);
+                    $picarr[]=$imgField;
+                }
+            }
+
+            $field_array['housesell_pic']=$picarr;
+
+            //关联模型插入 housesell housesell_pic
+            //p($field_array);die;
+
+            if($house_id=D('HouseSellRelation')->relation(true)->add($field_array)){
+                //成功插入做的事情
+                $integral = D('Integral');
+
+                if($broker_id){
+                    //每发布一条出售增加相应的积分
+                    $integral->add($broker_id,7);//7代表新发布一条出售
+                    $houseImg = M('housesell_pic')->where(array("housesell_id"=>$house_id))->count();
+                    if($houseImg>=3){
+                        //户型图超过3条为多图房源
+                        M('housesell')->where(array('id'=>$house_id))->setField('is_more_pic',1);
+                        $integral->add($broker_id,11);//多图房源加分
+                    }
+                    if($houseImg<3){
+                        //户型图少于3条取消多图房源
+                        M('housesell')->where(array('id'=>$house_id))->setField('is_more_pic',0);
+                    }
+
+                    if($_POST['drawing_id'] || $_POST['house_drawing'] ){
+                        $integral->add($broker_id,12);//房源具有有效户型图加分
+                    }
+
+                }
+                $this->success('插入成功');
+
+            }else{
+                $this->error('插入失败');
+            }
+
 
 
         }//else
 
 
-        p($_POST);
+        //p($_POST);
     }
 
 

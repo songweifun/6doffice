@@ -39,4 +39,11 @@ class MemberRelationModel extends RelationModel{
 
     }
 
+    /**
+     * 增加积分
+     */
+    function addScore($member_id,$scores){
+        return $this->where(array('id'=>$member_id))->setInc('scores',$scores);
+    }
+
 }
