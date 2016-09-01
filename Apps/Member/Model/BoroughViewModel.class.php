@@ -15,6 +15,26 @@ class BoroughViewModel extends ViewModel{
         //'User'=>array('name'=>'username', '_on'=>'Blog.user_id=User.id'),
     );
 
+    /**
+     * 取得所有符合条件的用户
+     *
+     * @param string $columns
+     * @param string $condition
+     * @param string $order
+     * @return array
+     */
+    function getFields($columns='*',$condition='',$order = ''){
+
+        $arr=  $this->field($columns)->where($condition)->order($order)->select();
+        $arr2=array();
+        foreach($arr as $v){
+            $arr2[]=$v['id'];
+
+        }
+        return $arr2;
+
+        //return $this->db->select('select '.strtolower($columns).' from '.$this->tName.$condition.' '.$order);
+    }
 
 
 

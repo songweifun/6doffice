@@ -270,9 +270,11 @@ class LoginController extends Controller{
 
                 }
 
-                $integral = D('Integral');
+                $integral = D('IntegralRule');
+                //echo $userarr['id'];die;
 
                 $integral->add($userarr['id'],1);//没登录一次加5分
+
 
 
                 $this->success('登录成功正在跳转.....',U(MODULE_NAME.'/Index/index'));

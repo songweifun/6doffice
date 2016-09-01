@@ -6,6 +6,7 @@
  * Time: 下午10:14
  */
 namespace Member\Model;
+use Think\Model;
 use Think\Model\RelationModel;
 class MemberRelationModel extends RelationModel{
     protected $tableName = 'member';
@@ -42,8 +43,11 @@ class MemberRelationModel extends RelationModel{
     /**
      * 增加积分
      */
-    function addScore($member_id,$scores){
-        return $this->where(array('id'=>$member_id))->setInc('scores',$scores);
+    public function addScore($member_id,$scores){
+        //echo $member_id;die;
+        $oldscores=$this->where(array('id'=>$member_id))->getField('scores');
+        //p($oldscores);die;
+        return M('member')->where(array('id'=>$member_id))->setField('scores',$oldscores+$scores);
     }
 
 }

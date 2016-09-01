@@ -8,7 +8,7 @@
 
 namespace Member\Model;
 use Think\Model;
-class IntegralModel extends Model{
+class IntegralRuleModel extends Model{
     /**
      * 主用户表
      *
@@ -24,7 +24,7 @@ class IntegralModel extends Model{
     protected $tNameLog = "fke_integral_log";
 
     function add($member_id,$rule_id){
-        $member= M('MemberRelation');
+        $member= D('MemberRelation');
         $ruleInfo = $this->getInfo($rule_id);
         $member->addScore($member_id,$ruleInfo['rule_score']);
         //log
@@ -35,16 +35,18 @@ class IntegralModel extends Model{
             'rule_score'=>$ruleInfo['rule_score'],
             'add_time'=>time()
         );
-        $this->table($this->tNameLog)->add($insertField);
+        //p($insertField);die;
+        M('integral_log')->add($insertField);
+        //$this->table($this->tNameLog)->add($insertField);//table好像插入不管使,只能用于查询
     }
 
     /**
-     * 取得详细信息
-     * @access public
-     * @param int $id
-     * @return array
+     * @param $id
+     * @param string $field
+     * @return mixed
      */
     function getInfo($id,$field = '*'){
-        return $this->query('select '.$field.' from '.$this->tName.' where id =' .$id);
+        return $this->table($this->tName)->where(array('id'=>$id))->find();
+        //return $this->query('select '.$field.' from '.$this->tName.' where id =' .$id);
     }
 }

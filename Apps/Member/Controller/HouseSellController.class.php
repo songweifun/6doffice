@@ -11,6 +11,62 @@ class HouseSellController extends CommonController{
     //出售管理
     public function index(){
 
+        $page=$this;
+
+
+        $member_id = getAuthInfo('id');
+        $houseSell = D('HouseSellView');
+
+        //列表包括搜索
+        $this->name = 'manageSale';
+        $where = ' and broker_id = ' . $member_id;
+        $where .=" and status = 1";
+        $houseNum = $houseSell->getCount(0, $where);
+        $this->houseNum=$houseNum;
+        $integral_array = C('RANK');
+        $scores = getAuthInfo('scores');
+        $allowNum = getNumByScore($scores, $integral_array, 'sell_num') + getAuthInfo('addsale');
+        if (getAuthInfo('vip') == 1) {
+            $allowNum = $page->vip1SaleNum;
+        }
+        if (getAuthInfo('vip') == 2) {
+            $allowNum = $page->vip2SaleNum;
+        }
+        $memberVip=getAuthInfo('vip');
+        $this->memberVip=$memberVip;
+        $houseLeft = $allowNum - $houseNum;
+        $this->houseLeft=$houseLeft;
+
+        $where = ' and broker_id = ' . $member_id;
+        $q = $_GET['q'] == '输入房源编号或小区名称' ? "" : trim($_GET['q']);
+        //$q='长发';
+        if ($q) {
+            $borough =D('BoroughView');
+
+            $search_bid = $borough->getFields('id', ' borough_name like \'%' . $q . '%\'');
+            //p($search_bid);
+            if ($search_bid) {
+                $search_bid = implode(',', $search_bid);
+                $where .= " and (borough_name like '%" . $q . "%' or house_no like '%" . $q . "%' or borough_id in (" . $search_bid . "))";
+            } else {
+                $where .= " and (borough_name like '%" . $q . "%' or house_no like '%" . $q . "%')";
+            }
+        }
+
+        $this->q=$q;
+        //这里显示状态为1（正在出售）的房源
+        $today = date("Y-m-d", time());
+        $yestoday = date("Y-m-d", strtotime("-1 day"));
+        $where .=" and status = 1 and is_top = 0";
+
+        $count=$houseSell->getCount(0, $where);
+        $Page = new \Think\Page($count,10);
+        $show = $Page->show();// 分页显示输出
+        $dataList=$houseSell->where('1=1'.$where)->limit($Page->firstRow.','.$Page->listRows)->order('created desc')->select();
+
+
+        $this->display();
+
     }
 
     //发布出售
@@ -556,13 +612,14 @@ class HouseSellController extends CommonController{
 
             if($house_id=D('HouseSellRelation')->relation(true)->add($field_array)){
                 //成功插入做的事情
-                $integral = D('Integral');
+                $integral = D('IntegralRule');
 
                 if($broker_id){
                     //每发布一条出售增加相应的积分
                     $integral->add($broker_id,7);//7代表新发布一条出售
                     $houseImg = M('housesell_pic')->where(array("housesell_id"=>$house_id))->count();
-                    if($houseImg>=3){
+                    //echo $houseImg;die;
+                   if($houseImg>=3){
                         //户型图超过3条为多图房源
                         M('housesell')->where(array('id'=>$house_id))->setField('is_more_pic',1);
                         $integral->add($broker_id,11);//多图房源加分
@@ -577,6 +634,7 @@ class HouseSellController extends CommonController{
                     }
 
                 }
+
                 $this->success('插入成功');
 
             }else{
