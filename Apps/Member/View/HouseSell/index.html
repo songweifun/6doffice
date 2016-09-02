@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><!--{$title}--> - 房源管理</title>
     <css file="__PUBLIC__/css/member.css"/>
     <js file="__PUBLIC__/js/jquery.min.js"/>
     <js file="__PUBLIC__/js/map.js"/>
 
     <js file="__PUBLIC__/js/thickbox.js"/>
-    <css file="__PUBLIC__/js/thickbox.css"/>
+    <css file="__PUBLIC__/css/thickbox.css"/>
 
 </head>
 <body>
@@ -37,7 +37,7 @@
             <div class="manageBox">
                 <div class="houseSearch">
                     <form name="searchForm" action="" method="GET">
-                        <input type="text" class="input" name="q" size="30" value="<!--{if $q}--><!--{$q}--><!--{else}-->输入房源编号或小区名称<!--{/if}-->" onblur="if(this.value ==''||this.value == '输入房源编号或小区名称'){this.value = '输入房源编号或小区名称';}" onfocus="if(this.value == '输入房源编号或小区名称'){this.value = '';}" />&nbsp;<input type="button" value="搜 索" onclick="javascript:document.searchForm.submit();" />&nbsp;<a href="#notice">出售房源管理必读</a><span class="tip">您已发布<span class="f90"><!--{$houseNum}--></span>条出售房源，<!--{if $houseLeft>=0}-->还可发布<span class="f90"><!--{$houseLeft}--></span>条出售房源<!--{else}-->已超出<span class="f90"><!--{$houseLeft|abs}--></span>条<!--{/if}--> <!--{if $memberVip==0}-->| <a href="#" onclick="showBoxnum();return false;">购买条数</a><!--{/if}--></span>
+                        <input type="text" class="input" name="q" size="30" value="<if condition='$q neq null'><!--{$q}--><else/>输入房源编号或小区名称</if>" onblur="if(this.value ==''||this.value == '输入房源编号或小区名称'){this.value = '输入房源编号或小区名称';}" onfocus="if(this.value == '输入房源编号或小区名称'){this.value = '';}" />&nbsp;<input type="button" value="搜 索" onclick="javascript:document.searchForm.submit();" />&nbsp;<a href="#notice">出售房源管理必读</a><span class="tip">您已发布<span class="f90"><!--{$houseNum}--></span>条出售房源，<if condition="$houseLeft egt 0">还可发布<span class="f90"><!--{$houseLeft}--></span>条出售房源<else/>已超出<span class="f90"><!--{$houseLeft|abs}--></span>条</if> <if condition='$memberVip eq 0'>| <a href="#" onclick="showBoxnum();return false;">购买条数</a></if></span>
                     </form>
                 </div>
                 <div class="houseList">
@@ -65,26 +65,26 @@
                         <tbody>
                         <form name="myform" enctype="text/html" action="" method="POST">
                             <input type="hidden" name="to_url" value="<!--{$to_url}-->">
-                            <!--{foreach name=dataList from=$dataList item=item key=key}-->
+                            <foreach name='dataList' item='item'>
                             <tr>
                                 <td><input type="checkbox" name="ids[]" value="<!--{$item.id}-->" />&nbsp;<a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="查看房源详细信息" target="_blank"><!--{$item.house_no}--></a></td>
                                 <td><!--{$item.borough_name}--></td>
                                 <td><!--{$item.house_room}-->-<!--{$item.house_hall}-->-<!--{$item.house_toilet}-->-<!--{$item.house_veranda}--></td>
                                 <td><!--{$item.house_totalarea}-->㎡</td>
-                                <td class="f90"><!--{if $item.house_price == 0}-->面议<!--{else}--><!--{$item.house_price}-->万<!--{/if}-->								  </td>
+                                <td class="f90"><if condition='$item.house_price eq 0'>面议<else/><!--{$item.house_price}-->万</if>								  </td>
                                 <td><!--{$item.refresh}-->次</td>
                                 <td> <!--增加预约刷新按钮 hyjfc.com-->
-                                    <!--{if $item.is_appo}-->
-                                    <img src="../images/time.gif" width="23" height="16" align="absmiddle"  />
+                                    <if condition="$item.is_appo neq null">
+                                    <img src="__PUBLIC__/images/time.gif" width="23" height="16" align="absmiddle"  />
                                     <a href="../appointment/index.php?action=appoShowHouse&site=sale&house_id=<!--{$item.id}-->" title="查看">查看</a>|<a href="../appointment/index.php?action=appoDel&site=sale&house_id=<!--{$item.id}-->" title="取消">取消</a>
 
-                                    <!--{else}-->
-                                    <a href="../appointment/index.php?action=appoRefresh&site=sale&ids=<!--{$item.id}-->" title="立即预约">立即预约</a>
-                                    <!--{/if}--></td>
+                                    <else/>
+                                    <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoRefresh/site/sale/ids/<!--{$item.id}-->" title="立即预约">立即预约</a>
+                                    </if></td>
                                 <td><a href="houseSale.php?action=edit&id=<!--{$item.id}-->" title="编辑房源信息">编辑</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBox(<!--{$item.id}-->);return false;" title="该房源已成交">成交</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxtop(<!--{$item.id}-->);return false;" title="将此房源置顶">置顶</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxOwner(<!--{$item.id}-->);return false;" title="查看房东信息">房东</a></td>
 
                             </tr>
-                            <!--{/foreach}-->
+                            </foreach>
                             <tr>
                                 <td colspan="10" class="listOperation">
                                     <label for="checkBoxAll"><input type="checkbox" id="checkBoxAll" name="checkBoxAll" value="1" onclick="checkAll(this);" />全选</label>
@@ -119,9 +119,9 @@
 <script language="javascript">
     function checkAll(formObj){
         if(formObj.checked){
-            $('input[type=checkbox]').attr('checked', true);
+            $('input[type=checkbox]').prop('checked', true);
         }else{
-            $('input[type=checkbox]').attr('checked', false);
+            $('input[type=checkbox]').prop('checked', false);
         }
     }
     function showBox(item_id){
@@ -137,6 +137,6 @@
         TB_show('购买条数','saleNum.php?height=200&width=400&modal=true&rnd='+Math.random(),false);
     }
 </script>
-<script src="<!--{$cfg.path.js}-->My97DatePicker/WdatePicker.js" language="javascript"></script>
+<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js" language="javascript"></script>
 </body>
 </html>

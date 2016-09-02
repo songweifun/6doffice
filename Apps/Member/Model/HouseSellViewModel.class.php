@@ -12,8 +12,8 @@ class HouseSellViewModel extends ViewModel{
     protected $tableName='housesell';
 
     public $viewFields = array(
-        'housesell'=>array(),
-        'housesell_pic'=>array('_on'=>'housesell.id=housesell_pic.housesell_id'),
+        'housesell'=>array('*'),
+        'housesell_pic'=>array('*','_on'=>'housesell.id=housesell_pic.housesell_id'),
 
 
     );
@@ -64,6 +64,19 @@ class HouseSellViewModel extends ViewModel{
         }
 
         return M('housesell')->where($where)->count();
+    }
+
+
+    /**
+     * @param $house_id
+     * @param $date
+     * @return array|mixed|null
+     */
+    function getClick($house_id , $date)
+
+    {
+        return M('housesell_stat')->where(array('house_id'=>$house_id,'stat_date'=>$date))->getField('click_num');
+        //return $this->db->getValue('select click_num from '.$this->tNameStat.' where house_id = '.$house_id.' and stat_date =\''.$date.'\'' );
     }
 
 

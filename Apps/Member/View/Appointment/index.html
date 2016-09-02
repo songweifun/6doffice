@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>预约刷新管理</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <div class="memberLeftNav">
+            <div class="title"></div>
+            <ul class="navList">
+                <li class="item">
+                    <p>房源管理</p>
+                    <ul>
+                        <li>
+                            <a href="../member/houseSale.php">发布出售</a><br />
+                            <a href="../member/houseRent.php">发布出租</a><br />
+                            <a href="../member/manageSale.php">出售管理</a><br />
+                            <a href="../member/manageRent.php">出租管理</a></li>
+                    </ul>
+
+                </li><br />
+
+                <li class="item">
+                    <p>店铺管理</p>
+                    <ul>
+                        <li>
+                            <a href="../member/shopProfile.php">店铺资料</a><br />
+                            <a href="../member/shopSaleRec.php">店铺推荐</a><br />
+                            <a href="../member/shopStyle.php">店铺风格</a><br />
+
+                        </li>
+                    </ul>
+
+                </li>
+                <br />
+
+                <li class="item">
+                    <p>人脉管理</p>
+                    <ul>
+                        <li>
+                            <a href="../member/snsFriends.php">我的好友</a><br />
+                            <a href="../member/snsLinkIn.php">谁来看过我</a><br />
+                            <a href="../member/snsInviteIn.php">好友邀请</a><br />
+
+                        </li>
+                    </ul>
+
+                </li>
+                <br />
+
+                <li class="item">
+                    <p>站内信</p>
+                    <ul>
+                        <li>
+                            <a href="../member/msgWrite.php">撰写信件</a><br />
+                            <a href="../member/msgInbox.php">收件箱</a><br />
+                            <a href="../member/msgSend.php">已发信件</a><br />
+                            <a href="../member/msgGarbage.php">垃圾箱</a><br />
+
+                        </li>
+                    </ul>
+
+                </li>
+                <br />
+
+                <li class="item">
+                    <p>资料管理</p>
+                    <ul>
+                        <li>
+                            <a href="../member/brokerProfile.php">修改资料</a><br />
+                            <a href="../member/brokerIdentity.php">实名认证</a><br />
+                            <a href="../member/brokerPhoto.php">修改头像</a><br />
+                            <a href="../member/pwdEdit.php">修改密码</a><br />
+                            <a href="../member/brokerAptitude.php">执业认证</a><br />
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+            <div class="endLeft"></div>
+        </div>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="#" class="linkOn"><span>预约刷新</span></a></li>
+                </ul>
+            </div>
+            <div class="manageSub">
+                <ul class="manageSubNav">
+                    <li class="linkOn"><a href="#"><span>预约房源</span></a></li>
+                </ul>
+            </div>
+            <div class="manageBox">
+
+                <div class="houseList">
+                    <form name="myform" enctype="text/html" action="" method="POST" id="myform">
+                        <input type="hidden" name="to_url" value="<!--{$to_url}-->" />
+                        <foreach name='house' item='item'>
+                        <table border="0" cellpadding="0" cellspacing="1">
+                            <input type="hidden" name="appo_house_id[<!--{$item.id}-->]" value="<!--{$item.id}-->" />
+                            <input type="hidden" name="appo_house_title[<!--{$item.id}-->]" value="<!--{$item.house_title}-->" />
+                            <input type="hidden" name="site" value="<!--{$site}-->" />
+                            <tbody>
+                            <tr>
+                                <td colspan="2">本次预约的房源为<span style=" color:#E55600;"><b>[<!--{$item.house_title}-->]</b></span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">第一次刷新
+                                    <select name="appo_hours[<!--{$item.id}-->][]">
+                                    <option>---</option>
+                                    <foreach name='hour' item='hours'>
+                                    <option value="<!--{$hours}-->"><!--{$hours}--></option>
+                                    </foreach>
+                                </select>
+                                    点
+                                    <select name="appo_minute[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='minute' item='minutes'>
+                                        <option value="<!--{$minutes}-->"><!--{$minutes}--></option>
+                                        </foreach>
+                                    </select>
+                                    分
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">第二次刷新
+                                    <select name="appo_hours[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='hour' item='hours'>
+                                        <option value="<!--{$hours}-->"><!--{$hours}--></option>
+                                        </foreach>
+                                    </select>
+                                    点
+                                    <select name="appo_minute[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='minute' item='minutes'>
+                                        <option value="<!--{$minutes}-->"><!--{$minutes}--></option>
+                                        </foreach>
+                                    </select>
+                                    分
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">第三次刷新
+                                    <select name="appo_hours[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='hour' item='hours'>
+                                        <option value="<!--{$hours}-->"><!--{$hours}--></option>
+                                        </foreach>
+                                    </select>
+                                    点
+                                    <select name="appo_minute[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='minute' item='minutes'>
+                                        <option value="<!--{$minutes}-->"><!--{$minutes}--></option>
+                                        </foreach>
+                                    </select>
+                                    分
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">第四次刷新
+                                    <select name="appo_hours[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='hour' item='hours'>
+                                        <option value="<!--{$hours}-->"><!--{$hours}--></option>
+                                        </foreach>
+                                    </select>
+                                    点
+                                    <select name="appo_minute[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='minute' item='minutes'>
+                                        <option value="<!--{$minutes}-->"><!--{$minutes}--></option>
+                                        </foreach>
+                                    </select>
+                                    分
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">第五次刷新
+                                    <select name="appo_hours[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='hour' item='hours'>
+                                        <option value="<!--{$hours}-->"><!--{$hours}--></option>
+                                        </foreach>
+                                    </select>
+                                    点
+                                    <select name="appo_minute[<!--{$item.id}-->][]">
+                                        <option>---</option>
+                                        <foreach name='minute' item='minutes'>
+                                        <option value="<!--{$minutes}-->"><!--{$minutes}--></option>
+                                        </foreach>
+                                    </select>
+                                    分
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    选择天数
+                                    <select name="appo_date[<!--{$item.id}-->]">
+                                        <foreach name='date' item='item'>
+                                        <option value="<!--{$key}-->"><!--{$item}--></option>
+                                        </foreach>
+                                    </select>&nbsp;按以上设置自动刷新
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </foreach>
+                        <div style="width:100%;margin-top:5px;text-align: center;"><input class="listOperationBtn" style="width:100px;" type="button"  value="提交" /></div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="note">
+                <p><a name="notice" id="notice"></a>预约刷新必读：</p>
+                <ul>
+                    <li>系统将根据每日可刷新的次数执行。如果刷新条数超过系统可刷新的条数，则跳过该房源的预约刷新。</li>
+                    <li>本日的操作的预约时间将到当天的时间才执行。</li>
+                    <li>如果预约的时间点操作系统设置每个时间点最多的刷新次数，则该房源预约的时间将会自动转到一个次数较少的时间。</li>
+                    <li>如果预约的时间已经落后现在的时间，则预约时间会根据现在的小时数增加30分钟到60分钟不等。</li>
+                    <li>预约时间的天数由系统设置。</li>
+                    <li>如果预约的时间没有选择则自动跳过该时间段或删除该时间段。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script language="javascript">
+    $('.listOperationBtn').click(function(){
+        $('#myform').attr('action','<!--{:U(MODULE_NAME."/Appointment/index")}-->/action/submitAppo/site/sale');
+        $('#myform').submit();
+
+    })
+    function checkAll(formObj){
+        if(formObj.checked){
+            $('input[type=checkbox]').attr('checked', true);
+        }else{
+            $('input[type=checkbox]').attr('checked', false);
+        }
+    }
+    function showBox(item_id){
+        TB_show('房源成交','rentBargain.php?house_id='+item_id+'&height=370&width=400&modal=true&rnd='+Math.random(),false);
+    }
+    function showBoxOwner(item_id){
+        TB_show('业主信息','landlordRentInfo.php?house_id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
+    }
+    function showBoxtop(item_id){
+        TB_show('房源置顶','rentTop.php?house_id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+    }
+    function showBoxnum(){
+        TB_show('购买条数','rentNum.php?height=200&width=400&modal=true&rnd='+Math.random(),false);
+    }
+</script>
+<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js" language="javascript"></script>
+</body>
+</html>

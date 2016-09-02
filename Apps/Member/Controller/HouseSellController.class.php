@@ -60,9 +60,25 @@ class HouseSellController extends CommonController{
         $where .=" and status = 1 and is_top = 0";
 
         $count=$houseSell->getCount(0, $where);
-        $Page = new \Think\Page($count,10);
+        $Page = new \Think\Page($count,10);//分页类
+        //分页样式
+        $Page->setConfig('prev','上一页');
+        $Page->setConfig('next','下一页');
         $show = $Page->show();// 分页显示输出
-        $dataList=$houseSell->where('1=1'.$where)->limit($Page->firstRow.','.$Page->listRows)->order('created desc')->select();
+        $dataList=D('HouseSellRelation')->relation(true)->where('1=1'.$where)->limit($Page->firstRow.','.$Page->listRows)->order('created desc')->select();
+        //p($dataList);
+        foreach ($dataList as $key => $value) {
+            //echo date("Y-m-d" ,$value['created']);
+            $dataList[$key]['yestoday_click'] = intval($houseSell->getClick($value['id'], $yestoday));
+            $dataList[$key]['today_click'] = intval($houseSell->getClick($value['id'], $today));
+
+             //example 判断是否预约过
+
+            $dataList[$key]['is_appo']=M('appolist')->where(array('house_id'=>$value['id'],'appo_site'=>'sale'))->getField('appo_list_id');
+        }
+
+        $this->dataList=$dataList;
+        $this->pagePanel=$show;
 
 
         $this->display();
