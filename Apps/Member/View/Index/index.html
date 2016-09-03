@@ -39,7 +39,7 @@
             </div>
             </if>
             <div class="infoTipBox">
-                <div class="loginTip"><!--{$nowTime}-->好，<img src="<if condition='$memberInfo.avatar neq null'><!--{$cfg.url}-->upfile/<!--{$memberInfo.avatar}--><else/>__PUBLIC__/images/demoPhoto_52_52.gif</if>" width="20" height="20" align="absmiddle" /><!--{$username}-->&nbsp;<span><a class="underline" href="brokerPhoto.php">修改我的头像</a></span></div>
+                <div class="loginTip"><!--{$nowTime}-->好，<img src="<if condition='$memberInfo.avatar neq null'>__ROOT__/Uploads/<!--{$memberInfo.avatar}--><else/>__PUBLIC__/images/demoPhoto_52_52.gif</if>" width="20" height="20" align="absmiddle" /><!--{$username}-->&nbsp;<span><a class="underline" href="brokerPhoto.php">修改我的头像</a></span></div>
 
                 <div class="universityTip"><a class="underline" href="<!--{$cfg.url_shop}--><!--{$memberInfo.id}-->" target="_blank">进入我的网上店铺</a><span class="shopTip familyAlpha">&nbsp;(<!--{$cfg.url_shop}--><!--{$memberInfo.id}-->)</span></div>
                 <br />

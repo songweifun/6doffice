@@ -10,6 +10,25 @@ function p($arr){
 }
 
 
+
+
+/**
+ * 转到URL,并提示信息
+ * @param string $url URL
+ * @param string $msg 提示信息
+ * @access public
+ * @return void
+ */
+function jsurlto($msg=NULL,$url) {
+	echo "<script language='JavaScript' type='text/javascript'>";
+
+	echo "alert('".$msg."');";
+
+	echo 'document.location="' . $url . '";';
+	echo "</script>";
+}
+
+
 /**
  * cookie编码处理
  * @param string $string 要编码的字符串

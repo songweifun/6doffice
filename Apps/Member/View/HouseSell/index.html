@@ -76,7 +76,7 @@
                                 <td> <!--增加预约刷新按钮 hyjfc.com-->
                                     <if condition="$item.is_appo neq null">
                                     <img src="__PUBLIC__/images/time.gif" width="23" height="16" align="absmiddle"  />
-                                    <a href="../appointment/index.php?action=appoShowHouse&site=sale&house_id=<!--{$item.id}-->" title="查看">查看</a>|<a href="../appointment/index.php?action=appoDel&site=sale&house_id=<!--{$item.id}-->" title="取消">取消</a>
+                                    <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoShowHouse/site/sale/house_id/<!--{$item.id}-->" title="查看">查看</a>|<a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoDel/site/sale/house_id/<!--{$item.id}-->" title="取消">取消</a>
 
                                     <else/>
                                     <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoRefresh/site/sale/ids/<!--{$item.id}-->" title="立即预约">立即预约</a>
