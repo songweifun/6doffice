@@ -248,6 +248,8 @@ class AppointmentController extends CommonController{
             jsurlto('取消成功！',U(MODULE_NAME.'/Housesell/index'));
 
 
+        }else{
+            jsurlto('您没有权限访问此页面!',U(MODULE_NAME.'/Housesell/index'));
         }//elseif
 
         $this->display();

@@ -294,11 +294,15 @@
                         <td class="row1">房屋类型：</td>
                         <td colspan="3">
                             <foreach name='house_type_option' item='item'>
-                            <if condition='$key eq $dataInfo.house_type'>
-                            <label for="house_type_<!--{$key}-->"><input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" checked /><!--{$item}--> </label>
-                            <else/>
-                            <label for="house_type_<!--{$key}-->"><input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" /><!--{$item}--> </label>
-                            </if>
+                                <if condition='$key eq $dataInfo["house_type"]'>
+                                    <label for="house_type_<!--{$key}-->">
+                                    <input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" checked /><!--{$item}-->
+                                    </label>
+                                <else/>
+                                    <label for="house_type_<!--{$key}-->">
+                                    <input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" /><!--{$item}-->
+                                    </label>
+                                </if>
                             </foreach>
                             <p id="errMsg_house_type" class="errorMessage"></p>
                         </td>
@@ -326,7 +330,12 @@
                                 <option  value="">请选择产权</option>
 
                                 <foreach name="belong_option" item="v">
-                                    <option value="<!--{$key}-->"><!--{$v}--></option>
+                                    <if condition='$key eq $dataInfo["belong"]'>
+                                        <option value="<!--{$key}-->" selected="selected" ><!--{$v}--></option>
+                                    <else/>
+                                        <option value="<!--{$key}-->"><!--{$v}--></option>
+                                    </if>
+
                                 </foreach>
                             </select>
                         </td>
@@ -344,45 +353,43 @@
                         <td colspan="3">
                             <select class="select" name="house_room">
                                 <for start="1" end="5">
-                                <if condition='$i eq $dataInfo.house_room'>
-                                <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                                <else/>
-                                <option value="<!--{$i}-->"><!--{$i}--></option>
-                                </if>
+                                    <if condition='$i eq $dataInfo["house_room"]'>
+                                        <option value="<!--{$i}-->" selected><!--{$i}--></option>
+                                    <else/>
+                                        <option value="<!--{$i}-->"><!--{$i}--></option>
+                                    </if>
                                 </for>
-                                <if condition="$dataInfo.house_room gt 5">
-                                <option value="6" selected>5室以上</option>
+                                <if condition="$dataInfo['house_room'] gt 5">
+                                    <option value="6" selected>5室以上</option>
                                 <else/>
-                                <option value="6">5室以上</option>
+                                    <option value="6">5室以上</option>
                                 </if>
                             </select> 室
                             <select class="select" name="house_hall">
                                 <for start="1" end="6">
-                                    <if condition='$i eq $dataInfo.house_hall'>
-                            <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                            <else/>
-                            <option value="<!--{$i}-->"><!--{$i}--></option>
-                            </if>
-                            </for>
+                                    <if condition='$i eq $dataInfo["house_hall"]'>
+                                        <option value="<!--{$i}-->" selected><!--{$i}--></option>
+                                    <else/>
+                                        <option value="<!--{$i}-->"><!--{$i}--></option>
+                                    </if>
+                                </for>
                         </select> 厅
                             <select class="select" name="house_toilet">
                                 <for start="1" end="6">
-                                    <if condition='$i eq $dataInfo.house_toilet'>
-
-                            <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                            <else/>
-                            <option value="<!--{$i}-->"><!--{$i}--></option>
-                            </if>
-                            </for>
+                                    <if condition='$i eq $dataInfo["house_toilet"]'>
+                                        <option value="<!--{$i}-->" selected><!--{$i}--></option>
+                                    <else/>
+                                        <option value="<!--{$i}-->"><!--{$i}--></option>
+                                    </if>
+                               </for>
                         </select> 卫
                             <select class="select" name="house_veranda">
                                 <for start="1" end="6">
-                                    <if condition='$i eq $dataInfo.house_veranda'>
-
-                            <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                            <else/>
-                            <option value="<!--{$i}-->"><!--{$i}--></option>
-                            </if>
+                                    <if condition='$i eq $dataInfo["house_veranda"]'>
+                                         <option value="<!--{$i}-->" selected><!--{$i}--></option>
+                                    <else/>
+                                        <option value="<!--{$i}-->"><!--{$i}--></option>
+                                    </if>
                             </for>
                         </select> 阳&nbsp;<span class="tip">如果户型超过五室请在“房源描述”里进行说明</span>
                         </td>
@@ -409,11 +416,11 @@
                             <select class="select" name="house_age" valid="required" errmsg="请选择房龄！">
                                 <option value="">请选择</option>
                                 <foreach name="house_age_option" item="v">
-                                    <if condition="$dataInfo.house_age eq $v">
+                                    <if condition="$dataInfo['house_age'] eq $v">
                                         <option selected="selected" value="<!--{$v}-->"><!--{$v}--></option>
-                                        <else/>
-                                    <option value="<!--{$v}-->"><!--{$v}--></option>
-                                        </if>
+                                    <else/>
+                                        <option value="<!--{$v}-->"><!--{$v}--></option>
+                                    </if>
                                 </foreach>
 
                             </select>
@@ -428,7 +435,7 @@
                         <td class="row1">装修情况：</td>
                         <td colspan="3">
                             <foreach name='house_fitment_option' item='item'>
-                            <if condition='$key eq $dataInfo.house_fitment'>
+                            <if condition='$key eq $dataInfo["house_fitment"]'>
                             <label for="house_fitment_<!--{$key}-->"><input  type="radio" name="house_fitment" id="house_fitment_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择装修情况!" checked /><!--{$item}--> </label>
                             <else/>
                             <label for="house_fitment_<!--{$key}-->"><input  type="radio" name="house_fitment" id="house_fitment_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择装修情况!" /><!--{$item}--> </label>

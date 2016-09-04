@@ -93,6 +93,7 @@ class HouseSellController extends CommonController{
         $member_id = getAuthInfo('id');
         //关联查询
         $memberInfo=D('MemberRelation')->getInfo($member_id,'*',true);
+        //p($memberInfo);die;
         $this->assign('memberInfo',$memberInfo);
         //p($memberInfo);die;
         if($memberInfo['mobile']==""){
@@ -177,6 +178,7 @@ class HouseSellController extends CommonController{
             $dataInfo['house_pic']=M('housesell_pic')->where(array('housesell_id'=>$id))->select();
             $picture_num = count($dataInfo['house_pic']);
         }
+        //p($dataInfo);die;
 
         $this->assign('dataInfo', $dataInfo);
         $this->assign('to_url', $_SERVER['HTTP_REFERER']);

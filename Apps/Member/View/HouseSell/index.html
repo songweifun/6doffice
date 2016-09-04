@@ -30,7 +30,7 @@
                 <ul class="manageSubNav">
                     <li class="linkOn"><a href="#"><span>出售中</span></a></li>
                     <li><a href="manageSaleTop.php"><span>置顶中</span></a></li>
-                    <li><a href="manageSaleRecycle.php"><span>回收站</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/recycle')}-->"><span>回收站</span></a></li>
                     <li><a href="manageSaleDone.php"><span>成交榜</span></a></li>
                 </ul>
             </div>
@@ -81,16 +81,16 @@
                                     <else/>
                                     <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoRefresh/site/sale/ids/<!--{$item.id}-->" title="立即预约">立即预约</a>
                                     </if></td>
-                                <td><a href="houseSale.php?action=edit&id=<!--{$item.id}-->" title="编辑房源信息">编辑</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBox(<!--{$item.id}-->);return false;" title="该房源已成交">成交</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxtop(<!--{$item.id}-->);return false;" title="将此房源置顶">置顶</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxOwner(<!--{$item.id}-->);return false;" title="查看房东信息">房东</a></td>
+                                <td><a href="<!--{:U(MODULE_NAME.'/HouseSell/addsell')}-->/action/edit/id/<!--{$item.id}-->" title="编辑房源信息">编辑</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBox(<!--{$item.id}-->);return false;" title="该房源已成交">成交</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxtop(<!--{$item.id}-->);return false;" title="将此房源置顶">置顶</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxOwner(<!--{$item.id}-->);return false;" title="查看房东信息">房东</a></td>
 
                             </tr>
                             </foreach>
                             <tr>
                                 <td colspan="10" class="listOperation">
                                     <label for="checkBoxAll"><input type="checkbox" id="checkBoxAll" name="checkBoxAll" value="1" onclick="checkAll(this);" />全选</label>
-                                    <input class="listOperationBtn" type="button" value="刷新选中的房源" onclick="if(confirm('你确认刷新选中的房源么？')){myform.action='?action=refresh';myform.submit();}" />&nbsp;
-                                    <input class="listOperationBtn" type="button" value="批量预约刷新房源" onclick="if(confirm('你确认预约刷新选中的房源么？')){myform.action='../appointment/index.php?action=appoRefresh&site=sale';myform.submit();}" />&nbsp;
-                                    <input class="listOperationBtn" type="button" value="下架选中的房源" onclick="if(confirm('你确认下架选中的房源么？')){myform.action='?action=notSell';myform.submit();}" />
+                                    <input id="listOperationBtn1" class="listOperationBtn" type="button" value="刷新选中的房源"  />&nbsp;
+                                    <input id="listOperationBtn2" class="listOperationBtn" type="button" value="批量预约刷新房源"  />&nbsp;
+                                    <input id="listOperationBtn3" class="listOperationBtn" type="button" value="下架选中的房源" />
                                 </td>
                             </tr>
                         </form>
@@ -117,6 +117,29 @@
 
 </div>
 <script language="javascript">
+    $('#listOperationBtn1').click(function(){
+
+        if(confirm('你确认刷新选中的房源么？')){
+            myform.action='<!--{:U(MODULE_NAME."/ManageSell/refresh")}-->';
+            myform.submit();}
+
+    })
+
+    $('#listOperationBtn2').click(function(){
+
+        if(confirm('你确认预约刷新选中的房源么？')){
+            myform.action='<!--{:U(MODULE_NAME."/Appointment/index")}-->/action/appoRefresh/site/sale';
+            myform.submit();}
+
+    })
+
+    $('#listOperationBtn3').click(function(){
+
+        if(confirm('你确认下架选中的房源么？')){
+            myform.action='<!--{:U(MODULE_NAME."/ManageSell/notsell")}-->';
+            myform.submit();}
+
+    })
     function checkAll(formObj){
         if(formObj.checked){
             $('input[type=checkbox]').prop('checked', true);
