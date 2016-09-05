@@ -11,6 +11,9 @@
     <js file="__PUBLIC__/js/thickbox.js"/>
     <css file="__PUBLIC__/css/thickbox.css"/>
 
+    <!-- 引入layer弹窗 -->
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+
 </head>
 <body>
 <include file="Common:memberHeader"/>
@@ -31,7 +34,7 @@
                     <li class="linkOn"><a href="#"><span>出售中</span></a></li>
                     <li><a href="manageSaleTop.php"><span>置顶中</span></a></li>
                     <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/recycle')}-->"><span>回收站</span></a></li>
-                    <li><a href="manageSaleDone.php"><span>成交榜</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/sellDone')}-->"><span>成交榜</span></a></li>
                 </ul>
             </div>
             <div class="manageBox">
@@ -148,7 +151,17 @@
         }
     }
     function showBox(item_id){
-        TB_show('房源成交','saleBargain.php?house_id='+item_id+'&height=370&width=400&modal=true&rnd='+Math.random(),false);
+        var url='<!--{:U(MODULE_NAME."/ManageSell/sellBargain")}-->/house_id/'+item_id
+        layer.open({
+            type: 2,
+            title: ['房源成交', ''],
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['400px' , '370px'],
+            content: url,
+            scrollbar: false,
+        });
+        //TB_show('房源成交','saleBargain.php?house_id='+item_id+'&height=370&width=400&modal=true&rnd='+Math.random(),false);
     }
     function showBoxOwner(item_id){
         TB_show('业主信息','landlordSaleInfo.php?house_id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);

@@ -484,7 +484,7 @@
                         <td class="row1">朝&nbsp;&nbsp;&nbsp;&nbsp;向：</td>
                         <td colspan="3">
                             <foreach name='house_toward_option' item='item'>
-                            <if condition="$key eq $dataInfo.house_toward">
+                            <if condition="$key eq $dataInfo['house_toward']">
                             <label for="house_toward_<!--{$key}-->"><input  type="radio" name="house_toward" id="house_toward_<!--{$key}-->" value="<!--{$key}-->"  checked /><!--{$item}--> </label>
                             <else/>
                             <label for="house_toward_<!--{$key}-->"><input  type="radio" name="house_toward" id="house_toward_<!--{$key}-->" value="<!--{$key}-->" /><!--{$item}--> </label>
@@ -499,7 +499,7 @@
                             <foreach  name='house_feature_option' item='group'>
                             <p><!--{$house_feature_group.$key}-->：&nbsp;
                                 <foreach  name='group' item='house_feature' key='feature_id'>
-                                <if condition="in_array($feature_id,$dataInfo.house_feature)">
+                                <if condition="in_array($feature_id,$dataInfo['house_feature'])">
                                 <label for="house_feature_<!--{$feature_id}-->"><input  type="checkbox" name="house_feature[]" id="house_feature_<!--{$feature_id}-->" value="<!--{$feature_id}-->" checked onclick="return checkBoxNum()" /><!--{$house_feature}--> </label>
                                 <else/>
                                 <label for="house_feature_<!--{$feature_id}-->"><input  type="checkbox" name="house_feature[]" id="house_feature_<!--{$feature_id}-->" value="<!--{$feature_id}-->" onclick="return checkBoxNum()"  /><!--{$house_feature}--> </label>
@@ -585,7 +585,7 @@
                 </table>
                 <div class="submitPromsie"><input  id="check_agree" name="check_agree" type="checkbox" checked />
                     我承诺我所发布的房源信息全部属实</div>
-                <if condition="$dataInfo.id neq null">
+                <if condition="$dataInfo['id'] neq null">
                 <div class="submitBtn"><input type="submit" value="确认编辑" /></div>
                 <else/>
                 <div class="submitBtn"><input type="submit" value="立即发布" /></div>

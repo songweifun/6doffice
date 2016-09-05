@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$cfg.page.title}--></title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+</head>
+<body>
+<div id="modalWindow">
+    <form name="dataForm" method="POST" action="">
+        <input type="hidden" id="id" name="id" value="<!--{$dataInfo.id}-->">
+        <p>
+            <label>备注:</label>
+            <textarea name="remark" id="remark" rows="9" style="width:98%" ><!--{$dataInfo.remark}--></textarea>
+        </p>
+        <p>
+            <input type="button" id="addButton" value="提交" onclick="return addBorough()" />
+        </p>
+    </form>
+</div>
+<script language="javascript">
+
+    var ajaxSaveBargainRemarkUrl="<!--{:U(MODULE_NAME.'/ManageSell/ajaxSaveBargainRemark')}-->";
+    var tourlSellDone='<!--{:U(MODULE_NAME."/ManageSell/sellDone")}-->'
+
+    function addBorough(){
+        var thisid = document.getElementById('id').value;
+        var remark = document.getElementById('remark').value;
+        if(!remark){
+            alert("请把信息填全");
+            return false;
+        }
+
+        $.ajax({
+            url:ajaxSaveBargainRemarkUrl,
+            data:{id:thisid,remark:remark},
+            dataType: "json",
+            type:'post',
+            success:function(result){
+                if(!result.status){
+                    alert('提交错误');
+                    return false;
+                }
+                window.parent.location.href=tourlSellDone;
+            }
+
+        })
+
+        /*$.post('ajax.php?action=saveBargainRemark&request=ajax',{id:thisid,remark:remark},function(data){
+            //返回ID
+            //alert(data);
+            if(data ==0){
+                alert('提交错误');
+                return false;
+            }
+            //window.parent.TB_remove();
+            //刷新
+            window.parent.location.href='manageSaleDone.php';
+        });*/
+
+        return false;
+    }
+</script>
+<script src="<!--{$cfg.path.js}-->My97DatePicker/WdatePicker.js" language="javascript"></script>
+</body>
+</html>

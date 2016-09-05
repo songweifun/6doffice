@@ -148,4 +148,189 @@ class ManageSellController extends CommonController{
         }
 
     }
+
+    /***
+     * 成交
+     */
+    public function sellBargain(){
+        $page->$this;
+
+        $housesell = D('HouseSellRelation');
+        $saleBargain = M('housesell_bargain');
+
+        //成交
+        $page->name = 'saleBargain';
+        if(!$_GET['id']){
+            //增加成交
+            $house_id = I('get.house_id',0,'intval');
+            if($house_id){
+                $dataInfo=$housesell->where(array('id'=>$house_id))->field('borough_name,house_totalarea,house_price')->find();
+            }
+        }else{
+            //编辑成交
+            $id = I('get.id',0,'intval');
+            $dataInfo = $saleBargain->where(array('id'=>$id))->find();
+            $house_id = $dataInfo['house_id'];
+        }
+        $this->assign('house_id', $house_id);
+        $this->assign('dataInfo', $dataInfo);
+        //字典
+        $bargain_from_option =getArray('bargain_from');
+        //p($bargain_from_option);die;
+        $this->assign('bargain_from_option', $bargain_from_option);
+
+        $this->display();
+    }
+
+    /**
+     * ajax保存成交
+     */
+
+    public function ajaxSaveBargain(){
+        if(!IS_AJAX) $this->error('非法访问');
+        $member_id = getAuthInfo('id');
+        $id=I('post.id',0,'intval');
+        $house_id=I('house_id',0,'intval');
+        $broker_id=$member_id;
+        $saleBargain = M('housesell_bargain');
+        if($id){//存在为编辑
+
+            $updateField = array(
+                'borough_name'=>I('borough_name'),
+                'house_totalarea'=>I('house_totalarea',0,'intval'),
+                'house_price'=>I('house_price',0,'intval'),
+                'bargain_from'=>I('bargain_from',0,'intval'),
+                'buyer'=>I('buyer'),
+                'buyer_tel'=>I('buyer_tel'),
+                'saler'=>I('saler'),
+                'saler_tel'=>I('saler_tel'),
+                'bargain_price'=>I('bargain_price',0,'intval'),
+            );
+            $bargain_id=$saleBargain->where(array('id'=>$id))->save($updateField);
+
+        }else{
+
+            import('Class.myDate',APP_PATH);
+
+            $insertField = array(
+                'house_id' =>$house_id,
+                'broker_id' =>$broker_id,
+                'borough_name'=>I('borough_name'),
+                'house_totalarea'=>I('house_totalarea',0,'intval'),
+                'house_price'=>I('house_price',0,'intval'),
+                'bargain_from'=>I('bargain_from',0,'intval'),
+                'buyer'=>I('buyer'),
+                'buyer_tel'=>I('buyer_tel'),
+                'saler'=>I('saler'),
+                'saler_tel'=>I('saler_tel'),
+                'bargain_price'=>I('bargain_price',0,'intval'),
+                'bargain_time'=>\MyDate::transform('timestamp',I('bargain_time')),
+                'add_time'=>time()
+            );
+            //p($insertField);die;
+            $bargain_id=$saleBargain->add($insertField);
+
+        }
+        if($bargain_id){
+            //修改房源的状态
+            $house = D('HouseSellRelation');
+            $house->where(array('id'=>$house_id))->setField('status',4);
+            //echo $bargain_id;
+            $this->ajaxReturn(array('status'=>true));
+        }else{
+            $this->ajaxReturn(array('status'=>false));
+        }
+
+    }
+
+    /**
+     * 成交榜
+     */
+    public function sellDone(){
+        $page=$this;
+        $member_id = getAuthInfo('id');
+        $saleBargain = M('housesell_bargain');
+        //字典
+        $bargain_from_option =getArray('bargain_from');
+        $this->assign('bargain_from_option', $bargain_from_option);
+        $where = ' broker_id = '.$member_id;
+        import('Class.myDate',APP_PATH);
+        //搜索
+        if($_GET['from_date']){
+            $from_date = \MyDate::transform('timestamp',$_GET['from_date']);
+            $where .= ' and bargain_time >= '.$from_date;
+        }
+
+        if($_GET['to_date']){
+            $to_date = \MyDate::transform('timestamp',$_GET['to_date']);
+            $where .= ' and bargain_time <= '.$to_date;
+        }
+
+        if($_GET['bargain_from']){
+            $where .= ' and bargain_from = '.intval($_GET['bargain_from']);
+        }
+
+        $q = $_GET['q'] =="输入小区名，或买/卖方信息，或备注信息"?"":$_GET['q'];
+
+        if($q){
+            $where .= " and (borough_name like '%".$q
+                ."%' or buyer like '%".$q
+                ."%' or buyer_tel like '%".$q
+                ."%' or saler like '%".$q
+                ."%' or saler_tel like '%".$q
+                ."%' or remark like '%".$q."%')";
+        }
+
+        $this->assign('q', $q);
+
+        $count=$saleBargain->where($where)->count();
+        $Page = new \Think\Page($count,10);//分页类
+        //分页样式
+        $Page->setConfig('prev','上一页');
+        $Page->setConfig('next','下一页');
+        $show = $Page->show();// 分页显示输出
+        $dataList=$saleBargain->where($where)->limit($Page->firstRow.','.$Page->listRows)->order('add_time desc')->select();
+        foreach($dataList as $key => $item){
+            $dataList[$key]['bargain_from']=$bargain_from_option[$item['bargain_from']];
+        }
+        //p($dataList);die;
+        $this->dataList=$dataList;
+        $this->pagePanel=$show;
+
+
+        $this->display();
+
+    }
+
+    /**
+     * 备注
+     */
+    public function remark(){
+        $saleBargain = M('housesell_bargain');
+        $id = I('get.id',0,'intval');
+        if(!$id){
+            exit;
+        }
+        $dataInfo = $saleBargain->where(array('id'=>$id))->find();
+        $this->assign('dataInfo', $dataInfo);
+        $this->display();
+    }
+
+    /**
+     * ajax添加备注
+     */
+    public function ajaxSaveBargainRemark(){
+
+        if(!IS_AJAX) $this->error('非法访问');
+        $saleBargain = M('housesell_bargain');
+        $id=I('id',0,'intval');
+        $remark=I('remark');
+        if($saleBargain->where(array('id'=>$id))->setField('remark',$remark)){
+            $this->ajaxReturn(array('status'=>true));
+        }else{
+            $this->ajaxReturn(array('status'=>false));
+        }
+
+
+    }
 }

@@ -540,6 +540,7 @@ class HouseSellController extends CommonController{
             //插入房源图片
 
             if(is_array($house_picture_url)){
+                $picarr=array();
                 foreach($house_picture_url as $key => $pic_url){
                     $imgField = array(
                         'pic_url'=>$pic_url,
@@ -550,8 +551,14 @@ class HouseSellController extends CommonController{
                         'addtime'=>time(),
                     );
                     //$this->db->insert($this->tNamePic,$imgField);
+                    $picarr[]=$imgField;
                 }
             }
+
+            $field_array['housesell_pic']=$picarr;
+            M('housesell_pic')->where(array('housesell_id'=>$house_id))->delete();//删除房源图片
+            $house_id=D('HouseSellRelation')->relation(true)->where(array('id'=>$house_id))->save($field_array);
+
 
         }else{
             //增加
@@ -627,8 +634,10 @@ class HouseSellController extends CommonController{
 
             //关联模型插入 housesell housesell_pic
             //p($field_array);die;
+            $house_id=D('HouseSellRelation')->relation(true)->add($field_array);
+        }//else
 
-            if($house_id=D('HouseSellRelation')->relation(true)->add($field_array)){
+            if($house_id){
                 //成功插入做的事情
                 $integral = D('IntegralRule');
 
@@ -653,15 +662,15 @@ class HouseSellController extends CommonController{
 
                 }
 
-                $this->success('插入成功');
+                $this->success('信息保存成功');
 
             }else{
-                $this->error('插入失败');
+                $this->error('保存信息失败');
             }
 
 
 
-        }//else
+
 
 
         //p($_POST);
