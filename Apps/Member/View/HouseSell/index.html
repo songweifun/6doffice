@@ -23,7 +23,7 @@
         <div class="memberBox">
             <div class="memberBoxTab">
                 <ul>
-                    <li><a href="houseSale.php"><span>发布出售</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Housesell/addSell')}-->"><span>发布出售</span></a></li>
                     <li><a href="houseRent.php"><span>发布出租</span></a></li>
                     <li><a href="#" class="linkOn"><span>出售管理</span></a></li>
                     <li><a href="manageRent.php"><span>出租管理</span></a></li>
@@ -32,7 +32,7 @@
             <div class="manageSub">
                 <ul class="manageSubNav">
                     <li class="linkOn"><a href="#"><span>出售中</span></a></li>
-                    <li><a href="manageSaleTop.php"><span>置顶中</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/sellTopDone')}-->"><span>置顶中</span></a></li>
                     <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/recycle')}-->"><span>回收站</span></a></li>
                     <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/sellDone')}-->"><span>成交榜</span></a></li>
                 </ul>
@@ -74,7 +74,7 @@
                                 <td><!--{$item.borough_name}--></td>
                                 <td><!--{$item.house_room}-->-<!--{$item.house_hall}-->-<!--{$item.house_toilet}-->-<!--{$item.house_veranda}--></td>
                                 <td><!--{$item.house_totalarea}-->㎡</td>
-                                <td class="f90"><if condition='$item.house_price eq 0'>面议<else/><!--{$item.house_price}-->万</if>								  </td>
+                                <td class="f90"><if condition='$item.house_price eq 0'>面议<else/><!--{$item.house_price}-->万</if></td>
                                 <td><!--{$item.refresh}-->次</td>
                                 <td> <!--增加预约刷新按钮 hyjfc.com-->
                                     <if condition="$item.is_appo neq null">
@@ -164,13 +164,46 @@
         //TB_show('房源成交','saleBargain.php?house_id='+item_id+'&height=370&width=400&modal=true&rnd='+Math.random(),false);
     }
     function showBoxOwner(item_id){
-        TB_show('业主信息','landlordSaleInfo.php?house_id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
+
+        var url='<!--{:U(MODULE_NAME."/ManageSell/landlordInfo")}-->/house_id/'+item_id
+        layer.open({
+            type: 2,
+            title: ['业主信息', ''],
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['400px' , '150px'],
+            content: url,
+            scrollbar: false,
+        });
+
+        //TB_show('业主信息','landlordSaleInfo.php?house_id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
     }
     function showBoxtop(item_id){
-        TB_show('房源置顶','saleTop.php?house_id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+        var url='<!--{:U(MODULE_NAME."/ManageSell/sellTop")}-->/house_id/'+item_id
+        layer.open({
+            type: 2,
+            title: ['房源置顶', ''],
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['400px' , '200px'],
+            content: url,
+            scrollbar: false,
+        });
+        //TB_show('房源置顶','saleTop.php?house_id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
     }
     function showBoxnum(){
-        TB_show('购买条数','saleNum.php?height=200&width=400&modal=true&rnd='+Math.random(),false);
+        var url='<!--{:U(MODULE_NAME."/ManageSell/buySellNum")}-->'
+        layer.open({
+            type: 2,
+            title: ['购买条数', ''],
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['400px' , '200px'],
+            content: url,
+            scrollbar: false,
+        });
+
+        //TB_show('购买条数','saleNum.php?height=200&width=400&modal=true&rnd='+Math.random(),false);
     }
 </script>
 <script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js" language="javascript"></script>

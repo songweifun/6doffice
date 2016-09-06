@@ -333,4 +333,183 @@ class ManageSellController extends CommonController{
 
 
     }
+
+    /**
+     * 置顶
+     */
+    public  function sellTop(){
+
+        $page=$this;
+
+
+
+            $money = getAuthInfo('money');
+            $house_id = I('house_id',0,'intval');
+            $this->assign('house_id', $house_id);
+            $this->assign('money', $money);
+            $this->display();
+
+
+
+
+    }
+
+    /**
+     * 异步保存置顶
+     */
+    public function ajaxSaveSellTop(){
+
+        $page=$this;
+
+
+        $housesell = D('HouseSellRelation');
+        $member=D('MemberRelation');
+
+
+
+            $days=I('days',0,'intval');
+            $house_id=I('house_id',0,'intval');
+            $member_id = getAuthInfo('id');  //获取会员ID
+            //计算余额是否够用
+            $price = $days*$page->sellPrice;
+            $memberInfo = $member->getInfo($member_id,'*',true);
+            //p($page->sellPrice);die;
+            $to_time = $days*86400+time();
+            if(!$days){
+                $this->ajaxReturn(array('status'=>false,"msg"=>'请输入置顶天数'));
+            }
+            if($memberInfo['money'] >= $price){
+                    //扣除费用
+                    $member->where(array('id'=>$member_id))->save(array('money'=>$memberInfo['money']-$price));
+                    //更改出售房源状态
+                    $housesell->where(array('id'=>$house_id))->setField('is_top',1);
+                    $data=array(
+
+                        'member_id'=>$member_id,
+                        'housesell_id'=>$house_id,
+                        'add_time'=>time(),
+                        'to_time'=>$to_time,
+
+                    );
+                    M('housesell_top')->add($data);
+                    $this->ajaxReturn(array('status'=>true,"msg"=>'置顶成功!'));
+            }else{
+                     $this->ajaxReturn(array('status'=>false,"msg"=>'余额不足，请充值！'));
+            }
+
+
+
+    }
+
+    /**
+     * 置顶中
+     */
+    public function sellTopDone(){
+        $page=$this;
+
+        $member_id = getAuthInfo('id');
+        $houseSell = D('HouseSellView');
+        $action=I('action');
+        if($action=='noTop'){
+            $to_url = $_SERVER['HTTP_REFERER'];
+            $id=I('id',0,'intval');
+            try{
+                $houseSell->where(array('id'=>$id))->setField('is_top',0);
+                jsurlto('取消置顶成功！',$to_url);
+            }catch (Exception $e){
+                $this->error('取消置顶失败');
+            }
+            exit;
+
+        }else{
+
+            $where = ' and broker_id = ' . $member_id;
+            $q = $_GET['q'] == '输入房源编号或小区名称' ? "" : trim($_GET['q']);
+            //$q='长发';
+            if ($q) {
+                $borough =D('BoroughView');
+
+                $search_bid = $borough->getFields('id', ' borough_name like \'%' . $q . '%\'');
+                //p($search_bid);
+                if ($search_bid) {
+                    $search_bid = implode(',', $search_bid);
+                    $where .= " and (borough_name like '%" . $q . "%' or house_no like '%" . $q . "%' or borough_id in (" . $search_bid . "))";
+                } else {
+                    $where .= " and (borough_name like '%" . $q . "%' or house_no like '%" . $q . "%')";
+                }
+            }
+
+            $this->q=$q;
+            //这里显示状态为2,3（下架，无效）的房源
+            $where .=" and is_top = 1 and status = 1";
+            $count=$houseSell->getCount(0, $where);
+            $Page = new \Think\Page($count,10);//分页类
+            //分页样式
+            $Page->setConfig('prev','上一页');
+            $Page->setConfig('next','下一页');
+            $show = $Page->show();// 分页显示输出
+            $dataList=D('HouseSellRelation')->relation(true)->where('1=1'.$where)->limit($Page->firstRow.','.$Page->listRows)->order('created desc')->select();
+            foreach ($dataList as $key => $value){
+                $dataList[$key]['to_time']=M('housesell_top')->where(array('housesell_id'=>$value['id']))->getField('to_time');
+            }
+            $this->dataList=$dataList;
+            $this->pagePanel=$show;
+
+        }
+
+        $this->display();
+
+
+    }
+
+    /**
+     * 房东
+     */
+    public function landlordInfo(){
+        $page=$this;
+        $house_id=I('house_id',0,'intval');
+        $housesell = D('HouseSellView');
+        $houseInfo=$housesell->where(array('id'=>$house_id))->find();
+        $this->assign('houseInfo', $houseInfo);
+        $this->display();
+    }
+
+    /**
+     * 购买条数
+     */
+
+    public function buySellNum(){
+        $page=$this;
+        if(IS_AJAX){
+            $member=D('MemberRelation');
+            $member_id = getAuthInfo('id');  //获取会员ID
+            $num=I('num',0,'intval');
+            //计算余额是否够用
+            $price = $num*$page->sellPrice;
+            $memberInfo = $member->getInfo($member_id,'*',true);
+            if(!$num){
+                $this->ajaxReturn(array('status'=>false,"msg"=>'请输入购买条数'));
+            }
+
+            if($memberInfo['money'] >= $price){
+                //扣除费用
+                $member->where(array('id'=>$member_id))->save(array('money'=>$memberInfo['money']-$price));
+                //增加出售条数
+                $member->where(array('id'=>$member_id))->save(array('addsale'=>$memberInfo['addsale']+$num));
+
+                $this->ajaxReturn(array('status'=>true,"msg"=>'购买成功!'));
+            }else{
+                $this->ajaxReturn(array('status'=>false,"msg"=>'余额不足，请充值！'));
+            }
+
+        }else{
+
+            $money = getAuthInfo('money');
+            $this->assign('money', $money);
+            $this->display();
+
+        }
+
+    }
+
 }

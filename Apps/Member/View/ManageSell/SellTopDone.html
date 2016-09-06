@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title><!--{$title}--> - 房源管理</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+    <!-- 引入layer弹窗 -->
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+
+    <script type="text/javascript"><!--
+    function noTop(){
+        var cf=confirm("您确定取消该置顶？");
+        if (cf==true)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //--></script>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Housesell/addSell')}-->"><span>发布出售</span></a></li>
+                    <li><a href="houseRent.php"><span>发布出租</span></a></li>
+                    <li><a href="#" class="linkOn"><span>出售管理</span></a></li>
+                    <li><a href="manageRent.php"><span>出租管理</span></a></li>
+                </ul>
+            </div>
+            <div class="manageSub">
+                <ul class="manageSubNav">
+                    <li><a href="<!--{:U(MODULE_NAME.'/HouseSell/index')}-->"><span>出售中</span></a></li>
+                    <li class="linkOn"><a href="#"><span>置顶中</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/recycle')}-->"><span>回收站</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/sellDone')}-->"><span>成交榜</span></a></li>
+                </ul>
+            </div>
+            <div class="manageBox">
+                <div class="houseSearch">
+                    <form name="searchForm" action="" method="GET">
+
+                        <input class="input" name="q" type="text" size="30" value="<if condition='$q neq null'><!--{$q}--><else/>输入房源编号或小区名称</if>" onblur="if(this.value ==''||this.value == '输入房源编号或小区名称'){this.value = '输入房源编号或小区名称';}" onfocus="if(this.value == '输入房源编号或小区名称'){this.value = '';}" />&nbsp;<input type="button" value="搜 索"  onclick="javascript:document.searchForm.submit();"  />&nbsp;<a href="#notice">置顶房源必读</a>
+                    </form>
+                </div>
+                <div class="houseList">
+                    <table border="0" cellpadding="0" cellspacing="1">
+                        <thead class="tableTitle">
+                        <tr>
+                            <td colspan="6">房源基本信息</td>
+                            <td>点击统计</td>
+                            <td>到期时间</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <thead class="tableSubTitle">
+                        <tr>
+                            <td width="13%">房源编号</td>
+                            <td width="18%">小区名称</td>
+                            <td width="10%">户型</td>
+                            <td width="8%">面积</td>
+                            <td width="8%">售价</td>
+                            <td width="10%">发布时间</td>
+                            <td width="10%">总计</td>
+                            <td width="10%">&nbsp;</td>
+                            <td width="19%">&nbsp;</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <foreach name='dataList' item='item'>
+                        <tr>
+                            <td>&nbsp;<a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="查看房源详细信息" target="_blank"><!--{$item.house_no}--></a></td>
+                            <td><!--{$item.borough_name}--></td>
+                            <td><!--{$item.house_room}-->-<!--{$item.house_hall}-->-<!--{$item.house_toilet}-->-<!--{$item.house_veranda}--></td>
+                            <td><!--{$item.house_totalarea}-->㎡</td>
+                            <td class="f90"><if condition='$item["house_price"] eq 0'>面议<else/><!--{$item.house_price}-->万</if></td>
+                            <td><!--{$item.created|date='Y-m-d',###}--></td>
+                            <td><!--{$item.click_num}--></td>
+                            <td><!--{$item.to_time|date='Y-m-d',###}--></td>
+                            <td><a href="<!--{:U(MODULE_NAME.'/HouseSell/addsell')}-->/action/edit/id/<!--{$item.id}-->" title="编辑房源信息">编辑</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBox(<!--{$item.id}-->);return false;" title="该房源已成交">成交</a>&nbsp;<a href="<!--{:U(MODULE_NAME.'/ManageSell/sellTopDone')}-->/action/noTop/id/<!--{$item.id}-->" onclick="javascript:return noTop();">取消</a></td>
+                        </tr>
+                        </foreach>
+                        <tr>
+                            <td colspan="9" class="listOperation">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--{$pagePanel}-->
+                </div>
+            </div>
+            <div class="note">
+                <p><a name="notice" id="notice"></a>置顶管理必读：</p>
+                <ul>
+                    <li>置顶的房源在相应栏目的顶部位置，排序规则按照置顶时间降序排列；</li>
+                    <li>通过“编辑”可对已发布的房源信息进行修改；</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script language="javascript">
+    function checkAll(formObj){
+        if(formObj.checked){
+            $('input[type=checkbox]').prop('checked', true);
+        }else{
+            $('input[type=checkbox]').prop('checked', false);
+        }
+    }
+    function showBox(item_id){
+        var url='<!--{:U(MODULE_NAME."/ManageSell/sellBargain")}-->/house_id/'+item_id
+        layer.open({
+            type: 2,
+            title: ['房源成交', ''],
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['400px' , '370px'],
+            content: url,
+            scrollbar: false,
+        });
+    }
+</script>
+<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js" language="javascript"></script>
+</body>
+</html>
