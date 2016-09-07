@@ -1,93 +1,68 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
     <title><!--{$title}--> - 添加/编辑房源</title>
-    <script>
-        var hosesellajaxurl="<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->"
-        var imagefooturl='__ROOT__/Uploads/'
-        var addBoroughurl="<!--{:U(MODULE_NAME.'/HouseSell/addBorough')}-->"
-    </script>
-
     <css file="__PUBLIC__/css/member.css"/>
     <js file="__PUBLIC__/js/jquery.min.js"/>
     <js file="__PUBLIC__/js/map.js"/>
-
+    <!--
     <import type="js" file="js.FormValid,js.FV_onBlur"/>
+    -->
+    <js file="__PUBLIC__/js/jquery.validate.min.js"/>
+    <js file="__PUBLIC__/js/messages_zh.min.js"/>
+    <js file="__PUBLIC__/js/member/addrent_formcheck.js"/>
 
     <css file="__PUBLIC__/js/uiautocomplete/jquery-ui.css"/>
     <js file="__PUBLIC__/js/uiautocomplete/jquery-ui.js"/>
 
-
-    <js file="__PUBLIC__/js/layer/layer.js"/>
-
-
-
-
-
-
-
-    <link href="__ROOT__/Data/SWFUpload/css/default.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__ROOT__/Data/SWFUpload/swfupload.js"></script>
-    <!--  swfupload-->
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__ROOT__/Data/Ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__ROOT__/Data/Ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
     <script type="text/javascript">
-        var swfu;
-        window.onload = function () {
-            swfu = new SWFUpload({
-                // Backend Settings
-                upload_url: "<!--{:U(MODULE_NAME.'/HouseSell/upload')}-->/to/uploadHousePicture|house|sell/action/doupload",
-                post_params: {"PHPSESSID": "<!--{$session_id}-->"},
+        $(function(){
+            var serverUrl="<!--{:U(MODULE_NAME.'/HouseRent/ueditorUpload')}-->"
+            //var url =getUEBasePath();
+            //alert(serverUrl)
+            var ue = UE.getEditor('content',{
+                initialFrameWidth:'100%',  //初始化编辑器宽度,默认1000
+                initialFrameHeight:220,  //初始化编辑器高度,默认320
+                textarea:'house_desc',
+                //是否启用元素路径，默认是显示
+                elementPathEnabled : false
+                ,maximumWords:1000       //允许的最大字符数
+                //是否保持toolbar的位置不动,默认true
+                ,autoFloatEnabled:false
+                //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
+                , toolbars: [[
+                    'fullscreen', 'source', '|', 'undo', 'redo', '|',
+                    'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                    'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                    'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                    'directionalityltr', 'directionalityrtl', 'indent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                    'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                    'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+                    'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+                    'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+                    'print', 'preview', 'searchreplace', 'drafts', 'help'
+                ]]
+                ,serverUrl: serverUrl
 
-                // File Upload Settings
-                file_size_limit : "2 MB",	// 2MB
-                file_types : "*.jpeg;*.jpg;*.gif;*.bmp;*.png",
-                file_types_description : "Images",
-                file_upload_limit : 0,
 
-                // Event Handler Settings - these functions as defined in Handlers.js
-                //  The handlers are not part of SWFUpload but are part of my website and control how
-                //  my website reacts to the SWFUpload events.
-                swfupload_preload_handler : preLoad,
-                swfupload_load_failed_handler : loadFailed,
-                file_queue_error_handler : fileQueueError,
-                file_dialog_complete_handler : fileDialogComplete,
-                upload_progress_handler : uploadProgress,
-                upload_error_handler : uploadError,
-                upload_success_handler : uploadSuccess,
-                upload_complete_handler : uploadComplete,
-
-                // Button Settings
-                button_image_url : "__ROOT__/Data/SWFUpload/images/SmallSpyGlassWithTransperancy_17x18.png",
-                button_placeholder_id : "spanButtonPlaceholder",
-                button_width: 180,
-                button_height: 18,
-                button_text : '<span class="button">选择图片 <span class="buttonSmall">(最大支持2 MB )</span></span>',
-                button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
-                button_text_top_padding: 0,
-                button_text_left_padding: 18,
-                button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
-                button_cursor: SWFUpload.CURSOR.HAND,
-
-                // Flash Settings
-                flash_url : "__ROOT__/Data/SWFUpload/swfupload.swf",
-                flash9_url : "__ROOT__/Data/SWFUpload/swfupload_FP9.swf",
-
-                custom_settings : {
-                    upload_target : "divFileProgressContainer"
-                },
-
-                // Debug Settings
-                debug: false
             });
-        };
+
+        })
     </script>
+
+
     <script type="text/javascript">
         FormValid.showError = function(errMsg,errName,formName) {
             if (formName=='dataForm') {
                 for (key in FormValid.allName) {
-                    //document.getElementById('errMsg_'+FormValid.allName[key]).innerHTML = '';
-                    //document.getElementById('errMsg_'+FormValid.allName[key]).style.display = 'none';
+
 
                 }
                 for (key in errMsg) {
@@ -103,107 +78,6 @@
             $("#borough_addr").val(b_addr);
             $("#borough_addr_tr").css("display","");
         }
-
-
-        /*$(function(){
-
-            function alertObj(obj){
-                var output = "";
-                for(var i in obj){
-                    var property=obj[i];
-                    output+=i+" = "+property+"\n";
-                }
-                alert(output);
-            }
-
-
-            var cache={}
-
-
-
-            $( "#borough_name" ).autocomplete({
-
-                //请求远程数据
-
-                source: function( request, response ) {
-                    var term = request.term;
-
-                    if(term in cache){ //本地缓存 其实就是用一个数组保存已经发送过请求的key和对应返回的data对象
-                        data = cache[term];
-                        response($.map(data,function(item){
-                            return {label:item.borough_name,value:item.borough_name,info:item.info,address:item.borough_address}
-                        }))
-
-                    }else{
-                        //alert(11111)
-
-                    $.ajax({
-
-                        url:"<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->/action/getBoroughList",
-                        dataType:'jsonp',
-                        data:{
-                          q:request.term
-                        },
-                        success:function(data){
-                            cache[term] = data;
-                            response($.map(data,function(item){
-                                return {label:item.borough_name,value:item.borough_name,info:item.info,address:item.borough_address}
-                            }))//response
-
-
-
-                        }//success
-                    })//ajax
-                    }
-
-                },//source
-                //选择后触发的动作
-                select: function(event, ui) {
-                    //alert(ui.item.info[0].pic_url)
-                    if(ui.item.value=='我要创建新小区'){
-
-                        TB_show('增加小区','<--{:U(MODULE_NAME."/HouseSell/addBorough")}-->/height/165/width/400/modal/true/rnd='+Math.random(),false);
-                        $('#borough_name').val('');
-
-
-
-                    }else{
-                        var str="<div style='width:647px;line-height:30px;color:#999999'>以下为小区上传户型图，如无发布房源户型，请自行上传！</div>";
-                        var len=(ui.item.info)?ui.item.info.length:0;
-                        for(i=0;i<len;i++){
-                            str+='<li style="width:160px; height:150px;margin-right:15px;float:left; text-align:center;overflow:hidden; margin-top:5px;">\
-                    <a href="__ROOT__/Uploads/'+ui.item.info[i].pic_url+'" target="_blank"><img src="__ROOT__/Uploads/'+ui.item.info[i].pic_thumb+'" width=160 height=120 style="padding-bottom:3px"/></a>\
-                    <input name="house_drawing" id="house_drawing"type="radio" value="'+ui.item.info[i].pic_url+'" />\
-                    <span>'+ui.item.info[i].pic_desc+'</span>\
-                    </li>\
-                    ';
-                        }
-                        str+='</ul>';
-                        $("#borough_id").val(ui.item.value);
-                        $("#borough_addr").val(ui.item.address);
-                        $("#house_drawing_dis").html(str);
-                        $("#borough_addr_tr").css("display","");
-                    }
-                },
-                minLength: 2,
-                autoFocus: false,
-                delay: 0,
-                //定位,css设置
-                position: { using:function(pos){
-
-                    var topOffset = $(this).css(pos).offset().top;
-
-                    $(this).css({'top':'topOffset','width':'260','height':'220','overflow':'scroll'});
-                    $(this).children().last().css('color','red');
-
-
-                }},
-            });
-
-
-
-        })*/
-
 
         function checkBoxNum(){
             var form = document.forms['dataForm'];
@@ -226,8 +100,8 @@
         }
     </script>
 
-    <js file="__PUBLIC__/js/member/addsell_atuocomplete.js"/>
 </head>
+
 <body>
 <include file="Common:memberHeader"/>
 <div class="main">
@@ -236,8 +110,8 @@
         <div class="memberBox">
             <div class="memberBoxTab">
                 <ul>
-                    <li><a href="#" class="linkOn"><span>发布出售</span></a></li>
-                    <li><a href="<!--{:U(MODULE_NAME.'/HouseRent/addRent')}-->"><span>发布出租</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/HouseSell/addSell')}-->"><span>发布出售</span></a></li>
+                    <li><a href="#" class="linkOn"><span>发布出租</span></a></li>
                     <li><a href="<!--{:U(MODULE_NAME.'/HouseSell/index')}-->"><span>出售管理</span></a></li>
                     <li><a href="<!--{:U(MODULE_NAME.'/HouseRent/index')}-->"><span>出租管理</span></a></li>
                 </ul>
@@ -247,13 +121,11 @@
                 <div class="noteTxt">在完善<a href="brokerProfile.php">从业资料</a>前，您所发布的房源暂时无法对外展示！
                 </div>
                 <div class="closeNote">
-                    <a href="javascript:;" onclick="document.getElementById('bigNote').style.display='none'" title="隐藏提示"><img src="__PUBLIC__/images/closeNote.gif" title="隐藏提示" /></a>
+                    <a href="javascript:;" onclick="document.getElementById('bigNote').style.display='none'" title="关闭提示"><img src="__PUBLIC__/images/closeNote.gif" title="关闭提示" /></a>
                 </div>
             </div>
             </if>
-
-
-            <form id="dataForm" name="dataForm" action="<!--{:U(MODULE_NAME.'/HouseSell/save')}-->" method="POST" onsubmit="return checkForm(this)">
+            <form id="dataForm" name="dataForm" action="<!--{:U(MODULE_NAME.'/HouseRent/save')}-->" method="POST" onsubmit="return checkForm(this)">
                 <input type="hidden" name="id" value="<!--{$dataInfo.id}-->">
                 <input type="hidden" name="cid" value="<!--{$Think.get.cid}-->">
                 <input type="hidden" name="to_url" value="<!--{$to_url}-->">
@@ -264,45 +136,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <empty name="$dataInfo.id">
-                    <if condition="($memberInfo.vip neq 0) and ($memberInfo.vexation neq 0)">
-                    <tr>
-                        <td class="row1">发布属性：</td>
-                        <td colspan="3">
-                            <if condition='$dataInfo.is_vexation eq 1'>
-                            <input name="vexation" type="checkbox" value="1" checked="checked" />
-                            <else/>
-                            <input name="vexation" type="checkbox" value="1" />
-                            </if>
-                            加急房源
-                            <span class="tip">还可发布<font color="#FF0000"> <!--{$memberInfo.vexation}--> </font>条加急</span>&nbsp;<!--<a href="#">什么是急售？</a> -->
-                        </td>
-                    </tr>
-                    </if>
-                    </empty>
-
-
                     <tr>
                         <td class="row1">房源标题：</td>
                         <td colspan="3">
                             <input class="input" name="house_title" type="text" size="30" value="<!--{$dataInfo.house_title}-->"  valid="required" errmsg="请输入房源标题!"  />&nbsp;
                             <span class="tip">好的标题能有效提升房源点击率，最多20个汉字</span>
-                            <p id="errMsg_house_title" class="errorMessage" display="none"></p>
+                            <p id="errMsg_house_title" class="errorMessage" ></p>
                         </td>
                     </tr>
                     <tr>
                         <td class="row1">房屋类型：</td>
                         <td colspan="3">
                             <foreach name='house_type_option' item='item'>
-                                <if condition='$key eq $dataInfo["house_type"]'>
-                                    <label for="house_type_<!--{$key}-->">
-                                    <input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" checked /><!--{$item}-->
-                                    </label>
-                                <else/>
-                                    <label for="house_type_<!--{$key}-->">
-                                    <input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" /><!--{$item}-->
-                                    </label>
-                                </if>
+                            <if condition='$key eq $dataInfo["house_type"]'>
+                            <label for="house_type_<!--{$key}-->"><input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" checked /><!--{$item}--> </label>
+                            <else/>
+                            <label for="house_type_<!--{$key}-->"><input  type="radio" name="house_type" id="house_type_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" /><!--{$item}--> </label>
+                            </if>
                             </foreach>
                             <p id="errMsg_house_type" class="errorMessage"></p>
                         </td>
@@ -311,35 +161,16 @@
                         <td class="row1">小区名称：</td>
                         <td colspan="3">
                             <input type="hidden" id="borough_id" name="borough_id" value="<!--{$dataInfo.borough_id}-->" >
-                            <input id="borough_name"  valid="required" errmsg="请选择小区名称" class="input" name="borough_name" type="text" size="30" value="<!--{$dataInfo.borough_name}-->" />
+                            <input id="borough_name" class="input" name="borough_name" type="text" size="30" value="<!--{$dataInfo.borough_name}-->"  errmsg="请输入小区名称!" />
                             <span class="tip">例：输入“大名城”或拼音首字母“dmc”，从下拉列表中选择</span>
                             <p id="errMsg_borough_name" class="errorMessage" display="none"></p>
                         </td>
                     </tr>
                     <tr id="borough_addr_tr" style="display:none;">
                         <td class="row1">小区地址：</td>
-                        <td colspan="3">
-                            <input id="borough_addr" type="text" class="input" name="borough_addr"  size="30" value="<!--{$dataInfo.borough_addrest}-->" disabled />
-                        </td>
+                        <td colspan="3"><input id="borough_addr" type="text" class="input" name="borough_addr"  size="30" value="<!--{$dataInfo.borough_addrest}-->" disabled /></td>
                     </tr>
 
-                    <tr>
-                        <td class="row1">产&nbsp;&nbsp;&nbsp;&nbsp;权：</td>
-                        <td colspan="3">
-                            <select name="belong" class="select">
-                                <option  value="">请选择产权</option>
-
-                                <foreach name="belong_option" item="v">
-                                    <if condition='$key eq $dataInfo["belong"]'>
-                                        <option value="<!--{$key}-->" selected="selected" ><!--{$v}--></option>
-                                    <else/>
-                                        <option value="<!--{$key}-->"><!--{$v}--></option>
-                                    </if>
-
-                                </foreach>
-                            </select>
-                        </td>
-                    </tr>
                     <tr>
                         <td class="row1">楼&nbsp;&nbsp;&nbsp;&nbsp;层：</td>
                         <td colspan="3">
@@ -348,6 +179,7 @@
                             <p id="errMsg_house_floor" class="errorMessage" display="none"></p><p id="errMsg_house_topfloor" class="errorMessage" display="none"></p>
                         </td>
                     </tr>
+
                     <tr>
                         <td class="row1">户&nbsp;&nbsp;&nbsp;&nbsp;型：</td>
                         <td colspan="3">
@@ -355,13 +187,13 @@
                                 <for start="1" end="5">
                                     <if condition='$i eq $dataInfo["house_room"]'>
                                         <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                                    <else/>
+                                        <else/>
                                         <option value="<!--{$i}-->"><!--{$i}--></option>
                                     </if>
                                 </for>
                                 <if condition="$dataInfo['house_room'] gt 5">
                                     <option value="6" selected>5室以上</option>
-                                <else/>
+                                    <else/>
                                     <option value="6">5室以上</option>
                                 </if>
                             </select> 室
@@ -369,45 +201,64 @@
                                 <for start="1" end="6">
                                     <if condition='$i eq $dataInfo["house_hall"]'>
                                         <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                                    <else/>
+                                        <else/>
                                         <option value="<!--{$i}-->"><!--{$i}--></option>
                                     </if>
                                 </for>
-                        </select> 厅
+                            </select> 厅
                             <select class="select" name="house_toilet">
                                 <for start="1" end="6">
                                     <if condition='$i eq $dataInfo["house_toilet"]'>
                                         <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                                    <else/>
+                                        <else/>
                                         <option value="<!--{$i}-->"><!--{$i}--></option>
                                     </if>
-                               </for>
-                        </select> 卫
+                                </for>
+                            </select> 卫
                             <select class="select" name="house_veranda">
                                 <for start="1" end="6">
                                     <if condition='$i eq $dataInfo["house_veranda"]'>
-                                         <option value="<!--{$i}-->" selected><!--{$i}--></option>
-                                    <else/>
+                                        <option value="<!--{$i}-->" selected><!--{$i}--></option>
+                                        <else/>
                                         <option value="<!--{$i}-->"><!--{$i}--></option>
                                     </if>
-                            </for>
-                        </select> 阳&nbsp;<span class="tip">如果户型超过五室请在“房源描述”里进行说明</span>
+                                </for>
+                            </select> 阳&nbsp;<span class="tip">如果户型超过五室请在“房源描述”里进行说明</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="row1">租&nbsp;&nbsp;&nbsp;&nbsp;金：</td>
+                        <td colspan="3">
+                            <input id="h_price" class="input" name="house_price" type="text" size="10" value="<!--{$dataInfo.house_price}-->"  valid="required|isNumber" errmsg="请输入租金!|请输入数字！"  />&nbsp;元/月
+                            <p id="errMsg_house_price" class="errorMessage" display="none"></p>
                         </td>
                     </tr>
                     <tr>
-                        <td class="row1">售&nbsp;&nbsp;&nbsp;&nbsp;价：</td>
+                        <td class="row1">付款方式：</td>
                         <td colspan="3">
-                            <input id="h_price" class="input" name="house_price" type="text" size="10" value="<!--{$dataInfo.house_price}-->"  valid="required|isNumber" errmsg="请输入售价!|请输入数字！"  />&nbsp;万元
-                            <span class="tip">此售价为“双方各自赋税”价格，请真实、正确填写</span>
-                            <p id="errMsg_house_price" class="errorMessage" display="none"></p>
+
+
+                            <select class="select" name="house_deposit" valid="required" errmsg="请选择付款方式！">
+                                <option value="">请选择</option>
+                                <foreach name="rent_deposittype_option" item="v">
+                                    <if condition="$key eq $dataInfo['house_deposit']">
+                                        <option value="<!--{$key}-->" selected><!--{$v}--></option>
+                                        <else/>
+                                        <option value="<!--{$key}-->"><!--{$v}--></option>
+                                    </if>
+
+                                </foreach>
+                            </select>
+
+                            <p id="errMsg_rent_deposittype_option" class="errorMessage" display="none"></p>
                         </td>
                     </tr>
                     <tr>
                         <td class="row1">建筑面积：</td>
                         <td colspan="3">
                             <input id="house_totalarea" class="input" name="house_totalarea" type="text" size="10" value="<!--{$dataInfo.house_totalarea}-->" valid="required|isNumber" errmsg="请输入建筑面积!|请输入数字！" />&nbsp;平米
-                            <p id="errMsg_house_totalarea" class="errorMessage" display="none"></p>
-                        </td>
+                            <p id="errMsg_house_totalarea" class="errorMessage" display="none"></td>
                     </tr>
 
                     <tr>
@@ -416,26 +267,24 @@
                             <select class="select" name="house_age" valid="required" errmsg="请选择房龄！">
                                 <option value="">请选择</option>
                                 <foreach name="house_age_option" item="v">
-                                    <if condition="$dataInfo['house_age'] eq $v">
-                                        <option selected="selected" value="<!--{$v}-->"><!--{$v}--></option>
-                                    <else/>
+                                    <if condition="$v eq $dataInfo['house_age']">
+                                        <option value="<!--{$v}-->" selected><!--{$v}--></option>
+                                        <else/>
                                         <option value="<!--{$v}-->"><!--{$v}--></option>
                                     </if>
-                                </foreach>
 
+                                </foreach>
                             </select>
                             年&nbsp;
                             <p id="errMsg_house_age" class="errorMessage" display="none"></p>
                         </td>
                     </tr>
 
-
-
                     <tr>
                         <td class="row1">装修情况：</td>
                         <td colspan="3">
                             <foreach name='house_fitment_option' item='item'>
-                            <if condition='$key eq $dataInfo["house_fitment"]'>
+                            <if condition="$key eq $dataInfo['house_fitment']">
                             <label for="house_fitment_<!--{$key}-->"><input  type="radio" name="house_fitment" id="house_fitment_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择装修情况!" checked /><!--{$item}--> </label>
                             <else/>
                             <label for="house_fitment_<!--{$key}-->"><input  type="radio" name="house_fitment" id="house_fitment_<!--{$key}-->" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择装修情况!" /><!--{$item}--> </label>
@@ -445,21 +294,29 @@
                         </td>
                     </tr>
 
-
                     <tr>
                         <td class="row1">房源描述：</td>
-                        <td colspan="3"><span class="tip">&nbsp;请对您的房子进行简单介绍</span><br>
-
-                            <div style="width:100%;">
-
+                        <td colspan="3"><span class="tip">&nbsp;详细、生动地描述房源全面信息，赢得客户，避免无效带看</span><br>
+                            <div style="width:100%;" class="contentdiv">
                                 <input type="hidden" id="house_desc" name="house_desc" value='<!--{$dataInfo.house_desc}-->' />
                                 <input type="hidden" id="house_desc___Config" value="FullPage=false"/>
+                                <!--
 
                                 <iframe id="house_desc___Frame" src="__ROOT__/Data/FCKeditor/editor/fckeditor.html?InstanceName=house_desc&amp;Toolbar=Basic" width="100%" height="220" frameborder="no" scrolling="no"></iframe>
 
+                                 -->
+                                <!--
+
+                                <iframe id="inside" name="inside" src="<!--{:U(MODULE_NAME.'/HouseRent/ueditor')}-->" width="100%" height="220" frameborder="no" scrolling="no"></iframe>
+                                -->
+                                <textarea name="" id="content"  style="width: 100%;height: 220px"></textarea>
+
+
+
                             </div>
-                            <p><br>&nbsp;<span class="tip">请勿在房源描述内添加其它房产网站链接</span><br>&nbsp;
-                                <span class="tip">请勿在房源描述内留联系电话</span></p></td>
+
+                            <p><br>&nbsp;<span class="tip">请勿在房源描述内添加其它房产网站链接</span><br>&nbsp;<span class="tip">请勿在房源描述内留联系电话</span></p>
+                        </td>
                     </tr>
                     <tr><td colspan="4" class="br"></td></tr>
                     </tbody>
@@ -467,38 +324,30 @@
                 <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
                     <thead>
                     <tr>
-                        <td colspan="4"><span class="concentTitle">第二步：补充信息（选填）</span></td>
+                        <td colspan="4"><span class="concentTitle">第二步：补充信息（选填项）</span></td>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="row1">户型图：</td>
-                        <td colspan="3">
-                            <span class="tip" style="float:left; padding-top:10px;">上传户型图</span><span><iframe name="uploadHouseDrawing" width="100%" height="25" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/HouseSell/upload')}-->/to/uploadHouseDrawing|borough|drawing" align="left"></iframe></span><input type="hidden" id="house_drawing" name="house_drawing" value="<!--{$dataInfo.house_drawing}-->"></p>
-                            <p id="house_drawing_dis" style="clear:both;"><notempty name="dataInfo.house_drawing"><img src="__ROOT__/Uploads/<!--{$dataInfo.house_drawing}-->" width="120" height="90"></notempty>
-                        </td>
-                    </tr>
-
 
                     <tr>
                         <td class="row1">朝&nbsp;&nbsp;&nbsp;&nbsp;向：</td>
                         <td colspan="3">
                             <foreach name='house_toward_option' item='item'>
                             <if condition="$key eq $dataInfo['house_toward']">
-                            <label for="house_toward_<!--{$key}-->"><input  type="radio" name="house_toward" id="house_toward_<!--{$key}-->" value="<!--{$key}-->"  checked /><!--{$item}--> </label>
+                            <label for="house_toward_<!--{$key}-->"><input  type="radio" name="house_toward" id="house_toward_<!--{$key}-->" value="<!--{$key}-->"  errmsg="请选择房屋朝向!" checked /><!--{$item}--> </label>
                             <else/>
-                            <label for="house_toward_<!--{$key}-->"><input  type="radio" name="house_toward" id="house_toward_<!--{$key}-->" value="<!--{$key}-->" /><!--{$item}--> </label>
+                            <label for="house_toward_<!--{$key}-->"><input  type="radio" name="house_toward" id="house_toward_<!--{$key}-->" value="<!--{$key}-->"  errmsg="朝向必择!" /><!--{$item}--> </label>
                             </if>
                             </foreach>
-
+                            <p id="errMsg_house_toward" class="errorMessage" display="none"></p>
                         </td>
                     </tr>
                     <tr>
                         <td class="row1">房源特色：</td>
                         <td colspan="3">
-                            <foreach  name='house_feature_option' item='group'>
+                            <foreach name='house_feature_option' item='group'>
                             <p><!--{$house_feature_group.$key}-->：&nbsp;
-                                <foreach  name='group' item='house_feature' key='feature_id'>
+                                <foreach name='group' item='house_feature' key='feature_id'>
                                 <if condition="in_array($feature_id,$dataInfo['house_feature'])">
                                 <label for="house_feature_<!--{$feature_id}-->"><input  type="checkbox" name="house_feature[]" id="house_feature_<!--{$feature_id}-->" value="<!--{$feature_id}-->" checked onclick="return checkBoxNum()" /><!--{$house_feature}--> </label>
                                 <else/>
@@ -509,6 +358,25 @@
                             </foreach>
                             <span class="tip">最多选择4项</span>
                             <p id="errMsg_house_feature" class="errorMessage" display="none"></p>
+                    </tr>
+                    <tr>
+                        <td class="row1">房源配套：</td>
+                        <td colspan="3">
+                            <foreach name='house_installation_option' item='item'>
+                            <if condition="in_array($key,$dataInfo['house_support'])">
+                            <label for="house_support_<!--{$key}-->"><input  type="checkbox" name="house_support[]" id="house_support_<!--{$key}-->" value="<!--{$key}-->"  checked /><!--{$item}--> </label>
+                            <else/>
+                            <label for="house_support_<!--{$key}-->"><input  type="checkbox" name="house_support[]" id="house_support_<!--{$key}-->" value="<!--{$key}-->" /><!--{$item}--> </label>
+                            </if>
+                            <if condition="$key % 7 eq 0">
+                            <br>
+                            </if>
+                            </foreach>
+                    </tr>
+                    <tr>
+                        <td class="row1">户型图：</td>
+                        <td colspan="3">
+                            <span class="tip" style="float:left; padding-top:10px;">上传户型图</span><span><iframe name="uploadHouseDrawing" width="100%" height="25" scrolling="No" frameborder="no"  src="<!--{$cfg.url}-->upload.php?to=uploadHouseDrawing|borough|drawing" align="left"></iframe></span><input type="hidden" id="house_drawing" name="house_drawing" value="<!--{$dataInfo.house_drawing}-->"></p><p id="house_drawing_dis" style="clear:both;"><if condition="$dataInfo['house_drawing'] neq null"><img src="__ROOT__/Uploads/<!--{$dataInfo.house_drawing}-->" width="120" height="90"></if>
                         </td>
                     </tr>
                     <tr>
@@ -519,33 +387,32 @@
                     </tr>
                     <tr>
                         <td class="row1">室内照片：</td>
-                        <td>
-                            <div style="width: 180px; height: 18px; border: solid 1px #E7F1A2; background-color:#F1F8C5; padding: 2px;">
-                                <span id="spanButtonPlaceholder"></span>
-                            </div><span class="tip" style="margin-left:15px; line-height:30px">&nbsp;可选择多个图片同时上传</span>
+                        <td>		<div style="width: 180px; height: 18px; border: solid 1px #E7F1A2; background-color:#F1F8C5; padding: 2px;">
+                            <span id="spanButtonPlaceholder"></span>
+                        </div><span class="tip" style="margin-left:15px; line-height:30px">&nbsp;可选择多个图片同时上传</span>
                             <div id="divFileProgressContainer"></div>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <div id="house_picture_dis">
-                                <foreach name="dataInfo.house_pic" item="item">
-                                <div class="upload_shower" id="container_picture_<!--{$key}-->">
+                                <foreach name='dataInfo.house_pic' item='item'>
+                                <div class="upload_shower" id="container_picture_<!--{$smarty.foreach.house_pic.index}-->">
                                     <a href="__ROOT__/Uploads/<!--{$item.pic_url}-->"><img src="__ROOT__/Uploads/<!--{$item.pic_url}-->" width="160" height="120"></a>
                                     <br/><input type="text" name="house_picture_desc[]" value="<!--{$item.pic_desc}-->" size="12">
                                     <input type="hidden" name="house_picture_url[]" value="<!--{$item.pic_url}-->">
                                     <input type="hidden" name="house_picture_thumb[]" value="<!--{$item.pic_thumb}-->">
-                                    <input type="button" name="deletePicture_<!--{$key}-->" onclick="dropContainer('container_picture_<!--{$key}-->')" value="删">
+                                    <input type="button" name="deletePicture_<!--{$smarty.foreach.house_pic.index}-->" onclick="dropContainer('container_picture_<!--{$key}-->')" value="删">
                                 </div>
                                 </foreach>
                             </div>
                         </td>
                     </tr>
-                    <empty name="dataInfo.id">
+                    <if condition="$dataInfo['id'] eq null">
                     <tr>
                         <td class="row1">小区照片：</td>
                         <td><span class="tip">&nbsp;小于500K</span><br />
-                            <iframe name="uploadBoroughPicture" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/HouseSell/upload')}-->/to/uploadBoroughPicture|borough|picture" align="left"></iframe>
+                            <iframe name="uploadBoroughPicture" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{$cfg.url}-->upload.php?to=uploadBoroughPicture|borough|picture" align="left"></iframe>
                         </td>
                     </tr>
                     <tr>
@@ -553,7 +420,7 @@
                             <div id="borough_picture_dis"></div>
                         </td>
                     </tr>
-                    </empty>
+                    </if>
                     </tbody>
                 </table>
                 <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
@@ -583,12 +450,11 @@
                     </tr>
                     </tbody>
                 </table>
-                <div class="submitPromsie"><input  id="check_agree" name="check_agree" type="checkbox" checked />
-                    我承诺我所发布的房源信息全部属实</div>
+                <div class="submitPromsie"><input  id="check_agree" name="check_agree" type="checkbox" checked />我承诺我所发布的房源信息全部属实，我接受 <!--{$cfg.page.titlec}-->的用户协议</div>
                 <if condition="$dataInfo['id'] neq null">
-                <div class="submitBtn"><input type="submit" value="确认编辑" /></div>
+                <div class="submitBtn" id="submitBtn"><input type="submit" value="确认编辑" /></div>
                 <else/>
-                <div class="submitBtn"><input type="submit" value="立即发布" /></div>
+                <div class="submitBtn" id="submitBtn"><input type="submit" value="立即发布" /></div>
                 </if>
             </form>
         </div>
@@ -597,12 +463,14 @@
 </div>
 
 
+
 <script type="text/javascript">
 
     initValid(document.dataForm);
 
+
     function checkForm(formDom){
-        var Content =FCKeditorAPI.GetInstance("house_desc").GetXHTML();
+        var Content =UE.getEditor('content').getContent();
         if(Content==null||Content==""){
             alert('内容不能为空');
             return false;
@@ -614,13 +482,13 @@
     function uploadHouseDrawing( furl,fname,thumbUrl ){
         document.getElementById('house_drawing').value = furl;
         //document.getElementById('borough_thumb_desc').value = fname;
-        document.getElementById('house_drawing_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="120" height="90"></a>';
+        document.getElementById('house_drawing_dis').innerHTML = '<a href="<!--{$cfg.url}-->upfile/'+furl+'"><img src="<!--{$cfg.url}-->upfile/'+thumbUrl+'" width="120" height="90"></a>';
     }
     var pictureIndex=<!--{$picture_num}-->;
     var borough_name_val = $('#borough_name').val();
     function uploadHousePicture( furl,fname,thumbUrl ){
         document.getElementById('house_picture_dis').innerHTML += '<div class="upload_shower" id="container_picture_'+pictureIndex+'">\
-	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
+	<a href="<!--{$cfg.url}-->upfile/'+furl+'"><img src="<!--{$cfg.url}-->upfile/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="house_picture_desc[]" value="'+borough_name_val+'" size="15">\
 	<input type="hidden" name="house_picture_url[]" value="'+furl+'">\
 	<input type="hidden" name="house_picture_thumb[]" value="'+thumbUrl+'">\
@@ -632,7 +500,7 @@
     var boroughIndex=0;
     function uploadBoroughPicture( furl,fname,thumbUrl ){
         document.getElementById('borough_picture_dis').innerHTML += '<div class="upload_shower" id="container_borough_picture_'+boroughIndex+'">\
-	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
+	<a href="<!--{$cfg.url}-->upfile/'+furl+'"><img src="<!--{$cfg.url}-->upfile/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="borough_picture_desc[]" value="'+borough_name_val+'" size="15">\
 	<input type="hidden" name="borough_picture_url[]" value="'+furl+'">\
 	<input type="hidden" name="borough_picture_thumb[]" value="'+thumbUrl+'">\
@@ -646,7 +514,17 @@
         parentEle.removeChild(containerEle);
     }
 </script>
-<script type="text/javascript" src="__ROOT__/Data/SWFUpload/js/handlers.js"></script>
+
+
+<script type="text/javascript">
+    /*function getMsg(){
+        var el = document.getElementById("house_desc");
+        var txt = document.frames['inside'].document.getElementById('content');
+        txt.value = el.value;
+    }
+    getMsg()*/
+</script>
+
 
 </body>
 </html>

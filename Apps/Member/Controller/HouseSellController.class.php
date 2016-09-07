@@ -87,6 +87,7 @@ class HouseSellController extends CommonController{
 
     //发布出售
     public function addSell(){
+
         $page=$this;
         $this->name = 'houseSale';
         //获得保存在cookie中的用户id
@@ -171,10 +172,8 @@ class HouseSellController extends CommonController{
         if($_GET['id']){
             $id = intval($_GET['id']);
             $dataInfo=M('housesell')->where(array('id'=>$id))->find();
-            //print_rr($dataInfo);
             $dataInfo['house_feature'] = explode(',',$dataInfo['house_feature']);
             array_remove_empty($dataInfo['house_feature'],true);
-            //$dataInfo['house_installation'] = explode(',',$dataInfo['house_installation']);
             $dataInfo['house_pic']=M('housesell_pic')->where(array('housesell_id'=>$id))->select();
             $picture_num = count($dataInfo['house_pic']);
         }
@@ -431,6 +430,7 @@ class HouseSellController extends CommonController{
      * 添加
      */
     public function save(){
+        //p($_POST);die;
         $member_id = getAuthInfo('id');
         $data=array();
         $broker_id=$member_id;

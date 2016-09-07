@@ -195,5 +195,29 @@
   			'allowType' =>array('jpeg','jpg','gif','bmp','png')
   		),
   ),
+
+	 'ueditor' => array(
+				  'rent'=>array(
+						  'thumb'=>true,
+						  'resizeType'=>1,
+						  'thumbResizeType'=>5,
+						  'thumbWidth'=>320,
+						  'thumbHeight'=>240,
+						  'watermark'=>true,
+						  'watermarkPos'=>9,
+						  'watermarkPic'=>'./Data/water/anleye.png',
+						  'thumbDir'=>'ueditor/rent/'.date('Y').'/'.date('n').'/',
+						  'originalPath'=>'ueditor/rent/'.date('Y').'/'.date('n').'/',
+						  'width'=>640,
+						  'height'=>480,
+						  'exts' =>array('jpeg','jpg','gif','bmp','png'),
+						  'rootPath'=>'./Uploads/',
+						  'saveName'=>date('YmdHis').'_'.mt_rand(),
+						  'autoSub'=>false,
+					  //'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
+				  ),
+		  ),
+
+
 );
 ?>

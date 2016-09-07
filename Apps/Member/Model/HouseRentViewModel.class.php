@@ -11,7 +11,10 @@ use Think\Model\ViewModel;
 class HouseRentViewModel extends ViewModel{
     protected $tableName='houserent';
 
-    public $viewFields = array();
+    public $viewFields = array(
+        'houserent'=>array('*'),
+        //'houserent_pic'=>array('*','_on'=>'houserent.id=houserent_pic.houserent_id'),
+    );
 
     /**
      * 取房源数
