@@ -12,6 +12,69 @@ class HouseRentController extends CommonController{
      * 租赁列表
      */
     public function index(){
+        $page=$this;
+        $member=D('MemberView');
+        $member_id = $member->getAuthInfo('id');
+        $houseRent = D('HouseRentView');
+        //计算剩余多少房源
+        $where = ' and broker_id = '.$member_id;
+        $where .=" and status = 1 ";
+        $houseNum = $houseRent->getCount(0,$where);
+        $this->assign('houseNum',$houseNum);//总共多少条
+        $scores = $member->getAuthInfo('scores');
+        $integral_array = C('RANK');
+        $allowNum = getNumByScore($scores,$integral_array,'sell_num')+$member->getAuthInfo('addrent');
+        if($member->getAuthInfo('vip')==1){
+            $allowNum = $page->vip1RentNum;
+        }
+        if($member->getAuthInfo('vip')==2){
+            $allowNum = $page->vip2RentNum;
+        }
+        $memberVip = $member->getAuthInfo('vip');
+        $this->assign('memberVip',$memberVip);
+        $houseLeft= $allowNum -$houseNum;
+        $this->assign('houseLeft',$houseLeft);
+        $where = ' and broker_id = '.$member_id;
+        $q = $_GET['q']=='输入房源编号或小区名称'?"":trim($_GET['q']);
+
+        if ($q) {
+            $borough =D('BoroughView');
+
+            $search_bid = $borough->getFields('id', ' borough_name like \'%' . $q . '%\'');
+            //p($search_bid);
+            if ($search_bid) {
+                $search_bid = implode(',', $search_bid);
+                $where .= " and (borough_name like '%" . $q . "%' or house_no like '%" . $q . "%' or borough_id in (" . $search_bid . "))";
+            } else {
+                $where .= " and (borough_name like '%" . $q . "%' or house_no like '%" . $q . "%')";
+            }
+        }
+
+        $this->q=$q;
+
+        $today = date("Y-m-d",time());
+        $yestoday =  date("Y-m-d",strtotime("-1 day"));
+        $where .=" and status = 1 and is_top = 0";
+
+        $count=$houseRent->getCount(0, $where);
+        $Page = new \Think\Page($count,10);//分页类
+        //分页样式
+        $Page->setConfig('prev','上一页');
+        $Page->setConfig('next','下一页');
+        $show = $Page->show();// 分页显示输出
+        $dataList=D('HouseRentRelation')->relation(true)->where('1=1'.$where)->limit($Page->firstRow.','.$Page->listRows)->order('created desc')->select();
+        //p($dataList);
+        foreach ($dataList as $key => $value){
+            $dataList[$key]['yestoday_click'] = intval($houseRent->getClick($value['id'],$yestoday));//昨天点击次数
+            $dataList[$key]['today_click'] = intval($houseRent->getClick($value['id'],$today));//今天点击次数
+            //example 用于判断判断是否预约过
+            $dataList[$key]['is_appo']=M('appolist')->where(array('house_id'=>$value['id'],'appo_site'=>'rent'))->getField('appo_list_id')?true:false;;
+        }
+
+        $this->dataList=$dataList;
+        $this->pagePanel=$show;
+
+        $this->display();
 
     }
 
@@ -286,9 +349,11 @@ class HouseRentController extends CommonController{
         $this->display();
     }
 
-    public function save(){
-        p($_POST);
-    }
+
+
+    /**
+     * 发布出租上传
+     */
     public function upload(){
         $action = $_GET['action'];
         $to=I('get.to');
@@ -406,7 +471,7 @@ class HouseRentController extends CommonController{
                     exit;
                 }
                 echo "<script>
-			history.back();
+
 		</script>";
             }
             echo '</body>';
@@ -483,4 +548,228 @@ class HouseRentController extends CommonController{
 
         }
     }
+
+    /**
+     * 发布出租保存
+     */
+    public function save(){
+        //p($_POST);die;
+        $member=D('MemberView');
+        $member_id = $member->getAuthInfo('id');
+        $broker_id=$member_id;
+        $creater=$member->getAuthInfo('username');
+        $company_id=$member->getAuthInfo('company_id');//将房源和公司联系起来
+        $borough_id=I('borough_id',null,'intval');
+        $borough_name=I('borough_name');
+        //特殊处理,只转递过来小区名字没有小区ID，那是由于用户直接输入小区名字没有选择下拉列表
+        if(!$borough_id){
+            $borough_id=D('Borough')->getInfo(array('borough_name'=>$borough_name),'id');
+            if(!$borough_id) $this->error('没有搜索到相关的小区，请确认你的小区名称');
+            $cityarea_id=D('Borough')->getInfo(array("id"=>$borough_id),'cityarea_id');
+            $cityarea2_id=D('Borough')->getInfo(array("id"=>$borough_id),'cityarea2_id');
+
+        }else{
+            $cityarea_id=D('Borough')->getInfo(array("id"=>$borough_id),'cityarea_id');
+            $cityarea2_id=D('Borough')->getInfo(array("id"=>$borough_id),'cityarea2_id');
+            //echo $cityarea_id;
+
+        }
+        //房源特色，前后加，号便于搜索匹配
+        if(I('house_feature')){
+            $house_feature = ','.implode(',',I('house_feature')).',';
+        }
+
+        if(I('house_support')){
+            $house_support = ','.implode(',',I('house_support')).',';
+        }
+
+
+        //组合插入数据
+
+        $field_array  = array(
+            'house_title'=>I('house_title'),
+            'cityarea_id'=>$cityarea_id,
+            'cityarea2_id'=>$cityarea2_id,
+            'house_type'=>I('house_type'),
+            'house_price'=>I('house_price',0,'intval'),
+            'house_deposit'=>I('house_deposit',0,'intval'),//付款方式
+            'house_totalarea'=>I('house_totalarea',0,'intval'),
+            'house_room'=>I('house_room',0,'intval'),
+            'house_hall'=>I('house_hall',0,'intval'),
+            'house_toilet'=>I('house_toilet',0,'intval'),
+            'house_veranda'=>I('house_veranda',0,'intval'),//阳台
+            'video'=>I('video'),
+            'house_topfloor'=>I('house_topfloor',0,'intval'),
+            'house_floor'=>I('house_floor',0,'intval'),
+            'house_age'=>I('house_age'),
+            'house_toward'=>I('house_toward',0,'intval'),
+            'house_fitment'=>I('house_fitment'),
+            'house_support'=>$house_support,//配套出售没有
+            'house_feature'=>$house_feature,
+            'house_desc'=>I('house_desc'),
+            'borough_id'=>$borough_id,
+            'borough_name'=>$borough_name,
+            'broker_id'=>$broker_id,
+            'owner_name'=>I('owner_name'),
+            'owner_phone'=>I('owner_phone'),
+            'owner_notes'=>I('owner_notes'),
+            'company_id' =>$company_id,
+        );
+
+        //取图片第一张作为房源缩略图
+        $house_picture_thumb=I('house_picture_thumb');
+        if($house_picture_thumb[0]){
+            $field_array['house_thumb'] =$house_picture_thumb[0];
+        }
+        //室内图片相关数组
+        $house_picture_url=I('house_picture_url');
+        $house_picture_thumb=I('house_picture_thumb');
+        $house_picture_desc=I('house_picture_desc');
+
+        if(I('id')){
+            //编辑
+            if($broker_id == 0){//游客
+                $field_array['is_checked'] = I('is_checked');
+            }
+            $field_array['updated']=time();
+            $house_id= I('id',0,'intval');
+            $houseInfo=M('houserent')->field('house_drawing,created')->where(array('id'=>$house_id))->find();
+            //编辑今天的房源计算时间
+            $today = mktime(0,0,0,date('m'),date('d'),date('Y'));
+            if($houseInfo['created']>$today){
+                $field_array['update_order']=time()+14400;
+            }else{
+                $field_array['update_order']=time();
+            }
+
+
+            $field_array['house_drawing'] = I('house_drawing');
+
+
+            if(is_array($house_picture_url)){
+                $picarr=array();
+                foreach($house_picture_url as $key => $pic_url){
+                    $imgField = array(
+                        'pic_url'=>$pic_url,
+                        'pic_thumb'=>$house_picture_thumb[$key],
+                        'pic_desc'=>$house_picture_desc[$key],
+                        'houserent_id'=>$house_id,
+                        'creater'=>$creater,
+                        'addtime'=>time(),
+                    );
+                    $picarr[]=$imgField;
+                }
+            }
+
+            $field_array['houserent_pic']=$picarr;
+            M('houserent_pic')->where(array('houserent_id'=>$house_id))->delete();//删除房源图片
+            $house_id=D('HouseRentRelation')->relation(true)->where(array('id'=>$house_id))->save($field_array);
+
+
+        }else{
+            //增加
+            $statistics=M('statistics');
+            $house_no=$statistics->where(array('stat_index'=>'houserent_no'))->getField('stat_value');
+            $house_no = $house_no+1;
+            $field_array['house_no']='451'.sprintf("%07d",$house_no);//451为citycode
+            $statistics->where(array('stat_index'=>'houserent_no'))->setInc('stat_value',1);
+            $field_array['created']=time();
+            $field_array['updated']=time();
+            //新发房源有4个小时的优先显示
+            $field_array['update_order']=time()+14400;
+            //游客发布进入未审核状态
+            if($broker_id==0){
+                $field_array['is_checked'] =0;
+            }
+            $field_array['status']=I('status')?I('status'):1;
+            $field_array['house_drawing'] = I('house_drawing');
+
+            //插入到房源审核中 将小区图片插入到待审核
+            $borough_picture_url=I('borough_picture_url');
+            $borough_picture_desc=I('borough_picture_desc');
+            $borough_picture_thumb=I('borough_picture_thumb');
+
+            if(is_array($borough_picture_url)){
+                $pic_list = D('Borough')->getImgList($borough_id,0);
+
+                if($pic_list){
+                    $picList = array();
+                    foreach ($pic_list as $item){
+                        $picList[] = $item['pic_url'];
+                    }
+                    $old_value = implode('|',$picList);
+                }
+                foreach($borough_picture_url as $key => $pic_url){
+                    $newValue = $borough_picture_desc[$key]."|".$pic_url."|".$borough_picture_thumb[$key];
+                    $boroughUpdateField = array(
+                        'borough_id'=>$borough_id,
+                        'field_name'=>'borough_pic',
+                        'old_value'=>$old_value,
+                        'new_value'=>$newValue,
+                        'broker_id'=>$broker_id,
+                        'add_time'=>time(),
+                    );
+                    M('borough_update')->add($boroughUpdateField);
+                }
+            }//if is borough_url array
+            //统计租赁房源数加1
+            $statistics->where(array('stat_index'=>'rentNum'))->setInc('stat_value',1);
+            //对应小区中增加一个房源
+            D('Borough')->where(array('id'=>$borough_id))->setInc('rent_num',1);
+            //插入房源图片
+            $picarr=array();
+            if(is_array($house_picture_url)){
+                foreach($house_picture_url as $key => $pic_url){
+                    $imgField = array(
+                        'pic_url'=>$pic_url,
+                        'pic_thumb'=>$house_picture_thumb[$key],
+                        'pic_desc'=>$house_picture_desc[$key],
+                        'creater'=>$creater,
+                        'addtime'=>time(),
+                    );
+                    $picarr[]=$imgField;
+                }
+            }
+            $field_array['houserent_pic']=$picarr;
+            //关联模型插入 houserent houserent_pic
+            $house_id=D('HouseRentRelation')->relation(true)->add($field_array);
+        }
+
+        if($house_id){
+            //成功插入做的事情
+            $integral = D('IntegralRule');
+
+            if($broker_id){
+                //每发布一条出售增加相应的积分
+                $integral->add($broker_id,10);//10代表新发布一条出租
+                $houseImg = M('houserent_pic')->where(array("houserent_id"=>$house_id))->count();
+                //echo $houseImg;die;
+                if($houseImg>=3){
+                    //户型图超过3条为多图房源
+                    M('houserent')->where(array('id'=>$house_id))->setField('is_more_pic',1);
+                    $integral->add($broker_id,11);//多图房源加分
+                }
+                if($houseImg<3){
+                    //户型图少于3条取消多图房源
+                    M('houserent')->where(array('id'=>$house_id))->setField('is_more_pic',0);
+                }
+
+                if($_POST['drawing_id'] || $_POST['house_drawing'] ){
+                    $integral->add($broker_id,12);//房源具有有效户型图加分
+                }
+
+            }
+
+            $this->success('信息保存成功');
+
+        }else{
+            $this->error('保存信息失败');
+        }
+
+
+
+
+
+    }
 }
+

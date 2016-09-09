@@ -617,8 +617,9 @@
         document.getElementById('house_drawing_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="120" height="90"></a>';
     }
     var pictureIndex=<!--{$picture_num}-->;
-    var borough_name_val = $('#borough_name').val();
+
     function uploadHousePicture( furl,fname,thumbUrl ){
+        var borough_name_val = $('#borough_name').val();
         document.getElementById('house_picture_dis').innerHTML += '<div class="upload_shower" id="container_picture_'+pictureIndex+'">\
 	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="house_picture_desc[]" value="'+borough_name_val+'" size="15">\
@@ -631,6 +632,7 @@
 
     var boroughIndex=0;
     function uploadBoroughPicture( furl,fname,thumbUrl ){
+        var borough_name_val = $('#borough_name').val();
         document.getElementById('borough_picture_dis').innerHTML += '<div class="upload_shower" id="container_borough_picture_'+boroughIndex+'">\
 	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="borough_picture_desc[]" value="'+borough_name_val+'" size="15">\

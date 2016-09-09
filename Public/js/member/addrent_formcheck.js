@@ -24,6 +24,10 @@ $(function() {
                     //error.insertAfter("#errMsg_house_feature");
                     error.appendTo(element.parent().parent().siblings(".errorMessage"));
                     //error.appendTo(element.parent()); //将错误信息添加当前元素的父结点后面
+                }else if(element.attr("name") == "check_agree"){
+
+                    error.appendTo(element.siblings(".errorMessage"));
+
                 }else {
                     error.appendTo(element.siblings(".errorMessage"));
                 }
@@ -74,6 +78,9 @@ $(function() {
                 },
                 'house_feature[]': {
                     required: true
+                },
+                check_agree:{
+                    required:true
                 }
 
             },
@@ -119,7 +126,8 @@ $(function() {
                 ,
                 'house_feature[]': {
                     required: "请选择房源特色"
-                }
+                },
+                check_agree:"请接受我们的声明"
             }//message end
         }
     );

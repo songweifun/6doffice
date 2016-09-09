@@ -257,7 +257,8 @@
                         <td class="row1">建筑面积：</td>
                         <td colspan="3">
                             <input id="house_totalarea" class="input" name="house_totalarea" type="text" size="10" value="<!--{$dataInfo.house_totalarea}-->" valid="required|isNumber" errmsg="请输入建筑面积!|请输入数字！" />&nbsp;平米
-                            <p id="errMsg_house_totalarea" class="errorMessage" display="none"></td>
+                            <p id="errMsg_house_totalarea" class="errorMessage" display="none">
+                        </td>
                     </tr>
 
                     <tr>
@@ -378,7 +379,8 @@
 
 
                             <span style="float:left">
-                                <iframe name="uploadHouseDrawing" width="100%" height="40" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/HouseRent/webuploader')}-->/to/uploadHouseDrawing|borough|drawing" align="left"></iframe>
+                              <iframe name="uploadHouseDrawing" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/HouseRent/webuploader')}-->/to/uploadHouseDrawing|borough|drawing" align="left"></iframe>
+
                             </span>
 
                             <span class="tip" style="float:left; padding-top:10px;">上传户型图</span>
@@ -466,7 +468,12 @@
                     </tr>
                     </tbody>
                 </table>
-                <div class="submitPromsie"><input  id="check_agree" name="check_agree" type="checkbox" checked />我承诺我所发布的房源信息全部属实，我接受 <!--{$cfg.page.titlec}-->的用户协议</div>
+                <div class="submitPromsie">
+                    <input  class="checkbox" id="check_agree" name="check_agree" type="checkbox" checked />我承诺我所发布的房源信息全部属实，我接受 <!--{$titlec}-->的用户协议
+                    <p style="color: red" id="errMsg_house_check" class="errorMessage" display="none"></p>
+
+                </div>
+
                 <if condition="$dataInfo['id'] neq null">
                 <div class="submitBtn" id="submitBtn"><input type="submit" value="确认编辑" /></div>
                 <else/>
@@ -499,8 +506,11 @@
         document.getElementById('house_drawing_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="120" height="90"></a>';
     }
     var pictureIndex=<!--{$picture_num}-->;
-    var borough_name_val = $('#borough_name').val();
+    //var borough_name_val = $('#borough_name').val();
+
     function uploadHousePicture( furl,fname,thumbUrl ){
+        var borough_name_val = $('#borough_name').val();
+        //alert(borough_name_val);
         document.getElementById('house_picture_dis').innerHTML += '<div class="upload_shower" id="container_picture_'+pictureIndex+'">\
 	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="house_picture_desc[]" value="'+borough_name_val+'" size="15">\
@@ -513,6 +523,7 @@
 
     var boroughIndex=0;
     function uploadBoroughPicture( furl,fname,thumbUrl ){
+        var borough_name_val = $('#borough_name').val();
         document.getElementById('borough_picture_dis').innerHTML += '<div class="upload_shower" id="container_borough_picture_'+boroughIndex+'">\
 	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
 	<br/><input type="text" name="borough_picture_desc[]" value="'+borough_name_val+'" size="15">\
@@ -522,6 +533,7 @@
 	</div>';
         boroughIndex++;
     }
+    //删除图片节点
     function dropContainer(containerId){
         var containerEle = document.getElementById(containerId);
         var parentEle = containerEle.parentElement;

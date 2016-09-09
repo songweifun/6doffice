@@ -83,6 +83,7 @@ $(function(){
                     ';
                 }
                 str+='</ul>';
+                //$("#borough_name").val(ui.item.borough_name);//默认
                 $("#borough_id").val(ui.item.borough_id);
                 $("#borough_addr").val(ui.item.address);
                 $("#house_drawing_dis").html(str);

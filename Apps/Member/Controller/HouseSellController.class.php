@@ -18,7 +18,6 @@ class HouseSellController extends CommonController{
         $houseSell = D('HouseSellView');
 
         //列表包括搜索
-        $this->name = 'manageSale';
         $where = ' and broker_id = ' . $member_id;
         $where .=" and status = 1";
         $houseNum = $houseSell->getCount(0, $where);
@@ -74,7 +73,7 @@ class HouseSellController extends CommonController{
 
              //example 判断是否预约过
 
-            $dataList[$key]['is_appo']=M('appolist')->where(array('house_id'=>$value['id'],'appo_site'=>'sale'))->getField('appo_list_id');
+            $dataList[$key]['is_appo']=M('appolist')->where(array('house_id'=>$value['id'],'appo_site'=>'sale'))->getField('appo_list_id')?true:false;;
         }
 
         $this->dataList=$dataList;
@@ -482,7 +481,7 @@ class HouseSellController extends CommonController{
             'owner_name'=>I('owner_name'),
             'owner_phone'=>I('owner_phone'),
             'owner_notes'=>I('owner_notes'),
-            'is_vexation' =>I('vexation',0,'intval'),
+            'is_vexation' =>I('vexation',0,'intval'),//加急
             'company_id' =>$company_id,
         );
         //当不是编辑时 * 减少加急房源条数

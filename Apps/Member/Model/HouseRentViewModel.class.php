@@ -65,4 +65,16 @@ class HouseRentViewModel extends ViewModel{
     }
 
 
+    /**
+     * @param $house_id
+     * @param $date
+     * @return array|mixed|null
+     */
+    function getClick($house_id , $date)
+
+    {
+        return M('houserent_stat')->where(array('house_id'=>$house_id,'stat_date'=>$date))->getField('click_num');
+    }
+
+
 }
