@@ -25,16 +25,16 @@
                 <ul>
                     <li><a href="<!--{:U(MODULE_NAME.'/HouseSell/addSell')}-->"><span>发布出售</span></a></li>
                     <li><a href="<!--{:U(MODULE_NAME.'/HouseRent/addRent')}-->"><span>发布出租</span></a></li>
-                    <li><a href="<!--{:U(MODULE_NAME.'/HouseRent/index')}-->"><span>出售管理</span></a></li>
-                    <li><a href="#" class="linkOn"><span>出租管理</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/HouseSell/index')}-->"><span>出售管理</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/HouseRent/index')}-->" class="linkOn"><span>出租管理</span></a></li>
                 </ul>
             </div>
             <div class="manageSub">
                 <ul class="manageSubNav">
                     <li class="linkOn"><a href="#"><span>出租中</span></a></li>
-                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/sellTopDone')}-->"><span>置顶中</span></a></li>
-                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/recycle')}-->"><span>回收站</span></a></li>
-                    <li><a href="<!--{:U(MODULE_NAME.'/ManageSell/sellDone')}-->"><span>成交榜</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageRent/rentTopDone')}-->"><span>置顶中</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageRent/recycle')}-->"><span>回收站</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageRent/rentDone')}-->"><span>成交榜</span></a></li>
                 </ul>
             </div>
             <div class="manageBox">
@@ -79,12 +79,12 @@
                                 <td> <!--增加预约刷新按钮 hyjfc.com-->
                                     <if condition="$item.is_appo neq false">
                                     <img src="__PUBLIC__/images/time.gif" width="23" height="16" align="absmiddle"  />
-                                    <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoShowHouse/site/sale/house_id/<!--{$item.id}-->" title="查看">查看</a>|<a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoDel/site/sale/house_id/<!--{$item.id}-->" title="取消">取消</a>
+                                    <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoShowHouse/site/rent/house_id/<!--{$item.id}-->" title="查看">查看</a>|<a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoDel/site/rent/house_id/<!--{$item.id}-->" title="取消">取消</a>
 
                                     <else/>
-                                    <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoRefresh/site/sale/ids/<!--{$item.id}-->" title="立即预约">立即预约</a>
+                                    <a href="<!--{:U(MODULE_NAME.'/Appointment/index')}-->/action/appoRefresh/site/rent/ids/<!--{$item.id}-->" title="立即预约">立即预约</a>
                                     </if></td>
-                                <td><a href="<!--{:U(MODULE_NAME.'/HouseSell/addsell')}-->/action/edit/id/<!--{$item.id}-->" title="编辑房源信息">编辑</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBox(<!--{$item.id}-->);return false;" title="该房源已成交">成交</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxtop(<!--{$item.id}-->);return false;" title="将此房源置顶">置顶</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxOwner(<!--{$item.id}-->);return false;" title="查看房东信息">房东</a></td>
+                                <td><a href="<!--{:U(MODULE_NAME.'/HouseRent/addrent')}-->/action/edit/id/<!--{$item.id}-->" title="编辑房源信息">编辑</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBox(<!--{$item.id}-->);return false;" title="该房源已成交">成交</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxtop(<!--{$item.id}-->);return false;" title="将此房源置顶">置顶</a>&nbsp;<a href="?house_id=<!--{$item.id}-->" onclick="showBoxOwner(<!--{$item.id}-->);return false;" title="查看房东信息">房东</a></td>
 
                             </tr>
                             </foreach>
@@ -131,7 +131,7 @@
     $('#listOperationBtn2').click(function(){
 
         if(confirm('你确认预约刷新选中的房源么？')){
-            myform.action='<!--{:U(MODULE_NAME."/Appointment/index")}-->/action/appoRefresh/site/sale';
+            myform.action='<!--{:U(MODULE_NAME."/Appointment/index")}-->/action/appoRefresh/site/rent';
             myform.submit();}
 
     })
@@ -139,7 +139,7 @@
     $('#listOperationBtn3').click(function(){
 
         if(confirm('你确认下架选中的房源么？')){
-            myform.action='<!--{:U(MODULE_NAME."/ManageSell/notsell")}-->';
+            myform.action='<!--{:U(MODULE_NAME."/ManageRent/notrent")}-->';
             myform.submit();}
 
     })
@@ -151,7 +151,7 @@
         }
     }
     function showBox(item_id){
-        var url='<!--{:U(MODULE_NAME."/ManageSell/sellBargain")}-->/house_id/'+item_id
+        var url='<!--{:U(MODULE_NAME."/ManageRent/rentBargain")}-->/house_id/'+item_id
         layer.open({
             type: 2,
             title: ['房源成交', ''],
@@ -165,7 +165,7 @@
     }
     function showBoxOwner(item_id){
 
-        var url='<!--{:U(MODULE_NAME."/ManageSell/landlordInfo")}-->/house_id/'+item_id
+        var url='<!--{:U(MODULE_NAME."/ManageRent/landlordInfo")}-->/house_id/'+item_id
         layer.open({
             type: 2,
             title: ['业主信息', ''],
@@ -179,7 +179,7 @@
         //TB_show('业主信息','landlordSaleInfo.php?house_id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
     }
     function showBoxtop(item_id){
-        var url='<!--{:U(MODULE_NAME."/ManageSell/sellTop")}-->/house_id/'+item_id
+        var url='<!--{:U(MODULE_NAME."/ManageRent/rentTop")}-->/house_id/'+item_id
         layer.open({
             type: 2,
             title: ['房源置顶', ''],
@@ -192,7 +192,7 @@
         //TB_show('房源置顶','saleTop.php?house_id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
     }
     function showBoxnum(){
-        var url='<!--{:U(MODULE_NAME."/ManageSell/buySellNum")}-->'
+        var url='<!--{:U(MODULE_NAME."/ManageRent/buyRentNum")}-->'
         layer.open({
             type: 2,
             title: ['购买条数', ''],

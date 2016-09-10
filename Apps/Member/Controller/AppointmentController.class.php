@@ -62,6 +62,7 @@ class AppointmentController extends CommonController{
 
             $datePart['update_time'] = $rel['part'];
         }
+        //p($datePart);die;
         $this->assign('hour', $hour);
         $this->assign('minute', $minute);
         $this->assign('date', $date);
@@ -84,13 +85,15 @@ class AppointmentController extends CommonController{
             if (empty($house) && !is_array($house)) {
                 $this->error('您没有选择房源或此房源已经预约过！');
             }
+            //p($house);die;
             $this->assign('house', $house);
 
         }elseif ($action == 'submitAppo') {//提交预约刷新
+            //p($_POST);die;
             //循环每条房源
             foreach ($_POST['appo_house_id'] as $id) {
                 if(M('appolist')->where(array('house_id'=>$id,'appo_site'=>$site))->getField('appo_list_id')){
-                    continue;
+                    continue;//是否存在预约如果存在不预约此条房源
                 }
                 //循环预约的每一天
                 for ($i=0;$i<=$_POST['appo_date'][$id];$i++) {
@@ -148,7 +151,7 @@ class AppointmentController extends CommonController{
 
             }//foreach
             if ($site == 'rent') {
-                //jsurlto('设置预约刷新成功！');
+                jsurlto('设置预约刷新成功！',U(MODULE_NAME.'/Houserent/index'));
             } else {
                 jsurlto('设置预约刷新成功！',U(MODULE_NAME.'/Housesell/index'));
 
@@ -172,7 +175,7 @@ class AppointmentController extends CommonController{
 
             if(!is_array($result) && empty($result)){
                 if($site=='rent'){
-                    //jsurlto('您选择房源没有预约刷新或者此房源不属于您！',U(MODULE_NAME.'/Houserent/index'));
+                    jsurlto('您选择房源没有预约刷新或者此房源不属于您！',U(MODULE_NAME.'/Houserent/index'));
                 }else{
                     jsurlto('您选择房源没有预约刷新或者此房源不属于您！',U(MODULE_NAME.'/Housesell/index'));
                 }

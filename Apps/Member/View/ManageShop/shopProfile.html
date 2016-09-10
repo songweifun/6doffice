@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/x.xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 店铺资料</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopProfile')}-->" class="linkOn"><span>店铺资料</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopDiy')}-->"><span>店铺DIY</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopSaleRec')}-->"><span>橱窗推荐</span></a></li>
+                </ul>
+            </div>
+            <form name="myform" action="<!--{:U(MODULE_NAME.'/ManageShop/shopProfile')}-->/action/save" method="POST">
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="4"><span class="concentTitle">修改店铺资料</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="row1">店铺网址：</td>
+                        <td colspan="3">&nbsp;<a href="<!--{$cfg.url_shop}--><!--{$member_id}-->" class="underline alphaFontFamily" target="_blank" title="进入我的店铺"><!--{$cfg.url_shop}--><!--{$member_id}--></a></td>
+                    </tr>
+                    <tr>
+                        <td class="row1">店铺名称：</td>
+                        <td colspan="3"><input id="shop_name" class="input" name="shop_name" type="text" size="35" maxlength="20" value="<!--{$dataInfo.shop_name}-->" />&nbsp;<span class="tip">店铺名称最多20个汉字</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row1">店铺公告：</td>
+                        <td colspan="3"><textarea class="textarea" name="shop_notice" cols="70" rows="10"><!--{$dataInfo.shop_notice}--></textarea><br />&nbsp;<span class="tip">店铺公告最多300个汉字</span></td>
+                    </tr>
+                    <tr><td colspan="4" class="br"></td></tr>
+                    </tbody>
+                </table>
+                <div class="submitBtn"><input type="button" value="确认修改" onclick="document.myform.submit(); " /></div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -241,29 +241,12 @@
 </div>
 <script language="javascript">
     $('.listOperationBtn').click(function(){
-        $('#myform').attr('action','<!--{:U(MODULE_NAME."/Appointment/index")}-->/action/submitAppo/site/sale');
+        $('#myform').attr('action','<!--{:U(MODULE_NAME."/Appointment/index")}-->/action/submitAppo/site/rent');
         $('#myform').submit();
 
     })
-    function checkAll(formObj){
-        if(formObj.checked){
-            $('input[type=checkbox]').attr('checked', true);
-        }else{
-            $('input[type=checkbox]').attr('checked', false);
-        }
-    }
-    function showBox(item_id){
-        TB_show('房源成交','rentBargain.php?house_id='+item_id+'&height=370&width=400&modal=true&rnd='+Math.random(),false);
-    }
-    function showBoxOwner(item_id){
-        TB_show('业主信息','landlordRentInfo.php?house_id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
-    }
-    function showBoxtop(item_id){
-        TB_show('房源置顶','rentTop.php?house_id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
-    }
-    function showBoxnum(){
-        TB_show('购买条数','rentNum.php?height=200&width=400&modal=true&rnd='+Math.random(),false);
-    }
+
+
 </script>
 <script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js" language="javascript"></script>
 </body>

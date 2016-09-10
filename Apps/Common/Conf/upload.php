@@ -140,19 +140,27 @@
   		),
 		'banner'=>array(
   			'thumb'=>false,
-  			'resizeType'=>0,
+  			'resizeType'=>1,
   			'watermark'=>false,
   			'originalPath'=>'broker/diy/',
   			'width'=>990,
   			'height'=>120,
-  			'allowType' =>array('jpeg','jpg','gif','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
 		'background'=>array(
   			'thumb'=>false,
   			'resizeType'=>1,
   			'watermark'=>false,
   			'originalPath'=>'broker/diy/',
-  			'allowType' =>array('jpeg','jpg','gif','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
   		'aptitude'=>array(
   			'thumb'=>false,

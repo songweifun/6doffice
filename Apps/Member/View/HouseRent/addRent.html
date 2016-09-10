@@ -298,8 +298,7 @@
                         <td class="row1">房源描述：</td>
                         <td colspan="3"><span class="tip">&nbsp;详细、生动地描述房源全面信息，赢得客户，避免无效带看</span><br>
                             <div style="width:100%;" class="contentdiv">
-                                <input type="hidden" id="house_desc" name="house_desc" value='<!--{$dataInfo.house_desc}-->' />
-                                <input type="hidden" id="house_desc___Config" value="FullPage=false"/>
+
                                 <!--
 
                                 <iframe id="house_desc___Frame" src="__ROOT__/Data/FCKeditor/editor/fckeditor.html?InstanceName=house_desc&amp;Toolbar=Basic" width="100%" height="220" frameborder="no" scrolling="no"></iframe>
@@ -309,7 +308,7 @@
 
                                 <iframe id="inside" name="inside" src="<!--{:U(MODULE_NAME.'/HouseRent/ueditor')}-->" width="100%" height="220" frameborder="no" scrolling="no"></iframe>
                                 -->
-                                <textarea name="" id="content"  style="width: 100%;height: 220px"></textarea>
+                                <textarea name="" id="content"  style="width: 100%;height: 220px"><!--{$dataInfo.house_desc}--></textarea>
 
 
 

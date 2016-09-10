@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 推荐橱窗</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopProfile')}-->"><span>店铺资料</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopDiy')}-->"><span>店铺DIY</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopSaleRec')}-->" class="linkOn"><span>橱窗推荐</span></a></li>
+                </ul>
+            </div>
+            <div class="manageSub">
+                <ul class="manageSubNav">
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopSaleRec')}-->"><span>出售中</span></a></li>
+                    <li class="linkOn"><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopRentRec')}-->"><span>出租中</span></a></li>
+                </ul>
+            </div>
+            <div class="manageBox">
+                <div class="houseSearch">
+                    <form name="searchForm" action="" method="GET">
+                        是否推荐：<select class="select" name="is_promote">
+                        <option value="">不限</option>
+                        <option value="1"  <if condition="$Think.get.is_promote eq 1">selected</if>>已推荐</option>
+                        <option value="2"  <if condition="$Think.get.is_promote eq 2">selected</if>>未推荐</option>
+                    </select>&nbsp;
+                        <input class="input" name="q" type="text" size="28" value="<if condition='$q neq null'><!--{$q}--><else/>输入房源编号或小区名称</if>" onblur="if(this.value ==''||this.value == '输入房源编号或小区名称'){this.value = '输入房源编号或小区名称';}" onfocus="if(this.value == '输入房源编号或小区名称'){this.value = '';}" />&nbsp;<input type="button" value="搜 索" onclick="javascript:document.searchForm.submit();" />&nbsp;<a href="#notice">橱窗推荐操作必读</a><span class="tip"><span class="f90"><!--{$houseNum}--></span>个橱窗已用，<span class="f90"><!--{$houseLeft}--></span>个橱窗可用</span>
+                    </form>
+                </div>
+                <div class="houseList">
+                    <table border="0" cellpadding="0" cellspacing="1">
+                        <thead class="tableTitle">
+                        <tr>
+                            <td colspan="6">房源基本信息</td>
+                            <td>当前状态</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <thead class="tableSubTitle">
+                        <tr>
+                            <td width="15%">房源编号</td>
+                            <td width="24%">小区名称</td>
+                            <td width="9%">户型</td>
+                            <td width="9%">面积</td>
+                            <td width="9%">租金</td>
+                            <td width="9%">剩余</td>
+                            <td width="15%">&nbsp;</td>
+                            <td width="10%">&nbsp;</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form name="myform" enctype="text/html" action="" method="POST">
+                            <input type="hidden" name="to_url" value="<!--{$to_url}-->">
+                            <foreach name="dataList" item="item">
+                                <if condition="$item['is_promote'] eq 2">
+                            <tr>
+                                <td><input type="checkbox" name="ids[]" value="<!--{$item.id}-->" />&nbsp;<a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="查看房源详细信息" target="_blank"><!--{$item.house_no}--></a></td>
+                                <td><!--{$item.borough_name}--></td>
+                                <td><!--{$item.house_room}-->-<!--{$item.house_hall}-->-<!--{$item.house_toilet}-->-<!--{$item.house_veranda}--></td>
+                                <td><!--{$item.house_totalarea}-->㎡</td>
+                                <td class="f90"><!--{$item.house_price}-->元</td>
+                                <td><!--{$item.day_left}-->天</td>
+                                <td>未推荐</td>
+                                <td><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopRentRec')}-->/action/promote/id/<!--{$item.id}-->" title="推荐到橱窗">推荐</a></td>
+                            </tr>
+                            <else/>
+                            <tr>
+                                <td><input type="checkbox" name="ids[]" value="<!--{$item.id}-->" />&nbsp;<a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="查看房源详细信息" target="_blank"><!--{$item.house_no}--></a></td>
+                                <td><!--{$item.borough_name}--></td>
+                                <td><!--{$item.house_room}-->-<!--{$item.house_hall}-->-<!--{$item.house_toilet}-->-<!--{$item.house_veranda}--></td>
+                                <td><!--{$item.house_totalarea}-->㎡</td>
+                                <td class="f90"><!--{$item.house_price}-->元</td>
+                                <td><!--{$item.day_left}-->天</td>
+                                <td class="f90">已推荐</td>
+                                <td><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopRentRec')}-->/action/cancel/id/<!--{$item.id}-->" title="取消橱窗推荐">取消</a></td>
+                            </tr>
+                            </if>
+                            </foreach>
+                        </form>
+                        </tbody>
+                    </table>
+                    <!--{$pagePanel}-->
+                </div>
+            </div>
+            <div class="note">
+                <p><a name="notice" id="notice"></a>橱窗推荐操作必读：</p>
+                <ul>
+                    <li>被推荐的房源将显示在店铺首页最受客户关注的“店长推荐”位置；</li>
+                    <li>最多可推荐8条房源(二手房和租房累计)；</li>
+                    <li>选择“是否推荐”并搜索，可对已推荐或未推荐的房源进行分别显示；</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script language="javascript">
+    function checkAll(formObj){
+        if(formObj.checked){
+            $('input[type=checkbox]').prop('checked', true);
+        }else{
+            $('input[type=checkbox]').prop('checked', false);
+        }
+    }
+
+</script>
+</body>
+</html>

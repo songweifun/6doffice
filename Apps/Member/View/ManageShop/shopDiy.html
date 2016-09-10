@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <META http-equiv=Pragma content=no-cache>
+    <title><!--{$title}--> -  店铺DIY</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+
+    <js file="__PUBLIC__/js/FormValid.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopProfile')}-->"><span>店铺资料</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopDiy')}-->" class="linkOn"><span>店铺DIY</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageShop/shopSaleRec')}-->"><span>橱窗推荐</span></a></li>
+                </ul>
+            </div>
+            <form name="dataInfo" method="POST" action="<!--{:U(MODULE_NAME.'/ManageShop/shopDiy')}-->/action/save">
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="3"><span class="concentTitle">头部BANNER</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="row1">&nbsp;</td>
+                        <td width="1120" class="row3"><span class="tip">BANNER预览</span><br /><input type="hidden" name="banner" id="banner"><span id="banner_dis"><if condition="$memberInfo['banner'] neq null"><img class="demoImgBorder" src="__ROOT__/Uploads/<!--{$memberInfo.banner}-->" width="535" height="64" title="店铺BANNER" /><else/>没有上传banner</if></span><br /><br /></td>
+                    </tr>
+                    <tr>
+                        <td class="row1">上传BANNER：</td>
+                        <td class="row3">&nbsp;<span class="tip">要求：清晰明了，宽度990 高度120</span><br /><iframe name="uploadBanner" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/ManageShop/webuploader')}-->/to/uploadBanner|broker|banner" align="left"></iframe></td>
+
+                    </tr>
+                    <tr><td colspan="3" class="br"></td></tr>
+                    </tbody>
+                </table>
+
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="3"><span class="concentTitle">背景图片</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="row1">&nbsp;</td>
+                        <td width="1120" class="row3"><span class="tip">背景图片预览</span><br /><input type="hidden" name="background" id="background" ><span id="background_dis"><if condition="$memberInfo['background'] neq null"><img class="demoImgBorder" src="__ROOT__/Uploads/<!--{$memberInfo.background}-->" width="70%" title="背景图片" /><else/>没有上传背景图</if></span><br /><br /></td>
+                    </tr>
+                    <tr>
+                        <td class="row1">上传背景图：</td>
+                        <td class="row3">&nbsp;<span class="tip">要求：清晰明了，宽度990 高度120</span><br /><iframe name="uploadBackground" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/ManageShop/webuploader')}-->/to/uploadBackground|broker|background" align="left"></iframe></td>
+
+                    </tr>
+                    <tr><td colspan="3" class="br"></td></tr>
+                    </tbody>
+                </table>
+                <div class="submitBtn"><input type="button" value="确认提交" onclick="javascript:if(validator(document.dataInfo)){document.dataInfo.submit();}"  /></div>
+            </form>
+            <div class="note">
+                <p><a name="notice" id="notice"></a>店铺DIY必读：</p>
+                <ul>
+                    <li>上传的BANNER将会显示在经纪人店铺的头部，宽度一定严格按照990*120执行否则会出现模糊；</li>
+                    <li>上传的背景图将会以平铺的方式显示在经纪人店铺的背景中；</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script language="javascript">
+    function uploadBanner( furl,fname,thumbUrl ){
+        document.getElementById('banner').value = furl;
+        document.getElementById('banner_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+furl+'" width="535" height="64" title="banner上传"></a>';
+    }
+    function uploadBackground( furl,fname,thumbUrl ){
+        document.getElementById('background').value = furl;
+        document.getElementById('background_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+furl+'" width="70%" title="背景图上传"></a>';
+    }
+</script>
+</body>
+</html>
