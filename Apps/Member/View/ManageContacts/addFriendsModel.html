@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加好友</title>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <!-- bootstrap -->
+    <js file="__PUBLIC__/js/bootstrap/js/bootstrap.min.js"/>
+    <css file="__PUBLIC__/js/bootstrap/css/bootstrap.min.css"/>
+
+    <!-- ui autocomplete -->
+    <css file="__PUBLIC__/js/uiautocomplete/jquery-ui.css"/>
+    <js file="__PUBLIC__/js/uiautocomplete/jquery-ui.js"/>
+    <js file="__PUBLIC__/js/member/addfriend_autocomplete.js"/>
+    <script>
+        var hosesellajaxurl="<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->"
+        var imagefooturl='__ROOT__/Uploads/'
+        var addBoroughurl="<!--{:U(MODULE_NAME.'/HouseSell/addBorough')}-->"
+    </script>
+</head>
+<body>
+<form action="<!--{:U(MODULE_NAME.'/ManageContacts/snsFriends')}-->/action/saveFriend" method="">
+    <input type="hidden" id="member_id" name="id">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <td>用户名:</td>
+            <td><input type="text" name="friend" id="friend_name"></td>
+        </tr>
+       <tr>
+           <td colspan="2" align="center">
+               <input type="submit" class="btn btn-primary" value="添加"/>
+           </td>
+       </tr>
+    </table>
+</form>
+
+</body>
+</html>

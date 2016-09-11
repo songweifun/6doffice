@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 发送信件</title>
+    <script>
+        var hosesellajaxurl="<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->"
+
+    </script>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+
+    <!-- vlidate -->
+    <js file="__PUBLIC__/js/jquery.validate.min.js"/>
+    <js file="__PUBLIC__/js/messages_zh.min.js"/>
+    <js file="__PUBLIC__/js/member/addMsg_formcheck.js"/>
+
+    <!-- ui autocomplete -->
+    <css file="__PUBLIC__/js/uiautocomplete/jquery-ui.css"/>
+    <js file="__PUBLIC__/js/uiautocomplete/jquery-ui.js"/>
+    <js file="__PUBLIC__/js/member/addMsg_autocomplete.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="msgOperationBox">
+                <ul class="msgOperation">
+                    <li class="linkOn"><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgWrite')}-->"><span>撰写信件</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgInbox')}-->"><span>收件箱(<!--{$msgCount}-->)</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgSend')}-->"><span>已发信件</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgGarbage')}-->"><span>垃圾箱</span></a></li>
+                </ul>
+            </div>
+            <div class="manageBox">
+                <form id="dataInfo" name="dataInfo" method="post" action="<!--{:U(MODULE_NAME.'/ManageMessage/msgWrite')}-->/action/save">
+                    <table class="memberBoxTable msgTable" cellpadding="0" cellspacing="5" border="0">
+                        <input type="hidden" name="reply_to" value="<!--{$dataInfo.reply_to}-->">
+                        <tbody>
+                        <tr>
+                            <td class="row1">收 件 人：</td>
+                            <td colspan="3"><input id="msg_to" class="input" name="msg_to" type="text" size="40" value="<!--{$dataInfo.msg_to}-->" />&nbsp;<span class="tip">输入收件人用户名</span></td>
+                        </tr>
+                        <tr>
+                            <td class="row1">信件主题：</td>
+                            <td colspan="3"><input id="msg_title" class="input" name="msg_title" type="text" size="40" value="<!--{$dataInfo.msg_title}-->" />&nbsp;<span class="tip">主题最多25个汉字</span></td>
+                        </tr>
+                        <tr>
+                            <td class="row1">信件内容：</td>
+                            <td colspan="3"><textarea class="textarea" name="msg_content" cols="70" rows="10"></textarea></td>
+                        </tr>
+                        <tr><td colspan="4" class="br"></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="submitBtn"><input type="submit" value="发送信件" /></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

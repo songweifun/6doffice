@@ -45,7 +45,16 @@ class CommonController extends Controller{
         //未读邮件
         $newMsgCount = 0;
         if($_COOKIE['AUTH_MEMBER_NAME']){
-            $newMsgCount=M('innernote')->where(array('to_del'=>0,'is_new'=>1,'msg_to'=>$_COOKIE['AUTH_MEMBER_NAME']))->count();
+            $where['to_del']=0;
+            $where['is_new']=1;
+            $where['msg_to']=$_COOKIE['AUTH_MEMBER_NAME'];
+            $where['_logic'] = 'AND';
+            $map['_complex']=$where;
+            $map['msg_to']=$_COOKIE['AUTH_MEMBER_REALNAME'];
+            $map['_logic']="OR";//用户名或者真是姓名都可以
+            $newMsgCount=M('innernote')->where($map)->count();
+
+            //$newMsgCount=M('innernote')->where(array('to_del'=>0,'is_new'=>1,'msg_to'=>$_COOKIE['AUTH_MEMBER_NAME']))->count();
         }
         $this->msgCount=$newMsgCount;
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 好友邀请</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="msgOperationBox">
+                <ul class="msgOperation">
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageContacts/snsFriends')}-->"><span>我的好友</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageContacts/snsLinkIn')}-->"><span>谁来看过我</span></a></li>
+                    <li class="linkOn"><a href="<!--{:U(MODULE_NAME.'/ManageContacts/snsInviteIn')}-->"><span>好友邀请</span></a></li>
+                </ul>
+            </div>
+            <div class="manageBox">
+                <div class="friendsList">
+                    <foreach name="dataList" item="item">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                        <tr>
+                            <td class="rowPhoto"><a href="<!--{$cfg.url_shop}--><!--{$item.broker_id}-->" title="<!--{$item.realname}-->" target="_blank"><if condition="$item.avatar neq null"><img class="demoImgBorder" src="__ROOT__/Uploads/<!--{$item.avatar}-->" width="42" height="50" /><else/><img class="demoImgBorder" src="__ROOT__/Uploads/demoPhoto.jpg" width="42" height="50" /></if></a></td>
+                            <td class="rowName" colspan="2">
+                                <p class="p1"><a class="font14px fontBold" href="<!--{$cfg.url_shop}--><!--{$item.broker_id}-->" target="_blank"><!--{$item.realname}--></a>&nbsp;<span class="snsInviteInBg">想加你为好友！</span></p>
+                                <p class="p2"><span class="alphaFontFamily">邀请时间：<!--{$item.add_time|date='Y-m-d',###}--></span></p>
+                            </td>
+                            <td><a href="<!--{:U(MODULE_NAME.'/ManageContacts/snsInviteIn')}-->/action/status/status/1/id/<!--{$item.id}-->">接受邀请</a>&nbsp;&nbsp;<a href="<!--{:U(MODULE_NAME.'/ManageContacts/snsInviteIn')}-->/action/status/status/2/id/<!--{$item.id}-->">拒绝邀请</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </foreach>
+                    <!--{$pagePanel}-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

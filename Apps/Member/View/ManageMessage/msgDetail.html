@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}-->  - 查看信件</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="msgOperationBox">
+                <ul class="msgOperation">
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgWrite')}-->"><span>撰写信件</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgInbox')}-->"><span>收件箱(<!--{$msgCount}-->)</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgSend')}-->"><span>已发信件</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgGarbage')}-->"><span>垃圾箱</span></a></li>
+                </ul>
+            </div>
+            <div class="manageBox">
+                <form>
+                    <table class="memberBoxTable msgTable" cellpadding="0" cellspacing="5" border="0">
+                        <tbody class="msgDetail">
+                        <tr>
+                            <td class="row1">信件主题：</td>
+                            <td colspan="3"><!--{$dataInfo.msg_title}--></td>
+                        </tr>
+                        <tr>
+                            <td class="row1">信件内容：</td>
+                            <td colspan="3">
+                                <div class="msgContent"><!--{$dataInfo.msg_content}-->
+                                    <span class="msgSender">发件人：<!--{$dataInfo.msg_from}--> | 发送时间：<!--{$dataInfo.add_time|date="Y-m-d",###}--></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td colspan="4" class="br"></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="submitBtn"><input id="replayBtn" type="button" value="回复"  /> <input id="delBtn" type="button" value="删除"  /></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script>
+
+    $('#replayBtn').click(function(){
+
+        document.location="<!--{:U(MODULE_NAME.'/ManageMessage/msgWrite')}-->/reply_id/<!--{$dataInfo.id}-->"
+
+    })
+    $('#delBtn').click(function(){
+
+        document.location="<!--{:U(MODULE_NAME.'/ManageMessage/msgInbox')}-->/action/toDel/id/<!--{$dataInfo.id}-->"
+
+    })
+
+</script>
+</html>

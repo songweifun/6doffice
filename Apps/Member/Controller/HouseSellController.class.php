@@ -372,7 +372,7 @@ class HouseSellController extends CommonController{
                     $datalist[$key]['info'][$k]['pic_url']=$v['pic_url'];
                     $datalist[$key]['info'][$k]['pic_desc']=$v['pic_desc'];
                 }
-                //echo $pic_thumb;
+                //echo $pic_thumb;没用
                 if($value['borough_alias']){
                     //$str .= $value['borough_name'].'('.$value['borough_alias'].')'."|".$value['id']."|".$value['borough_address']."\n";
                     $str .= $value['borough_name']."|".$value['id']."|".$value['borough_address']."|".$pic_thumb."|".$pic_url."|".$pic_desc."\n";
@@ -392,7 +392,23 @@ class HouseSellController extends CommonController{
 
 
 
-        }//if
+        }elseif(I('action')=='getMemberList'){
+            $member=D('MemberView');
+            $_GET["q"] = charsetIconv($_GET["q"]);
+            $q = strtolower($_GET["q"]);
+            if (!$q) return;
+            $where['username']=array('like','%'.$q.'%');
+            $where['email']=array('like','%'.$q.'%');
+            $where['realname']=array('like','%'.$q.'%');
+            $where['mobile']=array('like','%'.$q.'%');
+            $where['_logic'] = 'OR';
+            $map['_complex']=$where;
+            $map['status']=array('eq',0);
+            $datalist=$member->field('id,realname')->where($map)->select();
+            $this->ajaxReturn($datalist,'jsonp');
+
+
+        }//else if
     }
 
 

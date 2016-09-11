@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 查看收件箱</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="msgOperationBox">
+                <ul class="msgOperation">
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgWrite')}-->"><span>撰写信件</span></a></li>
+                    <li class="linkOn"><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgInbox')}-->"><span>收件箱(<!--{$msgCount}-->)</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgSend')}-->"><span>已发信件</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgGarbage')}-->"><span>垃圾箱</span></a></li>
+                </ul>
+            </div>
+            <div class="manageBox">
+                <div class="houseList">
+                    <table border="0" cellpadding="0" cellspacing="1">
+                        <thead class="tableTitle">
+                        <tr>
+                            <td width="5%">&nbsp;</td>
+                            <td width="50%">信件主题</td>
+                            <td width="25%">发件人</td>
+                            <td>发件时间</td>
+                        </tr>
+                        </thead>
+                        <form name="myform" action="" method="POST">
+                            <tbody>
+                            <foreach name="dataList" item="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids[]" value="<!--{$item.id}-->" /></td>
+                                <td class="msgTitleLeft"><if condition="$item.is_new neq 0"><img src="__PUBLIC__/images/msgUnread.gif" title="未读" /><else/><img src="__PUBLIC__/images/msgRead.gif" title="已读" /></if>&nbsp;<a href="<!--{:U(MODULE_NAME.'/ManageMessage/msgDetail')}-->/id/<!--{$item.id}-->" title="打开信件"><!--{$item.msg_title}--></a></td>
+                                <td><!--{$item.msg_from}--></td>
+                                <td><!--{$item.add_time|date="Y-m-d H:i",###}--></td>
+                            </tr>
+                            </foreach>
+                            <tr>
+                                <td colspan="4" class="listOperation">
+                                    <label for="checkBoxAll"><input type="checkbox" id="checkBoxAll" name="checkBoxAll" value="1" onclick="checkAll(this);" />全选</label>
+                                    <input class="listOperationBtn" type="button" value="删除选中的信件" onclick="if(confirm('你确认要删除选中的信件么？')){myform.action='?action=toDel';myform.submit();}" />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                    <!--{$pagePanel}-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script language="javascript">
+    function checkAll(formObj){
+        if(formObj.checked){
+            $('input[type=checkbox]').prop('checked', true);
+        }else{
+            $('input[type=checkbox]').prop('checked', false);
+        }
+    }
+
+</script>
+</body>
+</html>
