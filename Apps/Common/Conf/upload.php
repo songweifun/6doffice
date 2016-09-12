@@ -126,7 +126,11 @@
   			'originalPath'=>'broker/identity/',
   			'width'=>640,
   			'height'=>480,
-  			'allowType' =>array('jpeg','jpg','gif','bmp','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
 		  		
 		'avatar'=>array(
@@ -136,7 +140,11 @@
   			'originalPath'=>'broker/avatar/',
   			'width'=>400,
   			'height'=>300,
-  			'allowType' =>array('jpeg','jpg','gif','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
 		'banner'=>array(
   			'thumb'=>false,
@@ -169,7 +177,11 @@
   			'originalPath'=>'broker/aptitude/',
   			'width'=>640,
   			'height'=>480,
-  			'allowType' =>array('jpeg','jpg','gif','bmp','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
   ),
   'ads' => array(

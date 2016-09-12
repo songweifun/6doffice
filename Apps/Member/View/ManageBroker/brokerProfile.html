@@ -4,14 +4,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><!--{$title}--> - 店铺资料</title>
+    <script>
+        var hosesellajaxurl="<!--{:U(MODULE_NAME.'/HouseSell/ajax')}-->"
+    </script>
     <css file="__PUBLIC__/css/member.css"/>
     <js file="__PUBLIC__/js/jquery.min.js"/>
     <js file="__PUBLIC__/js/map.js"/>
+    <!-- 日期插件 -->
     <js file="__PUBLIC__/js/My97DatePicker/WdatePicker.js"/>
 
     <!-- vlidate -->
     <js file="__PUBLIC__/js/jquery.validate.min.js"/>
     <js file="__PUBLIC__/js/messages_zh.min.js"/>
+
+    <!-- ui autocomplete -->
+    <css file="__PUBLIC__/js/uiautocomplete/jquery-ui.css"/>
+    <js file="__PUBLIC__/js/uiautocomplete/jquery-ui.js"/>
+    <js file="__PUBLIC__/js/member/addrent_autocomplete.js"/>
 
     <!-- 引入layer弹窗 -->
     <js file="__PUBLIC__/js/layer/layer.js"/>
@@ -174,7 +183,7 @@
                     </tr>
 
                     </tbody>
-                    <tbody id="jobFile" style="display: <if condition="$dataInfo.broker_type eq 2">none<else/>''</if>">
+                    <tbody id="jobFile" style="display: <if condition="$dataInfo['broker_type'] eq 2">none<else/>''</if>">
                     <tr>
                         <td class="row1"><span class="must">*</span>服务区域：</td>
                         <td colspan="3"><select class="select" name="cityarea_id" id="addBoroughCityarea" valid="required" errmsg="请选择服务区域!">
@@ -255,7 +264,14 @@
                     <tbody>
                     <tr>
                         <td class="row1">性别：</td>
-                        <td colspan="3"><input id="gender" name="gender" type="radio" <if condition="$dataInfo['gender'] eq 0">checked</if> />帅哥&nbsp;<input id="gender" name="gender" type="radio" <if condition="$dataInfo['gender'] eq 1">checked</if> />美女</td>
+                        <td colspan="3">
+                            <if condition="$dataInfo['gender'] eq 0">
+                            <input id="gender" name="gender" type="radio" value="0" checked />帅哥&nbsp;<input id="gender" name="gender" value="1" type="radio" />美女
+                            </if>
+                            <if condition="$dataInfo['gender'] eq 1">
+                                <input id="gender" name="gender" value="0" type="radio"/>帅哥&nbsp;<input id="gender" name="gender" value="1" type="radio"  checked />美女
+                            </if>
+                        </td>
                     </tr>
                     <tr>
                         <td class="row1">出生日期：</td>

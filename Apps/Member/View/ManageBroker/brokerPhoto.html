@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <META http-equiv=Pragma content=no-cache>
+    <title><!--{$title}--> -  修改头像</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+
+    <!-- 原来的表单验证 -->
+    <js file="__PUBLIC__/js/FormValid.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerProfile')}-->" class="linkOn"><span>修改资料</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerIdentity')}-->"><span>实名认证</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerPhoto')}-->"><span>修改头像</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/pwdEdit')}-->"><span>修改密码</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerAptitude')}-->"><span>执业认证</span></a></li>
+                </ul>
+            </div>
+            <form name="dataInfo" method="POST" action="?action=save">
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="4"><span class="concentTitle">上传头像</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="row1">上传头像：</td>
+                        <td class="row3">&nbsp;<span class="tip">要求：面部清晰可辨,宽高比3:4。勿上传远照！</span><br /><iframe name="uploadAvatarPicture" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/ManageBroker/webuploader')}-->/to/uploadAvatarPicture|broker|avatar" align="left"></iframe></td>
+                        <td class="tdContCenter">
+                            <span class="tip">审核头像预览</span><br />
+                            <input type="hidden" name="avatar_pic" id="avatar" valid="required" errmsg="请上传头像照片!" ><span id="avatar_dis"><if condition="$lastAvatar['avatar_pic'] neq null"><img class="demoImgBorder" src="__ROOT__/Uploads/<!--{$lastAvatar.avatar_pic}-->?rnd=<!--{$cfg.time}-->" width="104" height="124" title="我的头像" /><else/><img class="demoImgBorder" src="__PUBLIC__/images/demoPhoto.jpg" width="104" height="124" title="默认头像" /></if>
+                        </span><br /><br />
+                            <span class="tip">状态：
+                                <if condition="$lastAvatar['status'] eq 0">审核中
+                                <elseif condition="$lastAvatar['status'] eq 1" />已审核<else/>审核不通过</if>
+                            </span>
+                        </td>
+                        <td class="tdContCenter"><span class="tip">当前使用头像</span><br /><if condition="$memberInfo['avatar'] neq null"><img class="demoImgBorder" src="__ROOT__/Uploads/<!--{$memberInfo.avatar}-->" width="104" height="124" title="我的头像" /><else/><img class="demoImgBorder" src="__PUBLIC__/images/demoPhoto.jpg" width="104" height="124" title="默认头像" /></if><br /><br /><br /></td>
+                    </tr>
+                    <tr><td colspan="4" class="br"></td></tr>
+                    </tbody>
+                </table>
+                <div class="submitBtn"><input type="button" value="提交审核" onclick="javascript:if(validator(document.dataInfo)){document.dataInfo.submit();}"  /></div>
+            </form>
+            <div class="note">
+                <p><a name="notice" id="notice"></a>上传头像必读：</p>
+                <ul>
+                    <li>头像是网络经纪人留给客户的第一印象。越有亲和力的头像越有机会赢得客户；</li>
+                    <li>合格的头像，要求必需是图片清晰，经纪人面部可清楚辨认的上身证照，请勿使用背景凌乱的大头贴；<a class="underline" href="<!--{$cfg.url}-->university/helpBrokerFQ.php#9" target="_blank">合格的头像示例</a></li>
+                    <li>我们将在24小时内完成头像审核，只有审核通过的头像才会对外展示，未上传或头像审核未通过，将统一使用 <!--{$cfg.page.title}-->默认头像；</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script language="javascript">
+    function uploadAvatarPicture( furl,fname,thumbUrl ){
+        document.getElementById('avatar').value = furl;
+        document.getElementById('avatar_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+furl+'" width="106" height="126" title="头像审核"></a>';
+    }
+</script>
+</body>
+</html>

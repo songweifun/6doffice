@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 身份认证</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+    <!-- 原来的表单验证 -->
+    <js file="__PUBLIC__/js/FormValid.js"/>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerProfile')}-->" class="linkOn"><span>修改资料</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerIdentity')}-->"><span>实名认证</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerPhoto')}-->"><span>修改头像</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/pwdEdit')}-->"><span>修改密码</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerAptitude')}-->"><span>执业认证</span></a></li>
+                </ul>
+            </div>
+            <if condition="$memberInfo['idcard'] eq null">
+            <if condition="$memberInfo['mobile'] eq null">
+            <div class="bigNote" id="bigNote">
+                <div class="noteTxt">在完善<a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerProfile')}-->">从业资料</a>前，您所发布的房源暂时无法对外展示！
+                </div>
+                <div class="closeNote">
+                    <a href="javascript:;" onclick="document.getElementById('bigNote').style.display='none'" title="隐藏提示"><img src="__PUBLIC__/images/closeNote.gif" title="隐藏提示" /></a>
+                </div>
+            </div>
+            </if>
+            <form name="dataInfo" method="POST" action="?action=save">
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="4"><span class="concentTitle">身份审核</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="row1">真实姓名：</td>
+                        <td colspan="3">
+                            <if condition="$memberInfo['realname'] neq null">
+                            <font color="#FF0000"><!--{$memberInfo.realname}--></font>
+                            <else/>
+                            <b>请在从业资料中填写真实姓名</b>
+                            </if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row1">身份证号：</td>
+                        <td colspan="3"><input id="idcard" class="input" name="idcard" type="text" size="25" valid="required|isIdCard" errmsg="请填写身份证号码!|身份证号码格式不对" />&nbsp;<span class="tip">请按照您身份证上的号码输入，注意位数</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row1">上传身份证：</td>
+                        <td class="row2">&nbsp;
+                            <span class="tip">要求：文件小于2M，图片清晰易于辨认</span><br />
+                            <iframe name="uploadIdcardPicture" width="100%" height="35" scrolling="No" frameborder="no"  src="<!--{:U(MODULE_NAME.'/ManageBroker/webuploader')}-->/to/uploadIdcardPicture|broker|identity" align="left"></iframe>
+                        </td>
+                        <td colspan="2">
+                            <span class="tip">合格身份证图片示例</span><br />
+                            <input type="hidden" id="idcard_pic" name="idcard_pic" valid="required" errmsg="请上传身份证图片!" >
+                            <div id="idcard_pic_dis"><img class="demoImgBorder" src="__PUBLIC__/images/demoIdentity.jpg" width="220" height="130" title="身份证例图" /></div>
+                        </td>
+                    </tr>
+                    <tr><td colspan="4" class="br"></td></tr>
+                    </tbody>
+                </table>
+                <if condition="$memberInfo['realname'] neq null">
+                <div class="submitBtn"><input type="button" value="提交审核" onclick="javascript:if(validator(document.dataInfo)){document.dataInfo.submit();}"  /></div>
+                <else/>
+                <font color="#FF0000" size="+2">请先完善从业资料在进行身份证审核!</font>
+                </if>
+            </form>
+            <else/>
+            <div class="sysConfirm" id="sysConfirm">
+                <div class="confirmTxt">恭喜^_^，您已通过 <!--{$title}-->实名认证！
+                    <p>在您的个人信息展示位置体现<img src="__PUBLIC__/images/brokerIdentity.png" title=" <!--{$title}-->实名认证标志" />认证标志，同时您已拥有了 <!--{$title}-->经纪人网店。<a href="<!--{:U(MODULE_NAME.'/ManageShop/shopSaleRec')}-->" class="underline" title="进入店铺管理">马上去张罗您的店铺，开张吧！</a></p>
+                </div>
+            </div>
+            </if>
+        </div>
+    </div>
+
+</div>
+<script language="javascript">
+    function uploadIdcardPicture( furl,fname,thumbUrl ){
+        document.getElementById('idcard_pic').value = furl;
+        document.getElementById('idcard_pic_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+furl+'" width="220" height="130" title="身份证"></a>';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> -  修改密码</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+
+    <!-- 原来的表单验证 -->
+    <js file="__PUBLIC__/js/FormValid.js"/>
+    <js file="__PUBLIC__/js/FV_onBlur.js"/>
+    <script type="text/javascript">
+        FormValid.showError = function(errMsg,errName,formName) {
+            if (formName=='dataForm') {
+                for (key in FormValid.allName) {
+                    document.getElementById('errMsg_'+FormValid.allName[key]).innerHTML = '';
+                    document.getElementById('errMsg_'+FormValid.allName[key]).style.display = 'none';
+
+                }
+                for (key in errMsg) {
+                    document.getElementById('errMsg_'+errName[key]).innerHTML = errMsg[key];
+                    document.getElementById('errMsg_'+errName[key]).style.display = '';
+
+                }
+            }
+        }
+        var r = null;
+        function ckname (inp) {//新插件可通过addmethod实现
+            $.ajax({type:"GET", url:"<!--{:U(MODULE_NAME.'/ManageBroker/ajaxCheckPwd')}-->/r/"+Math.random()+'/password/'+inp.value, dataType:"text",async:false,success:function (msg){
+                r = msg;
+            }});
+            if (r=='0') {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+<include file="Common:memberHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common:member_left"/>
+        <div class="memberBox">
+            <div class="memberBoxTab">
+                <ul>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerProfile')}-->" class="linkOn"><span>修改资料</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerIdentity')}-->"><span>实名认证</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerPhoto')}-->"><span>修改头像</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/pwdEdit')}-->"><span>修改密码</span></a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/ManageBroker/brokerAptitude')}-->"><span>执业认证</span></a></li>
+                </ul>
+            </div>
+            <form name="dataForm" method="POST" action="?action=save">
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="4"><span class="concentTitle">修改密码</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="row1"><span class="must">*</span>旧的密码：</td>
+                        <td colspan="3"><input id="password" class="input" name="password" type="password" size="25" valid="required|custom" custom="ckname" errmsg="旧密码不能为空|旧密码不正确！" />&nbsp; <span class="tip" id="errMsg_password"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="row1"><span class="must">*</span>新的密码：</td>
+                        <td colspan="3"><input id="newpass" class="input" name="newpass" type="password" size="25" valid="required|limit"  min="6" errmsg="新密码不能为空|密码不少于6位!" />&nbsp; <span class="tip" id="errMsg_newpass"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="row1"><span class="must">*</span>密码确认：</td>
+                        <td colspan="3"><input id="newpass2" class="input" name="newpass2" type="password" size="25" valid="eqaul" eqaulName="newpass" errmsg="两次输入的新密码不同!" />&nbsp;<span class="tip" id="errMsg_newpass2"></span></td>
+                    </tr>
+                    <tr><td colspan="4" class="br"></td></tr>
+                    </tbody>
+                </table>
+                <div class="submitBtn"><input type="button" value="确认修改" onclick="javascript:if(validator(document.dataForm)){document.dataForm.submit();}"  /></div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    initValid(document.dataForm);
+</script>
+</body>
+</html>
