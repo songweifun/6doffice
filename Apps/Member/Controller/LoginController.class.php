@@ -293,6 +293,7 @@ class LoginController extends Controller{
         setcookie('AUTH_MEMBER_STRING', 0, time()-1,'/',C('COOKIE_DOMAIN'));
         setcookie('AUTH_MEMBER_NAME',0,time()-1,'/',C('COOKIE_DOMAIN'));
         setcookie('AUTH_MEMBER_REALNAME',0,time()-1,'/',C('COOKIE_DOMAIN'));
+        $this->redirect('Home/Index/index');
 
     }
 

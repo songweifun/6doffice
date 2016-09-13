@@ -199,4 +199,45 @@ function array_remove_empty(& $arr, $trim = true)
 	}
 }
 
+function substrs($content, $length){
+	if($length && strlen($content)>$length){
+		if($db_charset!='utf-8'){
+			$retstr='';
+			for($i = 0; $i < $length - 2; $i++) {
+				$retstr .= ord($content[$i]) > 127 ? $content[$i].$content[++$i] : $content[$i];
+			}
+			return $retstr;
+		}else{
+			return utf8_trim(substr($content,0,$length*3));
+		}
+	}
+	return $content;
+}
+
+/**
+ * 将一个二维数组转换为 hashmap
+ *
+ * 如果省略 $valueField 参数，则转换结果每一项为包含该项所有数据的数组。
+ *
+ * @param array $arr
+ * @param string $keyField
+ * @param string $valueField
+ *
+ * @return array
+ */
+function array_to_hashmap(& $arr, $keyField, $valueField = null)
+{
+	$ret = array();
+	if ($valueField) {
+		foreach ($arr as $row) {
+			$ret[$row[$keyField]] = $row[$valueField];
+		}
+	} else {
+		foreach ($arr as $row) {
+			$ret[$row[$keyField]] = $row;
+		}
+	}
+	return $ret;
+}
+
 ?>

@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <script src="__PUBLIC__/js/select.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/js/js.js" type="text/javascript"></script>
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/menuSearch.css" rel="stylesheet" type="text/css" />
+    <script type="text/ecmascript">
+        $(function(){
+            $(".listing>ol").hover(
+                    function(){
+                        $(this).addClass("hover")
+                        $(this).find(".hr").css({"border-bottom":"#1d78c0 1px solid"})
+                    },
+                    function(){
+                        $(this).removeClass("hover")
+                        $(this).find(".hr").css({"border-bottom":"#ccc 1px dashed"})
+                    }
+
+            )
+
+        })
+    </script>
+</head>
+
+<body>
+
+<include file="Common:selltop"/>
+
+<div>
+    <include file="Common:city_selectersell"/>
+</div>
+<div class="blank"></div>
+<div class="content">
+    <!--中部左侧开始-->
+    <div class="sale_xx_left">
+        <div id="c">
+            <ul>
+                <input type="hidden" id="switch" name="switch" value="<!--{$Think.get.switch}-->">
+                <li <if condition="$Think.get.switch eq null">class="li2"<else/>class="li1"</if>><span><a href="index.php?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->" >全部</a></span></li>
+                <if condition="$guest eq 1">
+                <li <if condition="$Think.get.switch eq 'owner'">class="li2"<else/>class="li1"</if>><span><a href="index.php?switch=owner">个人</a></span></li>
+                </if>
+                <li <if condition="$Think.get.switch eq 'vexation'">class="li2"<else/>class="li1"</if>><span><a href="index.php?switch=vexation">急售</a></span></li>
+                <li <if condition="$Think.get.switch eq 'morePic'">class="li2"<else/>class="li1"</if>><span><a href="index.php?switch=morePic">多图</a></span></li>
+
+                <li <if condition="$Think.get.switch eq 'promote'">class="li2"<else/>class="li1"</if>><span><a href="index.php?switch=promote">店长</a></span></li>
+                <li class="li1"><span><a target="_blank" href="<!--{$cfg.url}-->sale/requireList.php">求购信息</a></span></li>
+                <li class="li1"><span><a target="_blank" href="<!--{$cfg.url}-->m/map">地图找房</a></span></li>
+            </ul>
+            <div class="filter_right">
+                <table>
+                    <tr>
+
+                        <td>
+                            <if condition="$pageno gt 1">
+                            <a href="index.php?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&pageno=<!--{$pageno-1}-->" onfocus=blur()>
+                                <img src="__PUBLIC__/images/sale01a.jpg" border="0" class="RL-Prev"/>
+                            </a>
+                            <else/>
+                            <a href="javascript:void(0);">
+                                <img src="__PUBLIC__/images/sale01.jpg" border="0" class="RL-Prev"/>
+                            </a>
+                            </if>
+                        </td>
+                        <td id="RL_NoPage"><!--{$pageno}-->/<!--{$page_count}--></td>
+                        <td>
+                            <if condition="($pageno lt $page_count) and ($pageno lt 100)">
+                            <a href="index.php?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&pageno=<!--{$pageno+1}-->" onfocus=blur()>
+                                <img src="__PUBLIC__/images/sale02a.jpg" border="0" class="RL-Next"/>
+                            </a>
+                            <else/>
+                            <a href="javascript:void(0);">
+                                <img src="__PUBLIC__/images/sale02.jpg" border="0" class="RL-Prev"/>
+                            </a>
+                            </if>
+                        </td>
+                    </tr>
+                </table>
+            </div></div>
+
+        <div class="all_fy_bg">
+            <div class="all_fy_bgl">
+                <if condition="$Think.get.list_order eq 'default'">
+                    <a onClick="quickSearch('default','list_order');return false;" href="javascript:" class="input_mrpxx" onfocus=blur()>默认排序</a>
+                    <else/>
+                    <a onClick="quickSearch('default','list_order');return false;" href="javascript:" class="input_mrpx" onfocus=blur()>默认排序</a>
+                </if>
+                <if condition="$Think.get.list_order eq 'house_price asc'">
+                    <a onClick="quickSearch('house_price asc','list_order');return false;" href="javascript:" class="input_zj" onfocus=blur()>总价<if condition="$qqq['house_price_class'] eq 'down'">&uarr;<else/>&darr;</if></a>
+                    <else/>
+                <a onClick="quickSearch('house_price asc','list_order');return false;" href="javascript:" class="input_pxbg56" onfocus=blur()>总价<if condition="$qqq['house_price_class'] eq 'down'">&uarr;<else/>&darr;</if></a>
+                </if>
+                <if condition="$Think.get.list_order eq 'house_totalarea asc'">
+                    <a onClick="quickSearch('house_totalarea asc','list_order');return false;" href="javascript:" class="input_zj" onfocus=blur()>面积<if condition="$qqq['house_totalarea_class'] eq 'down'">&uarr;<else/>&darr;</if></a>
+                    <else/>
+                    <a onClick="quickSearch('house_totalarea asc','list_order');return false;" href="javascript:" class="input_pxbg56" onfocus=blur()>面积<if condition="$qqq['house_totalarea_class'] eq 'down'">&uarr;<else/>&darr;</if></a>
+                </if>
+                <if condition="$Think.get.list_order eq 'avg_price asc'">
+                    <a onClick="quickSearch('avg_price asc','list_order');return false;" href="javascript:" class="input_zj" onfocus=blur()>单价<if condition="$qqq['avg_price_class'] eq 'down'">&uarr;<else/>&darr;</if></a>
+                    <else/>
+                    <a onClick="quickSearch('avg_price asc','list_order');return false;" href="javascript:" class="input_pxbg56" onfocus=blur()>单价<if condition="$qqq['avg_price_class'] eq 'down'">&uarr;<else/>&darr;</if></a>
+                </if>
+
+
+                <if condition="$Think.get.list_order eq 'created desc'">
+                    <a onClick="quickSearch('created desc','list_order');return false;" href="javascript:"  class="input_zj" onfocus=blur()>时间</a>
+                    <else/>
+                    <a onClick="quickSearch('created desc','list_order');return false;" href="javascript:"  class="input_pxbg56" onfocus=blur()>时间</a>
+                </if>
+
+
+
+            </div>
+            <div class="all_fy_bgr">
+                <if condition="($Think.get.showstyle eq null) or ($Think.get.showstyle eq 'listshow')">
+                    <a  onClick="quickSearch('listshow','showstyle');return false;" href="javascript:"  class="input_lb_selected">
+                        <else/>
+                    <a  onClick="quickSearch('listshow','showstyle');return false;" href="javascript:"  class="input_lb">
+                </if>
+
+                <if condition="$Think.get.showstyle eq 'drawingshow'">
+                    <a  onClick="quickSearch('drawingshow','showstyle');return false;" href="javascript:" class="input_fxt_selected"></a>
+                    <else/>
+                    <a  onClick="quickSearch('drawingshow','showstyle');return false;" href="javascript:" class="input_fxt"></a>
+                </if>
+                <if condition="$Think.get.showstyle eq 'roompicshow'">
+                    <a  onClick="quickSearch('roompicshow','showstyle');return false;" href="javascript:" class="input_snt_selected"></a>
+                    <else/>
+                    <a  onClick="quickSearch('roompicshow','showstyle');return false;" href="javascript:" class="input_snt"></a>
+                </if>
+
+            </div>
+        </div>
+
+        <div class="content_b1">
+            <if condition="($Think.get.showstyle eq null) or ($Think.get.showstyle eq 'listshow')">
+            <div class="listing">
+                <!--  列表循环体开始  -->
+                <foreach name="dataList" item="item">
+
+                <ol id="list_body" >
+                    <div class="h15"></div>
+                    <div class="property2">
+                        <div class="photo">
+                            <if condition="$item['house_thumb'] neq null">
+                                <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}--><!--{$item.house_room}-->居" target="_blank"><img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" width="100" height="80" /></a>
+
+                                <else/>
+                                <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}--><!--{$item.house_room}-->居" target="_blank"><img src="__PUBLIC__/images/housePhotoDefault.gif" width="100" height="80" /></a>
+
+                            </if>
+                        </div>
+                        <div class="details" style="margin-left:10px;">
+                            <h4>
+                                <a class="color000" href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.house_title}--></a><!--{include file="inc/four_tag.tpl"}-->
+                            </h4>
+                            <address>小区：<!--{$item.borough_name}--></address>
+                            <div class="all_fyyy"><p>单价：<!--{$item.avg_price}-->元/平米</p><p>面积：<!--{$item.house_totalarea}-->平米</p><p>楼层：<!--{$item.house_floor}-->/<!--{$item.house_topfloor}--></p><br /><p>户型：<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅</p>
+                            </div>
+                            <div class="broker_name"><p><font color="#999999"><if condition="$item['broker_info']['realname'] neq null">经纪人：<a target="_blank" href="<!--{$cfg.url}-->shop/<!--{$item.broker_id}-->"><!--{$item.broker_info.realname}--></a><else/>房东：<!--{$item.owner_name}--></if>  <!--{$item.updated|date="m月d日",###}-->发布</font></p></div>
+                        </div>
+                        <div class="price"><span><if condition="$item['house_price'] eq 0">面议<else/><!--{$item.house_price}--></if></span>万元</div>
+                        <div class="tags"><if condition="$item['is_vexation'] eq 1"><img src="__PUBLIC__/images/sale_js.gif" title="急售" alt="急售" /></if>&nbsp;<if condition="$item['is_top'] eq 1"><img src="__PUBLIC__/images/newpush.gif" title="新推" alt="新推" /></if><if condition="$item['broker_id'] eq 0"><img src="__PUBLIC__/images/owner.gif" title="无中介费" alt="无中介费" /></if>&nbsp;</div>
+                    </div>
+                    <div class="h23"></div>
+                    <div class="hr"></div>
+
+                </ol>
+                </foreach>
+                <!--  列表循环体结束  -->
+            </div>
+            </if>
+            <if condition="$Think.get.showstyle eq 'roompicshow'">
+            <!--  列表循环体开始  -->
+            <!--{foreach from=$dataList item=item key=key}-->
+            <ol id="list_body" class="big_img">
+                <li class="big_img" <if condition="$item['is_rowlast'] neq 1"> style="margin-right:21px; *margin-right:10px;_margin-right:12px; "</if>>
+                <div class="property_snt big_link_all" style="border-bottom:none;">
+                    <div class="er_snt_aa" style=" padding:0;">
+                        <table width="220" border="0" align="center" cellpadding="0" cellspacing="0"ststyle="margin-left:0px; margin-top:2px;" >
+                            <tr>
+                                <td height="165" align="center" valign="top">
+                                    <if condition="$item['house_thumb'] neq null">
+                                        <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" width="216" height="165" border="0" /></a>
+
+                                        <else/>
+                                        <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="__PUBLIC__/images/housePhotoDefault.gif" width="216" height="165" border="0" /></a>
+
+                                    </if>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="24" align="left" valign="bottom" class="font_00359d" style="padding:0 5px;"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--></a></td>
+                            </tr>
+                            <tr>
+                                <td height="27" align="left" valign="middle" style="border-bottom:1px #71a6db solid; color:#7e7e7e; padding:0 5px;"><!--{$item.house_room}-->室<!--{$item.house_hall}-->厅 | <!--{$item.house_totalarea}-->平米 |</td>
+                            </tr>
+                            <tr>
+                                <td align="left" bgcolor="#f6f6f6"><table width="210" border="0" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td height="33" align="left" valign="middle" bgcolor="#f6f6f6" class="price_zz">售价：<span><!--{$item.house_price}--></span><span class="aabb">万元</span></td>
+                                        <td align="right" valign="middle" bgcolor="#f6f6f6"><!--{include file="inc/four_tag.tpl"}--></td>
+                                    </tr>
+                                </table></td>
+                            </tr>
+                            <tr>
+                                <td height="45" align="left" bgcolor="#f6f6f6" class="font_2f5aaf" style="line-height:21px; padding:0 5px;"><!--{$item.house_title}--><br /></td>
+                            </tr>
+                            <tr>
+                                <td height="5" align="left" bgcolor="#f6f6f6"></td>
+                            </tr>
+                        </table>
+                        <span class="xj_c xj_c01"></span> <span class="xj_c xj_c06"></span> <span class="xj_c xj_c03"></span> </div>
+                    <div class="bottom_shadow"></div>
+                </div>
+                </li>
+            </ol>
+            </foreach>
+
+            </if>
+
+
+
+            <if condition="$Think.get.showstyle eq 'drawingshow'">
+
+            <!--  列表循环体开始  -->
+            <foreach name="dataList" item="item">
+            <ol id="list_body" class="big_img">
+                <li class="big_img"  <if condition="$item['is_rowlast'] neq 1"> style="margin-right:21px;*margin-right:10px; _margin-right:12px;"</if>>
+                <div class="property_snt big_link_all" style="border-bottom:none;">
+                    <div class="er_snt_aa" style=" padding:0;">
+                        <table width="220" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-left:0px; margin-top:2px;">
+                            <tr>
+                                <if condition="$item['house_drawing'] neq null">
+                                    <td height="165" align="center" valign="top"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="__ROOT__/Uploads/<!--{$item.house_drawing}-->" width="216" height="165" border="0" /></a></td>
+
+                                    <else/>
+                                    <td height="165" align="center" valign="top"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="__PUBLIC__/images/housePhotoDefault.gif" width="216" height="165" border="0" /></a></td>
+
+                                </if>
+                            </tr>
+                            <tr>
+                                <td height="24" align="left" valign="bottom" class="font_00359d" style="padding:0 5px;"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--></a></td>
+                            </tr>
+                            <tr>
+                                <td height="27" align="left" valign="middle" style="border-bottom:1px #71a6db solid; color:#7e7e7e; padding:0 5px;"><!--{$item.house_room}-->室<!--{$item.house_hall}-->厅 | <!--{$item.house_totalarea}-->平米 |</td>
+                            </tr>
+                            <tr>
+                                <td align="left" bgcolor="#f6f6f6"><table width="210" border="0" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td height="33" align="left" valign="middle" bgcolor="#f6f6f6" class="price_zz">售价：<span><!--{$item.house_price}--></span><span class="aabb">万元</span></td>
+                                        <td align="right" valign="middle" bgcolor="#f6f6f6"><!--{include file="inc/four_tag.tpl"}--></td>
+                                    </tr>
+                                </table></td>
+                            </tr>
+                            <tr>
+                                <td height="45" align="left" bgcolor="#f6f6f6" class="font_2f5aaf" style="line-height:21px; padding:0 5px;"><!--{$item.house_title}--></td>
+                            </tr>
+                            <tr>
+                                <td height="5" align="left" bgcolor="#f6f6f6"></td>
+                            </tr>
+                        </table>
+                        <span class="xj_c xj_c01"></span> <span class="xj_c xj_c06"></span> <span class="xj_c xj_c03"></span> </div>
+                    <div class="bottom_shadow"></div>
+                </div>
+                </li>
+            </ol>
+            </foreach>
+
+            </if>
+            <!--{include file="inc/page_fenye.tpl"}-->
+        </div>
+
+
+
+    </div>
+    <div class="sale_xx_right">
+        <div class="hz_list_pub">
+            <div class="gpf_content">
+                <h2 class="title_top">您有房屋出售吗？</h2>
+                <p class="text">您通过此处发布购房者无需缴纳<span>中介费</span></p>
+                <div class="pub_btn_box">
+                    <a target="_blank" class="pub_but" hidefocus="true" title="个人房东发布" href="<!--{$cfg.url}-->guest/houseSale.php"></a>
+                </div>
+            </div>
+        </div>
+        <div class="region">
+            <h3>浏览过的房源</h3>
+            <if condition="$browseList neq null">
+            <foreach name="browseList" item="item">
+            <div class="region_main">
+                <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+                    <tr>
+                        <td width="58%" rowspan="3" align="left">
+                            <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank">
+                            <if condition="$item['house_thumb'] neq null">
+                                <img style="padding:1px; border:1px #d7d7d7 solid;" src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" width="75px" height="50px" alt="<!--{$item.borough_name}-->" title="<!--{$item.borough_name}-->" />
+
+                                <else/>
+                                <img style="padding:1px; border:1px #d7d7d7 solid;" src="__PUBLIC__/images/housePhotoDefault.gif" width="75px" height="50px" alt="<!--{$item.borough_name}-->" title="<!--{$item.borough_name}-->" />
+
+                            </if>
+
+                        </a></td>
+
+                        <td width="42%" align="left" class="font_2f5aaf"><strong><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--></a></strong></td>
+
+                    </tr>
+                    <tr>
+                        <td align="left"><!--{$item.house_room}-->室<!--{$item.house_hall}-->厅</td>
+                    </tr>
+                    <tr>
+                        <td align="left" class="Community_z"><!--{$item.house_price}-->万</td>
+                    </tr>
+
+                </table>
+            </div>
+            </foreach>
+            <else/>
+            <img src="__PUBLIC__/images/browse.gif">
+            </if>
+
+
+        </div>
+        <!--{include file="inc/saleRent_AD.tpl"}-->
+
+    </div>
+</div>
+<!--中部右侧结束-->
+<!-- 大框架结尾 -->
+</div>
+
+<!--{include file="inc/foot.tpl"}-->
+</body>
+</html>

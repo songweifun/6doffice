@@ -1,0 +1,203 @@
+<div id="content">
+
+    <!-- start -->
+    <div class="fcksearch">
+        <div class="findpropcond">
+            <form action="#" id="propcondform" method="post" target="_blank">
+                <div class="PropCond" >
+                    当前找房条件：
+                    <if condition="$Think.get.q neq null"><span class="newpropcond">关键词：<!--{$Think.get.q}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('q')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$cityarea neq null"><span class="newpropcond"><!--{$cityarea_option.$cityarea}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('cityarea')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$price neq null"><span class="newpropcond"><!--{$house_price_option.$price}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('price')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$totalarea neq null"><span class="newpropcond"><!--{$house_totalarea_option.$totalarea}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('totalarea')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$room neq null"><span class="newpropcond"><!--{$room_option.$room}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('room')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$type neq null"><span class="newpropcond"><!--{$house_type_option.$type}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('type')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$feature neq null"><span class="newpropcond"><!--{$house_feature_option.$feature}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('feature')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$house_age neq null"><span class="newpropcond"><!--{$house_age_option.$house_age}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('house_age')">&nbsp;</a></span>
+                    </if>
+                    <if condition="$house_floor neq null"><span class="newpropcond"><!--{$house_floor_option.$house_floor}-->&nbsp;<a class="newpropicon" href="javascript:void(0);" onclick="cancelProp('house_floor')">&nbsp;</a></span>
+                    </if>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end -->
+
+    <div class="fcklinks" style=" ">
+        <div class="filter" style="border:0;margin-top:0">
+            <input type="hidden" id="domType" name="domType" value="<!--{$Think.get.domType}-->">
+            <input type="hidden" id="cityarea" name="cityarea" value="<!--{$Think.get.cityarea}-->">
+            <input type="hidden" id="price" name="price" value="<!--{$Think.get.price}-->">
+            <input type="hidden" id="borough" name="borough" value="<!--{$Think.get.borough}-->">
+            <input type="hidden" id="totalarea" name="totalarea" value="<!--{$Think.get.totalarea}-->">
+            <input type="hidden" id="type" name="type" value="<!--{$Think.get.type}-->">
+            <input type="hidden" id="room" name="room" value="<!--{$Think.get.room}-->">
+            <input type="hidden" id="feature" name="feature" value="<!--{$Think.get.feature}-->">
+            <input type="hidden" id="switch" name="switch" value="<!--{$Think.get.switch}-->">
+            <input type="hidden" id="list_num" name="list_num" value="10">
+            <input type="hidden" id="list_order" name="list_order" value="">
+            <input type="hidden" id="showstyle" name="showstyle" value="<!--{$Think.get.showstyle}-->">
+            <input type="hidden" id="pageno" name="pageno" value="<!--{$Think.get.pageno}-->">
+            <input type="hidden" id="S_q" name="S_q" value="<!--{$Think.get.q}-->"><!-- |escape:'url' -->
+            <input type="hidden" id="q2" name="q2" value="<!--{$Think.get.q}-->">
+            <input type="hidden" id="house_age" name="house_age" value="<!--{$Think.get.house_age}-->">
+            <input type="hidden" id="house_floor" name="house_floor" value="<!--{$Think.get.house_floor}-->">
+            <input type="hidden" id="company" name="company" value="<!--{$Think.get.company}-->">
+
+            <div>
+                <ul>
+                    <li class="filterTarget">区域：</li>
+                    <li <if condition="$Think.get.cityarea eq null">class="linkOn" </if>><a href="index.php?price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                    <foreach name="cityarea_option" item="item">
+
+                    <li class="<!--{if $key==$Think.get.cityarea}-->linkOn<!--{/if}-->"><a href="index.php?cityarea=<!--{$key}-->&borough=&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->" ><!--{$item}--></a></li>
+                    </foreach>
+                </ul>
+            </div>
+            <if condition="$Think.get.cityarea neq null">
+            <div style="height:auto;">
+                <div style="height:auto;">
+                    <ul id="filterTargetSub" style="_margin-left:38px">
+                        <li <if condition="$Think.get.cityarea2 eq null">class="linkOn" </if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                        <foreach name="borough_section" item="item">
+                        <li <if condition="$item['di_value'] eq $Think.get.cityarea2"> class="linkOn"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$item.di_value}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item.di_caption}--></a></li>
+                        </foreach>
+                    </ul>
+                </div>
+            </div>
+            </if>
+            <ul>
+                <li class="filterTarget">价格：</li>
+                <li <if condition="$Think.get.price eq null">class="linkOn" </if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                <foreach name="house_price_option" item="item">
+
+                <li class="<!--{if $key==$Think.get.price}-->linkOn<!--{/if}-->"><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$key}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                </foreach>
+            </ul>
+
+            <ul>
+                <li class="filterTarget">房型：</li>
+                <li <if condition="$Think.get.room eq null">class="linkOn" </if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+
+                <foreach name="room_option" item="item">
+                <li class="<!--{if $key==$Think.get.room}-->linkOn<!--{/if}-->"><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$key}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                </foreach>
+            </ul>
+
+            <ul>
+                <li class="filterTarget">面积：</li>
+                <li <if condition="$Think.get.totalarea eq null">class="linkOn"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                <foreach name="house_totalarea_option" item="item">
+
+                <li class="<!--{if $key==$Think.get.totalarea}-->linkOn<!--{/if}-->"><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$key}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                </foreach>
+            </ul>
+
+            <ul>
+                <li class="filterTarget">类型：</li>
+                <li <if condition="$Think.get.type eq null">class="linkOn"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                <foreach name="house_type_option" item="item">
+                <li class="<!--{if $key==$Think.get.type}-->linkOn<!--{/if}-->"><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$key}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                </foreach>
+            </ul>
+
+            <ul>
+                <li class="filterTarget">特色：</li>
+                <li <if condition="$Think.get.feature eq null">class="linkOn"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                <foreach name="house_feature_option" item="item">
+                <li class="<!--{if $key==$Think.get.feature}-->linkOn<!--{/if}-->"><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$key}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                </foreach>
+            </ul>
+
+            <div style=" clear:both;"></div>
+
+        </div>
+        <div class="condition_fake_352"></div>
+    </div>
+
+    <div class="search-result2" style="z-index:99;">
+        <div class="keywords352" id="keywords">
+            <form action="index.php" id="ls_form_apf_id_12" class="keywordform" method='get'>
+                <input type="hidden" id="cityarea" name="cityarea" value="<!--{$Think.get.cityarea}-->">
+                <input type="hidden" id="price" name="price" value="<!--{$Think.get.price}-->">
+                <input type="hidden" id="borough" name="borough" value="<!--{$Think.get.borough}-->">
+                <input type="hidden" id="totalarea" name="totalarea" value="<!--{$Think.get.totalarea}-->">
+                <input type="hidden" id="type" name="type" value="<!--{$Think.get.type}-->">
+                <input type="hidden" id="room" name="room" value="<!--{$Think.get.room}-->">
+                <input type="hidden" id="feature" name="feature" value="<!--{$Think.get.feature}-->">
+                <input type="hidden" id="switch" name="switch" value="<!--{$Think.get.switch}-->">
+                <input type="hidden" id="list_num" name="list_num" value="10">
+                <input type="hidden" id="list_order" name="list_order" value="">
+                <input type="hidden" id="showstyle" name="showstyle" value="<!--{$Think.get.showstyle}-->">
+                <input type="hidden" id="pageno" name="pageno" value="<!--{$Think.get.pageno}-->">
+                <input type="hidden" id="house_age" name="house_age" value="<!--{$Think.get.house_age}-->">
+                <input type="hidden" id="house_floor" name="house_floor" value="<!--{$Think.get.house_floor}-->">
+                <input type="hidden" id="company" name="company" value="<!--{$Think.get.company}-->">
+                <input type="text" maxlength="100" name="q" id="q" class="kw" value="在结果中筛选" onblur="if(this.value ==''||this.value == '在结果中筛选'){this.value = '在结果中筛选';}"
+                       onfocus="if(this.value == '在结果中筛选'){this.value = '';}"  />
+
+                <input type="submit" class="search2" value="筛选" /><a class="clearkw clearkw2"  href="index.php">清空</a>
+
+
+            </form>
+            <div class="asline"></div>
+            <div id="condmenu">
+                <ul class="condul">
+                    <li class="condlist_tip"><span>更多筛选：</span></li>
+                    <li id="condhouseage_id"><a href="javascript:void(0);"><span class="select_item"><span class="txt" id="condhouseage_txt_id"><!--{if $house_age}--> <!--{$house_age_option.$house_age}--> <!--{else}-->不限<!--{/if}--></span><span class="icon">&nbsp;</span></span><!--[if IE 7]><!--></a><!--<![endif]--><!--[if IE 8]><!--></a><!--<![endif]--><!--[if !IE]>--></a><!--<![endif]-->
+                        <!--[if lte IE 6]>
+                        <iframe src="" style="position:absolute;visibility:inherit; top:0px; left:-1px; width:102px; height:132px;z-index:-1;opacity:.0;filter:alpha(opacity=0); -moz-opacity:0;"></iframe>
+                        <table><tr><td>
+                        <![endif]-->
+                        <ul>
+                            <li  ><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                            <li <if condition="$house_age eq '2008-0'">class="selected"</if> ><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=2008-0&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">2008年后</a></li>
+                            <li <if condition="$house_age eq '2000-2008'">class="selected"</if> ><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=2000-2008&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">2000-2008年</a></li>
+                            <li  <if condition="$house_age eq '1995-2000'">class="selected"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=1995-2000&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">1995-2000年</a></li>
+                            <li <if condition="$house_age eq '0-1995'">class="selected"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=0-1995&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">1995年前</a></li>
+                        </ul>
+                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+                    </li>
+                    <li id="condfloor_id"><a href="javascript:void(0);"><span class="select_item"><span class="txt" id="condfloor_txt_id"><!--{if $house_floor}--> <!--{$house_floor_option.$house_floor}--> <!--{else}-->不限<!--{/if}--></span><span class="icon">&nbsp;</span></span><!--[if IE 7]><!--></a><!--<![endif]--><!--[if IE 8]><!--></a><!--<![endif]--><!--[if !IE]>--></a><!--<![endif]-->
+                        <!--[if lte IE 6]>
+                        <iframe src="" style="position:absolute;visibility:inherit; top:0px; left:-1px; width:99px; height:105px;z-index:-1;opacity:.0;filter:alpha(opacity=0); -moz-opacity:0;"></iframe>
+                        <table><tr><td>
+                        <![endif]-->
+                        <ul>
+                            <li><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                            <li <if condition="$house_floor eq '0-6'">class="selected"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=0-6&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">6层以下</a></li>
+                            <li <if condition="$house_floor eq '6-12'">class="selected"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=6-12&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">6-12层</a></li>
+                            <li <if condition="$house_floor eq '12-0'">class="selected"</if>><a href="index.php?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=12-0&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">12层以上</a></li>
+                        </ul>
+                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+                    </li>
+                    <li id="condbrand_id" style="display:none"><a href="javascript:void(0);"><span class="select_item"><span class="txt" id="condbrand_txt_id"></span><span class="icon">&nbsp;</span></span><!--[if IE 7]><!--></a><!--<![endif]--><!--[if IE 8]><!--></a><!--<![endif]--><!--[if !IE]>--></a><!--<![endif]-->
+                        <!--[if lte IE 6]><table><tr><td><![endif]-->
+                        <ul id="condbrand_item_id">
+                            <li  ><a href="">不限</a></li>
+
+                        </ul>
+                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+                    </li>
+                </ul>
+            </div>
+            <div class="asline"></div>
+            <div class="condmap">
+                <if condition="$menu eq 'sale'">
+                <a class="mapicon" target="_blank" hidefocus="true" href="<!--{$cfg.url}-->m/map">&nbsp;</a>
+                </if>
+                <if condition="$menu eq 'rent'">
+                <a class="mapicon" target="_blank" hidefocus="true" href="<!--{$cfg.url}-->m/maprent">&nbsp;</a>
+                </if>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>

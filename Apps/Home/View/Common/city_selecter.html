@@ -1,0 +1,162 @@
+<script type="text/javascript">
+    <!--
+    var timeout         = 500;
+    var closetimer		= 0;
+    var ddmenuitem      = 0;
+
+    // open hidden layer
+    function mopen(id)
+    {
+        // cancel close timer
+        mcancelclosetime();
+
+        // close old layer
+        if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+        // get new layer and show it
+        ddmenuitem = document.getElementById(id);
+        ddmenuitem.style.visibility = 'visible';
+
+    }
+    // close showed layer
+    function mclose()
+    {
+        if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+    }
+
+    // go close timer
+    function mclosetime()
+    {
+        closetimer = window.setTimeout(mclose, timeout);
+    }
+
+    // cancel close timer
+    function mcancelclosetime()
+    {
+        if(closetimer)
+        {
+            window.clearTimeout(closetimer);
+            closetimer = null;
+        }
+    }
+
+    // close layer when click-out
+    document.onclick = mclose;
+    // -->
+</script>
+<script type="text/javascript">
+    function newHouse()
+    {
+        document.form_search.xz.value="新房";
+        document.form_search.action = '<!--{$cfg.url}-->newHouse/index.php';
+    }
+    function sale()
+    {
+        document.form_search.xz.value="二手房";
+        document.form_search.action = '<!--{$cfg.url}-->sale/index.php';
+    }
+    function rent()
+    {
+        document.form_search.xz.value="租房";
+        document.form_search.action = '<!--{$cfg.url}-->rent/index.php';}
+
+    function broker()
+    {
+        document.form_search.xz.value="经纪人";
+        document.form_search.action = '<!--{$cfg.url}-->broker/index.php';}
+
+    function community()
+    {
+        document.form_search.xz.value="小区";
+        document.form_search.action = '<!--{$cfg.url}-->community/index.php';}
+
+    function company()
+    {
+        document.form_search.xz.value="公司";
+        document.form_search.action = '<!--{$cfg.url}-->company/index.php';}
+</SCRIPT>
+
+
+<div class="xg_search">
+    <div class="xmsearch_inp1">
+
+        <form method="GET" action="<!--{$cfg.url}-->sale/index.php" id="form_search" name="form_search">
+
+
+            <input class="xg_inp1" type="text" value="请输入房源特征,地点或小区名..." id="home_kw" name="q" autocomplete="off" onfocus="if (value =='请输入房源特征,地点或小区名...'){value =''}" onblur="if (value ==''){value='请输入房源特征,地点或小区名...'}"  onclick="value =''">
+
+            <input type="submit" class="xg_inp2" value=" "><ul id="sddm">
+            <li><input name="xz" type="text"  class="x-xz" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="二手房">
+                <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <if condition="$newhouseOpen eq 1">
+                    <a onclick="newHouse()">新房</a>
+                    </if>
+                    <a onclick="sale()">二手房</a>
+                    <a onclick="rent()">租房</a>
+                    <a onclick="broker()">经纪人</a>
+                    <a onclick="community()">小区</a>
+                    <a onclick="company()">公司</a>
+                </div>
+            </li>
+
+        </ul>
+        </form>
+        <span class="xg_ditu"> <a href="<!--{$cfg.url}-->m/map">地图找房 >></a></span>
+
+        <div id="popimg2">
+            <div id="test"></div>
+        </div>
+
+    </div>
+    <div class="xg_keys">热点搜索：
+        <foreach name="boroughHot" item="item">
+            <a title="<!--{$item.borough_name}-->" href="sale/index.php?q=<!--{$item.borough_name}-->"><!--{$item.borough_name}--></a>
+        </foreach>
+    </div>
+    <div class="blank"></div>
+    <div class="xg_searchlist">
+        <dl class="xg_s1">
+            <dt>从区域开始</dt>
+            <dd>
+                <ul>
+                    <foreach name="cityarea_option" item="item"><if condition="$key lt 21"><li><a href="sale/index.php?cityarea=<!--{$key}-->"><!--{$item}--></a></li></if></foreach>
+
+                </ul>
+            </dd>
+        </dl>
+        <dl class="s2">
+            <dt>热门房型</dt>
+            <dd class="clear_box">
+                <ul>
+                    <li><a href="sale/index.php?room=1" target="_blank">一室</a></li>
+                    <li><a href="sale/index.php?room=2" target="_blank">二室</a></li>
+                    <li><a href="sale/index.php?room=3" target="_blank">三室</a></li>
+                    <li><a href="sale/index.php?room=4" target="_blank">四室</a></li>
+                    <li><a href="sale/index.php?room=5" target="_blank">五室</a></li>
+                    <li><a href="sale/index.php?room=6" target="_blank">五室以上</a></li>
+                </ul>
+            </dd>
+        </dl>
+        <dl  class="s3">
+            <dt>热门价格</dt>
+            <dd>
+                <ul>
+                    <foreach name="house_price_option" item="item">
+                        <li> <a href="sale/index.php?price=<!--{$key}-->"><!--{$item}--></a></li>
+                    </foreach>
+                </ul>
+            </dd>
+        </dl>
+        <dl class="s4">
+            <dt>热门面积</dt>
+            <dd>
+                <ul>
+                    <foreach name="house_totalarea_option" item="item">
+                        <li><a href="sale/index.php?totalarea=<!--{$key}-->"><!--{$item}--></a></li>
+                    </foreach>
+                    <li><a href="sale">更多</a></li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>

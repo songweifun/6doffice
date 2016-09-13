@@ -1,0 +1,9 @@
+<if condition="$dataInfo['ad_type'] eq 1">
+document.write('<a href="<!--{$dataInfo.link_url}-->" target="_blank"><img width="<!--{$dataInfo.width}-->"  height="<!--{$dataInfo.height}-->" src="__ROOT__/Uploads/<!--{$dataInfo.image_url}-->"></a>');
+<elseif condition="$dataInfo['ad_type'] eq 2"/>
+document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="<!--{$dataInfo.width}-->" height="<!--{$dataInfo.height}-->" id="Untitled-1" align="middle"><param name="allowScriptAccess" value="sameDomain" /><param name="movie" value="__ROOT__/Uploads/<!--{$dataInfo.flash_url}-->" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" /><embed src="__ROOT__/Uploads/<!--{$dataInfo.flash_url}-->" quality="high" bgcolor="#ffffff" width="<!--{$dataInfo.width}-->"  height="<!--{$dataInfo.height}-->" name="mymovie" align="middle" allowScriptAccess="sameDomain"  type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" /></object> ');
+<elseif condition="$dataInfo['ad_type'] eq 3"/>
+document.write('<a href="<!--{$dataInfo.link_url}-->" target="_blank"><!--{$dataInfo.text}--></a>');
+<elseif condition="$dataInfo['ad_type'] eq 4"/>
+document.write('<a href="<!--{$dataInfo.link_url}-->" target="_blank"><!--{$dataInfo.code}--></a>');
+</if>

@@ -1,0 +1,302 @@
+<script type="text/javascript">
+    <!--
+    var timeout         = 500;
+    var closetimer		= 0;
+    var ddmenuitem      = 0;
+
+    // open hidden layer
+    function mopen(id)
+    {
+        // cancel close timer
+        mcancelclosetime();
+
+        // close old layer
+        if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+        // get new layer and show it
+        ddmenuitem = document.getElementById(id);
+        ddmenuitem.style.visibility = 'visible';
+
+    }
+    // close showed layer
+    function mclose()
+    {
+        if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+    }
+
+    // go close timer
+    function mclosetime()
+    {
+        closetimer = window.setTimeout(mclose, timeout);
+    }
+
+    // cancel close timer
+    function mcancelclosetime()
+    {
+        if(closetimer)
+        {
+            window.clearTimeout(closetimer);
+            closetimer = null;
+        }
+    }
+
+    // close layer when click-out
+    document.onclick = mclose;
+    // -->
+</script>
+<script type="text/javascript">
+    function newHouse()
+    {
+        document.topSearchForm.xz.value="新房";
+        document.topSearchForm.action = '<!--{$cfg.url}-->newHouse/index.php';
+    }
+    function sale()
+    {
+        document.topSearchForm.xz.value="二手房";
+        document.topSearchForm.action = '<!--{$cfg.url}-->sale/index.php';
+    }
+    function rent()
+    {
+        document.topSearchForm.xz.value="租房";
+        document.topSearchForm.action = '<!--{$cfg.url}-->rent/index.php';}
+
+    function broker()
+    {
+        document.topSearchForm.xz.value="经纪人";
+        document.topSearchForm.action = '<!--{$cfg.url}-->broker/index.php';}
+
+    function community()
+    {
+        document.topSearchForm.xz.value="小区";
+        document.topSearchForm.action = '<!--{$cfg.url}-->community/index.php';}
+
+    function company()
+    {
+        document.topSearchForm.xz.value="公司";
+        document.topSearchForm.action = '<!--{$cfg.url}-->company/index.php';}
+</SCRIPT>
+<div class="topbar_bg">
+    <div class="topbar">
+        <div style="float:left">
+            您当前所在的城市 <b><!--{$city}--></b>
+            <if condition="$switch_url neq null">
+                <a href="<!--{$cfg.page.switch_url}-->" title="切换城市">【切换城市】</a>
+            </if>
+        </div>
+        <div style="float:right">
+            <if condition="$username neq null">
+            <span class="s_l">您好，<!--{$username}-->！</span>
+            <a class="s_l" href="<!--{:U('Member/Index/index')}-->" target="_blank">[我的办公室]</a>
+            <a class="s_l" href="<!--{:U('Member/Login/logout')}-->" target="_blank">[退出登录]</a>
+
+            <else/>
+            <span class="s_l">您好，欢迎来到<!--{$titlec}-->！</span>
+                <a class="s_l" href="<!--{:U('Member/Login/index')}-->" target="_blank" title="登录">[登录]</a>
+                <a class="s_l" href="<!--{:U('Member/Login/index')}-->" target="_blank" title="经纪人注册">[经纪人注册]</a>
+            </if>
+        </div>
+    </div>
+</div>
+
+<div class="xg_nav">
+
+    <div class="xg_nav">
+        <div class="xg_navcont1">
+            <div class="xg_logo"><a title="<!--{$cfg.page.titlec}-->" href="<!--{$cfg.url}-->"><img alt="<!--{$cfg.page.titlec}-->" src="<!--{$cfg.path.images}-->logo.png" height="53" /></a></div>
+            <div class="xg_menu">
+                <div class="xg_menucont">
+                    <ul>
+
+                        <li <if condition="$menu eq 'index'">class="xg_cur"</if>><a href="<!--{$cfg.url}-->">首  页</a></li>
+                        <if condition="$newsOpen eq 1">
+                        <li><a href="<!--{$cfg.url_news}-->">新  闻</a></li>
+                        </if>
+                        <li <if condition="$menu eq 'sale'">class="xg_cur"</if>><a href="<!--{$cfg.url_sale}-->">二手房</a></li>
+                        <li <if condition="$menu eq 'rent'">class="xg_cur"</if>><a href="<!--{$cfg.url_rent}-->">租  房</a></li>
+                        <if condition="$newhouseOpen eq 1">
+                        <li <if condition="$menu eq 'newHouse'">class="xg_cur"</if>><a href="<!--{$cfg.url_newHouse}-->">新  房</a></li>
+                        </if>
+                        <li <if condition="($menu eq 'broker') or ($menu=='shop')">class="xg_cur"</if>><a href="<!--{$cfg.url_broker}-->">经纪人</a></li>
+                        <li <if condition="$menu eq 'community'">class="xg_cur"</if>><a href="<!--{$cfg.url_community}-->">小  区</a></li>
+                        <li <if condition="$menu eq 'company'">class="xg_cur"</if>><a href="<!--{$cfg.url_company}-->">公  司</a></li>
+                        <if condition="$bbsOpen eq 1">
+                        <li><a href="<!--{$cfg.url_bbs}-->">论  坛</a></li>
+                        </if>
+                    </ul>
+                    <!--  <span class="xg_phone"><a href="#">手机</a></span> <span class="xg_ditie"><a href="#">地铁找房</a></span> --><span class="xg_map"><if condition="$menu eq 'sale'"><a href="<!--{$cfg.url}-->m/map">地图找房</a><elseif condition="$menu eq 'rent'"/><a href="<!--{$cfg.url}-->m/maprent">地图找房</a><else/><a href="<!--{$cfg.url}-->m/map">地图找房</a></if></span>  </div>
+                <i></i>
+            </div>
+        </div>
+
+
+        <div class="xg_line"></div>
+
+        <div class="xg_navsearch">
+
+            <if condition="($menu eq 'sale') or ($menu eq 'pinggu')">
+                <div class="xg_nvain">
+                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->sale/index.php">
+                        <if condition="$Think.get.q eq null">
+                                <input name="q" type="text" id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或房源特征'){this.value = '可输入小区名、路名或房源特征';}" onfocus="if(this.value == '可输入小区名、路名或房源特征'){this.value = '';}" value="可输入小区名、路名或房源特征" />
+                            <else/>
+                                <input name="q" type="text" id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或房源特征'){this.value = '可输入小区名、路名或房源特征';}" onfocus="if(this.value == '可输入小区名、路名或房源特征'){this.value = '';}" value="<!--{$Think.get.q}-->" />
+                        </if>
+                </div>
+
+                <ul id="sddm2">
+                    <li>
+                        <input name="xz" type="text"  class="x-xz3" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="二手房">
+                        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                            <if condition="$newhouseOpen eq 1">
+                                <a onclick="newHouse()">新房</a>
+                            </if>
+                            <a onclick="sale()">二手房</a>
+                            <a onclick="rent()">租房</a>
+                            <a onclick="broker()">经纪人</a>
+                            <a onclick="community()">小区</a>
+                            <a onclick="company()">公司</a>
+                        </div>
+                    </li>
+                </ul>
+                    <INPUT value=""  class=xg_navinp2 type=submit>
+                    </form>
+
+
+            <elseif condition="$menu eq 'rent'"/>
+                <div class="xg_nvain">
+                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->rent/index.php">
+                        <input name="q" type="text" id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或房源特征'){this.value = '可输入小区名、路名或房源特征';}" onfocus="if(this.value == '可输入小区名、路名或房源特征'){this.value = '';}" value="<if condition='$Think.get.q eq null'>可输入小区名、路名或房源特征<else/><!--{$Think.get.q}--></if>" />
+                </div>
+                <ul id="sddm2">
+                    <li>
+                        <input name="xz" type="text"  class="x-xz3" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="租房">
+                        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                            <if condition="$newhouseOpen eq 1">
+                                <a onclick="newHouse()">新房</a>
+                            </if>
+                            <a onclick="sale()">二手房</a>
+                            <a onclick="rent()">租房</a>
+                            <a onclick="broker()">经纪人</a>
+                            <a onclick="community()">小区</a>
+                            <a onclick="company()">公司</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <INPUT value=""  class=xg_navinp2 type=submit>
+                </form>
+            <elseif condition="$menu eq 'community'"/>
+                <div class="xg_nvain">
+                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->community/index.php">
+                        <input name="q" type="text" id="ts"  class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或划片学校'){this.value = '可输入小区名、路名或划片学校';}" onfocus="if(this.value == '可输入小区名、路名或划片学校'){this.value = '';}" value="<if condition='$Think.get.q eq null'>可输入小区名、路名或划片学校<else/><!--{$Think.get.q}--></if>" />
+                </div>
+                <ul id="sddm2">
+                    <li>
+                        <input name="xz" type="text"  class="x-xz3" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="小区">
+                        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                            <if condition="$newhouseOpen eq 1">
+                                <a onclick="newHouse()">新房</a>
+                            </if>
+                            <a onclick="sale()">二手房</a>
+                            <a onclick="rent()">租房</a>
+                            <a onclick="broker()">经纪人</a>
+                            <a onclick="community()">小区</a>
+                            <a onclick="company()">公司</a>
+                        </div>
+                    </li>
+                </ul>
+                <INPUT value=""  class=xg_navinp2 type=submit>
+                </form>
+            <elseif condition="$menu eq 'company'"/>
+                <div class="xg_nvain">
+                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->company/index.php">
+                        <input name="q" type="text"  id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入公司名称'){this.value = '可输入公司名称';}" onfocus="if(this.value == '可输入公司名称'){this.value = '';}" value="<!--{if $Think.get.q==""}-->可输入公司名称<!--{else}--><!--{$Think.get.q}--><!--{/if}-->" />
+                </div>
+                <ul id="sddm2">
+                <li>
+                    <input name="xz" type="text"  class="x-xz3" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="公司">
+                    <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                        <if condition="$newhouseOpen eq 1">
+                            <a onclick="newHouse()">新房</a>
+                        </if>
+                        <a onclick="sale()">二手房</a>
+                        <a onclick="rent()">租房</a>
+                        <a onclick="broker()">经纪人</a>
+                        <a onclick="community()">小区</a>
+                        <a onclick="company()">公司</a>
+                    </div>
+                </li>
+                </ul>
+                <INPUT value=""  class=xg_navinp2 type=submit>
+                </form>
+            <elseif condition="($menu eq 'broker') or ($menu eq 'shop')"/>
+                <div class="xg_nvain">
+                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->broker/index.php">
+                        <input name="q" type="text" id="ts"  class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入经纪人名、门店名，或公司名称关键词'){this.value = '可输入经纪人名、门店名，或公司名称关键词';}" onfocus="if(this.value == '可输入经纪人名、门店名，或公司名称关键词'){this.value = '';}" value="<if condition='$Think.get.q eq null'>可输入经纪人名、门店名，或公司名称关键词<else/><!--{$Think.get.q}--></if>" />
+                </div>
+                <ul id="sddm2">
+                    <li><input name="xz" type="text"  class="x-xz3" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="经纪人">
+                        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                            <if condition="$newhouseOpen eq 1">
+                                <a onclick="newHouse()">新房</a>
+                            </if>
+                            <a onclick="sale()">二手房</a>
+                            <a onclick="rent()">租房</a>
+                            <a onclick="broker()">经纪人</a>
+                            <a onclick="community()">小区</a>
+                            <a onclick="company()">公司</a>
+                        </div>
+                    </li>
+                </ul>
+                <INPUT value=""  class=xg_navinp2 type=submit>
+                </form>
+        <elseif condition="$menu eq 'newHouse'"/>
+                <div class="xg_nvain">
+                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->newHouse/index.php">
+                        <input name="q" type="text" id="ts"  class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入楼盘名、路名或划片学校'){this.value = '可输入楼盘名、路名或划片学校';}" onfocus="if(this.value == '可输入楼盘名、路名或划片学校'){this.value = '';}" value="<if condition='$Think.get.q eq null'>可输入楼盘名、路名或划片学校<else/><!--{$Think.get.q}--></if>" />
+                </div>
+                <ul id="sddm2">
+                    <li>
+                        <input name="xz" type="text"  class="x-xz3" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="新房">
+                        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                            <if condition="$newhouseOpen eq 1">
+                                <a onclick="newHouse()">新房</a>
+                            </if>
+                            <a onclick="sale()">二手房</a>
+                            <a onclick="rent()">租房</a>
+                            <a onclick="broker()">经纪人</a>
+                            <a onclick="community()">小区</a>
+                            <a onclick="company()">公司</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <INPUT value=""  class=xg_navinp2 type=submit>
+                </form>
+        <else/>
+                <div class="xg_nvain">
+                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->sale/index.php">
+                        <input name="q" type="text"  id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或房源特征'){this.value = '可输入小区名、路名或房源特征';}" onfocus="if(this.value == '可输入小区名、路名或房源特征'){this.value = '';}" value="<if condition='$Think.get.q eq null'>可输入小区名、路名或房源特征<else/><!--{$Think.get.q}--></if>" />
+                </div>
+                <ul id="sddm2">
+                    <li>
+                        <input name="xz" type="text"  class="x-xz3" id="xz"  onmouseover="mopen('m1')" onmouseout="mclosetime()" value="二手房">
+                        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                            <if condition="$newhouseOpen eq 1">
+                                <a onclick="newHouse()">新房</a>
+                            </if>
+                            <a onclick="sale()">二手房</a>
+                            <a onclick="rent()">租房</a>
+                            <a onclick="broker()">经纪人</a>
+                            <a onclick="community()">小区</a>
+                            <a onclick="company()">公司</a>
+                        </div>
+                    </li>
+                </ul>
+                <INPUT value=""  class=xg_navinp2 type=submit>
+                </form>
+        </if>
+
+    </div>
+</div>
+<!-- 新增部分结束 -->
