@@ -1,0 +1,27 @@
+*{margin:0;padding:0;}
+img,a img,input,button{border:0 none;vertical-align:top;}
+body{color:#333;font:12px/1.5 Tahoma, Helvetica, Arial, sans-serif;}
+a:link,a:visited {color:#04a;text-decoration:none;}
+a:hover,a:active {color:#04a;text-decoration:none;}
+div.hbox,div.hbox div{float:none;}
+.hbox,.hbox_l,.hbox_r,
+.hbox_pay dt,.hbox_pay dt span,.hbox_pay .text,.hbox_pay .text_r,.hbox_pay .img1,.hbox_pay .img2{background:url(../images/hbox_bg.png) no-repeat;}
+.hbox{width:610px;height:160px;margin:0 auto;background-repeat:repeat-x;background-position:0 -340px;}
+.hbox_l{height:160px;background-position:0 0;}
+.hbox_r{height:145px;padding:15px 0 0 20px;background-position:100% -170px;}
+.hbox_toptext{height:22px;line-height:22px;text-indent:10px;}
+.hbox_toptext strong{font-size:14px;font-weight:bold;}
+.hbox_pay{clear:both;height:32px;margin:15px 0 0;vertical-align:top;}
+.hbox_pay dt{float:left;width:175px;height:32px;line-height:32px;font-size:14px;border:1px solid #cd0302;border-right:0;background-repeat:repeat-x;background-position:0 -552px;}
+.hbox_pay dt span{display:block;width:100%;background-position:100% -510px;color:#fff;}
+.hbox_pay dt span strong{float:left;padding:0 6px 0 10px;font:600 26px/32px Tahoma,Arial;}
+.hbox_pay dt span label{padding:0 0 0 20px;}
+.hbox_pay .text{float:left;width:290px;height:32px;line-height:32px;margin:1px 0 0;background-repeat:repeat-x;background-position:0 -636px;}
+.hbox_pay .text_r{display:block;width:100%;background-position:100% -594px;}
+.hbox_pay .img1,.hbox_pay .img2{display:block;text-indent:70px;}
+.hbox_pay .img1{background-position:0 -678px;}
+.hbox_pay .img2{background-position:0 -720px;}
+.hbox_pay .but{float:left;width:100px;height:30px;margin:2px 0 0 8px;}
+.hbox_pay .but a,.hbox_pay .but a:link,.hbox_pay .but a:hover{background:url(../images/paybut.gif) no-repeat;}
+.hbox_pay .but a,.hbox_pay .but a:link{display:block;width:100px;height:30px;background-position:0 -135px;}
+.hbox_pay .but a:hover{background-position:-115px -135px;}

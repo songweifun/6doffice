@@ -1,0 +1,127 @@
+
+/* 全局CSS定义 */
+body { font-family:"Microsoft Yahei"; margin:0 auto; padding:0;}
+ul, ol, li { list-style:none }
+input { font-size:12px; padding:0; font-family:inherit; }
+/* 默认链接颜色 */
+a { outline-style:none; color:#333; text-decoration:none }
+
+/* common */
+
+
+/* 新导航93 */
+
+/* 全国城市 */
+
+
+/*导航*/
+.menu{height:26px;_overflow:hidden;z-index:9999;}
+.menu a{color:#fff;text-decoration:none;position:relative;}
+.menu li{height:35px;font-size:14px;float:left;position:relative;color:#357d13;text-shadow: 0 0px 1px #fff; text-align:center;padding:0 12px;}
+.menu li:hover{height:35px;background:#b20000 url(../images/navjt.gif) no-repeat center bottom;border:0px;padding:0px 0px;border-radius:3px;border-bottom:0px}
+.menu li:hover a{color:#fff; display:block;}
+.menu ul{background-color:#fff;border:1px solid #b2b2b2;border-top:none;position:absolute;left:-1px;top:-999em;z-index:9999;padding:0px;display:none;-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#b2b2b2')";
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#b2b2b2');
+    -moz-box-shadow: 1px 1px 2px #b2b2b2;
+    -webkit-box-shadow: 1px 1px 2px #b2b2b2;
+    box-shadow:1px 1px 2px #b2b2b2;}
+.menu li:hover ul{width:130px;top:35px;display:block;}
+.menu li:hover ul li{width:120px;font-size:12px;border:none;height:26px;line-height:26px;text-align:left;padding:0 0px;background:none;padding-left:10px;}
+.menu li:hover ul li a{text-decoration:none;padding:0;border-bottom:0px;width:120px;display:block;color:#888;font-family:"宋体"}
+.menu li:hover ul li a:hover{text-decoration:none;color:#c00;}
+/*.menu li:hover ul li:hover{background:#cccccc}*/
+
+
+
+/* 全局 */
+
+/*大背景*/
+
+.banner_mag{position:absolute;z-index:333;left:50%;top:100px;margin-left:-380px;text-align:left;border: solid 1px red}
+.banner_magnr{padding:40px 0px 20px 40px;color:#fff; text-align:left;background-color: #5C5C5C;margin:0 auto;border-radius: 10px;opacity:0.8;}
+
+.news01{height:54px;}
+/**
+.news01 .s1{float:left;width:190px;height:54px;background:url(../images/slogo.png) no-repeat;_background-image:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/slogo.png",sizingMethod='crop',enabled=true);  text-indent:-999em;}
+.news01 .s1 a{width:184px;height:54px; display:block}
+**/
+
+.news01 .s1{float:left;height:54px;background:url(../images/slogoV01.png) no-repeat 0 7px;_background-image:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/slogoV01.png",sizingMethod='crop',enabled=true);  text-indent:-999em;}
+.news01 .s1 a{height:54px; display:block}
+
+.news01 .s2{float:left;height:24px;padding-top:22px;font-size:14px;color:#fff;}
+.news01 .s2 a{color:#fff;}
+.news02{width:720px;height:36px;margin-top:10px;z-index:888; position:relative;}
+
+/**
+.news02 .s1{float:left;width:560px;height:36px;line-height:36px;font-size:15px;position: relative;}
+.news02 .s1 a{float:left;padding:0 15px;font-size:15px;color:#fff; text-decoration:none}
+**/
+.news02 .s1{float:left;height:36px;line-height:36px;font-size:15px;position: relative;}
+.news02 .s1 a{float:left;padding:0 12px;font-size:15px;color:#fff; text-decoration:none}
+
+.news02 .s1 a:hover{ background:#c00;color:#fff;border-radius:3px;}
+.news02 .s1 a.cur{background:#c00;border-radius:3px;}
+
+
+
+.news03{height:42px;margin-top:10px;z-index:777;}
+.news03 .searchjt{width:16px;height:7px; background:url(../images/navsjt.gif) no-repeat; position: absolute; top:-6px;left:27px;}
+.sinputstyle{float:left;width:610px;height:42px;line-height:42px;color:#888;overflow:hidden;border:0;font-size:14px; text-indent:10px;overflow:hidden;background:url(../images/newgif.gif?v=12) no-repeat 0 -440px;outline:none; font-family:"Microsoft Yahei"}
+.sbuttonstyle{float:left;cursor:pointer;border:0;width:60px;height:42px;line-height:42px;background:url(../images/newgif.gif?v=12) no-repeat 0 -285px;outline:none}
+/* 广告 */
+
+/* 工具 */
+
+/* 特供 */
+
+
+/*self*/
+.daohang{
+    font-size: 16px;
+}
+
+.newsearch{
+        margin:10px auto;
+        padding-left: 0px;
+    }
+    .liebiaoye{
+        margin-left: 10px;
+        color: white;
+    }
+    .glyphicon-search{
+        color: white;
+
+    }
+    .serarch_button{
+        background-color: #CD0000;
+        width: 60px;
+        height: 45px;
+        font-size: 25px;
+    }
+    .lunbocss{
+        background-color: #0A0A0A;
+        opacity:0.8;
+    }
+    .search_input{
+        height: 45px;
+    }
+
+    .navbar-inverse{
+
+    }
+    .lunbo_top{
+        position:absolute;z-index:-333;
+    }
+
+    .search_parent{
+        position:relative;
+
+        top:90px;
+    }
+
+a:focus{outline: none;}
+/*调整按钮*/
+
+
+

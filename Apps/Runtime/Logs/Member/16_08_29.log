@@ -1,0 +1,1738 @@
+[ 2016-08-29T22:16:28+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000385s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000496s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0009s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000498s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000598s ]
+
+[ 2016-08-29T22:16:28+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000540s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000473s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000607s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000475s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000568s ]
+
+[ 2016-08-29T22:16:34+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000444s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000489s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000609s ]
+
+[ 2016-08-29T22:17:12+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/addSell
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000669s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000676s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000803s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 34 行.
+NOTIC: [8] Undefined index: scores /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_housesell` [ RunTime:0.0009s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_housesell` WHERE ( 1 = 1 and is_checked = 1 and broker_id = 1 and status =1  ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: addsale /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_dd` [ RunTime:0.0118s ]
+SQL: SELECT * FROM `fke_dd` WHERE `dd_name` = 'house_feature' LIMIT 1   [ RunTime:0.0135s ]
+SQL: SHOW COLUMNS FROM `fke_dd_item` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_dd_item` WHERE `dd_id` = 8 ORDER BY list_order  [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 98 行.
+NOTIC: [8] Undefined index: HTTP_REFERER /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 110 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000242s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000368s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 243 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 244 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 246 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 273 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 346 行.
+NOTIC: [8] Undefined index: cid /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 347 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 356 行.
+NOTIC: [8] Undefined index: house_title /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 371 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Undefined index: borough_id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 388 行.
+NOTIC: [8] Undefined index: borough_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 389 行.
+NOTIC: [8] Undefined index: borough_addrest /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 397 行.
+NOTIC: [8] Undefined index: house_floor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 414 行.
+NOTIC: [8] Undefined index: house_topfloor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 415 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Undefined index: house_room /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 426 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Undefined index: house_price /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 450 行.
+NOTIC: [8] Undefined index: house_totalarea /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 458 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Undefined index: house_desc /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 497 行.
+NOTIC: [8] Undefined index: house_drawing /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 519 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Undefined index: video /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 549 行.
+NOTIC: [8] Undefined index: house_pic /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 564 行.
+NOTIC: [8] Undefined index: owner_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 597 行.
+NOTIC: [8] Undefined index: owner_phone /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 603 行.
+NOTIC: [8] Undefined index: owner_notes /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 609 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 616 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.081048s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.081173s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.013591s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.013726s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000741s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000889s ]
+
+[ 2016-08-29T22:17:13+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000506s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000719s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000970s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000448s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000542s ]
+
+[ 2016-08-29T22:17:13+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000804s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000904s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001113s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000625s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000740s ]
+
+[ 2016-08-29T22:18:01+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/addSell
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000666s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000686s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000817s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 34 行.
+NOTIC: [8] Undefined index: scores /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_housesell` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_housesell` WHERE ( 1 = 1 and is_checked = 1 and broker_id = 1 and status =1  ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: addsale /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_dd` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_dd` WHERE `dd_name` = 'house_feature' LIMIT 1   [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `fke_dd_item` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_dd_item` WHERE `dd_id` = 8 ORDER BY list_order  [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 98 行.
+NOTIC: [8] Undefined index: HTTP_REFERER /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 110 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000589s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000877s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 243 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 244 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 246 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 273 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 346 行.
+NOTIC: [8] Undefined index: cid /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 347 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 356 行.
+NOTIC: [8] Undefined index: house_title /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 371 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Undefined index: borough_id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 388 行.
+NOTIC: [8] Undefined index: borough_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 389 行.
+NOTIC: [8] Undefined index: borough_addrest /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 397 行.
+NOTIC: [8] Undefined index: house_floor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 414 行.
+NOTIC: [8] Undefined index: house_topfloor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 415 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Undefined index: house_room /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 426 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Undefined index: house_price /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 450 行.
+NOTIC: [8] Undefined index: house_totalarea /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 458 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Undefined index: house_desc /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 497 行.
+NOTIC: [8] Undefined index: house_drawing /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 519 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Undefined index: video /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 549 行.
+NOTIC: [8] Undefined index: house_pic /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 564 行.
+NOTIC: [8] Undefined index: owner_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 597 行.
+NOTIC: [8] Undefined index: owner_phone /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 603 行.
+NOTIC: [8] Undefined index: owner_notes /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 609 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 616 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.089595s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.089714s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.015588s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.015703s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000740s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000888s ]
+
+[ 2016-08-29T22:18:01+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000557s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000476s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000625s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000490s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000591s ]
+
+[ 2016-08-29T22:18:02+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000873s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000919s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001158s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000743s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000869s ]
+
+[ 2016-08-29T22:18:10+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/ajax/action/getBoroughList?callback=jQuery1113010062071842916698_1472480281602&q=cf&_=1472480281603
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000460s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000538s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000654s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0008s ]
+SQL: SELECT `id`,`borough_name`,`borough_address` FROM `fke_borough` WHERE (  `borough_name` LIKE '%cf%' OR `borough_letter` LIKE '%cf%' OR `borough_alias` LIKE '%cf%' ) AND `isdel` <> 1  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `fke_borough_draw` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_borough_draw` WHERE `borough_id` = 2  [ RunTime:0.0185s ]
+NOTIC: [8] Undefined index: borough_alias /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 304 行.
+NOTIC: [8] Undefined variable: pic_thumb /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+NOTIC: [8] Undefined variable: pic_url /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+NOTIC: [8] Undefined variable: pic_desc /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+
+[ 2016-08-29T22:18:57+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000607s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000665s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000816s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001073s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001194s ]
+
+[ 2016-08-29T22:18:58+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000721s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000606s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000759s ]
+
+[ 2016-08-29T22:19:13+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000637s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001318s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001620s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002072s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002472s ]
+
+[ 2016-08-29T22:19:14+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000757s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000471s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000600s ]
+
+[ 2016-08-29T22:19:14+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000349s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000442s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000580s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000716s ]
+
+[ 2016-08-29T22:19:14+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000320s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000338s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000430s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000462s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000578s ]
+
+[ 2016-08-29T22:19:15+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000110s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000802s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000486s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000472s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000589s ]
+
+[ 2016-08-29T22:19:42+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000485s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000595s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000525s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000647s ]
+
+[ 2016-08-29T22:19:42+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000459s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000410s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000516s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000472s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000568s ]
+
+[ 2016-08-29T22:19:47+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000509s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000549s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000672s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000474s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000590s ]
+
+[ 2016-08-29T22:19:47+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000694s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000866s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000608s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000733s ]
+
+[ 2016-08-29T22:20:35+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000329s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000345s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000444s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: company_id /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0158s ]
+SQL: SELECT `cityarea_id` FROM `fke_borough` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `cityarea2_id` FROM `fke_borough` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_statistics` [ RunTime:0.0005s ]
+SQL: SELECT `stat_value` FROM `fke_statistics` WHERE `stat_index` = 'housesell_no' LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_statistics` SET `stat_value`=stat_value+1 WHERE `stat_index` = 'housesell_no' [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_borough_pic` [ RunTime:0.0299s ]
+SQL: SELECT * FROM `fke_borough_pic` WHERE `borough_id` = 2  [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: old_value /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 520 行.
+SQL: SHOW COLUMNS FROM `fke_borough_update` [ RunTime:0.0006s ]
+SQL: INSERT INTO `fke_borough_update` (`borough_id`,`field_name`,`old_value`,`broker_id`,`add_time`) VALUES ('2','borough_pic',NULL,'1','1472480435') [ RunTime:0.0173s ]
+NOTIC: [8] Undefined variable: old_value /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 520 行.
+SQL: INSERT INTO `fke_borough_update` (`borough_id`,`field_name`,`old_value`,`broker_id`,`add_time`) VALUES ('2','borough_pic',NULL,'1','1472480435') [ RunTime:0.0002s ]
+SQL: UPDATE `fke_statistics` SET `stat_value`=stat_value+1 WHERE `stat_index` = 'sellNum' [ RunTime:0.0002s ]
+SQL: UPDATE `fke_borough` SET `sell_num`=sell_num+1 WHERE `id` = 2 [ RunTime:0.0003s ]
+
+[ 2016-08-29T22:22:39+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000609s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000601s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000795s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.006362s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006531s ]
+
+[ 2016-08-29T22:22:39+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000372s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000695s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000865s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000503s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000602s ]
+
+[ 2016-08-29T22:22:42+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/addSell
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000420s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000528s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 34 行.
+NOTIC: [8] Undefined index: scores /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_housesell` [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_housesell` WHERE ( 1 = 1 and is_checked = 1 and broker_id = 1 and status =1  ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: addsale /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_dd` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_dd` WHERE `dd_name` = 'house_feature' LIMIT 1   [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `fke_dd_item` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_dd_item` WHERE `dd_id` = 8 ORDER BY list_order  [ RunTime:0.0089s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 98 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000187s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000298s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 243 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 244 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 246 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 273 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 346 行.
+NOTIC: [8] Undefined index: cid /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 347 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 356 行.
+NOTIC: [8] Undefined index: house_title /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 371 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Undefined index: borough_id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 388 行.
+NOTIC: [8] Undefined index: borough_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 389 行.
+NOTIC: [8] Undefined index: borough_addrest /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 397 行.
+NOTIC: [8] Undefined index: house_floor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 414 行.
+NOTIC: [8] Undefined index: house_topfloor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 415 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Undefined index: house_room /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 426 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Undefined index: house_price /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 450 行.
+NOTIC: [8] Undefined index: house_totalarea /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 458 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Undefined index: house_desc /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 497 行.
+NOTIC: [8] Undefined index: house_drawing /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 519 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Undefined index: video /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 549 行.
+NOTIC: [8] Undefined index: house_pic /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 564 行.
+NOTIC: [8] Undefined index: owner_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 597 行.
+NOTIC: [8] Undefined index: owner_phone /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 603 行.
+NOTIC: [8] Undefined index: owner_notes /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 609 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 616 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.084018s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.084147s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.005928s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006089s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000734s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000922s ]
+
+[ 2016-08-29T22:22:43+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000797s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000771s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000924s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001166s ]
+
+[ 2016-08-29T22:22:43+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000590s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000791s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000548s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000682s ]
+
+[ 2016-08-29T22:22:45+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/ajax/action/getBoroughList?callback=jQuery111303802104368754904_1472480562768&q=c%27f&_=1472480562769
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000328s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000401s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000486s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0007s ]
+SQL: SELECT `id`,`borough_name`,`borough_address` FROM `fke_borough` WHERE (  `borough_name` LIKE '%c\'f%' OR `borough_letter` LIKE '%c\'f%' OR `borough_alias` LIKE '%c\'f%' ) AND `isdel` <> 1  [ RunTime:0.0002s ]
+
+[ 2016-08-29T22:22:47+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/ajax/action/getBoroughList?callback=jQuery111303802104368754904_1472480562768&q=cf&_=1472480562770
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000488s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000380s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000460s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0006s ]
+SQL: SELECT `id`,`borough_name`,`borough_address` FROM `fke_borough` WHERE (  `borough_name` LIKE '%cf%' OR `borough_letter` LIKE '%cf%' OR `borough_alias` LIKE '%cf%' ) AND `isdel` <> 1  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `fke_borough_draw` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `fke_borough_draw` WHERE `borough_id` = 2  [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: borough_alias /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 304 行.
+NOTIC: [8] Undefined variable: pic_thumb /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+NOTIC: [8] Undefined variable: pic_url /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+NOTIC: [8] Undefined variable: pic_desc /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+
+[ 2016-08-29T22:22:57+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000484s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000488s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000603s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0009s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.013679s ]
+INFO: [ app_end ] --END-- [ RunTime:0.013822s ]
+
+[ 2016-08-29T22:22:57+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000518s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000531s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000634s ]
+
+[ 2016-08-29T22:23:09+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000360s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000346s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000437s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000473s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000591s ]
+
+[ 2016-08-29T22:23:09+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000495s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000430s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000541s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000537s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000669s ]
+
+[ 2016-08-29T22:23:15+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000448s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000485s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000602s ]
+
+[ 2016-08-29T22:23:24+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000363s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000456s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000447s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000542s ]
+
+[ 2016-08-29T22:23:24+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000321s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000446s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000659s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000801s ]
+
+[ 2016-08-29T22:23:30+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/ajax/action/getBoroughList?callback=jQuery1113047930212167418285_1472480604081&q=c%27f&_=1472480604082
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000347s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000439s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0007s ]
+SQL: SELECT `id`,`borough_name`,`borough_address` FROM `fke_borough` WHERE (  `borough_name` LIKE '%c\'f%' OR `borough_letter` LIKE '%c\'f%' OR `borough_alias` LIKE '%c\'f%' ) AND `isdel` <> 1  [ RunTime:0.0002s ]
+
+[ 2016-08-29T22:23:31+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/ajax/action/getBoroughList?callback=jQuery1113047930212167418285_1472480604081&q=%E9%95%BF%E5%8F%91&_=1472480604083
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000486s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0006s ]
+SQL: SELECT `id`,`borough_name`,`borough_address` FROM `fke_borough` WHERE (  `borough_name` LIKE '%长发%' OR `borough_letter` LIKE '%长发%' OR `borough_alias` LIKE '%长发%' ) AND `isdel` <> 1  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `fke_borough_draw` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_borough_draw` WHERE `borough_id` = 2  [ RunTime:0.0133s ]
+NOTIC: [8] Undefined index: borough_alias /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 304 行.
+NOTIC: [8] Undefined variable: pic_thumb /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+NOTIC: [8] Undefined variable: pic_url /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+NOTIC: [8] Undefined variable: pic_desc /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 308 行.
+
+[ 2016-08-29T22:23:43+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000438s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000593s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.011656s ]
+INFO: [ app_end ] --END-- [ RunTime:0.011788s ]
+
+[ 2016-08-29T22:23:44+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000376s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000425s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000530s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000600s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000745s ]
+
+[ 2016-08-29T22:24:11+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000059s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000682s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001083s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001050s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001201s ]
+
+[ 2016-08-29T22:24:12+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000345s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000455s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000476s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000591s ]
+
+[ 2016-08-29T22:24:12+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHousePicture|house|sell/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000322s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000383s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000479s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000477s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000595s ]
+
+[ 2016-08-29T22:24:29+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture/action/doupload
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000435s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0009s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 136 行.
+NOTIC: [8192] Function ereg() is deprecated /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 141 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Library/WebServer/Documents/6doffice/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+NOTIC: [8] Undefined index: noResize /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 179 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000604s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000749s ]
+
+[ 2016-08-29T22:24:29+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000356s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000533s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000692s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000494s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000594s ]
+
+[ 2016-08-29T22:24:39+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000527s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: company_id /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0238s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0198s ]
+SQL: SELECT `cityarea_id` FROM `fke_borough` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `cityarea2_id` FROM `fke_borough` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_statistics` [ RunTime:0.0004s ]
+SQL: SELECT `stat_value` FROM `fke_statistics` WHERE `stat_index` = 'housesell_no' LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_statistics` SET `stat_value`=stat_value+1 WHERE `stat_index` = 'housesell_no' [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough_pic` [ RunTime:0.0263s ]
+SQL: SELECT * FROM `fke_borough_pic` WHERE `borough_id` = 2  [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: old_value /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 520 行.
+SQL: SHOW COLUMNS FROM `fke_borough_update` [ RunTime:0.0004s ]
+SQL: INSERT INTO `fke_borough_update` (`borough_id`,`field_name`,`old_value`,`broker_id`,`add_time`) VALUES ('2','borough_pic',NULL,'1','1472480679') [ RunTime:0.0179s ]
+SQL: UPDATE `fke_statistics` SET `stat_value`=stat_value+1 WHERE `stat_index` = 'sellNum' [ RunTime:0.0003s ]
+SQL: UPDATE `fke_borough` SET `sell_num`=sell_num+1 WHERE `id` = 2 [ RunTime:0.0118s ]
+
+[ 2016-08-29T22:28:22+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000573s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002028s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002271s ]
+NOTIC: [8] Undefined index: AUTH_CHECKTIME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/CommonController.class.php 第 18 行.
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 AND `passwd` = 'e10adc3949ba59abbe56e057f20f883e' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: company_id /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough` [ RunTime:0.0008s ]
+SQL: SELECT `cityarea_id` FROM `fke_borough` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `cityarea2_id` FROM `fke_borough` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_statistics` [ RunTime:0.0005s ]
+SQL: SELECT `stat_value` FROM `fke_statistics` WHERE `stat_index` = 'housesell_no' LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_statistics` SET `stat_value`=stat_value+1 WHERE `stat_index` = 'housesell_no' [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_borough_pic` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `fke_borough_pic` WHERE `borough_id` = 2  [ RunTime:0.0001s ]
+NOTIC: [8] Undefined variable: old_value /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 520 行.
+SQL: SHOW COLUMNS FROM `fke_borough_update` [ RunTime:0.0005s ]
+SQL: INSERT INTO `fke_borough_update` (`borough_id`,`field_name`,`old_value`,`broker_id`,`add_time`) VALUES ('2','borough_pic',NULL,'1','1472480902') [ RunTime:0.0011s ]
+SQL: UPDATE `fke_statistics` SET `stat_value`=stat_value+1 WHERE `stat_index` = 'sellNum' [ RunTime:0.0006s ]
+SQL: UPDATE `fke_borough` SET `sell_num`=sell_num+1 WHERE `id` = 2 [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `fke_housesell` [ RunTime:0.0009s ]
+SQL: INSERT INTO `fke_housesell` (`house_title`,`cityarea_id`,`cityarea2_id`,`house_type`,`house_price`,`house_totalarea`,`house_room`,`house_hall`,`house_toilet`,`house_veranda`,`video`,`house_topfloor`,`house_floor`,`house_age`,`house_toward`,`house_fitment`,`house_feature`,`house_desc`,`borough_id`,`borough_name`,`broker_id`,`belong`,`owner_name`,`owner_phone`,`owner_notes`,`is_vexation`,`company_id`,`house_thumb`,`house_no`,`created`,`updated`,`update_order`,`status`,`house_drawing`) VALUES ('长发中心招租','3','24','5','300','150','1','1','1','1','vide','30','20','1994','5','2',',6,1,11,12,','好房招租','2','长发CFC','1','1','王新生','151595226','1111','0',NULL,'house/sell/2016/8/20160829222411_1804895954_thumb.jpg','4510010030','1472480902','1472480902','1472495302','1','borough/drawing/20160829222343.jpg') [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `fke_housesell_pic` [ RunTime:0.0007s ]
+SQL: INSERT INTO `fke_housesell_pic` (`pic_url`,`pic_thumb`,`pic_desc`,`creater`,`addtime`,`housesell_id`) VALUES ('house/sell/2016/8/20160829222411_1804895954.jpg','house/sell/2016/8/20160829222411_1804895954_thumb.jpg','长发CFC','fansongwei','1472480902','1') [ RunTime:0.0004s ]
+SQL: INSERT INTO `fke_housesell_pic` (`pic_url`,`pic_thumb`,`pic_desc`,`creater`,`addtime`,`housesell_id`) VALUES ('house/sell/2016/8/20160829222412_2106110396.jpg','house/sell/2016/8/20160829222412_2106110396_thumb.jpg','长发CFC','fansongwei','1472480902','1') [ RunTime:0.0002s ]
+SQL: INSERT INTO `fke_housesell_pic` (`pic_url`,`pic_thumb`,`pic_desc`,`creater`,`addtime`,`housesell_id`) VALUES ('house/sell/2016/8/20160829222412_1249058606.jpg','house/sell/2016/8/20160829222412_1249058606_thumb.jpg','长发CFC','fansongwei','1472480902','1') [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000090s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000253s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036166s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036308s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.007959s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.008069s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000712s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000813s ]
+
+[ 2016-08-29T22:28:24+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/addSell
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000328s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000442s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 34 行.
+NOTIC: [8] Undefined index: scores /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_housesell` [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_housesell` WHERE ( 1 = 1 and is_checked = 1 and broker_id = 1 and status =1  ) LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: vip /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: addsale /Library/WebServer/Documents/6doffice/Apps/Common/Common/function.php 第 50 行.
+SQL: SELECT * FROM `fke_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `fke_dd` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `fke_dd` WHERE `dd_name` = 'house_feature' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `fke_dd_item` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `fke_dd_item` WHERE `dd_id` = 8 ORDER BY list_order  [ RunTime:0.0088s ]
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 98 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000437s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000555s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 239 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 243 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 244 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 246 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 273 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 346 行.
+NOTIC: [8] Undefined index: cid /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 347 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 356 行.
+NOTIC: [8] Undefined index: house_title /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 371 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Use of undefined constant house_type - assumed 'house_type' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 379 行.
+NOTIC: [8] Undefined index: borough_id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 388 行.
+NOTIC: [8] Undefined index: borough_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 389 行.
+NOTIC: [8] Undefined index: borough_addrest /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 397 行.
+NOTIC: [8] Undefined index: house_floor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 414 行.
+NOTIC: [8] Undefined index: house_topfloor /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 415 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Use of undefined constant house_room - assumed 'house_room' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 423 行.
+NOTIC: [8] Undefined index: house_room /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 426 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_hall - assumed 'house_hall' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 431 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_toilet - assumed 'house_toilet' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 436 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Use of undefined constant house_veranda - assumed 'house_veranda' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 441 行.
+NOTIC: [8] Undefined index: house_price /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 450 行.
+NOTIC: [8] Undefined index: house_totalarea /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 458 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Undefined index: house_age /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 468 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Use of undefined constant house_fitment - assumed 'house_fitment' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 483 行.
+NOTIC: [8] Undefined index: house_desc /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 497 行.
+NOTIC: [8] Undefined index: house_drawing /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 519 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_toward - assumed 'house_toward' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 528 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Use of undefined constant house_feature - assumed 'house_feature' /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, string given /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 538 行.
+NOTIC: [8] Undefined index: video /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 549 行.
+NOTIC: [8] Undefined index: house_pic /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 564 行.
+NOTIC: [8] Undefined index: owner_name /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 597 行.
+NOTIC: [8] Undefined index: owner_phone /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 603 行.
+NOTIC: [8] Undefined index: owner_notes /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 609 行.
+NOTIC: [8] Undefined index: id /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/14be386b1ddcf6f26c330fc8bfbff932.php 第 616 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.091990s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.092090s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000221s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000309s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000608s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000840s ]
+
+[ 2016-08-29T22:28:24+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadHouseDrawing|borough|drawing
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002917s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003209s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000480s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000610s ]
+
+[ 2016-08-29T22:28:25+08:00 ] ::1 /6doffice/index.php/Member/HouseSell/upload/to/uploadBoroughPicture|borough|picture
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000860s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000897s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001120s ]
+SQL: SHOW COLUMNS FROM `fke_innernote` [ RunTime:0.0017s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fke_innernote` WHERE `to_del` = 0 AND `is_new` = 1 AND `msg_to` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: action /Library/WebServer/Documents/6doffice/Apps/Member/Controller/HouseSellController.class.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000897s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001096s ]
+

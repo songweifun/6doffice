@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+
+.main {
+	float: left;
+	margin-top:60px;
+	margin-left: 36px;
+	font-size: 12px;
+}
+.main .photo2 {
+	position: relative;
+	float: left;
+	font-size: 12px;
+}
+.main .photo2 .btn1 {
+	float: left;
+	margin: 120px 0 120px 20px;
+	_margin: 120px 0 120px 10px;
+}
+.main .photo2 .btn2 {
+	float: left;
+	margin: 120px 0 120px 0;
+}
+.picturespace {
+	float: left;
+	padding: 0 16px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+.picturespace .description {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+.picturespace .picture2 table {
+	width: 500px;
+	height: 350px;
+	vertical-align: middle;
+	text-align: center;
+	border: 1px solid #ccc;
+}
+.picturespace .picture2 img {
+	max-width: 500px;
+	max-height: 400px;
+	
+}
+.picturespace .info {
+	margin-top: 10px;
+}
+a: link {
+	color: #0041D9;
+	text-decoration: none;
+	outline: none;
+}
+a: visited {
+	color: #0041D9;
+	text-decoration: none;
+	outline: none;
+}
+a: hover {
+	color: #f60;
+	text-decoration: underline;
+	outline: none;
+}
+a: active {
+	color: #0041D9;
+	text-decoration: none;
+	outline: none;
+}
+img {
+	border: none;
+}
+	
+.imglistcss
+	{
+		border:1px solid #CCCCCC;
+		margin:10px auto 0px;
+		padding:1px;
+		width:86px;
+		height:64px;
+}
+.imglist
+{
+	clear:both;
+	text-align: center;	
+	}
+.filter_right{
+	font-size:12px;
+	float:right;
+	right:220px;
+	height:32px;
+	width:auto;
+	vertical-align:middle;
+}
+.btmmain{
+	clear:both;
+	width: 580px;
+	height:120px;
+	margin-left:40px;
+	margin-top:50px;
+	text-align: center;
+	vertical-align: middle;
+	}
+.LeftBottonFZ
+{
+ background:url(../images/leftbar.gif) no-repeat 0 0; left:5px; float:left; width:18px; cursor:pointer; position: absolute; top:40px; height:55px;
+}
+.RightBottonFZ { background:url(../images/rightbar.gif) no-repeat 0 0; right:0; float:right; width:18px; cursor:pointer; position:absolute; top:40px; height:55px;}

@@ -1,0 +1,58 @@
+@charset "utf-8";
+body { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif,宋体; font-size:12px;
+}
+ul,li,a,h3,img,p{ text-decoration:none; margin:0; padding:0; list-style-type:none; border:none}
+
+.container{ height:auto;}
+.container_xiangxi{height:auto;}
+
+.container_zt{ width:820px; height:auto; padding:0 55px;}
+.jianjie{height:145px;padding-top:30px;background:url(../../images/city/line_bottom.gif) bottom repeat-x; }
+.jian_nr{ width:410px; float:left; position:relative;height:145px; background:url(../../images/city/line_left.gif) right repeat-y}
+.xinxiang_pic{ position:absolute; top:40px; left:0}
+.jiajie_wenzi{ position:absolute; top:0; right:30px; width:269px;}
+.jieshao{ padding-top:20px; line-height:18px;}
+.jieshao a{ color:#333}
+.jieshao a:hover{ text-decoration:underline}
+.hezuo_huoban img{ width:92px; height:42px; float:left; margin-right:10px; border:1px solid #CCC; margin-bottom:10px;}
+.quanpin_weizhi{  width:850px;line-height:30px; border-bottom:1px dashed #CCC}
+.quanpin_nr{ font-size:14px; color:#333; line-height:24px;}
+.ziti_d span{ font-weight:bold; color:#000}
+.maodian_bg{ background:url(../../images/city/maodian_bg.gif) repeat-x; border:1px solid #E5770F; font-size:14px; font-weight:bold; line-height:39px; margin-bottom:35px; }
+.maodian_bg a{color:#000}
+.bianxian{ border-right:1px solid #E5770F}
+.jm_biaoti{ line-height:20px; border-bottom:2px solid #e96900; background:url(../../images/city/jiameng_jiantou.gif) left no-repeat; padding-left:30px}
+.jm_biaoti a{font-weight:bold; color:#e96900; font-size:16px;}
+.jiameng_wz{ padding:15px 0 35px 0;}
+.jiameng_wz p{line-height:26px;}
+.jiameng_wz p span{ font-weight:bold; color:#000}
+.jiameng_wz a{ text-decoration:underline; color:#03C}
+.ny_lianxi{ width:410px; float:left; height:auto;padding-right:20px;padding:0 10px 10px 0; font-size:12px;}
+.ny_lianxi_pic img{ border:1px solid #ccc; width:66px; height:51px; overflow: hidden}
+.hj{ line-height:16px;}
+.youjian{ width:650px; padding:0 80px;}
+.yijianxiang{ border-bottom:1px solid #ccc;line-height:28px;}
+.shurukuang{ width:350px; border:1px solid #a5acb2; color:#666}
+.jianyi{ width:350px; height:70px;border:1px solid #a5acb2; color:#666 }
+.ziti_e{ color:#fe4800}
+.yijianxiang img{ margin-bottom:-3px;}
+.yj_tijiao{ width:93px; height:30px; background: url(../../images/city/yj_tjiao.gif) no-repeat; cursor:pointer; border:none;}
+.jiejue_wenti{ margin-top:20px; padding-top:10px; border-top:1px dashed #CCC}
+.gengtie{ padding:15px 0;}
+.gengtie_biaoti{ line-height:25px; height:25px;background:#edebeb; padding-left:10px;}
+.gengtie_biaoti span{ font-weight:bold; color:#000}
+.yongfuming{ width:240px; float:left; height:25px;}
+.wengti{ width:280px; float:left; height:25px;}
+.wenti_liebiao { padding:5px 10px; font-size:12px;}
+.wenti_liebiao span{ color:#ff770d;}
+.jiameng_biaoge{ width:648px; border:1px solid #000a55}
+.zx_tj{ background:#fcf9f1; border-bottom:1px solid #000a55; text-align:center; line-height:35px; font-size:16px; font-weight:bold; color:#000}
+.biaodang{ padding:0 20px;}
+.jimeng_kuang_cs{ width:100px;border:1px solid #b7b1aa; color:#999}
+.jimeng_kuang{ width:300px; border:1px solid #b7b1aa; color:#999}
+.jimeng_kuang_dz{ width:500px; border:1px solid #b7b1aa; color:#999}
+.jimeng_kuang_sj{ width:180px;border:1px solid #b7b1aa; color:#999}
+.zhushi{color:#ff0404; text-align:center; line-height:40px; height:40px}
+.gs_jieshao_kuang{ height:100px; border:1px solid #b7b1aa; width:600px; }
+.jiammeng_bg_tj{ width:69px; height:28px; background:url(../../images/city/jm_tj.gif) no-repeat; cursor:pointer; border:none}
+.jiammeng_bg_cz{ width:72px; height:27px;background:url(../../images/city/chongzhi.gif) no-repeat; cursor:pointer; border:none}

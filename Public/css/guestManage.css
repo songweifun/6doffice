@@ -1,0 +1,73 @@
+@charset "utf-8";
+/* CSS file 
+ * Author: BlueChen (QQ：2880127)
+ * Email: itbluechen@gmail.com
+ * LastModified: 2010-12-26
+*/
+/* css reset 
+-------------------------------------------------------- */
+html,body,div,dl,dt,dd,ul,ol,li,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+form,fieldset,legend,input,button,textarea,
+th,td,applet,object,iframe{margin:0;padding:0;vertical-align:baseline;}
+fieldset,img,a img,input,button{border:0 none;vertical-align:top;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+address,caption,cite,code,kbd,samp,tt,dfn,em,strong,th,var,optgroup{font-size:100%;font-style:normal;font-weight:normal;}
+abbr,acronym{border:none;font-variant:normal;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;vertical-align:baseline;}
+body{line-height:1.5;}
+ol,ul{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+:focus{outline:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+:link,:visited,ins{text-decoration:none;}
+
+/* Clear Floats without extra markup */
+.clearfix {display:inline-block;}
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+* html .clearfix {height:1%;}
+.clearfix {display:block;}
+.equal {margin-bottom:-32767px;padding-bottom:32767px;} /* parent markup set overflow:hidden */
+.hide {display:none;}
+.highlight {background:#ffc;}
+
+body,input,label,select,option,textarea,button,fieldset,legend{color:#000;font:12px/1.5 Tahoma, Helvetica, Arial, sans-serif;}
+a:link,a:visited {color:#04a;text-decoration:none;}
+a:hover,a:active {color:#04a;text-decoration:underline;}
+
+
+/* layout */
+#wrap{width:800px;margin:0 auto;}
+.cbox .hd,.cbox .ft,.cbox .side,
+.form_s_phone .ipt_text,.form_s_phone .btn_submit{background:url(../images/v1.png) no-repeat;}
+.cbox{position:relative;width:777px;margin:10px 0;font-size:14px;}
+.cbox .hd{height:40px;background-position:0 0;font:bold 14px/40px "宋体";text-indent:30px;}
+.cbox .bd{padding:24px 0 0 28px;border-left:1px solid #d8dcdf;border-right:1px solid #d8dcdf;}
+.cbox .ft{overflow:hidden;height:4px;background-position:0 -100px;}
+.cbox .side{position:absolute;left:-6px;top:40px;overflow:hidden;width:7px;height:30px;background-position:-790px -50px;text-indent:-9999px;}
+.cbox p{padding:10px 0;}
+.form_s_phone{overflow:hidden;}
+.form_s_phone .ipt_text{display:block;float:left;width:250px;height:30px;background-position:0 -150px;}
+.form_s_phone .ipt_text input{width:240px;margin:4px 4px;height:20px;line-height:20px;}
+.form_s_phone .btn_submit{overflow:hidden;float:left;display:inline;width:96px;height:30px;margin-left:11px;background-position:-261px -150px;text-indent:-9999px;cursor:pointer;}
+.form_s_phone p{clear:both;color:#cbcbcb;}
+
+.stepon{font:bold 16px/20px "宋体";}
+.s_box{}
+.s_box .tit{width:668px;height:26px;line-height:26px;border:1px solid #e0e0e0;background:url(../images/bg1.png) repeat-x;text-indent:15px;}
+.s_box .tit em{font-weight:bold;padding:0 3px;}
+.s_box_list{width:670px;margin:5px 0;}
+.s_box_list li{overflow:hidden;height:36px;line-height:36px;border-bottom:1px solid #ddd;}
+.s_box_list li span{display:block;float:left;}
+.s_box_list .date{width:75px;text-align:right; padding-left:15px;}
+.s_box_list .tt{width:290px;}
+.s_box_list .state{width:100px;color:#080;font-size:12px;}
+.s_box_list .act{width:100px;font-size:12px;}
+.s_box_list .act a{padding:0 3px;}
+
+.more{width:665px;height:22px;line-height:22px;margin:20px 0;border:1px solid #e6dec7;background:#fffbd5;font-size:12px;color:#34331f;text-indent:10px;}
+.suggest{color:#6e6e6e;text-decoration:underline;font-size:12px;}

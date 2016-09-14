@@ -1,0 +1,295 @@
+[ 2016-09-14T14:44:35+08:00 ] ::1 /6doffice/index.php/Member/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000330s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001449s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001619s ]
+NOTIC: [8] Undefined index: AUTH_MEMBER_REALNAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+NOTIC: [8] Undefined index: AUTH_MEMBER_NAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000154s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000398s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 9 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 10 行.
+NOTIC: [8] Undefined index: username /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 52 行.
+NOTIC: [8] Undefined index: email /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 76 行.
+NOTIC: [8] Undefined index: realname /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 84 行.
+NOTIC: [8] Undefined index: mobile /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 92 行.
+NOTIC: [8] Undefined variable: errorMsg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 139 行.
+NOTIC: [8] Undefined variable: errorMsg1 /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 195 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.060886s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.061056s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000652s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000812s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001166s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001447s ]
+
+[ 2016-09-14T14:44:35+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000450s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000372s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000477s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000608s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000744s ]
+
+[ 2016-09-14T14:44:35+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000508s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000511s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000622s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000480s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000602s ]
+
+[ 2016-09-14T14:45:09+08:00 ] ::1 /6doffice/index.php/Member/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000089s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000873s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000569s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000710s ]
+NOTIC: [8] Undefined index: AUTH_MEMBER_REALNAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+NOTIC: [8] Undefined index: AUTH_MEMBER_NAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000214s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 9 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 10 行.
+NOTIC: [8] Undefined index: username /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 52 行.
+NOTIC: [8] Undefined index: email /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 76 行.
+NOTIC: [8] Undefined index: realname /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 84 行.
+NOTIC: [8] Undefined index: mobile /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 92 行.
+NOTIC: [8] Undefined variable: errorMsg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 139 行.
+NOTIC: [8] Undefined variable: errorMsg1 /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 195 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028832s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028986s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000563s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000773s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001291s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001582s ]
+
+[ 2016-09-14T14:45:10+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000339s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000789s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000969s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000738s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000933s ]
+
+[ 2016-09-14T14:45:10+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000529s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000375s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000476s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000482s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000605s ]
+
+[ 2016-09-14T14:45:14+08:00 ] ::1 /6doffice/index.php/Member/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000725s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000394s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000499s ]
+NOTIC: [8] Undefined index: AUTH_MEMBER_REALNAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+NOTIC: [8] Undefined index: AUTH_MEMBER_NAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000146s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000327s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 9 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 10 行.
+NOTIC: [8] Undefined index: username /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 52 行.
+NOTIC: [8] Undefined index: email /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 76 行.
+NOTIC: [8] Undefined index: realname /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 84 行.
+NOTIC: [8] Undefined index: mobile /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 92 行.
+NOTIC: [8] Undefined variable: errorMsg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 139 行.
+NOTIC: [8] Undefined variable: errorMsg1 /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 195 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016447s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016566s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000219s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000309s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000455s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000587s ]
+
+[ 2016-09-14T14:45:15+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000511s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000555s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000725s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000696s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000870s ]
+
+[ 2016-09-14T14:45:15+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000321s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000519s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000662s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000437s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000553s ]
+
+[ 2016-09-14T14:48:23+08:00 ] ::1 /6doffice/index.php/Member/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000398s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000669s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000857s ]
+NOTIC: [8] Undefined index: AUTH_MEMBER_STRING /Library/WebServer/Documents/6doffice/Apps/Member/Controller/CommonController.class.php 第 13 行.
+
+[ 2016-09-14T14:48:23+08:00 ] ::1 /6doffice/index.php/Member/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000647s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000733s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000893s ]
+NOTIC: [8] Undefined index: AUTH_MEMBER_REALNAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+NOTIC: [8] Undefined index: AUTH_MEMBER_NAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000138s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000321s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 9 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 10 行.
+NOTIC: [8] Undefined index: username /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 52 行.
+NOTIC: [8] Undefined index: email /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 76 行.
+NOTIC: [8] Undefined index: realname /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 84 行.
+NOTIC: [8] Undefined index: mobile /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 92 行.
+NOTIC: [8] Undefined variable: errorMsg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 139 行.
+NOTIC: [8] Undefined variable: errorMsg1 /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 195 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041527s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041644s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000369s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000479s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000733s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000951s ]
+
+[ 2016-09-14T14:48:24+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000530s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000569s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000734s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000470s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000593s ]
+
+[ 2016-09-14T14:48:24+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000518s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000386s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000492s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000475s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000595s ]
+
+[ 2016-09-14T14:48:58+08:00 ] ::1 /6doffice/index.php/Member/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000530s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000541s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000688s ]
+NOTIC: [8] Undefined index: AUTH_MEMBER_STRING /Library/WebServer/Documents/6doffice/Apps/Member/Controller/CommonController.class.php 第 13 行.
+
+[ 2016-09-14T14:48:58+08:00 ] ::1 /6doffice/index.php/Member/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001621s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002010s ]
+NOTIC: [8] Undefined index: AUTH_MEMBER_REALNAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+NOTIC: [8] Undefined index: AUTH_MEMBER_NAME /Library/WebServer/Documents/6doffice/Apps/Member/Controller/LoginController.class.php 第 17 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000116s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000231s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 9 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 10 行.
+NOTIC: [8] Undefined index: username /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 52 行.
+NOTIC: [8] Undefined index: email /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 76 行.
+NOTIC: [8] Undefined index: realname /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 84 行.
+NOTIC: [8] Undefined index: mobile /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 92 行.
+NOTIC: [8] Undefined variable: errorMsg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 139 行.
+NOTIC: [8] Undefined variable: errorMsg1 /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 195 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038988s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039142s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000193s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000494s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000641s ]
+
+[ 2016-09-14T14:49:00+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000551s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000732s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000853s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001077s ]
+
+[ 2016-09-14T14:49:00+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000633s ]
+NOTIC: [8] Array to string conversion /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 46 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000508s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000926s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001114s ]
+

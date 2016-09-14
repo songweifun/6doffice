@@ -1,0 +1,608 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <script type="text/javascript" src="__PUBLIC__/js/index_top.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/home.v3.js"></script>
+</head>
+<body>
+<include file="Common:indextop"/>
+<div class="fwxx">
+    <div style="float:left;">这里有<strong><!--{$statistics['sellNum']+$statistics['rentNum']}--></strong>套二手房正在出售出租，最新发布<strong><!--{$addFangNum}--></strong>套。</div>
+    <if condition="$sinaapp neq null">
+        <div style="float:right; padding-top:10px;">
+            <iframe width="136" height="24" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" scrolling="no" border="0" src="http://widget.weibo.com/relationship/followbutton.php?language=zh_cn&width=136&height=24&uid=<!--{$sinaapp}-->&style=2&btn=red&dpc=1"></iframe>
+        </div>
+    </if>
+
+</div>
+<div class="content">
+    <div class="content_left">
+        <include file="Common:city_selecter"/>
+
+        <div class="blank"></div>
+        <script src="http://<!--{$host}--><!--{:U(MODULE_NAME.'/Index/ad','','')}-->/id/4" type="text/javascript"></script>
+        <if condition="$newsOpen eq 1">
+            <div class="h-10"></div>
+            <div class="house_info">
+                <dl class="new_title">
+                    <dd style="width:670px;">
+                        <h1>楼市资讯</h1>
+                        <div class="news_more" style="padding:8px 8px 0 0;">
+                            <a href="<!--{$cfg.url_news}-->" target="_blank">更多&gt;&gt;</a>
+                        </div>
+                    </dd>
+                </dl>
+                <div class="co_main">
+                    <script src='<!--{$cfg.url_news}-->data/js/2.js' language='javascript'></script>
+                </div>
+
+            </div>
+        </if>
+
+        <div class="blank"></div>
+        <!--代码开始-->
+        <div class="content_left1">
+            <div class="columnl tjzj">
+                <div class="new_title">
+                    <h1>房价行情</h1>
+                </div>
+                <div class="clear"></div>
+                <div class="tjzj_infos">
+                    <div class="tjzj_img">
+                        <a href="/market/" class="thumb">
+                            <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="350" height="180" id="zst_269_172" align="middle">
+                            <param name="FlashVars" value="configURL=<!--{:U(MODULE_NAME.'/Index/swfapi')}-->" />
+                            <param name="allowScriptAccess" value="sameDomain" />
+                            <param name="movie" value="__ROOT__/Data/flash/tu.swf" />
+                            <param name="quality" value="high" />
+                            <param name="bgcolor" value="#ffffff" />
+                            <embed src="__ROOT__/Data/flash/tu.swf" quality="high" bgcolor="#ffffff" width="350" height="180" name="zst_269_172" align="middle" allowScriptAccess="sameDomain" FlashVars="configURL=<!--{:U(MODULE_NAME.'/Index/swfapi')}-->" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                        </object>
+                        </a>
+                    </div>
+                    <div class="treads">
+                        <div class="stat">截至昨日，<!--{$titlec}-->统计：<br>
+                            <!--{$city}-->二手房均价<span class="price"><!--{$val.avgprice}-->元/平米</span>。
+
+                        </div><br />
+
+                        <form action="community/index.php" id="price_form" method="get">
+                            <div class="tip">还能查<a class="hidelink" target="_blank" href="community/index.php"><!--{$city}-->小区房价</a>，快试试</div>
+                            <div class="searchbox">
+                                <input type="text" id="price_form_kw" onblur="javascript:if(this.value==''){this.value='请输入小区名或路名…';this.className='treads_input';}" onfocus="javascript:if(this.value=='请输入小区名或路名…')this.value='';this.className='treads_input2';" value="请输入小区名或路名…" x-webkit-speech="" lang="zh-CN" class="treads_input" name="q">
+                                <input type="submit" value="查房价" onclick="javascript:if($('price_form_kw').value=='请输入小区名或路名…'){$('price_form_kw').value='';};" onmouseover="this.style.cursor='pointer'" class="btn">
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="blank"></div>
+
+        <div class="l w740 foucsImgs borderG " id="tab1">
+            <div class="mhead row10" >
+                <h2>淘房</h2>
+                <p class="foucs-tab" id="foucs_tab">
+                    <a href="javascript:void(0);" target="_self" class="on"><span>猜你想要</span></a>
+                    <a href="javascript:void(0);" target="_self"><span>出售推荐</span></a>
+                    <a href="javascript:void(0);" target="_self"><span>出租推荐</span></a>
+                </p>
+            </div>
+            <div class="mbody" id="tab_cont">
+                <div class="tabcont tabcont-on">
+                    <div class="foucs-div c sliders" id="interest_v1">
+                        <div class="home-v3">
+                            <!-- 猜你喜欢 -->
+                            <foreach name="houseSellLike" item="item">
+                                <dl>
+                                    <dt>
+                                        <span>
+                                          <a class="fcd-img" target="_blank" href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                              <if condition="$item['house_thumb'] neq null">
+                                                    <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
+                                              <else/>
+                                                  <img src="__PUBLIC__/images/housePhotoDefault.gif" />
+                                              </if>
+
+                                          </a>
+                                          <p class="fcd-name">
+                                              <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                                  <!--{$item.borough_name}-->
+                                              </a>
+                                          </p>
+                                        </span>
+                                        <span class="fcd-price">￥<em><!--{$item.house_price}--></em>万</span>
+                                    </dt>
+                                    <dd>
+                                        <p><span><!--{$item.updated|date="m月d日",###}-->&nbsp;&nbsp;</span>发布</p>
+                                        <p>
+                                            <span><!--{$item.house_totalarea}-->平米&nbsp;&nbsp;</span>
+                                            <span><!--{$item.description}-->&nbsp;</span><!--{$item.house_floor}-->/<!--{$item.house_topfloor}-->层
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </foreach>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tabcont">
+                    <div class="foucs-div c sliders" id="interest_v2">
+                        <div class="home-v3">
+                            <!-- 出售推荐 -->
+                            <foreach name="houseSellBest" item="item">
+                            <dl>
+                                <dt>
+                                    <span >
+                                      <a class="fcd-img" target="_blank" href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                          <if condition="$item['house_thumb'] neq null">
+                                              <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
+                                              <else/>
+                                              <img src="__PUBLIC__/images/housePhotoDefault.gif" />
+                                          </if>
+                                      </a>
+                                      <p class="fcd-name">
+                                          <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                              <!--{$item.borough_name}-->
+                                          </a>
+                                      </p>
+                                    </span>
+                                    <span class="fcd-price">￥<em><!--{$item.house_price}--></em>万</span>
+                                </dt>
+                                <dd>
+                                    <p><span><!--{$item.updated|date="m月d日",###}-->&nbsp;&nbsp;</span>发布</p>
+                                    <p>
+                                        <span><!--{$item.house_totalarea}-->平米&nbsp;&nbsp;</span>
+                                        <span><!--{$item.description}-->&nbsp;</span><!--{$item.house_floor}-->/<!--{$item.house_topfloor}-->层
+                                    </p>
+                                </dd>
+                            </dl>
+                            </foreach>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tabcont">
+
+                    <div class="foucs-div c sliders" id="interest_v3">
+                        <div class="home-v3">
+                            <!-- 出租推荐 -->
+                            <foreach name="houseRentBest" item="item">
+                                <dl>
+                                    <dt>
+                                        <span >
+                                          <a class="fcd-img" target="_blank" href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                              <if condition="$item['house_thumb'] neq null">
+                                                  <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
+                                                  <else/>
+                                                  <img src="__PUBLIC__/images/housePhotoDefault.gif" />
+                                              </if>
+                                          </a>
+                                          <p class="fcd-name">
+                                              <a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                                  <!--{$item.borough_name}-->
+                                              </a>
+                                          </p>
+                                        </span>
+                                        <span class="fcd-price">￥<em><!--{$item.house_price}--></em>元/月</span>
+                                    </dt>
+                                    <dd>
+                                        <p><span><!--{$item.updated|date="m月d日",###}-->&nbsp;&nbsp;</span>发布</p>
+                                        <p>
+                                            <span><!--{$item.house_totalarea}-->平米&nbsp;&nbsp;</span>
+                                            <span><!--{$item.description}-->&nbsp;</span><!--{$item.house_floor}-->/<!--{$item.house_topfloor}-->层
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </foreach>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!--end foucsImgs-->
+
+
+        <div class="h-10"></div>
+
+        <div class="house_info2">
+            <dl class="new_title" style="*height:auto">
+                <dd style="width:670px;">
+                    <div class="bt"><span>七</span>天主题房源 </div>
+                    <div class="jj"><!--{$themesMessage}--></div><div class="blank"></div>
+                    <div class="lsbt"><!--{$themesDescription}--></div>
+                    <div class="news_more">
+
+                    </div>
+                </dd>
+            </dl><div class="blank"></div>
+            <div class="w650">
+                <div class="left">
+                    <foreach name="houseSellThemes1" item="item">
+                    <div class="img">
+                        <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank">
+                            <if condition="$item['house_thumb'] neq null">
+                                <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
+                                <else/>
+                                <img src="__PUBLIC__/images/housePhotoDefault.gif" />
+                            </if>
+                            <div class="txt"><div class="bt"><!--{$item.borough_name}--></div>
+                                <div class="bt2"><!--{$item.house_totalarea}-->㎡ 、 <!--{$item.description}--> 、 <!--{$item.house_floor}-->/<!--{$item.house_topfloor}-->层 、 <!--{$item.house_age}-->年建
+                            </div>
+                            </div>
+                        <div class="txt2">￥<span><!--{$item.house_price}--></span>万</div></a></div>
+                    </foreach>
+                </div>
+
+                <div class="right">
+                    <div class="mmdd">
+
+                        <foreach name="houseSellThemes" item="item">
+                            <li>
+                                <div class="kua"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank">
+                                    <div class="iimg">
+                                        <if condition="$item['house_thumb'] neq null">
+                                            <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
+                                            <else/>
+                                            <img src="__PUBLIC__/images/housePhotoDefault.gif" />
+                                        </if>
+                                    </div>
+                                    <div class="txt">
+                                        <span><!--{$item.borough_name}--></span>
+                                        <span>￥<b><!--{$item.house_price}--></b>万</span>
+                                    </div>
+                                    <div class="txt2"><!--{$item.house_totalarea}-->㎡ 、<!--{$item.description}--></div>
+                                </a>
+                                </div>
+                            </li>
+                        </foreach>
+
+                        <div id=qc></div>
+                    </div>
+
+                </div>
+                <div class="blank"></div>
+            </div>
+
+        </div>
+
+
+        <div class="blank"></div>
+
+        <div class="columnl">
+            <div class="new_title">
+                <dd>
+                    <h1>最新二手房源</h1><div class="news_more" style="padding:8px 8px 0 0;"><a href="sale" target="_blank">更多>></a></div>
+                </dd>
+                <dd style="margin-left: 6px; width:300px;">
+                    <h1>最新出租房源</h1><div class="news_more" style="padding:8px 0 0 0;"><a href="rent" target="_blank">更多>></a></div>
+                </dd>
+            </div>
+            <div class="co_main">
+                <div class="co_main_table" style="border-right:1px dashed #ccc">
+                    <table width="300" border="0" cellspacing="0" cellpadding="0" class="bgtable">
+                        <foreach name="houseSellNew" item="item">
+                        <tr>
+                            <td width="34" height="24" align="center"></td>
+                            <td width="161" align="left"><a href="<!--{$cfg.url}-->sale/d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank"><span style="color:#2f5aaf"><!--{$item.cityarea_name}--> - </span><!--{$item.borough_name}--></a>&nbsp;</td>
+                            <td width="37" class="nshi"><!--{$item.description}--></td>
+                            <td width="68" align="right"><span style="color:#FF0000; font-weight:bold"><!--{$item.house_price}--></span>万元</td>
+                        </tr>
+                        </foreach>
+                    </table>
+                </div>
+                <div class="co_main_table">
+                    <table width="300" border="0" cellspacing="0" cellpadding="0" class="bgtable" style="margin-left:7px;">
+                        <foreach name="houseRentNew"  item="item">
+                        <tr>
+                            <td width="34" height="24" align="center"></td>
+                            <td width="151"><a href="<!--{$cfg.url}-->rent/d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank"><span style="color:#2f5aaf"><!--{$item.cityarea_name}--> - </span><!--{$item.borough_name}--></a>&nbsp;</td>
+                            <td width="37" class="nshi"><!--{$item.description}--></td>
+                            <td width="78" align="right"><span style="color:#FF0000; font-weight:bold"><!--{$item.house_price}--></span>元/月</td>
+                        </tr>
+                        </foreach>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- -->
+        <div class="blank"></div>
+        <script src="http://<!--{$host}--><!--{:U(MODULE_NAME.'/Index/ad','','')}-->/id/3" type="text/javascript"></script>
+    </div>
+
+
+    <div class="xj_left">
+        <div class="gpf_login">
+            <a class="gpf_login1" target="_blank" href="<!--{$cfg.url}-->guest/consignSale.php">委托房源</a>
+            <a href="<!--{$cfg.url}-->pinggu" class="gpf_login2">评估房源</a>
+            <a href="<!--{$cfg.url}-->guest/guestManage.php" class="gpf_login3">游客管理</a>
+        </div>
+        <div class="blank5"></div>
+
+        <div class="l_login">
+            <if condition="$username neq null">
+                <UL class="servers icon" id=servers>
+                    <table width="100%" cellspacing="5" cellpadding="4">
+                        <tr>
+                            <td><a href="<!--{$cfg.url}-->member/houseSale.php" ><span></span><img src="__PUBLIC__/images/login/sale.gif"></a></td>
+                            <td><a href="<!--{$cfg.url}-->member/houseRent.php" ><span></span><img src="__PUBLIC__/images/login/rent.gif"></a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="<!--{$cfg.url}-->member/pwdEdit.php" ><span></span><img src="__PUBLIC__/images/login/pwd.gif"></a></td>
+                            <td><a href="<!--{$cfg.url}-->member/manageSale.php" ><span></span><img src="__PUBLIC__/images/login/house.gif"></a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="<!--{$cfg.url}-->member/shopProfile.php" ><span></span><img src="__PUBLIC__/images/login/shop.gif"></a></td>
+                            <td><a href="<!--{$cfg.url}-->member/brokerProfile.php" ><span></span><img src="__PUBLIC__/images/login/base.gif"></a></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="right"><a href="<!--{$cfg.url}-->login/login.php?action=logout">退出登录>></a></td>
+                        </tr>
+                    </table>
+
+
+                </UL>
+            <else/>
+
+                <!----------------------------------新增内容开始--------------------------------->
+                <style type="text/css">
+                    *{ margin:0; padding:0;}
+                    .login_but{ width:250px; margin:0 auto;}
+                    .login_but a{color:#666; text-decoration:none;font-size:14px;}
+                    .login_but ul{ list-style:none}
+                    .login_but ul li{ float:left; width:120px; text-align:center; background:url(__PUBLIC__/images/login_bg.png) no-repeat; height:35px; line-height:35px; margin-bottom:10px; font-size:14px; font-weight:bold}
+                    .login_but ul li:hover{ background-position:bottom }
+                    .login_but ul li:hover a{color:#E55600}
+                    .login_but ul .reg{ margin-right:10px}
+                </style>
+                <div class="login_but">
+                    <ul>
+                        <li class="reg"><a href="<!--{:U('Member/Login/index')}-->">经纪人注册</a></li>
+                        <li ><a href="<!--{:U('Member/Login/index')}-->">经纪人登录</a></li>
+                        <li class="reg"><a href="<!--{$cfg.url}-->guest/houseSale.php" target="_blank">游客发布</a></li>
+                        <li><a href="<!--{$cfg.url}-->guest/guestManage.php" target="_blank">游客房源管理</a></li>
+                        <li class="reg"><a href="<!--{$cfg.url_sale}-->requireForm.php" target="_blank">我要求购</a></li>
+                        <li><a href="<!--{$cfg.url_rent}-->requireForm.php" target="_blank">我要求租</a></li>
+                    </ul>
+                </div>
+
+            </if>
+        </div>
+        <div style="margin-top:13px;"></div>
+
+        <script src="http://<!--{$host}--><!--{:U(MODULE_NAME.'/Index/ad','','')}-->/id/1" type="text/javascript"></script>
+
+        <if condition="$newsOpen eq 1">
+            <div class="blank"></div>
+            <div class="news">
+                <h3>二手资讯</h3>
+                <ul class="news_fy">
+                    <script src='<!--{$cfg.url_news}-->data/js/35.js' language='javascript'></script>
+                </ul>
+
+            </div>
+        </if>
+        <div class="blank"></div>
+        <DIV id=apf_id_10_slogin class="index7_entrance index_r" style="background:#fafafa"><!-- 方案二 -->
+            <UL id=entrance_simple_gj class="entrance_simple_gj entrance_simple_no_gj">
+                <LI class=" li_top">
+                    <DIV class="div_border home_bg_all">
+                        <P class="personal_btn_simple home_bg_all f_l"></P>
+                        <DIV class="link_deep_blue f_l text_r"><STRONG><A class=f14 href="<!--{:U('Member/Index/index')}-->" rel=nofollow>经纪人管理</A></STRONG><BR>帮助经纪人拓展业务渠道、管理房源、房源营销等服务
+                            <P class=p_link_box><A class=p_link_a  href="<!--{:U('Member/Index/index')}-->" rel=nofollow  >进入经纪人网络办公<I class="front_global_icon more_icon">&nbsp;</I></A>
+                            </P>
+                        </DIV>
+                    </DIV>
+                    <DIV class="clear bor_clear"></DIV>
+                </LI>
+                <LI class=li_bottom>
+                    <DIV class="div_border home_bg_all">
+                        <P class="broker_btn_simple home_bg_all f_l"></P>
+                        <DIV class="link_deep_blue f_l text_r">
+                            <STRONG>
+                                <A class=f14 href="company/manage" rel=nofollow>公司管理</A>
+                            </STRONG><BR>
+                            经纪公司网络管理平台
+                            <P class=p_link_box>
+                                <A class=p_link_a  href="company/manage" rel=nofollow>进入公司管理通道<I class="front_global_icon more_icon">&nbsp;</I></A>
+                            </P>
+                        </DIV>
+                    </DIV>
+                </LI>
+            </UL>
+        </DIV>
+
+
+        <div class="blank"></div>
+        <DIV id=Index_recommend_broker class=recommend_bro_r>
+            <DIV class=plate>
+                <DIV class=h2_title><SPAN class=more><A  title="我也要上榜" href="#" target=_blank>我也要上榜&gt;&gt;</A></SPAN><b>经纪人排行榜</b></div>
+                <DIV class=content2 style="clear:both">
+                    <UL id=recommend_bro_ul class="recommend_bro_ul clear_box">
+                        <foreach name="brokerList" item="item">
+                        <LI class="li_bro clear_box">
+                            <DL>
+                                <DT class=home_bg_all>
+                                    <A title=<!--{$item.realname}-->
+                                        href="<!--{$cfg.url_shop}--><!--{$item.id}-->" target="_blank" hidefoucs="true">
+                                        <if condition="$item['avatar'] neq null">
+                                            <IMG src="__ROOT__/Uploads/<!--{$item.avatar}-->" width=45 height=60>
+                                            <else/>
+                                            <IMG src="__PUBLIC__/images/demoPhoto.jpg" width=45 height=60>
+                                        </if>
+                                    </A>
+                                </DT>
+                                <DD class=dd_name>
+                                    <A title=<!--{$item.realname}-->  href="<!--{$cfg.url_shop}--><!--{$item.id}-->"  target=_blank hidefoucs="true"><!--{$item.realname}--> </A>
+                                </DD>
+                                <DD>
+                                    <if condition="$item['idcard'] eq null">
+                                        <SPAN class="home_bg_all f_l rec_icon rec_icon_iden_err" title=实名认证></SPAN>
+                                    <else/>
+                                        <SPAN class="home_bg_all f_l rec_icon rec_icon_iden_ok" title=实名认证></SPAN>
+                                    </if>
+                                    <if condition="$item['aptitude'] eq null">
+                                        <SPAN class="home_bg_all f_l rec_icon rec_icon_com_err" title=执业认证></SPAN>
+                                    <else/>
+                                        <SPAN class="home_bg_all f_l rec_icon rec_icon_com_ok" title=执业认证></SPAN>
+                                    </if>
+                                    <DIV class=clear></DIV>
+                                </DD>
+                                <DD>
+                                    <if condition="$item['company_name'] neq null">
+                                        <a target="_blank" href="<!--{$cfg.url}-->cshop/<!--{$item.company_id}-->"><!--{$item.company_name}--> - <!--{$item.outlet_last}--></a>
+                                    <else/>
+                                        <!--{$item.outlet_first}--> - <!--{$item.outlet_last}-->
+                                    </if>
+                                </DD>
+                            </DL>
+                        </LI>
+                        </foreach>
+                    </UL>
+                </DIV>
+            </DIV>
+        </DIV>
+        <!-- -->
+
+        <div class="blank"></div>
+        <div class="bj_house">
+            <h3>房价走势</h3>
+            <div class="blank"></div>
+            <div class="search_house"><form action="community/index.php" method="get">
+                <input type="text" class="xj_input_text house_name" value="请输入小区名称" name="q" onclick="if(this.value='请输入小区名称'){this.value='';this.style.color='#000';}" onblur="if(this.value==''){ this.value='请输入小区名称';this.style.color='#A1A1A1';}else{this.style.color='#000';}"/>
+                <input type="submit" class="btn_house" value="搜索小区"/></form>
+            </div>
+            <p align="right"><a href="community" class="see_more" style="color:#2f5aaf;">查看更多小区>></a></p>
+            <table width="276" border="0" cellspacing="0" cellpadding="0" class="tab_house" style="margin: 0pt auto;">
+                <foreach name="boroughList" item="item">
+                <tr class="<if condition='($key%2) eq 1'>bg_blue</if>">
+                    <td width="49%"><a target="_blank" title='<!--{$item.borough_name}-->' href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html"><!--{$item.cityarea_name}--> - <span class="color_blue"><!--{$item.borough_name}--></span></a></td>
+                    <td width="35%"><if condition="$item['borough_avgprice'] neq null"><!--{$item.borough_avgprice}-->元/平方<else/>-</if></td>
+                    <if condition="$item['percent_change'] neq 0">
+                        <if condition="$item['percent_change'] lt 0">
+                            <td width="10%" class="color_down">↓</td>
+                        <else/>
+                            <td width="10%" class="color_up">↑</td>
+                        </if>
+                    <else/>
+                        <td width="6%">-</td>
+                    </if>
+                    <td width="10%"><!--{$item.percent_change|abs}-->%</td>
+                </tr>
+                </foreach>
+
+            </table>
+
+        </div>
+
+
+
+        <div class="blank"></div>
+        <script src="http://<!--{$host}--><!--{:U(MODULE_NAME.'/Index/ad','','')}-->/id/2" type="text/javascript"></script>
+    </div>
+
+</div>
+
+<div class="blank"></div>
+<div style="width:990px;height:100%; margin:0px auto;">
+    <!-- 2011-06-14 增加 开始 -->
+    <div class="content">
+        <div class="content_left">
+            <div class="columnl tjzj1">
+                <div class="new_title">
+                    <h1>品牌中介 <span>中介合作：<!--{$cfg.page.rexian}--></span></h1>
+                    <div class="news_more" style="padding:8px 8px 0 0;"><a target="_blank" href="<!--{$cfg.url_company}-->">更多&gt;&gt;</a></div>
+                </div>
+                <div class="co_main">
+                    <ul>
+                        <foreach name="companyList" item="item">
+                        <li>
+                            <if condition="$item['company_logo'] neq null">
+                            <a target="_blank" href="<!--{$cfg.url}-->cshop/<!--{$item.id}-->"><img src="__ROOT__/Uploads/<!--{$item.company_logo}-->" /></a>
+                                <else/>
+                                <a target="_blank" href="<!--{$cfg.url}-->cshop/<!--{$item.id}-->"><img src=">__PUBLIC__/images/demoPhoto.jpg.jpg" /></a>
+                                </if>
+
+
+                        </li>
+                        </foreach>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="xj_left">
+            <div class="xj_gjx">
+                <h3><s></s><span>工具箱</span></h3>
+                <ul>
+                    <li class="ico1"><a target="_blank" href="<!--{$cfg.url}-->tool/gfnl.html">贷款计算器</a></li>
+                    <li class="ico1"><a target="_blank" href="<!--{$cfg.url}-->tool/sf.html">税费计算器</a></li>
+                    <li class="ico2"><a target="_blank" href="<!--{$cfg.url}-->tool/debx.html">等额本息还款</a></li>
+                    <li class="ico3"><a target="_blank" href="<!--{$cfg.url}-->tool/debj.html">等额本金还款</a></li>
+                    <li class="ico4"><a target="_blank" href="<!--{$cfg.url}-->tool/gjjdk.html">公积金贷款计算</a></li>
+                    <li class="ico4"><a target="_blank" href="<!--{$cfg.url}-->tool/tqhd.html">提前还款计算</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content"><div id="link">
+    <script language="javascript">
+        function op(k)
+        {
+            for(p=1;p<3;p++)
+            {
+
+                if(k==p){
+                    document.getElementById("m"+p).className="lit";
+                    document.getElementById("n"+p).style.display="";
+                }
+                else
+                {
+                    document.getElementById("m"+p).className="lis";
+                    document.getElementById("n"+p).style.display="none";
+                }
+            }
+
+        }
+    </script>
+    <ul>
+        <div class="lis"></div>
+        <li id=m1 class="lit">友情链接</li>
+    </ul>
+
+    <div id=n1 class="link_txt">
+        <ul>
+            <foreach name="lianjie_a" item="item">
+            <li><a href="<!--{$item.link_url}-->" target="_blank"><img width="88px" height="31px" src="<!--{$cfg.url}-->upfile/<!--{$item.link_logo}-->" /></a></li>
+            </foreach>
+        </ul>
+    </div>
+    <div id=n1 class="link_txt">
+        <ul>
+            <foreach name="lianjie_s" item="item">
+            <li><a href="<!--{$item.link_url}-->" target="_blank"><!--{$item.link_name}--></a></li>
+            </foreach>
+        </ul>
+    </div>
+</div>
+    <div style="height:12px; clear:both; overflow:hidden"></div>
+    <include file="Common:foot"/>
+    <SCRIPT type=text/javascript src="__PUBLIC__/js/Home_Index8.js"></SCRIPT>
+    <SCRIPT type=text/javascript>
+        jQuery(function(){jQuery('#city_selector').CitySelector('city_float',1000)});var isspider=0;$.HaozuCommon.setAjax('/idx/rprops/',{cityid:14,num:4},function(result){if(result){$('#Index_recommend').html(result);$.HaozuCommon.soj_href('_soj');}});(function($){var opts={'today_publish_props_count':'9,242','htmlid':'apf_id_10'};var haozuHomeLogin=new $.haozuHomeLogin(opts);})(jQuery);$.HaozuCommon.setAjax('/idx/rcomm/',{cityid:14,num:4},function(result){if(result){$('#home_recomm_comm').html(result);$.HaozuCommon.soj_href('_soj');}});$.HaozuCommon.setAjax('/idx/rbroker/',{cityid:14},function(result){if(result){$('#Index_recommend_broker').html(result);$.HaozuCommon.soj_href('_soj');}});var HaozuHomeHotSearch=new $.HaozuHomeHotSearch({'cityid':'14'});$.HaozuCommon.loadAjax();(function($){$(document).ready(function(){FooterSeoHoverBox('foot_seo_hover_label','foot_seo_ul_box');});})(jQuery);</SCRIPT>
+</body>
+</html>

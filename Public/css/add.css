@@ -1,0 +1,216 @@
+/*sale首页*/
+.filter{ height:auto; width:980px; margin:10px auto 0; background:#fafcff;}
+.filter ul {width:100%; float:left; clear:both; list-style:none; padding:0; margin:0;}
+.filter ul li { text-align:center; display:inline; float:left; height:24px; line-height:24px; margin:5px 8px 0 8px;}
+.filter ul li.filterTarget { color:#2e2e2e; font-weight:bold; margin-right:0;}
+.filter ul li.linkOn { color:#ff0000;}
+.filter ul li.linkOn a { color:#ff0000; text-decoration:none;}
+/*选择类型 sale rent页*/
+.info_box2{ height:auto; width:990px; background:#fafcff; border:1px solid #b7d5f7; padding:0 3px; position:relative;}
+.info_box2 ul {width:100%; float:left; clear:both; list-style:none; padding:0; margin:0;}
+.info_box2 ul li { text-align:center; display:inline; float:left; height:24px; line-height:24px; margin:5px 8px 0 8px;}
+.info_box2 ul li.info_aa { color:#2e2e2e; font-weight:bold; margin-right:0;}
+.info_box2 ul li.info_bb { color:#ff0000;}
+.info_box2 ul li.info_bb a{ color:#ff0000; text-decoration:none;}
+/*详细页售价 原CSS显示太大*/
+.sj2{ font-size:14px; font-weight:bold;}
+.sj2 span{ font-size:22px; color:#ff2d00; font-weight:normal;}
+.sj2 span.wanyuan{ font-weight:normal; font-size:12px; color:#2e2e2e;}
+
+/*避免头部城市区域变长 页码位置出错--去掉绝对定位，漂移到右边*/
+#c .filter_right_new{
+       float: right;
+	right:220px;
+	top:290px;
+	height:32px;
+	width:auto;
+	vertical-align:middle
+}
+/*避免出现二级区域时背景不自动增长 --把height设为auto*/
+.filter{ height:auto; width:980px; margin:10px auto 0; background:#fafcff;}
+
+
+.bg_bg1{
+	width:90px;
+	height:27px;
+	display:block;
+	background:url(../images/view_xx_bg.gif);
+	float:left;	
+	position:relatived;
+	left:386px;	
+	top:341px;
+	_top:340px;
+	color:#232323;
+	font-weight:bold;
+	text-align:center;
+	line-height:27px;	
+	font-size:13px;
+	_font-size:12px;
+}
+.center_a{
+	border:1px solid #b7d5f7; 
+	margin-top:25px; 
+	margin-left:40px;
+	*margin-left:30px;
+	_margin-left:10px; 
+	float:left; 
+	padding:5px 11px 25px 11px; 
+	height:auto;
+	width:400px;
+	position:relative; 
+	background:url(../images/bg_house_bg.png) repeat-x 0 0; 
+	line-height:22px; 
+	letter-spacing:1px;
+	}
+.center_b{
+		border:1px solid #b7d5f7; margin-top:25px; margin-left:25px;float:left; padding:5px 11px 25px 11px; height:auto;width:400px;position:relative; background:url(../images/bg_house_bg.png) repeat-x 0 0; line-height:22px; letter-spacing:1px;
+	}
+.requireTitle{
+background: url(../images/dotBg.gif) repeat-x scroll left bottom transparent;
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 6px 10px;
+    width: 100%;
+} 
+.requireListCtrl {
+    margin-top: 10px;
+    overflow: hidden;
+}
+.requireListCtrl .search {
+    float: left;
+}
+.search input {
+    border: 1px solid #BABABA;
+    float: left;
+}
+.search input.text {
+    color: #999999;
+    height: 17px;
+    padding-left: 5px;
+    padding-top: 2px;
+    width: 250px;
+}
+.search input.button {
+    height: 21px;
+    margin-left: -1px;
+    padding-top: 1px;
+    width: 40px;
+}
+.requireDataListBox {
+    clear: both;
+    margin-top: 10px;
+    width: 100%;
+}
+.requireDataListBox table.tHead {
+    background: none repeat scroll 0 0 #FFFFDD;
+    border: 1px solid #FFCC66;
+    height: 26px;
+    width: 100%;
+}
+.requireDataListBox table.tHead td {
+    color: #000000;
+    padding-top: 3px;
+    text-align: center;
+}
+.requireDataListBox table.tBody {
+    width: 100%;
+}
+.requireDataListBox table.tBody tr {
+    background: url(../images/dotBg.gif) repeat-x scroll left bottom transparent;
+}
+.requireDataListBox table.tBody td {
+    color: #666666;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    text-align: center;
+}
+.requireDataListBox table.tBody td.tdAlignLeft {
+    text-align: left;
+}
+.requireDataListBox table.tBody tr.mouseOver { background:#f3f3f3; }
+#requireMain input.btn {
+    background: url(../images/memberLeftNavItemBgk.gif) repeat-x scroll 0 0 transparent;
+    border: 1px solid #B4C91A;
+    color: #666600;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 3px 10px;
+}
+
+#requireMain textarea {
+    
+    font-size: 12px;
+    height: 100px;
+    padding: 2px;
+    width: 400px;
+}
+.requireForm table tr td {
+    padding-bottom: 6px;
+}
+.must {
+    color: #1A75D3;
+    font-family: verdana,"宋体",sans-serif;
+    padding-right: 5px;
+}
+#requireMain input.inp {
+    
+    padding: 2px;
+}
+
+.sysConfirm {
+    background: none repeat scroll 0 0 #FFFFDD;
+    border: 1px solid #FBC393;
+    margin: 30px auto 0px auto;
+    width: 633px;
+}
+.sysConfirm .confirmTxt {
+    background: url(../images/sysConfirm.png) no-repeat scroll 0 0 transparent;
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px;
+    padding: 15px 0 20px 65px;
+    width: 100%;
+}
+.aUnderline {
+    text-decoration: underline;
+}
+.colorF90 {
+    color: #FF9900;
+}
+.familyAlpha {
+    font-family: verdana,"宋体",sans-serif;
+}
+.sysConfirm .confirmTxt p {
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 10px;
+}
+.requireDetail {
+    background: none repeat scroll 0 0 #FFFFDD;
+    border: 1px solid #FFCC66;
+    margin-top: 10px;
+    width: 100%
+}
+.replyForm {
+    border: 1px solid #C3C3C3;
+    margin-top: 10px;
+    width: 100%;
+}
+.replyForm textarea {
+ 
+    height: 100px;
+    width: 400px;
+}
+
+.replyForm input.inp {
+   
+    height: 16px;
+    padding: 2px;
+    width: 200px;
+}

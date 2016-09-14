@@ -1,0 +1,28 @@
+/* CSS Document */
+
+/*font*/
+
+/*�帡��*/
+.clearfix:after{content:" ";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*zoom:1}
+.clear{height:0;font-size:0;line-height:0;clear:both;overflow:hidden}
+/*body*/
+body{ font-size:12px; font-family: 'Microsoft YaHei'}
+
+/*public*/
+.floatl{ float:left}
+.floatr{ float:right}
+
+/* color */
+.orange, .orange a:link, .orange a:visited {color:#de3438!important}
+.blue,.blue a{color:#05a;}
+.org,.org a{color:#de3438}.org a:hover{color:#c00}
+.red,.red a{color:#de3438}.red a:hover{color:#c00}
+.red02,.red02 a{color:#de3438}.red02 a:hover{color:#c00}
+.gray6,.gray6 a{color:#666}.gray6 a:hover{color:#c00;}
+.gray9,.gray9 a{color:#999;}.gray9 a:hover{color:#c00;}
+.green,.green a{color:#090;}.green a:hover{color:#c00;}
+.black,.black a{color:#333;}.black a:hover{color:#c00;}
+.yellow, .yellow a, .yellow a:link,.yellow a:active,.yellow a:visited,.yellow a:hover{color:#FF3300!important}
+
+

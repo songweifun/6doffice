@@ -1,0 +1,7 @@
+#mapdiv{position: fixed; left:50%;top:50%;width: 800px; height: 500px; background-color:#F2EFE9; text-align:center;display:none; border:#1E64C8 solid 1px;margin-left:-400px;margin-top:-250px}
+.add{height:29px; width:100%; background: url(../images/border.png) repeat-x}
+.maptitle{float:left; color:#FFF; font-weight:bold; line-height:29px; margin-left:5px}
+#mark_mymap{width: 800px; height: 440px;}
+.detail{background:#F6F6F6; height:30px; border-top:#DADEE5 solid 1px}
+.detail span{float:left; line-height:30px; color:#999; margin-left:5px}
+.detail input{float:right; margin-right:10px; width:60px; text-align:center; color:#F00}

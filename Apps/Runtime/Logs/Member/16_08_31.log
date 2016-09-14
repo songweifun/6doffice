@@ -1,0 +1,450 @@
+[ 2016-08-31T12:06:43+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004616s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.014642s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015065s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.127824s ]
+INFO: [ app_end ] --END-- [ RunTime:0.128289s ]
+
+[ 2016-08-31T12:06:43+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.038471s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.014963s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.016076s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000516s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000649s ]
+
+[ 2016-08-31T13:46:05+08:00 ] ::1 /6doffice/index.php/Member/Login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000764s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001026s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001271s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000130s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000249s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 9 行.
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 10 行.
+NOTIC: [8] Undefined index: username /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 52 行.
+NOTIC: [8] Undefined index: email /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 76 行.
+NOTIC: [8] Undefined index: realname /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 84 行.
+NOTIC: [8] Undefined index: mobile /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 92 行.
+NOTIC: [8] Undefined variable: errorMsg /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 139 行.
+NOTIC: [8] Undefined variable: errorMsg1 /Library/WebServer/Documents/6doffice/Apps/Runtime/Cache/Member/b722423c652f3f4297bd78555523622f.php 第 195 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.052995s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.053113s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000876s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001014s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000793s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001198s ]
+
+[ 2016-08-31T13:46:05+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001062s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000384s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000485s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000472s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000602s ]
+
+[ 2016-08-31T13:46:06+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000497s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000640s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000789s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000777s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000970s ]
+
+[ 2016-08-31T13:46:20+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000469s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001256s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001651s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000211s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019606s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019735s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000174s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000264s ]
+
+[ 2016-08-31T13:46:24+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000372s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000480s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000465s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000583s ]
+
+[ 2016-08-31T13:46:24+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000637s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000452s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000759s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000896s ]
+
+[ 2016-08-31T13:46:33+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2/0.16163630910979288
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000426s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000545s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000515s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000672s ]
+
+[ 2016-08-31T13:46:34+08:00 ] ::1 /6doffice/index.php/Member/Login/verify/id/2/0.16163630910979288/0.10982363825252717
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000320s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000340s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000435s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000459s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000577s ]
+
+[ 2016-08-31T13:46:39+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000469s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000500s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.1210s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0496s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0007s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472622399',`logins`='27' WHERE `id` = 1 [ RunTime:0.0171s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0153s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0006s ]
+SQL: INSERT INTO `fke_member_loginlog` (`username`,`login_times`,`add_time`) VALUES ('fansongwei','1','1472572800') [ RunTime:0.0082s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0144s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0006s ]
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+
+[ 2016-08-31T13:50:48+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000937s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000743s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000877s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0105s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0005s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472622648',`logins`='28' WHERE `id` = 1 [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0007s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0006s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0206s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralModel.class.php 第 50 行.
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+
+[ 2016-08-31T13:51:49+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000606s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000593s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000724s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0107s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0005s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472622709',`logins`='29' WHERE `id` = 1 [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0004s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0001s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0001s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralModel.class.php 第 50 行.
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+
+[ 2016-08-31T13:53:23+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000556s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000568s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000707s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0006s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472622803',`logins`='30' WHERE `id` = 1 [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0006s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0002s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0010s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0006s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralModel.class.php 第 50 行.
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+ERR: 1146:Table 'anleye.fke_integral' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_integral`
+
+[ 2016-08-31T13:54:44+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000387s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000491s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0006s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472622884',`logins`='31' WHERE `id` = 1 [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0010s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0005s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0002s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 50 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0005s ]
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+
+[ 2016-08-31T13:56:13+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000471s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000585s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0091s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0006s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472622973',`logins`='32' WHERE `id` = 1 [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0004s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0002s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0007s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 50 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0006s ]
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+
+[ 2016-08-31T13:56:50+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000078s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001287s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000631s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000757s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0072s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0005s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472623010',`logins`='33' WHERE `id` = 1 [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0007s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0008s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0003s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0003s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 50 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0007s ]
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+
+[ 2016-08-31T13:56:53+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000711s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000718s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0010s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472623013',`logins`='34' WHERE `id` = 1 [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0005s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0001s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0001s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 50 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0005s ]
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+ERR: 1146:Table 'anleye.fke_member_relation' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `fke_member_relation`
+
+[ 2016-08-31T13:58:58+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000629s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000655s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000787s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0006s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472623138',`logins`='35' WHERE `id` = 1 [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0005s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0001s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0001s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 50 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0004s ]
+SQL: select * from fke_integral_rule where id =1 [ RunTime:0.0169s ]
+NOTIC: [8] Undefined index: rule_score /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 29 行.
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = 1' at line 1
+ [ SQL语句 ] : UPDATE `fke_member` SET `scores`=scores+ WHERE `id` = 1
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = 1' at line 1
+ [ SQL语句 ] : UPDATE `fke_member` SET `scores`=scores+ WHERE `id` = 1
+
+[ 2016-08-31T14:02:41+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000666s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000644s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000786s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0004s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472623361',`logins`='36' WHERE `id` = 1 [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0014s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0002s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0002s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 51 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0012s ]
+SQL: select * from fke_integral_rule where id =1 [ RunTime:0.0045s ]
+
+[ 2016-08-31T14:04:03+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000494s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000529s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000633s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0004s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472623443',`logins`='37' WHERE `id` = 1 [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0004s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0002s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0002s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 51 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0011s ]
+SQL: select * from fke_integral_rule where id =1 [ RunTime:0.0107s ]
+
+[ 2016-08-31T14:04:18+08:00 ] ::1 /6doffice/index.php/Member/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000345s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000445s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `fke_member` WHERE `username` = 'fansongwei' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `fke_broker_info` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `fke_broker_info` WHERE ( 1=1 AND id='1' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member` [ RunTime:0.0004s ]
+SQL: UPDATE `fke_member` SET `last_login`='1472623458',`logins`='38' WHERE `id` = 1 [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `fke_member_loginlog` [ RunTime:0.0004s ]
+SQL: SELECT `id` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` = 1472572800 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member_loginlog` SET `login_times`=login_times+1 WHERE `id` = 11 [ RunTime:0.0001s ]
+SQL: SELECT `add_time` FROM `fke_member_loginlog` WHERE `username` = 'fansongwei' AND `add_time` >= 1472054400 ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: UPDATE `fke_member` SET `active_str`='1|1|1|0|1|0|1',`active_rate`='5087' WHERE `id` = 1 [ RunTime:0.0001s ]
+NOTIC: [2048] Declaration of Member\Model\IntegralRuleModel::add() should be compatible with Think\Model::add($data = '', $options = Array, $replace = false) /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 51 行.
+SQL: SHOW COLUMNS FROM `fke_integral_rule` [ RunTime:0.0005s ]
+SQL: select * from fke_integral_rule where id =1 [ RunTime:0.0113s ]
+SQL: UPDATE `fke_member` SET `scores`=scores+5 WHERE `id` = 1 [ RunTime:0.0002s ]
+NOTIC: [2] Missing argument 2 for Member\Model\IntegralRuleModel::add(), called in /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php on line 39 and defined /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 26 行.
+NOTIC: [8] Undefined variable: rule_id /Library/WebServer/Documents/6doffice/Apps/Member/Model/IntegralRuleModel.class.php 第 28 行.
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from fke_integral_rule where id =
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from fke_integral_rule where id =
+

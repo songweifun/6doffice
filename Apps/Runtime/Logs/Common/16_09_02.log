@@ -1,0 +1,28 @@
+[ 2016-09-02T23:15:56+08:00 ] ::1 /6doffice/index.php/upfile/broker/avatar/20131014213122.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+ERR: 无法加载模块:Upfile
+
+[ 2016-09-02T23:15:56+08:00 ] ::1 /6doffice/index.php/My97DatePicker/WdatePicker.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000499s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+ERR: 无法加载模块:My97DatePicker
+
+[ 2016-09-02T23:15:57+08:00 ] ::1 /6doffice/index.php/upfile/broker/avatar/20131014213122.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000645s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+ERR: 无法加载模块:Upfile
+
+[ 2016-09-02T23:15:57+08:00 ] ::1 /6doffice/index.php/My97DatePicker/WdatePicker.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000341s ]
+NOTIC: [8] Undefined variable: cfg /Library/WebServer/Documents/6doffice/Apps/Common/Conf/upload.php 第 109 行.
+ERR: 无法加载模块:My97DatePicker
+
