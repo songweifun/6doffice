@@ -53,7 +53,7 @@
     function sale()
     {
         document.topSearchForm.xz.value="二手房";
-        document.topSearchForm.action = '<!--{$cfg.url}-->sale/index.php';
+        document.topSearchForm.action = "<!--{:U(MODULE_NAME.'/Sell/index')}-->";
     }
     function rent()
     {
@@ -102,16 +102,16 @@
 
     <div class="xg_nav">
         <div class="xg_navcont1">
-            <div class="xg_logo"><a title="<!--{$cfg.page.titlec}-->" href="<!--{$cfg.url}-->"><img alt="<!--{$cfg.page.titlec}-->" src="<!--{$cfg.path.images}-->logo.png" height="53" /></a></div>
+            <div class="xg_logo"><a title="<!--{$cfg.page.titlec}-->" href="<!--{:U(MODULE_NAME.'/Index/index')}-->"><img alt="<!--{$cfg.page.titlec}-->" src="__PUBLIC__/images/logo.png" height="53" /></a></div>
             <div class="xg_menu">
                 <div class="xg_menucont">
                     <ul>
 
-                        <li <if condition="$menu eq 'index'">class="xg_cur"</if>><a href="<!--{$cfg.url}-->">首  页</a></li>
+                        <li <if condition="$menu eq 'index'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Index/index')}-->">首  页</a></li>
                         <if condition="$newsOpen eq 1">
                         <li><a href="<!--{$cfg.url_news}-->">新  闻</a></li>
                         </if>
-                        <li <if condition="$menu eq 'sale'">class="xg_cur"</if>><a href="<!--{$cfg.url_sale}-->">二手房</a></li>
+                        <li <if condition="$menu eq 'sale'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->">二手房</a></li>
                         <li <if condition="$menu eq 'rent'">class="xg_cur"</if>><a href="<!--{$cfg.url_rent}-->">租  房</a></li>
                         <if condition="$newhouseOpen eq 1">
                         <li <if condition="$menu eq 'newHouse'">class="xg_cur"</if>><a href="<!--{$cfg.url_newHouse}-->">新  房</a></li>
@@ -135,7 +135,7 @@
 
             <if condition="($menu eq 'sale') or ($menu eq 'pinggu')">
                 <div class="xg_nvain">
-                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->sale/index.php">
+                    <form name="topSearchForm" method="GET" action="<!--{:U(MODULE_NAME.'/Sell/index')}-->">
                         <if condition="$Think.get.q eq null">
                                 <input name="q" type="text" id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或房源特征'){this.value = '可输入小区名、路名或房源特征';}" onfocus="if(this.value == '可输入小区名、路名或房源特征'){this.value = '';}" value="可输入小区名、路名或房源特征" />
                             <else/>

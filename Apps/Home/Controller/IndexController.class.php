@@ -189,30 +189,34 @@ class IndexController extends CommonController{
 
         $this->display();
 
-        /*//小区均价与评估价更新
-        $dotime = new DoTime($query);
+        //小区均价与评估价更新
+        $dotime = D('DoTime');
 
         $today = mktime(0,0,0,date('m'),date('d'),date('Y'));
-        $toTime = $dotime->getDotime('*');
+        $toTime = $dotime->find();
+        //p($today);die;
+
         if($today>$toTime['borough_avg']){
-            $dotime->boroughAvg();
+            $borough_avg_time=$this->borough_avg_time;
+            $dotime->boroughAvg($borough_avg_time);
         }
+
          //经纪人房源数量统计
         if($today>$toTime['member_num']){
-            $dotime->memberNum();
+            $dotime->memberNum($this->member_num_time);
         }
 
         //经纪人活跃度统计
         if($today>$toTime['broker_active_rate']){
-            $dotime->brokerActiveRate();
+            $dotime->brokerActiveRate($this->broker_active_Rate_time);
         }
 
         //经纪人登录积分增加
         if($today>$toTime['broker_integral']){
-            $dotime->brokerIntegral();
+            $dotime->brokerIntegral($this->broker_integral_time);
         }
 
-        //全站统计
+        /*//全站统计
         if($today>$toTime['statistics']){
             $dotime->statistics();
         }

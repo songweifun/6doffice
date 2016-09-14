@@ -33,6 +33,7 @@ Class CommonController extends Controller{
             $newMsgCount = M('innernote')->where($map)->count();
         }
         $this->assign('msgCount',$newMsgCount);
+        $this->host=$_SERVER['SERVER_NAME'];
 
 
     }

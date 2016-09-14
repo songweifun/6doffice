@@ -53,7 +53,7 @@
     function sale()
     {
         document.form_search.xz.value="二手房";
-        document.form_search.action = '<!--{$cfg.url}-->sale/index.php';
+        document.form_search.action = "<!--{:U(MODULE_NAME.'/Sell/index')}-->";
     }
     function rent()
     {
@@ -80,7 +80,7 @@
 <div class="xg_search">
     <div class="xmsearch_inp1">
 
-        <form method="GET" action="<!--{$cfg.url}-->sale/index.php" id="form_search" name="form_search">
+        <form method="GET" action="<!--{:U(MODULE_NAME.'/Sell/index')}-->" id="form_search" name="form_search">
 
 
             <input class="xg_inp1" type="text" value="请输入房源特征,地点或小区名..." id="home_kw" name="q" autocomplete="off" onfocus="if (value =='请输入房源特征,地点或小区名...'){value =''}" onblur="if (value ==''){value='请输入房源特征,地点或小区名...'}"  onclick="value =''">
@@ -110,7 +110,7 @@
     </div>
     <div class="xg_keys">热点搜索：
         <foreach name="boroughHot" item="item">
-            <a title="<!--{$item.borough_name}-->" href="sale/index.php?q=<!--{$item.borough_name}-->"><!--{$item.borough_name}--></a>
+            <a title="<!--{$item.borough_name}-->" href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?q=<!--{$item.borough_name}-->"><!--{$item.borough_name}--></a>
         </foreach>
     </div>
     <div class="blank"></div>
@@ -119,7 +119,12 @@
             <dt>从区域开始</dt>
             <dd>
                 <ul>
-                    <foreach name="cityarea_option" item="item"><if condition="$key lt 21"><li><a href="sale/index.php?cityarea=<!--{$key}-->"><!--{$item}--></a></li></if></foreach>
+                    <foreach name="cityarea_option" item="item">
+                        <if condition="$key lt 21">
+                            <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?cityarea=<!--{$key}-->"><!--{$item}--></a>
+                            </li>
+                        </if>
+                    </foreach>
 
                 </ul>
             </dd>
@@ -128,12 +133,12 @@
             <dt>热门房型</dt>
             <dd class="clear_box">
                 <ul>
-                    <li><a href="sale/index.php?room=1" target="_blank">一室</a></li>
-                    <li><a href="sale/index.php?room=2" target="_blank">二室</a></li>
-                    <li><a href="sale/index.php?room=3" target="_blank">三室</a></li>
-                    <li><a href="sale/index.php?room=4" target="_blank">四室</a></li>
-                    <li><a href="sale/index.php?room=5" target="_blank">五室</a></li>
-                    <li><a href="sale/index.php?room=6" target="_blank">五室以上</a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?room=1" target="_blank">一室</a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?room=2" target="_blank">二室</a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?room=3" target="_blank">三室</a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?room=4" target="_blank">四室</a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?room=5" target="_blank">五室</a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?room=6" target="_blank">五室以上</a></li>
                 </ul>
             </dd>
         </dl>
@@ -142,7 +147,7 @@
             <dd>
                 <ul>
                     <foreach name="house_price_option" item="item">
-                        <li> <a href="sale/index.php?price=<!--{$key}-->"><!--{$item}--></a></li>
+                        <li> <a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?price=<!--{$key}-->"><!--{$item}--></a></li>
                     </foreach>
                 </ul>
             </dd>
@@ -152,9 +157,9 @@
             <dd>
                 <ul>
                     <foreach name="house_totalarea_option" item="item">
-                        <li><a href="sale/index.php?totalarea=<!--{$key}-->"><!--{$item}--></a></li>
+                        <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?totalarea=<!--{$key}-->"><!--{$item}--></a></li>
                     </foreach>
-                    <li><a href="sale">更多</a></li>
+                    <li><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->">更多</a></li>
                 </ul>
             </dd>
         </dl>

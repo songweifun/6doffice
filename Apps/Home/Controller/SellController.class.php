@@ -168,15 +168,21 @@ class SellController extends CommonController{
 
         //q
         if($_GET['b']){
-            $_GET['q'] = iconv("utf-8","gb2312",$_GET['q']);
+            //$_GET['q'] = iconv("utf-8","gb2312",$_GET['q']);
         }
 
         $q = $_GET['q']=="可输入小区名、路名或划片学校" ? "":trim($_GET['q']);
+        //echo $q;die;
         if($q){
             // 小区名、路名或划片学校
             $where_borough ="borough_name like '%".$q."%' or borough_address like '%".$q."%' or elementary_school like '%".$q."%' or middle_school like '%".$q."%'" ;
             $borough = M('borough');
-            $borough_ids=$borough->where($where_borough)->getField('id');
+            $borough_idsold=$borough->field('id')->where($where_borough)->select();
+            $borough_ids=array();
+            foreach($borough_idsold as $id){//组合一维数组
+                $borough_ids[]=$id['id'];
+            }
+            //p($borough_ids);die;
             if($borough_ids){
                 $borough_ids = implode(',',$borough_ids);
                 $where .=" and ( borough_id in (".$borough_ids.") or borough_name like '%".$q."%' )";
@@ -229,6 +235,9 @@ class SellController extends CommonController{
             case "created desc":
                 $list_order = " is_top desc,updated desc";
                 break;
+            case "created asc":
+                $list_order = " is_top desc,updated asc";
+                break;
             case "house_price asc":
                 $list_order = " is_top desc,house_price asc";
                 break;
@@ -257,7 +266,20 @@ class SellController extends CommonController{
 
         $Page= new \Think\Page($row_count,$list_num);// 实例化分页类 传入总记录数和每页显示的记录数(10)
         //$dataList =$house->query('select * from fke_housesell where is_checked=1'.$where.$list_order.' limit '.$Page->firstRow.','.$Page->listRows);
-        $dataList =$house->where('is_checked=1'.$where)->order($list_order)->limit($Page->firstRow.','.$Page->listRows)-> select();
+
+        //page
+        $page_count=ceil($row_count/$list_num);
+        $pageno = $_GET['p']?intval($_GET['p']):1;
+        $pre_page = $pageno>1?$pageno-1:1;
+        $next_page = $pageno<$page_count?$pageno+1:$page_count;
+        $this->assign('pageno', $pageno);
+        $this->assign('row_count', $row_count);
+        $this->assign('page_count',$page_count);
+        $this->assign('pre_page', $pre_page);
+        $this->assign('next_page',$next_page);
+
+
+        $dataList =M('housesell')->where('is_checked=1'.$where)->order($list_order)->limit($Page->firstRow.','.$Page->listRows)-> select();
         $member = D('MemberView');
 
         //积分配置文件
@@ -279,6 +301,8 @@ class SellController extends CommonController{
 
         }
 
+
+        
         $this->assign('dataList', $dataList);
         $this->assign('pagePanel', $Page->show());//分页条
 
