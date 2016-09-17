@@ -1,0 +1,49 @@
+<div class="Community">
+    <input type="hidden" id="cityarea" name="cityarea" value="<!--{$Think.get.cityarea}-->">
+    <input type="hidden" id="cityarea2" name="cityarea2" value="<!--{$Think.get.cityarea2}-->">
+    <input type="hidden" id="avgprice" name="avgprice" value="<!--{$Think.get.avgprice}-->">
+    <input type="hidden" id="borough" name="borough" value="<!--{$Think.get.borough}-->">
+    <input type="hidden" id="type" name="type" value="<!--{$Think.get.type}-->">
+    <input type="hidden" id="list_num" name="list_num" value="10">
+    <input type="hidden" id="list_order" name="list_order" value="10">
+    <input type="hidden" id="S_q" name="S_q" value="<!--{$Think.get.q}-->">
+    <if condition="$cityarea_option neq null">
+    <div>
+        <ul>
+            <li class="filterTarget">区域：</li>
+            <li<if condition="$Think.get.cityarea eq null"> class="linkOn"</if>><a href="index.php">不限</a>
+            </li>
+            <foreach name="cityarea_option" item="item">
+                <if condition="$key eq $Think.get.cityarea ">
+            <li class="linkOn"><a href="index.php?letter=<!--{$Think.get.letter}-->&cityarea=<!--{$key}-->&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            <else/>
+            <li><a href="index.php?letter=<!--{$Think.get.letter}-->&cityarea=<!--{$key}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            </if>
+            </foreach>
+        </ul>
+
+    </div>
+
+        <if condition="$Think.get.cityarea neq null">
+    <div style="height:auto;">
+        <div style="height:auto;">
+            <ul id="filterTargetSub" style="_margin-left:38px">
+                <li <if condition="$Think.get.cityarea2 eq null">class="linkOn" </if> ><a href="index.php?letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&cityarea2=&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                <foreach name="borough_section" item="item">
+                <li <if condition="$item.di_value eq $Think.get.cityarea2 "> class="linkOn"</if>><a href="index.php?letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$item.di_value}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->" ><!--{$item.di_caption}--></a></li>
+                </foreach>
+
+            </ul>
+        </div>
+        <div style=" clear:both;"></div>
+    </div>
+    </if>
+
+
+
+    <p align="right">&nbsp;</p>
+
+    </if>
+
+
+</div>

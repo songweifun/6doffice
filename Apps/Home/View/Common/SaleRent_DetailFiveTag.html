@@ -1,0 +1,154 @@
+
+<div id="sale_xx_top">
+    <ul>
+        <li class="liz"><a  name="description" /><a href="javascript:void(0);">房源描述</a></li>
+        <li class="lix"><a href="#roompic">室内照片</a></li>
+        <li class="lix"><a href="#roomstylepic">户型图</a></li>
+        <li class="lix"><a href="#map">位置地图</a></li>
+        <li class="lix"><a href="#boroughinfo">小区资料</a></li>
+    </ul>
+</div>
+<div class="sale_xx_bg">
+    <div style="height:18px; clear:both; overflow:hidden"></div>
+    <div class="xxjs">
+        <p><!--{$dataInfo.house_desc}--></p>
+    </div>
+    <div style="height:18px; clear:both; overflow:hidden"></div>
+</div>
+<!--室内照片-->
+<if condition="$dataInfo.housesell_pic neq null">
+<div class="xx_xx_bg">
+    <div id="gotopdiv"><span style="float:left">室内照片</span><span class="gotop"><a name="roompic"></a><a href="#">返回顶部</a></span></div>
+    <div style="height:8px; clear:both; overflow:hidden"></div>
+    <foreach name='dataInfo.housesell_pic' item="item">
+    <!-- 循环体 -->
+    <div class="shinei_photo"><a href="__ROOT__/Uploads/<!--{$item.pic_url}-->" title="<!--{$dataInfo.borough_name}--><!--{$dataInfo.house_room}-->居-<!--{$item.pic_desc}-->" target="_blank"><img src="<if condition='$item.pic_url neq null'>__ROOT__/Uploads/<!--{$item.pic_url}--><else/>__ROOT__/Uploads/<!--{$item.pic_url}--></if>" /></a></div>
+    <div class="photo_mc"><!--{$item.pic_desc}--></div>
+    <!-- 循环体 结束 -->
+    </foreach>
+    <div style="height:18px; clear:both; overflow:hidden"></div>
+</div>
+</if>
+
+<!--户型图-->
+<if condition="$dataInfo.house_drawing neq null">
+<div class="xx_xx_bg">
+    <div id="gotopdiv"><span style="float:left">户型图</span><span class="gotop" ><a name="roomstylepic"></a><a href="#">返回顶部</a></span></div>
+    <div style="height:8px; clear:both; overflow:hidden"></div>
+    <div class="shinei_photo"><a href="__ROOT__/Uploads/<!--{$dataInfo.house_drawing}-->" target="_blank" title="<!--{$dataInfo.borough_name}--><!--{$dataInfo.house_room}-->居户型图"><img src="__ROOT__/Uploads/<!--{$dataInfo.house_drawing}-->" /></a></div>
+    <div style="height:18px; clear:both; overflow:hidden"></div>
+</div>
+</if>
+
+<if condition="$dataInfo.video neq null">
+<div class="xx_xx_bg">
+    <div id="gotopdiv"><span style="float:left">视频展示</span><span class="gotop" ><a name="roomstylepic"></a><a href="#">返回顶部</a></span></div>
+    <div style="height:8px; clear:both; overflow:hidden"></div>
+
+    <!--{$dataInfo.video}-->
+
+    <div style="height:18px; clear:both; overflow:hidden"></div>
+</div>
+</if>
+
+
+<!--位置地图-->
+<div class="xx_xx_bg">
+    <div id="gotopdiv"><span style="float:left">位置地图</span><span class="gotop"><a name="map"></a><a href="#">返回顶部</a></span></div>
+
+    <iframe name="gmap" frameborder="0" width="740" height="320" src="<!--{:U(MODULE_NAME.'/BaiduMap/index')}-->/id/<!--{$boroughInfo.id}-->" scrolling="No"></iframe>
+
+    <div style="height:18px; clear:both; overflow:hidden"></div>
+</div>
+<!--/位置地图-->
+
+
+
+<!--小区资料-->
+<div class="sale_xx_bg">
+    <div id="gotopdiv"><span style="float:left">小区资料</span><span class="gotop"><a name="boroughinfo"></a><a href="#">返回顶部</a></span></div>
+    <div style="height:8px; clear:both; overflow:hidden"></div>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="sale_table">
+        <tr>
+            <td width="48%" height="40" class="data_title"><!--{$dataInfo.borough_name}--></td>
+        </tr>
+        <tr>
+            <td height="28"><!--{$dataInfo.cityarea_name}-->&nbsp;<!--{$boroughInfo.borough_address}--></td>
+        </tr>
+        <tr>
+            <td height="28">挂牌均价：<if condition="$boroughInfo.borough_avgprice neq null"><!--{$boroughInfo.borough_avgprice}-->元/平米<else/>--</if>&nbsp;<span style="color:#FF0000"><!--↑10.1% --></span></td>
+        </tr>
+        <tr>
+            <td style="border-bottom:1px #d5ddf9 solid;"></td>
+        </tr>
+
+        <tr>
+            <td height="32" align="left" valign="middle">周边学校：<!--{$boroughInfo.elementary_school}--></td>
+        </tr>
+
+        <tr>
+            <td height="32" align="left" valign="middle">交通：<!--{$boroughInfo.borough_bus}--></td>
+        </tr>
+        <tr>
+            <td align="right" valign="bottom" class="more_xq font13" style="padding-right:10px;"><a href="<!--{$cfg.url_community}-->g-<!--{$boroughInfo.id}-->.html" target="_blank">更多小区信息>></a></td>
+        </tr>
+    </table>
+</div>
+<!-- 小区照片最多只显示6张！！！ -->
+<div class="Comm_more">
+    <ul>
+        <foreach name="boroughImageList" item="item">
+        <li><a href="<!--{$cfg.url_community}-->p-<!--{$boroughInfo.id}-->.html" target="_blank"><img src="__ROOT__/Uploads/<!--{$item.pic_url}-->"  /></a></li>
+        </foreach>
+    </ul>
+</div>
+<if condition="$moveCompanyList neq null">
+<!--小区资料-->
+<div class="sale_xx_bg">
+    <div id="gotopdiv"><span style="float:left">推荐搬家公司</span><span class="gotop"><a name="move"></a><a href="#">返回顶部</a></span></div>
+    <div style="height:8px; clear:both; overflow:hidden"></div>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="sale_table">
+        <foreach name="moveCompanyList" item="item">
+        <tr>
+            <td width="27%" height="28"><a href="<!--{$cfg.url}-->cshop/<!--{$item.id}-->" target="_blank"><!--{$item.company_name}--></a></td>
+            <td width="16%" height="28"><span style="color:#FF0000">电话：<!--{$item.company_phone}--></span></td>
+            <td width="57%" height="28">地址：<!--{$item.company_address}--></td>
+        </tr>
+        </foreach>
+
+        <tr>
+            <td width="27%" height="28"></td>
+            <td width="16%" height="28"></td>
+            <td align="right" valign="bottom" class="more_xq font13" style="padding-right:10px;"><a href="<!--{$cfg.url_company}-->index.php?switch=decoration" target="_blank">更多搬家公司信息>></a></td>
+        </tr>
+    </table>
+</div>
+</if>
+<if condition="$decorationCompanyList neq null">
+<!--小区资料-->
+<div class="sale_xx_bg">
+    <div id="gotopdiv"><span style="float:left">推荐装修公司</span><span class="gotop"><a name="decoration"></a><a href="#">返回顶部</a></span></div>
+    <div style="height:8px; clear:both; overflow:hidden"></div>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="sale_table">
+
+        <foreach name="decorationCompanyList" item="item">
+        <tr>
+            <td width="27%" height="28"><a href="<!--{$cfg.url}-->cshop/<!--{$item.id}-->"><!--{$item.company_name}--></a></td>
+            <td width="16%" height="28"><span style="color:#FF0000">电话：<!--{$item.company_phone}--></span></td>
+            <td width="57%" height="28">地址：<!--{$item.company_address}--></td>
+        </tr>
+        </foreach>
+
+
+        <tr>
+            <td width="27%" height="28"></td>
+            <td width="16%" height="28"></td>
+            <td align="right" valign="bottom" class="more_xq font13" style="padding-right:10px;"><a href="<!--{$cfg.url_company}-->index.php?switch=move" target="_blank">更多装修公司信息>></a></td>
+        </tr>
+    </table>
+
+
+</div>
+</if>
+			
+			

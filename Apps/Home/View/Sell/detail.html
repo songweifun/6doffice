@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+
+    <script src="__PUBLIC__/js/select.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/js/js.js" type="text/javascript"></script>
+    <SCRIPT src="__PUBLIC__/js/base.js" type=text/javascript></SCRIPT>
+
+    <!-- 引入layer弹窗 -->
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+
+    <style>
+        .left{float:left;}
+        .kx_top{ font-size:16px;color:#000;width:347px;height:36px;font-weight:bold; float:left;padding:20px;}
+        .kx_close{float:right;margin-right:20px;_margin-right:10px;margin-top:20px;}
+        .kx_line{margin:10px auto 0px auto;*margin:0px auto;width:410px;}
+        .kx_table{width:400px;height:80px;margin:0px 10px; font-size:14px; margin-top:10px;*margin-bottom:10px;}
+        .kx_table span{color:red;}
+        .kx_text{font-size:12px; color:#a2a344;padding-left:20px;padding-top:10px;}
+
+    </style>
+
+    <script language="javascript">
+        function showBox(item_id){
+
+            var url='<!--{:U(MODULE_NAME."/Sell/report")}-->/house_id/'+item_id
+            layer.open({
+                type: 2,
+                title: ['虚假举报', ''],
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area : ['500px' , '300px'],
+                content: url,
+                scrollbar: false,
+            });
+
+
+        }
+        function shanchu(item_id){
+
+            //TB_show('删除房源','delete.php?house_id='+item_id+'&height=100&width=220&modal=true&rnd='+Math.random(),false);
+
+        }
+        function edit(item_id){
+
+            //TB_show('编辑房源','edit.php?house_id='+item_id+'&height=100&width=220&modal=true&rnd='+Math.random(),false);
+
+        }
+
+        <if condition="$Think.get.open eq 1">
+        showBox('<!--{$Think.get.id}-->');
+        </if>
+    </script>
+
+</head>
+<body onUnload="ClosePageDelCookies()">
+<include file="Common:selltop"/>
+
+
+<div class="content">
+    <!--  include file="inc/nav.tpl"  -->
+    <div style="text-align:right; padding-top:10px; padding-bottom:10px; color:#666">房源编号：<!--{$dataInfo.house_no}--></div>
+
+    <div class="sale_xx">
+        <div id="content-propview">
+            <div class="propInfoBigBox">
+                <div class="mounent_news"><img src="__PUBLIC__/images/time.gif" width="23" height="16" align="absmiddle"  /><!--{$dataInfo.updated}-->前</div>
+                <div><h1 class="propInfoTitle">
+                    <!--{$dataInfo.house_title}--><if condition="$dataInfo.is_more_pic eq 1"><span><img src="__PUBLIC__/images/duotu_sale.gif" titile="多图" align="absmiddle" class="er_duotu"></span ></if>
+                    <if condition="($dataInfo.status eq 4) or ($dataInfo.status eq 7)">
+                    <font color="#FF0000">（注：已成交）</font>
+                    </if>
+                    <if condition="$dataInfo.status eq 2">
+                    <font color="#FF0000">（注：已下架）</font>
+                    </if>
+
+                    <if condition="$dataInfo.is_checked eq 0">
+                    <font color="#FF0000">（注：该房源未通过审核）</font>
+                    </if>
+                </h1></div>
+                <div style="clear:both;"></div>
+                <div style="_min-width:340px; float:left;">
+                    <div id="preview" style="clear:both;">
+                        <!--幻灯 开始-->
+
+                        <assign name="housepicfirst" value="$dataInfo['housesell_pic'][0]['pic_url']"/>
+                        <div class=jqzoom id=spec-n1>
+
+                            <IMG src="<if condition='$housepicfirst neq null'>
+                                __ROOT__/Uploads/<!--{$housepicfirst}-->
+        <elseif condition='$dataInfo.house_thumb neq null'/>
+        __ROOT__/Uploads/<!--{$dataInfo.house_thumb}-->
+        <elseif condition='$dataInfo.house_drawing neq null'/>
+        __ROOT__/Uploads/<!--{$dataInfo.house_drawing}-->
+        <else/>
+        __PUBLIC__/images/housePhotoDefault_big.gif
+        </if>" jqimg="<if condition='$dataInfo.house_thumb neq null'>__ROOT__/Uploads/<!--{$dataInfo.house_thumb}--><else/>__ROOT__/Uploads/<!--{$dataInfo.pic_url}--></if>" title="<!--{$dataInfo.borough_name}-->">
+
+                        </div>
+
+                        <div id=spec-n5>
+                            <div class=control id=spec-left>
+                                <img src="__PUBLIC__/images/left.gif" />
+                            </div>
+
+
+
+                            <div id=spec-list>
+                                <ul class=list-h>
+                                    <foreach name="dataInfo.housesell_pic" item="item">
+                                    <li><img src="<if condition='$item.pic_thumb neq null'>__ROOT__/Uploads/<!--{$item.pic_thumb}--><else/>__ROOT__/Uploads/<!--{$item.pic_url}--></if>" name="<if condition='$item.pic_thumb neq null'>__ROOT__/Uploads/<!--{$item.pic_thumb}--><else/>__ROOT__/Uploads/<!--{$item.pic_url}--></if>" title="<!--{$dataInfo.borough_name}-->" /></li>
+                                    </foreach>
+                                </ul>
+                            </div>
+                            <div class=control id=spec-right>
+                                <img src="__PUBLIC__/images/right.gif" />
+                            </div>
+
+                            <!--幻灯 结束-->
+                        </div></div></div>
+                <script type=text/javascript>
+                    $(function(){
+                        $(".jqzoom").jqueryzoom({
+                            xzoom:400,
+                            yzoom:400,
+                            offset:10,
+                            position:"right",
+                            preload:1,
+                            lens:1
+                        });
+                        $("#spec-list").jdMarquee({
+                            deriction:"left",
+                            width:287,
+                            height:52,
+                            step:2,
+                            speed:4,
+                            delay:10,
+                            control:true,
+                            _front:"#spec-right",
+                            _back:"#spec-left"
+                        });
+                        $("#spec-list img").bind("mouseover",function(){
+                            var src=$(this).attr("src");
+                            $("#spec-n1 img").eq(0).attr({
+                                src:src.replace("\/n5\/","\/n1\/"),
+                                jqimg:src.replace("\/n5\/","\/n0\/")
+                            });
+                            $(this).css({
+                                "border":"1px solid #ff2d00",
+                                "padding":"1px"
+                            });
+                        }).bind("mouseout",function(){
+                            $(this).css({
+                                "border":"1px solid #b9b9b9",
+                                "padding":"1px"
+                            });
+                        });
+                    })
+                </script>
+
+                <script src="__PUBLIC__/js/lib.js" type=text/javascript></script>
+                <script src="__PUBLIC__/js/163css.js" type=text/javascript></script>
+                <div class="propinfo">
+                    <table width="90%" border="0" align="right" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td width="50%" height="50" align="left" class="sj2">售价：<span><!--{$dataInfo.house_price}--><span class="wanyuan"> 万元</span></span></td>
+                            <td width="50%" class="font_2f5aaf"><img src="__PUBLIC__/images/sale_jsq.gif" width="13" height="13" align="absmiddle" />&nbsp;<a href="<!--{:U('Tool/Index/gfnl')}-->" target="_blank">房贷计算器</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="__PUBLIC__/images/xiangxi_jb.jpg" align="absmiddle" />&nbsp;<a href="report.php?house_id=<!--{$dataInfo.id}-->" onclick="showBox('<!--{$dataInfo.id}-->');return false;">举报</a>
+                        </tr>
+                        <tr>
+                            <td height="28" colspan="2" align="left"><!-- Baidu Button BEGIN -->
+                                <div id="bdshare" class="bdshare_b" style="line-height: 12px;"><img src="http://bdimg.share.baidu.com/static/images/type-button-5.jpg?cdnversion=20120831" />
+                                    <a class="shareCount"></a>
+                                </div>
+                                <script type="text/javascript" id="bdshare_js" data="type=button" ></script>
+                                <script type="text/javascript" id="bdshell_js"></script>
+                                <script type="text/javascript">
+                                    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+                                </script>
+                                <!-- Baidu Button END --></td>
+
+                        </tr>
+                        <tr>
+                            <td height="28" colspan="2" align="left"><strong>小区名称：</strong><span class="font_2f5aaf"><a href="<!--{$cfg.url_community}-->p-<!--{$boroughInfo.id}-->.html" target="_blank"><!--{$dataInfo.borough_name}--></a></span> (<!--{$boroughInfo.borough_address}--> <span class="font_2f5aaf"><a href="#map" target="_blank">地图</a></span>)</td>
+
+                        </tr>
+                        <tr>
+                            <td height="32" class="font13"><strong>房型：<!--{$dataInfo.house_room}-->室<!--{$dataInfo.house_hall}-->厅<!--{$dataInfo.house_toilet}-->卫</strong></td>
+                            <td class="font13"><strong>产证面积：<!--{$dataInfo.house_totalarea}-->平米</strong></td>
+                        </tr>
+                        <tr>
+                            <td height="32">单价：<!--{$dataInfo.avg_price}-->元/m2</td>
+                            <td>产权：<!--{$dataInfo.belong}--></td>
+                        </tr>
+                        <tr>
+                            <td height="32">楼层：第<!--{$dataInfo.house_floor}-->层/共<!--{$dataInfo.house_topfloor}-->层</td>
+                            <td>房龄：<!--{$dataInfo.house_age}-->年</td>
+                        </tr>
+                        <tr>
+                            <td height="32">朝向：<!--{$dataInfo.house_toward}--></td>
+                            <td>装修：<!--{$dataInfo.house_fitment}--></td>
+                        </tr>
+                        <tr>
+                            <td height="94" colspan="2"><table width="376" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="279" height="30" valign="middle" style="padding-left:45px; background:url(__PUBLIC__/images/linkphone.gif) no-repeat;">看房咨询：
+                                        <span class="phone">
+                                                <if condition='$dataInfo.broker_id eq 0'>
+                                                <!--{$dataInfo.owner_phone}-->
+                                                <else/>
+                                                <!--{$brokerInfo.mobile}-->
+                                                </if>
+                                        </span><br/>
+                                    </td>
+                                    <td width="104" align="left" valign="bottom" class="font_2f5aaf font13" style="padding-bottom:25px;">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr><td colspan="2"><span style="color:#F00;">提示：</span>咨询时, 告知对方您是<!--{$titlec}-->看到的房源</td></tr>
+                            </table></td>
+                        </tr>
+                    </table></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!--经纪人信息 开始-->
+        <include file="Common:SaleRent_DetailBrokerInfo"/>
+        <!--经纪人信息 结束-->
+    </div>
+</div>
+<div class="content">
+    <!--5个TAG 开始-->
+    <div class="sale_xx_left">
+        <include file="Common:SaleRent_DetailFiveTag"/>
+    </div>
+    <!--5个TAG 结束-->
+    <div class="sale_xx_right">
+        <!--右边推荐房源 开始-->
+        <include file="Common/SaleRent_DetailRight"/>
+        <!--右边推荐房源 结束-->
+    </div>
+</div>
+<table width="990" border="0" align="center" cellpadding="0" cellspacing="0" style=" margin:20px auto 10px;">
+    <tr>
+        <td width="273" height="45" valign="middle" style="padding-left:25px; background:url(__PUBLIC__/images/linkphone.gif) no-repeat;"><span style="padding-left:25px;">看房咨询：<span class="phone">
+      <if condition="$dataInfo.broker_id eq 0">
+            <!--{$dataInfo.owner_phone}-->
+            <else/>
+            <!--{$brokerInfo.mobile}-->
+            </if></span></span><br/></td>
+        <td width="241" align="center" valign="middle">
+            <if condition="$dataInfo.broker_id eq 0">
+            游客：<span class="font_2f5aaf"><!--{$dataInfo.owner_name}--></span>
+            <else/>
+            经纪人：<span class="font_2f5aaf"><!--{$brokerInfo.realname}-->, <a href="<!--{$cfg.url_shop}--><!--{$brokerInfo.id}-->" target="_blank">进入他的店铺 >></a></span>
+
+            </if>
+
+        </td>
+        <td width="476" align="right" valign="bottom" class="back">&nbsp;</td>
+    </tr>
+</table>
+<table width="990" border="0" align="center" cellpadding="0" cellspacing="0" style=" margin:20px auto 10px;">
+    <tr>
+        <td><script src="http://<!--{$host}--><!--{:U(MODULE_NAME.'/Index/ad','','')}-->/id/6" type="text/javascript"></script></td>
+    </tr>
+</table>
+<div class="content">
+    <script>
+        function dj(i)
+        {
+            for(j=1;j<3;j++)
+            {
+                if(i==j){
+                    document.getElementById("m"+j).className="lib";
+                    document.getElementById("n"+j).style.display="";
+                }
+                else
+                {
+                    document.getElementById("m"+j).className="lia";
+                    document.getElementById("n"+j).style.display="none";
+                }
+            }
+
+        }
+    </script>
+
+</div>
+<include file="Common:foot"/>
+</body>
+</html>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML
+        xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>公积金贷款额度年限计算_贷款计算器</TITLE>
+    <META content="text/html; charset=utf-8" http-equiv=Content-Type>
+    <META name=keywords content="">
+    <META name=description content="">
+    <LINK rel=stylesheet href="__PUBLIC__/images/public.css"><LINK rel=stylesheet
+                                                        href="__PUBLIC__/images/gujia.css"><LINK rel=stylesheet
+                                                                                      href="__PUBLIC__/images/gfgj.css">
+    <SCRIPT language=JavaScript type=text/javascript
+            src="__PUBLIC__/images/jquery-1.2.6.min.js"></SCRIPT>
+
+    <SCRIPT language=JavaScript type=text/javascript
+            src="__PUBLIC__/images/ll.js"></SCRIPT>
+
+    <SCRIPT language=JavaScript type=text/javascript
+            src="__PUBLIC__/images/gjjloan1.js"></SCRIPT>
+
+    <SCRIPT language=JavaScript type=text/javascript
+            src="__PUBLIC__/images/gjjloan2.js"></SCRIPT>
+
+    <SCRIPT language=JavaScript type=text/javascript
+            src="__PUBLIC__/images/gjjloan3.js"></SCRIPT>
+
+    <SCRIPT language=javascript>
+        var switchNavId = 3;
+    </SCRIPT>
+
+    <META name=GENERATOR content="MSHTML 9.00.8112.16421"></HEAD>
+<BODY><!-- 顶部站点导航 -->
+
+<DIV class=container>
+
+    <DIV class="left top10"><!--头部标题-->
+        <DIV class=gj_l_tit>
+            <H1>购房工具<SPAN class=colcc0>--公积金贷款额度年限计算</SPAN></H1></DIV>
+        <DIV class=clearer></DIV><!--按钮选择-->
+        <DIV class=gfgj_nav>
+            <UL>
+                <LI class=gf_nav1><A href="gfnl.html">购房能力评估计算</A>
+                </LI>
+                <LI class=gf_nav2><A href="debx.html">等额本息还款法</A>
+                </LI>
+                <LI class=gf_nav3><A href="debj.html">等额本金还款法</A>
+                </LI>
+                <LI class="gf_nav4 gf_nav4_onlink">公积金贷款额度年限计算 </LI>
+                <LI class=gf_nav5><A href="tqhd.html">提前还贷计算器</A>
+                </LI>
+                <LI class=gf_nav6><A href="sf.html">税费计算器</A>
+                </LI></UL></DIV><!--分割-->
+        <DIV class=gfgj_fg></DIV><!--计算器-->
+        <P class="gfgj_bt gfgj_padding30">公积金贷款额度年限计算</P>
+        <FORM name=formt2>
+            <TABLE class="top22 " width="95%">
+                <TBODY>
+                <TR>
+                    <TD width="40%" align=right>住房公积金个人月缴存额：</TD>
+                    <TD width="60%"><INPUT class=gj_txt_3 name=mount2> 元</TD></TR>
+                <TR>
+                    <TD align=right>缴存比例：</TD>
+                    <TD><INPUT class=gj_txt_2 name=jcbl value=8> %</TD></TR>
+                <TR>
+                    <TD width="40%" align=right>配偶住房公积金个人月缴存额：</TD>
+                    <TD width="60%"><INPUT class=gj_txt_3 name=mount3> 元</TD></TR>
+                <TR>
+                    <TD align=right>缴存比例：</TD>
+                    <TD><INPUT class=gj_txt_2 name=p_bl value=8> %</TD></TR>
+                <TR>
+                    <TD align=right>房屋评估价值 或实际购房款：</TD>
+                    <TD><INPUT class=gj_txt_3 name=mount> 元</TD></TR>
+                <TR>
+                    <TD height=21 align=right>房屋性质：</TD>
+                    <TD><INPUT id=xz name=xz type=radio> 政策性住房 &nbsp;&nbsp;<INPUT name=xz
+                                                                                  CHECKED type=radio> 其它 </TD></TR>
+                <TR>
+                    <TD align=right>贷款申请年限：</TD>
+                    <TD><INPUT class=gj_txt_3 name=mount10> 年 <SPAN
+                            class=gray>贷款期限最长可以计算到借款人70周岁，同时不得超过30年。</SPAN></TD></TR>
+                <TR>
+                    <TD align=right>个人信用等级：</TD>
+                    <TD><INPUT name=xy type=radio>AAA级&nbsp;&nbsp; <INPUT name=xy
+                                                                          type=radio>AA级&nbsp;&nbsp; <INPUT name=xy CHECKED type=radio>其它</TD></TR>
+                <TR>
+                    <TD colSpan=2 align=center><INPUT class=price_behaviour_btn onclick=gjjloan1(this.form) name=math2 value=开始计算 type=button>&nbsp;&nbsp;
+                        <INPUT class=price_behaviour_btn name=qx value=重新计算 type=reset></TD></TR></TBODY></TABLE><!--分割-->
+            <DIV class="gfgj_fg top22"></DIV>
+            <TABLE class=top22 width="95%">
+                <TBODY>
+                <TR>
+                    <TD align=right>您可以申请的最高贷款额度是：</TD>
+                    <TD><INPUT class=gj_txt_3 name=ze2> 万元</TD></TR></TBODY></TABLE>
+            <DIV class="gfgj_fg top22"></DIV>
+            <TABLE class=top22 width="95%">
+                <TBODY>
+                <TR>
+                    <TD align=right>您所需要的贷款额度：</TD>
+                    <TD><INPUT class=gj_txt_3 name=need> 万元</TD></TR>
+                <TR>
+                    <TD align=right>请选择还款方式：</TD>
+                    <TD>&nbsp;&nbsp; <SELECT id=hkfs name=select><OPTION
+                            value=1>等额均还</OPTION><OPTION value=2>等额本金</OPTION><OPTION selected
+                                                                                      value=3>自由还款</OPTION></SELECT> 万元</TD></TR>
+                <TR>
+                    <TD colSpan=2 align=center><INPUT class=price_behaviour_btn onclick=gjjloan2(this.form) name=math3 value=开始计算 type=button>&nbsp;&nbsp;
+                        <INPUT class=price_behaviour_btn name=qx2 value=重新计算 type=submit></TD></TR></TBODY></TABLE>
+            <DIV class="gfgj_fg top22"></DIV><!--计算结果-->
+            <P class="gfgj_bt gfgj_padding30">计算结果</P>
+            <DIV id=dejh>
+                <TABLE class=top22 border=0 cellSpacing=0 cellPadding=0 width="95%">
+                    <TBODY>
+                    <TR>
+                        <TD width="40%" align=right><STRONG>等额均还方式计算结果</STRONG></TD>
+                        <TD width="60%"></TD></TR>
+                    <TR>
+                        <TD align=right>月均还款额：</TD>
+                        <TD><INPUT class=gj_txt_3 name=ze22> 元</TD></TR>
+                    <TR>
+                        <TD align=right>本息合计：</TD>
+                        <TD><INPUT class=gj_txt_3 name=lx2> 元<INPUT class=txt2 name=yj2
+                                                                    type=hidden></TD></TR></TBODY></TABLE></DIV>
+            <DIV id=debj>
+                <TABLE class=top22 border=0 cellSpacing=0 cellPadding=0 width="95%">
+                    <TBODY>
+                    <TR>
+                        <TD width="40%" align=right><STRONG>等额本金方式计算结果</STRONG></TD>
+                        <TD width="60%"></TD></TR>
+                    <TR>
+                        <TD align=right>首月还款额：</TD>
+                        <TD><INPUT class=gj_txt_3 name=sfk2> 元</TD></TR>
+                    <TR>
+                        <TD align=right>本息合计：</TD>
+                        <TD><INPUT class=gj_txt_3 name=lx3> 元</TD></TR></TBODY></TABLE></DIV>
+            <DIV id=zyhk>
+                <TABLE class=top22 border=0 cellSpacing=0 cellPadding=0 width="95%">
+                    <TBODY>
+                    <TR>
+                        <TD width="40%" align=right><STRONG>自由还款方式计算结果</STRONG></TD>
+                        <TD width="60%"></TD></TR>
+                    <TR>
+                        <TD align=right>最低还款额：</TD>
+                        <TD><INPUT class=gj_txt_3 name=sfk3> 元</TD></TR>
+                    <TR>
+                        <TD align=right>最后期本金：</TD>
+                        <TD><INPUT class=gj_txt_3 name=lx4> 元</TD></TR>
+                    <TR>
+                        <TD align=right>最后期利息：</TD>
+                        <TD><INPUT class=gj_txt_3 name=lx5> 元</TD></TR>
+                    <TR>
+                        <TD align=right>总偿还利息：</TD>
+                        <TD><INPUT class=gj_txt_3 name=lx6> 元</TD></TR></TBODY></TABLE></DIV></FORM><!--分割-->
+        <DIV class="gfgj_fg top22"></DIV><!--计算器-->
+        <DIV class=gfgj_padding30><SPAN class="se_1 ">说明：</SPAN>
+            <BR>公积金最大贷款年龄65岁，月收入低于800元，没有还款能力，不能贷款<BR>月收入不变情况下：35岁以内为同一个贷款额，35-65岁岁年龄增加贷款额和年限减少<BR>年龄不变情况下：800-1700元随收入增加贷款额增加，收入1700元以上为同一贷款额。
+            <BR></DIV></DIV><!--Right-->
+
+</DIV></BODY></HTML>

@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML
+        xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>购房能力评估计算器_贷款计算器</TITLE>
+    <META content="text/html; charset=utf-8" http-equiv=Content-Type>
+    <META name=keywords content="">
+    <META name=description content="">
+    <LINK rel=stylesheet href="__PUBLIC__/images/public.css">
+    <LINK rel=stylesheet href="__PUBLIC__/images/gujia.css">
+    <LINK rel=stylesheet href="__PUBLIC__/images/gfgj.css">
+    <SCRIPT language=JavaScript type=text/javascript
+            src="__PUBLIC__/images/jquery-1.2.6.min.js"></SCRIPT>
+
+    <SCRIPT language=javascript>
+        var switchNavId = 3;
+    </SCRIPT>
+
+    <SCRIPT language=javascript>
+        rhb=new Array(440.104,301.103,231.7,190.136,163.753,144.08,129.379,117.991,108.923,101.542,95.425,90.282,85.902,82.133,78.861,75.997,73.473,71.236,69.241,67.455,65.848,64.397,63.082,61.887,60.798,59.802,58.890,58.052,57.282)
+        yhz=new Array(1.978,2.9344,3.8699,4.7847,5.6794,6.5544,7.4102,8.2472,9.0657,9.8662,10.6491,11.4148,12.1636,12.8959,13.6121,14.3126,14.9977,15.6677,16.3229,16.9637,17.5904,18.2034,18.8028,19.389,19.9624,20.5231,21.0715,21.6078,22.1323)
+        function chk01()
+        {
+            if (parseFloat(document.myform.rg01.value)<4.7)
+                alert("--您确定是"+parseFloat(document.myform.rg01.value)+"万元?--"+"\n\n"+"那么您目前尚不具备购房能力，"+"\n\n"+"建议积攒积蓄或能筹集更多的资金。")
+            if (parseFloat(document.myform.rg01.value)>10000)
+                alert("您确定拥有超过一亿元的购房资金？");
+
+        }
+        function chk02()
+        {
+            if (parseFloat(document.myform.rg03.value)>parseFloat(document.myform.rg02.value)*0.7)
+            {
+                alert("您预计家庭每月可用于购房支出已超过家庭月收入的70%，"+"\n\n"+"是否确定不会影响您的正常生活消费？"+"\n\n"+"建议在40%（"+parseFloat(document.myform.rg02.value)*0.4+"元）左右")
+            }
+        }
+        function chk03()
+        {
+            if (document.myform.rg01.value=="")
+                alert("请填写现可用于购房的资金")
+            else
+            if (document.myform.rg02.value=="")
+                alert("请填写现家庭月收入")
+            else
+            if (document.myform.rg03.value=="")
+                alert("请填写预计家庭每月可用于购房支出")
+            else
+            if (document.myform.rg06.value=="")
+                alert("请填写您计划购买房屋的面积")
+            else
+                chk04()
+
+        }
+        function chk04()
+        {
+            js00=parseFloat(document.myform.rg01.value)*10000
+            js01=parseFloat(document.myform.rg03.value)
+            js02=Math.round(js01/rhb[parseInt(document.myform.rg04.options[document.myform.rg04.selectedIndex].value)/12-2])*10000
+            js03=parseFloat(document.myform.rg06.value)
+
+            if (js02>js00*3.2)
+                js02=js00*3.2
+            document.myform.rg07.value=Math.round((js02+0.8*js00)*100)/100
+            document.myform.rg08.value=Math.round(parseFloat(document.myform.rg07.value)/js03*100)/100
+            if (js03<120)
+                document.myform.rg10.value=Math.round(parseFloat(document.myform.rg07.value)*2)/100
+            else
+                document.myform.rg10.value=Math.round((parseFloat(document.myform.rg07.value)-parseFloat(document.myform.rg08.value)*120)*4+parseFloat(document.myform.rg08.value)*120*2)/100
+            document.myform.rg11.value=Math.round(parseFloat(document.myform.rg07.value)*2)/100
+            document.myform.rg12.value=Math.round(parseFloat(document.myform.rg07.value)*20)/100
+            document.myform.rg13.value=Math.round(Math.round(parseFloat(document.myform.rg07.value)*0.05)/100*yhz[parseInt(document.myform.rg04.options[document.myform.rg04.selectedIndex].value)/12-2]*100)/100
+            document.myform.rg14.value=Math.round(parseFloat(document.myform.rg07.value)*0.3)/100
+            document.myform.rg15.value="200~500"
+        }
+    </SCRIPT>
+
+    <META name=GENERATOR content="MSHTML 9.00.8112.16421"></HEAD>
+<BODY>
+
+<DIV class=container>
+    <!--Left--><!--Page State-->
+
+
+    <DIV class="left top10"><!--头部标题-->
+        <DIV class=gj_l_tit>
+            <H1>购房工具<SPAN class=colcc0>--购房能力评估计算器</SPAN></H1></DIV>
+        <DIV class=clearer></DIV><!--按钮选择-->
+        <DIV class=gfgj_nav>
+            <UL><!--以链接gfgj_nav_onlink 公积金链接为gf_nav4_onlink-->
+                <LI class="gf_nav1 gfgj_nav_onlink">购房能力评估计算 </LI>
+                <LI class=gf_nav2><A href="debx.html">等额本息还款法</A>
+                </LI>
+                <LI class=gf_nav3><A href="debj.html">等额本金还款法</A>
+                </LI>
+                <LI class=gf_nav4><A
+                        href="gjjdk.html">公积金贷款额度年限计算</A> </LI>
+                <LI class=gf_nav5><A href="tqhd.html">提前还贷计算器</A>
+                </LI>
+                <LI class=gf_nav6><A href="sf.html">税费计算器</A>
+                </LI></UL></DIV><!--分割-->
+        <DIV class=gfgj_fg></DIV><!--计算器-->
+        <P class="gfgj_bt gfgj_padding30">购房能力评估计算器</P>
+        <FORM name=myform>
+            <TABLE class="top22 " width="95%">
+                <TBODY>
+                <TR>
+                    <TD width="40%" align=right>可用于购房的资金：</TD>
+                    <TD width="60%"><INPUT onblur=chk01() class=gj_txt_3 name=rg01> 万元</TD></TR>
+                <TR>
+                    <TD align=right>现家庭月收入：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg02> 元</TD></TR>
+                <TR>
+                    <TD align=right>预计家庭每月可用于购房支出：</TD>
+                    <TD><INPUT onblur=chk02() class=gj_txt_3 name=rg03> 元/月</TD></TR>
+                <TR>
+                    <TD align=right>您期望偿还贷款的年限：</TD>
+                    <TD>&nbsp;&nbsp; <SELECT size=1 name=rg04><OPTION selected
+                                                                      value=24>2年(24期)</OPTION><OPTION value=36>3年(36期)</OPTION><OPTION
+                            value=48>4年(48期)</OPTION><OPTION value=60>5年(60期)</OPTION><OPTION
+                            value=72>6年(72期)</OPTION><OPTION value=84>7年(84期)</OPTION><OPTION
+                            value=96>8年(96期)</OPTION><OPTION value=108>9年(108期)</OPTION><OPTION
+                            value=120>10年(120期)</OPTION><OPTION value=180>15年(180期)</OPTION><OPTION
+                            value=240>20年(240期)</OPTION><OPTION value=300>25年(300期)</OPTION><OPTION
+                            value=360>30年(360期)</OPTION></SELECT></TD></TR>
+                <TR>
+                    <TD height=21 align=right>您计划购买房屋的面积：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg06> 平方米</TD></TR>
+                <TR>
+                    <TD colSpan=2 align=center><INPUT class=price_behaviour_btn onclick=chk03() value=开始计算 type=button>&nbsp;&nbsp;
+                        <INPUT class=price_behaviour_btn value=重新计算 type=reset></TD></TR></TBODY></TABLE><!--分割-->
+            <DIV class="gfgj_fg top22"></DIV><!--计算结果-->
+            <P class="gfgj_bt gfgj_padding30">计算结果</P>
+            <TABLE class=top22 width="95%">
+                <TBODY>
+                <TR>
+                    <TD width="40%" align=right>您可购买的房屋总价为：</TD>
+                    <TD width="60%"><INPUT class=gj_txt_3 name=rg07> 万元</TD></TR>
+                <TR>
+                    <TD align=right>您可购买的房屋单价为：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg08> 元/平方米</TD></TR>
+                <TR>
+                    <TD align=right><STRONG>购房相关税费</STRONG></TD>
+                    <TD></TD></TR>
+                <TR>
+                    <TD align=right>契 税：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg10> 元</TD></TR>
+                <TR>
+                    <TD align=right>公共维修基金：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg11> 元</TD></TR>
+                <TR>
+                    <TD align=right><STRONG>银行贷款需支付的费用</STRONG></TD>
+                    <TD></TD></TR>
+                <TR>
+                    <TD height=21 align=right>首付款：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg12> 平方米</TD></TR>
+                <TR>
+                    <TD align=right>保险费：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg13> 元</TD></TR>
+                <TR>
+                    <TD align=right>律师费：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg14> 元</TD></TR>
+                <TR>
+                    <TD align=right>抵押登记费：</TD>
+                    <TD><INPUT class=gj_txt_3 name=rg15> 元</TD></TR>
+                <TR></TR></TBODY></TABLE></FORM><!--分割-->
+        <DIV class="gfgj_fg top22"></DIV><!--计算器-->
+        <DIV class=gfgj_padding30><SPAN class="se_1 ">说明：</SPAN> <BR>1.
+            房屋公共维修基金收取比例根据房屋不同而变化<BR>2. 多层楼房、别墅一般按照购房款2％的比例收取。<BR>3.
+            高层楼房及多层带电梯楼房一般按照购房款3％的比例收取。<BR>4.
+            售房单位按多层住宅售房款的20%、高层住宅售房款的30%的比例，筹集公共维修基金。<BR></DIV></DIV><!--Left End--><!--Right-->
+
+
+</BODY></HTML>

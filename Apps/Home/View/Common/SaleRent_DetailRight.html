@@ -1,0 +1,46 @@
+<div class="region">
+    <h3>同小区推荐房源</h3>
+    <foreach name="borougSamePrice" item="item">
+    <!-- 循环体 -->
+    <div class="region_main">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+
+            <tr>
+                <td width="32%" rowspan="3" align="left" valign="middle"><a href="<!--{$SaleRent_URl}-->d-<!--{$item.id}-->.html" target="_blank"><img src="<!--{if $item.house_thumb}--><!--{$cfg.url_upfile}--><!--{$item.house_thumb}--><!--{else}--><!--{$cfg.path.images}-->housePhotoDefault.gif<!--{/if}-->" width="37" height="50" border="0" class="region_pic" /></a></td>
+                <td width="68%" height="18" align="left" class="font_2f5aaf"><a href="<!--{$SaleRent_URl}-->d-<!--{$item.id}-->.html" title="<!--{$item.house_title}-->" target="_blank"><!--{$item.borough_name}--> &nbsp;<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅</a></td>
+            </tr>
+            <tr>
+                <td height="18" align="left" class="region_title01"><!--{$item.house_totalarea}-->平米</td>
+            </tr>
+            <tr>
+                <td height="18" align="left"><if condition="$menu eq 'sale'">售价：</if><if condition="$menu eq 'rent'">租价：</if><font><if condition="$item.house_price eq 0">面议<else/><!--{$item.house_price}--><!--{if $menu=='sale'}-->万元</if><if condition="$menu eq 'rent'">元/月</if></if></font></td>
+            </tr>
+        </table>
+    </div>
+    <!-- 循环体 结束 -->
+    </foreach>
+
+</div>
+
+<div class="region">
+    <h3>同价位推荐房源</h3>
+    <foreach name="cityareaSamePrice" item="item">
+    <!-- 循环体 -->
+    <div class="region_main">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+            <tr>
+                <td width="32%" rowspan="3" align="left" valign="middle"><a href="<!--{$SaleRent_URl}-->d-<!--{$item.id}-->.html" target="_blank"><img src="<!--{if $item.house_thumb}--><!--{$cfg.url_upfile}--><!--{$item.house_thumb}--><!--{else}--><!--{$cfg.path.images}-->housePhotoDefault.gif<!--{/if}-->" width="37" height="50" border="0" class="region_pic" /></a></td>
+                <td width="68%" height="18" align="left" class="font_2f5aaf"><a href="<!--{$SaleRent_URl}-->d-<!--{$item.id}-->.html" title="<!--{$item.house_title}-->" target="_blank"><!--{$item.borough_name}--> &nbsp;<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅</a></td>
+            </tr>
+            <tr>
+                <td height="18" align="left" class="region_title01"><!--{$item.house_totalarea}-->平米</td>
+            </tr>
+            <tr>
+                <td height="18" align="left"><if condition="$menu eq 'sale'">售价：</if><<if condition="$menu eq 'rent'">租价：</if><font><if condition="$item.house_price eq 0">面议<else/><!--{$item.house_price}--><if condition="$menu eq 'sale'">万元</if><if condition="$menu eq 'rent'">元/月</if></if></font></td>
+            </tr>
+        </table>
+    </div>
+    <!-- 循环体 结束 -->
+    </foreach>
+
+</div>

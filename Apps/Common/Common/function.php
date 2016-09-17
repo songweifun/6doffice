@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ³£ÓÃ´òÓ¡º¯Êý
+ * å¸¸ç”¨æ‰“å°å‡½æ•°
  * @param $arr
  */
 function p($arr){
@@ -13,9 +13,9 @@ function p($arr){
 
 
 /**
- * ×ªµ½URL,²¢ÌáÊ¾ÐÅÏ¢
+ * è½¬åˆ°URL,å¹¶æç¤ºä¿¡æ¯
  * @param string $url URL
- * @param string $msg ÌáÊ¾ÐÅÏ¢
+ * @param string $msg æç¤ºä¿¡æ¯
  * @access public
  * @return void
  */
@@ -30,10 +30,10 @@ function jsurlto($msg=NULL,$url) {
 
 
 /**
- * cookie±àÂë´¦Àí
- * @param string $string Òª±àÂëµÄ×Ö·û´®
- * @param string $operation ²Ù×÷ENCODE±àÂë£¬DECODE½âÂë
- * @param string $key hashÖµ
+ * cookieç¼–ç å¤„ç†
+ * @param string $string è¦ç¼–ç çš„å­—ç¬¦ä¸²
+ * @param string $operation æ“ä½œENCODEç¼–ç ï¼ŒDECODEè§£ç 
+ * @param string $key hashå€¼
  * @return string
  */
 function authcode($string, $operation, $key = '') {
@@ -48,7 +48,7 @@ function authcode($string, $operation, $key = '') {
 }
 
 /**
- * È¡µ±Ç°ÓÃ»§ÐÅÏ¢cookieÖÐµÄ
+ * å–å½“å‰ç”¨æˆ·ä¿¡æ¯cookieä¸­çš„
  * @access public
  * @return array
  */
@@ -79,7 +79,7 @@ function getAuthInfo($field=NULL) {
 }
 
 /**
- * Í¨¹ý·ÖÊýÀ´¼ÆËãµÈ¼¶º¯Êý
+ * é€šè¿‡åˆ†æ•°æ¥è®¡ç®—ç­‰çº§å‡½æ•°
  * @param $score
  * @param $array
  * @param string $field
@@ -93,15 +93,15 @@ function getNumByScore($score,$array,$field ='sell_num'){
 		}else{
 			continue;
 		}
-		//·µ»Ø×îºóÒ»¸ö
+		//è¿”å›žæœ€åŽä¸€ä¸ª
 		return $a_level[$field];
 	}
 }
 
 
 /**
- * È¡×ÖµäÏîÊý×é
- * @param string $name ×ÖµäÃû
+ * å–å­—å…¸é¡¹æ•°ç»„
+ * @param string $name å­—å…¸å
  * @access public
  * @return array
  */
@@ -110,9 +110,9 @@ function getArray($name) {
 }
 
 /**
- * È¡×ÖµäÏîÃû³Æ
- * @param string $name ×ÖµäÃû
- * @param string $value Öµ
+ * å–å­—å…¸é¡¹åç§°
+ * @param string $name å­—å…¸å
+ * @param string $value å€¼
  * @access public
  * @return array
  */
@@ -136,8 +136,8 @@ function getCaption($name, $value) {
 }
 
 /**
- * È¡×ÖµäÏîÊý×é ·Ö×é
- * @param string $name ×ÖµäÃû
+ * å–å­—å…¸é¡¹æ•°ç»„ åˆ†ç»„
+ * @param string $name å­—å…¸å
  * @access public
  * @return array
  */
@@ -159,7 +159,7 @@ function getArrayGrouped($dd_name) {
 }
 
 /**
- * ×ª±àÂëº¯Êý
+ * è½¬ç¼–ç å‡½æ•°
  * @param $vars
  * @param string $from
  * @param string $to
@@ -178,7 +178,7 @@ function charsetIconv($vars,$from='utf-8',$to='utf8') {
 }
 
 /**
- * ´ÓÊý×éÖÐÉ¾³ý¿Õ°×µÄÔªËØ£¨°üÀ¨Ö»ÓÐ¿Õ°××Ö·ûµÄÔªËØ£©
+ * ä»Žæ•°ç»„ä¸­åˆ é™¤ç©ºç™½çš„å…ƒç´ ï¼ˆåŒ…æ‹¬åªæœ‰ç©ºç™½å­—ç¬¦çš„å…ƒç´ ï¼‰
  *
  * @param array $arr
  * @param boolean $trim
@@ -215,9 +215,9 @@ function substrs($content, $length){
 }
 
 /**
- * ½«Ò»¸ö¶þÎ¬Êý×é×ª»»Îª hashmap
+ * å°†ä¸€ä¸ªäºŒç»´æ•°ç»„è½¬æ¢ä¸º hashmap
  *
- * Èç¹ûÊ¡ÂÔ $valueField ²ÎÊý£¬Ôò×ª»»½á¹ûÃ¿Ò»ÏîÎª°üº¬¸ÃÏîËùÓÐÊý¾ÝµÄÊý×é¡£
+ * å¦‚æžœçœç•¥ $valueField å‚æ•°ï¼Œåˆ™è½¬æ¢ç»“æžœæ¯ä¸€é¡¹ä¸ºåŒ…å«è¯¥é¡¹æ‰€æœ‰æ•°æ®çš„æ•°ç»„ã€‚
  *
  * @param array $arr
  * @param string $keyField
@@ -238,6 +238,92 @@ function array_to_hashmap(& $arr, $keyField, $valueField = null)
 		}
 	}
 	return $ret;
+}
+
+/**
+ * æŠŠæµè§ˆè¿‡çš„æˆ¿æºå†™å…¥cookies
+ * @param id
+ * @return null
+ *
+ */
+function cookies($id)
+{
+	$TempNum=5;
+	//setcookie("RecentlyGoods", "12,31,90,39");
+	//RecentlyGoods æœ€è¿‘å•†å“RecentlyGoodsä¸´æ—¶å˜é‡
+	if (isset($_COOKIE['RecentlyGoods']))
+	{
+		$RecentlyGoods=$_COOKIE['RecentlyGoods'];
+		$RecentlyGoodsArray=explode(",", $RecentlyGoods);
+		$RecentlyGoodsNum=count($RecentlyGoodsArray); //RecentlyGoodsNum å½“å‰å­˜å‚¨çš„å˜é‡ä¸ªæ•°
+	}
+	if($id!="")
+	{
+		if (strstr($RecentlyGoods,(string)$id))
+		{
+
+		}
+		else
+		{
+			if($RecentlyGoodsNum<$TempNum) //å¦‚æžœCOOKIESä¸­çš„å…ƒç´ å°äºŽæŒ‡å®šçš„å¤§å°ï¼Œåˆ™ç›´æŽ¥è¿›è¡Œè¾“å…¥COOKIES
+			{
+				if($RecentlyGoods=="")
+				{
+					setcookie("RecentlyGoods",$id,time()+432000,"/");
+				}
+				else
+				{
+					$RecentlyGoodsNew=$RecentlyGoods.",".$id;
+					setcookie("RecentlyGoods", $RecentlyGoodsNew,time()+432000,"/");
+				}
+			}
+			else //å¦‚æžœå¤§äºŽäº†æŒ‡å®šçš„å¤§å°åŽï¼Œå°†ç¬¬ä¸€ä¸ªç»™åˆ åŽ»ï¼Œåœ¨å°¾éƒ¨å†åŠ å…¥æœ€æ–°çš„è®°å½•ã€‚
+			{
+				$pos=strpos($RecentlyGoods,",")+1; //ç¬¬ä¸€ä¸ªå‚æ•°çš„èµ·å§‹ä½ç½®
+				$FirstString=substr($RecentlyGoods,0,$pos); //å–å‡ºç¬¬ä¸€ä¸ªå‚æ•°
+				$RecentlyGoods=str_replace($FirstString,"",$RecentlyGoods); //å°†ç¬¬ä¸€ä¸ªå‚æ•°åˆ é™¤
+				$RecentlyGoodsNew=$RecentlyGoods.",".$id; //åœ¨å°¾éƒ¨åŠ å…¥æœ€æ–°çš„è®°å½•
+				setcookie("RecentlyGoods", $RecentlyGoodsNew,time()+432000,"/");
+			}
+		}
+	}
+	/**
+	 * å°†æ—¶é—´æˆ³è½¬æ¢ä¸ºå›ºå®šæ ¼å¼å­—ç¬¦ä¸²
+	 * @param $time
+	 * @return string
+	 */
+	function time2Units ($time)
+	{
+		$year = floor($time / 60 / 60 / 24 / 365);
+		$time -= $year * 60 * 60 * 24 * 365;
+		$month = floor($time / 60 / 60 / 24 / 30);
+		$time -= $month * 60 * 60 * 24 * 30;
+		$week = floor($time / 60 / 60 / 24 / 7);
+		$time -= $week * 60 * 60 * 24 * 7;
+		$day = floor($time / 60 / 60 / 24);
+		$time -= $day * 60 * 60 * 24;
+		$hour = floor($time / 60 / 60);
+		$time -= $hour * 60 * 60;
+		$minute = floor($time / 60);
+		$time -= $minute * 60;
+		$second = $time;
+		$elapse = '';
+
+		$unitArr = array('å¹´' =>'year', 'ä¸ªæœˆ'=>'month', 'å‘¨'=>'week', 'å¤©'=>'day',
+				'å°æ—¶'=>'hour', 'åˆ†é’Ÿ'=>'minute', 'ç§’'=>'second'
+		);
+
+		foreach ( $unitArr as $cn => $u )
+		{
+			if ( $$u > 0 )
+			{
+				$elapse = $$u . $cn;
+				break;
+			}
+		}
+
+		return $elapse;
+	}
 }
 
 ?>

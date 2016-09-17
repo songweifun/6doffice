@@ -302,12 +302,198 @@ class SellController extends CommonController{
         }
 
 
-        
+
         $this->assign('dataList', $dataList);
         $this->assign('pagePanel', $Page->show());//分页条
 
         //p($dataList);die;
         $this->menu='sale';
         $this->display();
+    }
+
+    /**
+     * 展示页
+     */
+    public function detail(){
+
+        $member = D('MemberView');
+        if($_COOKIE['AUTH_MEMBER_NAME']){
+            $member_id = $member->getAuthInfo('id');
+            $user_type = $member->getAuthInfo('user_type');
+            $this->assign('user_type', $user_type);
+        }
+        //区域字典
+        $cityarea_option = getArray('cityarea');
+        $this->assign('cityarea_option', $cityarea_option);
+
+        $house_price_option = array(
+            '0-40'=>'40万以下',
+            '40-60'=>'40-60万',
+            '60-80'=>'60-80万',
+            '80-100'=>'80-100万',
+            '100-120'=>'100-120万',
+            '120-150'=>'100-120万',
+            '150-200'=>'150-200万',
+            '200-250'=>'200-250万',
+            '250-300'=>'250-300万',
+            '300-500'=>'300-500万',
+            '500-0'=>'500万以上'
+        );
+        $this->assign('house_price_option', $house_price_option);
+
+        //房屋产权
+        $belongLists =getArray('belong');
+        $house = D('HouseSellRelation');
+        //房源特色
+        $house_feature_option = getArray('house_feature');
+        $this->assign('house_feature_option', $house_feature_option);
+        //id
+        $id = I('get.id');
+
+        if(!$id){
+           // $this->redirect('index');
+        }
+
+        //将浏览过的房源写入cookies
+        cookies($id);
+
+        //详细信息
+        $dataInfo = $house->relation(true)->where(array('id'=>$id))->find();
+        //p($dataInfo);
+        if(!$dataInfo){
+            $this->redirect('index','该房源不存在或已删除');
+        }
+
+        $dataInfo['updated'] = time2Units(time()-$dataInfo['updated']);
+        $dataInfo['belong'] = $belongLists[$dataInfo['belong']];
+        $dataInfo['cityarea_name'] = $cityarea_option[$dataInfo['cityarea_id']];
+        $dataInfo['house_toward'] = getCaption('house_toward',$dataInfo['house_toward']);//取字典名称
+
+        if($dataInfo['house_feature']){
+            $dataInfo['house_feature'] =  getCaption('house_feature',$dataInfo['house_feature']);
+        }
+
+        $dataInfo['house_fitment'] =  getCaption('house_fitment',$dataInfo['house_fitment']);
+
+        if($dataInfo['house_price'] && $dataInfo['house_totalarea']){
+            $dataInfo['avg_price'] = round($dataInfo['house_price']*10000/$dataInfo['house_totalarea']);
+        }else{
+            $dataInfo['avg_price'] = "未知";
+        }
+        $this->assign('dataInfo', $dataInfo);
+        //p($dataInfo);
+
+        //经纪人详细情况
+
+        $brokerInfo = $member->getInfo($dataInfo['broker_id'],'*',true);
+        if($brokerInfo['company_id']){
+            $company = M('company');
+            $brokerInfo['company_name'] = $company->where(array('id'=>$brokerInfo['company_id']))->getField('company_name');
+            $brokerInfo['company_phone'] = $company->where(array('id'=>$brokerInfo['company_id']))->getField('company_phone');
+        }
+
+        //积分配置文件
+        $integral_array = C('RANK');
+        $brokerInfo['brokerRank'] = getNumByScore($brokerInfo['scores'],$integral_array,'pic');
+        $this->assign('brokerInfo', $brokerInfo);
+        //p($brokerInfo);
+
+        //获取搬家公司信息
+        $company = M('company');
+        $moveCompanyList=$company->where(array('status'=>1,'type'=>1))->limit(9)->select();
+        $this->assign('moveCompanyList', $moveCompanyList);
+
+
+        //获取装修公司信息
+        $decorationCompanyList = $company->where(array('status'=>1,'type'=>2))->limit(9)->select();
+        $this->assign('decorationCompanyList', $decorationCompanyList);
+        //p($decorationCompanyList);
+
+        //小区
+        $borough = D('BoroughView');
+
+        if($dataInfo['borough_id']){
+            //小区详细信息
+            $boroughInfo=$borough->where(array('id'=>$dataInfo['borough_id']))->find();
+            $boroughInfo['cityarea_name'] = $cityarea_option[$boroughInfo['cityarea_id']];
+            $boroughInfo['borough_support'] = getCaption('borough_support',$boroughInfo['borough_support']);
+            $this->assign('boroughInfo', $boroughInfo);
+            $boroughImageList = D('Borough')->getImgList($dataInfo['borough_id'],0,6);
+            $this->assign('boroughImageList', $boroughImageList);
+
+            if(!$dataInfo['house_thumb'] && $boroughImageList){
+                //没有缩略图，把小区图片抽出一张
+                $rand_key = array_rand($boroughImageList);
+                $dataInfo['house_thumb'] = $boroughImageList[$rand_key]['pic_thumb']?$boroughImageList[$rand_key]['pic_thumb']:$boroughImageList[$rand_key]['pic_url'];
+                $house->where(array('id'=>$id))->save(array('house_thumb'=>$dataInfo['house_thumb']));
+            }
+
+            //该小区价格相近房源
+            $where = " and status =1 and id <> ".$id ." and (borough_id = ".$dataInfo['borough_id']." or borough_name = '".$dataInfo['borough_name']."') and house_price > ".($dataInfo['house_price']-10)." and house_price <".($dataInfo['house_price']+10);
+            $borougSamePrice = $house->where('1=1'.$where," and (is_checked = 0 or is_checked = 1 )")->order('order_weight desc')->limit(7)->select();
+
+            $this->assign('borougSamePrice', $borougSamePrice);
+        }
+
+        //同区域的价格相近房源
+        $where = " and status =1 and id <> ".$id ." and cityarea_id = ".$dataInfo['cityarea_id']." and house_price > ".($dataInfo['house_price']-10)." and house_price <".($dataInfo['house_price']+10);
+        $cityareaSamePrice = $house->where('1=1'.$where," and (is_checked = 0 or is_checked = 1 )")->order('order_weight desc')->limit(4)->select();
+
+        $this->assign('cityareaSamePrice', $cityareaSamePrice);
+
+        //该经纪人的其他房源
+        $where = " and status =1 and id <> ".$id ." and broker_id = ".$dataInfo['broker_id'];
+        $brokerOthersList = $house->where('1=1'.$where," and (is_checked = 0 or is_checked = 1 )")->order('order_weight desc')->limit(4)->select();
+        $this->assign('brokerOthersList', $brokerOthersList);
+
+        //页面标题
+        $this->title = $dataInfo['borough_name'].'二手房，'.$dataInfo['house_room'].'室'.$dataInfo['house_hall'].'厅'.$dataInfo['house_toilet'].'卫'.$dataInfo['house_veranda'].'阳，'.$dataInfo['house_title'].' - '.$this->city.$this->titlec;
+
+        //关键词
+        $this->keyword = $dataInfo['borough_name'].'二手房,'.$dataInfo['borough_name'].'房屋出售,'.$dataInfo['borough_name'];
+
+        //描述
+        $this->description='';
+
+        //点击增加统计
+        $house->addClick($id);
+
+
+
+        $this->display();
+    }
+
+    /**
+     * 举报
+     */
+    public function report(){
+
+        $this->title =  $this->title.' - 虚假举报';
+        $action=I('get.action');
+        if($action == 'save'){
+            //保存在ajax页面
+            $house_id = intval($_POST['house_id']);
+            $house = M('housesell');
+            $report_target=$house->where(array('id'=>$house_id))->getField('broker_id');
+
+            $reason = $_POST['reason'];
+            $report = M('report');
+            $dataFiled = array(
+                'house_type'=>'sell',
+                'house_id'=>$house_id,
+                'report_target'=>$report_target,
+                'reason'=>$reason,
+                'addtime'=>time(),
+            );
+            try{
+                $report->add($dataFiled);
+                $this->ajaxReturn(array('status'=>true));
+            }catch (Exception $e){
+                $this->ajaxReturn(array('status'=>false));
+            }
+            exit;
+        }
+        $this->display();
+
     }
 }

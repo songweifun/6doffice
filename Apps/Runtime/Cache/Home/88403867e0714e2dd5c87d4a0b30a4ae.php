@@ -146,7 +146,7 @@
                         <li <?php if($menu == 'rent'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_rent"]); ?>">租  房</a></li>
                         <?php if($newhouseOpen == 1): ?><li <?php if($menu == 'newHouse'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_newHouse"]); ?>">新  房</a></li><?php endif; ?>
                         <li <?php if(($menu == 'broker') or ($menu=='shop')): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_broker"]); ?>">经纪人</a></li>
-                        <li <?php if($menu == 'community'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_community"]); ?>">小  区</a></li>
+                        <li <?php if($menu == 'community'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Community/index');?>">小  区</a></li>
                         <li <?php if($menu == 'company'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_company"]); ?>">公  司</a></li>
                         <?php if($bbsOpen == 1): ?><li><a href="<?php echo ($cfg["url_bbs"]); ?>">论  坛</a></li><?php endif; ?>
                     </ul>
@@ -595,14 +595,14 @@
                             <div class="h15"></div>
                             <div class="property2">
                                 <div class="photo">
-                                    <?php if($item['house_thumb'] != null): ?><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); echo ($item["house_room"]); ?>居" target="_blank"><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" width="100" height="80" /></a>
+                                    <?php if($item['house_thumb'] != null): ?><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); echo ($item["house_room"]); ?>居" target="_blank"><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" width="100" height="80" /></a>
 
                                         <?php else: ?>
-                                        <a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); echo ($item["house_room"]); ?>居" target="_blank"><img src="/6doffice/Public/images/housePhotoDefault.gif" width="100" height="80" /></a><?php endif; ?>
+                                        <a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); echo ($item["house_room"]); ?>居" target="_blank"><img src="/6doffice/Public/images/housePhotoDefault.gif" width="100" height="80" /></a><?php endif; ?>
                                 </div>
                                 <div class="details" style="margin-left:10px;">
                                     <h4>
-                                        <a class="color000" href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["house_title"]); ?></a><!--{include file="inc/four_tag.tpl"}-->
+                                        <a class="color000" href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["house_title"]); ?></a><!--{include file="inc/four_tag.tpl"}-->
                                     </h4>
                                     <address>小区：<?php echo ($item["borough_name"]); ?></address>
                                     <div class="all_fyyy"><p>单价：<?php echo ($item["avg_price"]); ?>元/平米</p><p>面积：<?php echo ($item["house_totalarea"]); ?>平米</p><p>楼层：<?php echo ($item["house_floor"]); ?>/<?php echo ($item["house_topfloor"]); ?></p><br /><p>户型：<?php echo ($item["house_room"]); ?>室<?php echo ($item["house_hall"]); ?>厅</p>
@@ -626,14 +626,14 @@
                             <table width="220" border="0" align="center" cellpadding="0" cellspacing="0"ststyle="margin-left:0px; margin-top:2px;" >
                                 <tr>
                                     <td height="165" align="center" valign="top">
-                                        <?php if($item['house_thumb'] != null): ?><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" width="216" height="165" border="0" /></a>
+                                        <?php if($item['house_thumb'] != null): ?><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" width="216" height="165" border="0" /></a>
 
                                             <?php else: ?>
-                                            <a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Public/images/housePhotoDefault.gif" width="216" height="165" border="0" /></a><?php endif; ?>
+                                            <a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Public/images/housePhotoDefault.gif" width="216" height="165" border="0" /></a><?php endif; ?>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td height="24" align="left" valign="bottom" class="font_00359d" style="padding:0 5px;"><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["borough_name"]); ?></a></td>
+                                    <td height="24" align="left" valign="bottom" class="font_00359d" style="padding:0 5px;"><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["borough_name"]); ?></a></td>
                                 </tr>
                                 <tr>
                                     <td height="27" align="left" valign="middle" style="border-bottom:1px #71a6db solid; color:#7e7e7e; padding:0 5px;"><?php echo ($item["house_room"]); ?>室<?php echo ($item["house_hall"]); ?>厅 | <?php echo ($item["house_totalarea"]); ?>平米 |</td>
@@ -668,13 +668,13 @@
                     <div class="er_snt_aa" style=" padding:0;">
                         <table width="220" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-left:0px; margin-top:2px;">
                             <tr>
-                                <?php if($item['house_drawing'] != null): ?><td height="165" align="center" valign="top"><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Uploads/<?php echo ($item["house_drawing"]); ?>" width="216" height="165" border="0" /></a></td>
+                                <?php if($item['house_drawing'] != null): ?><td height="165" align="center" valign="top"><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Uploads/<?php echo ($item["house_drawing"]); ?>" width="216" height="165" border="0" /></a></td>
 
                                     <?php else: ?>
-                                    <td height="165" align="center" valign="top"><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Public/images/housePhotoDefault.gif" width="216" height="165" border="0" /></a></td><?php endif; ?>
+                                    <td height="165" align="center" valign="top"><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><img src="/6doffice/Public/images/housePhotoDefault.gif" width="216" height="165" border="0" /></a></td><?php endif; ?>
                             </tr>
                             <tr>
-                                <td height="24" align="left" valign="bottom" class="font_00359d" style="padding:0 5px;"><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["borough_name"]); ?></a></td>
+                                <td height="24" align="left" valign="bottom" class="font_00359d" style="padding:0 5px;"><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["borough_name"]); ?></a></td>
                             </tr>
                             <tr>
                                 <td height="27" align="left" valign="middle" style="border-bottom:1px #71a6db solid; color:#7e7e7e; padding:0 5px;"><?php echo ($item["house_room"]); ?>室<?php echo ($item["house_hall"]); ?>厅 | <?php echo ($item["house_totalarea"]); ?>平米 |</td>
@@ -730,7 +730,7 @@
 
                     <tr>
                         <td width="58%" rowspan="3" align="left">
-                            <a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank">
+                            <a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank">
                             <?php if($item['house_thumb'] != null): ?><img style="padding:1px; border:1px #d7d7d7 solid;" src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" width="75px" height="50px" alt="<?php echo ($item["borough_name"]); ?>" title="<?php echo ($item["borough_name"]); ?>" />
 
                                 <?php else: ?>
@@ -738,7 +738,7 @@
 
                         </a></td>
 
-                        <td width="42%" align="left" class="font_2f5aaf"><strong><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["borough_name"]); ?></a></strong></td>
+                        <td width="42%" align="left" class="font_2f5aaf"><strong><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["borough_name"]); ?></a></strong></td>
 
                     </tr>
                     <tr>

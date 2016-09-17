@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>税费计算器_贷款计算器</TITLE>
+    <META content="text/html; charset=utf-8" http-equiv=Content-Type>
+    <META name=keywords content="">
+    <META name=description content="">
+    <LINK rel=stylesheet
+          href="__PUBLIC__/images/public.css"><LINK rel=stylesheet
+                                         href="__PUBLIC__/images/gujia.css"><LINK rel=stylesheet
+                                                                       href="__PUBLIC__/images/gfgj.css">
+    <SCRIPT language=JavaScript type=text/javascript
+            src="__PUBLIC__/images/jquery-1.2.6.min.js"></SCRIPT>
+    <SCRIPT language=javascript>
+        var switchNavId = 3;
+    </SCRIPT>
+
+    <META name=GENERATOR content="MSHTML 9.00.8112.16421"></HEAD>
+<BODY><!-- 顶部站点导航 -->
+
+<DIV class=container>
+
+    <DIV class="left top10"><!--头部标题-->
+        <DIV class=gj_l_tit>
+            <H1>购房工具<SPAN class=colcc0>--税费计算器</SPAN></H1></DIV>
+        <DIV class=clearer></DIV><!--按钮选择-->
+        <DIV class=gfgj_nav>
+            <UL><!--以链接gfgj_nav_onlink 公积金链接为gf_nav4_onlink-->
+                <LI class=gf_nav1><A href="gfnl.html">购房能力评估计算</A>
+                </LI>
+                <LI class=gf_nav2><A href="debx.html">等额本息还款法</A>
+                </LI>
+                <LI class=gf_nav3><A href="debj.html">等额本金还款法</A>
+                </LI>
+                <LI class=gf_nav4><A
+                        href="gjjdk.html">公积金贷款额度年限计算</A> </LI>
+                <LI class=gf_nav5><A href="tqhd.html">提前还贷计算器</A>
+                </LI>
+                <LI class="gf_nav6 gfgj_nav_onlink">税费计算器 </LI></UL></DIV><!--分割-->
+        <DIV class=gfgj_fg></DIV><!--计算器-->
+        <P class="gfgj_bt gfgj_padding30">税费计算器</P>
+        <FORM name=myform>
+            <TABLE class="top22 " width="95%">
+                <TBODY>
+                <TR>
+                    <TD width="40%" align=right>单价：</TD>
+                    <TD width="60%"><INPUT class=gj_txt_3 name=dj3 maxLength=6 size=8>
+                        元/平米</TD></TR>
+                <TR>
+                    <TD align=right>面积：</TD>
+                    <TD><INPUT class=gj_txt_3 name=mj3 maxLength=7 size=8> 平方米</TD></TR>
+                <TR>
+                    <TD colSpan=2 align=center><INPUT class=price_behaviour_btn onclick=runjs3(this.form) name=math3 value=开始计算 type=button>&nbsp;&nbsp;
+                        <INPUT class=price_behaviour_btn value=重新计算 type=reset></TD></TR></TBODY></TABLE><!--分割-->
+            <DIV class="gfgj_fg top22"></DIV><!--计算结果-->
+            <P class="gfgj_bt gfgj_padding30">计算结果</P>
+            <TABLE class=top22 width="95%">
+                <TBODY>
+                <TR>
+                    <TD width="40%" align=right>房款总价：</TD>
+                    <TD width="60%"><INPUT class=gj_txt_3 name=fkz3> 元</TD></TR>
+                <TR>
+                    <TD align=right>印 花 税：</TD>
+                    <TD><INPUT class=gj_txt_3 name=yh> 元</TD></TR>
+                <TR>
+                    <TD align=right>公 证 费：</TD>
+                    <TD><INPUT class=gj_txt_3 name=gzh> 元</TD></TR>
+                <TR>
+                    <TD align=right>契 税：</TD>
+                    <TD><INPUT class=gj_txt_3 name=q> 元</TD></TR>
+                <TR>
+                    <TD align=right>委托办理产权手续费：</TD>
+                    <TD><INPUT class=gj_txt_3 name=wt> 元</TD></TR>
+                <TR>
+                    <TD align=right>房屋买卖手续费：</TD>
+                    <TD><INPUT class=gj_txt_3 name=fw> 元</TD></TR></TBODY></TABLE>
+            <SCRIPT language=JavaScript>
+                function runjs3(obj){dj3=parseFloat(obj.dj3.value)
+                    mj3=parseFloat(obj.mj3.value)
+                    fkz3=dj3*mj3
+                    yh=fkz3*0.0005
+                    if (dj3<=9432) q=fkz3*0.015
+                    else if (dj3>9432) q=fkz3*0.03
+                    if (mj3<=120)  fw=500;
+                    else if (120<mj3<=5000)   fw=1500;
+                    if (mj3>5000)  fw=5000
+                    gzh=fkz3*0.003
+                    obj.yh.value=Math.round(yh*100,5)/100
+                    obj.fkz3.value=Math.round(fkz3*100,5)/100
+                    obj.q.value=Math.round(q*100,5)/100
+                    obj.gzh.value=Math.round(gzh*100,5)/100
+                    obj.wt.value=Math.round(gzh*100,5)/100
+                    obj.fw.value=Math.round(fw*100,5)/100}
+            </SCRIPT>
+        </FORM>
+        <DIV class="gfgj_fg top22"></DIV><!--计算器-->
+        <DIV class=gfgj_padding30><SPAN class="se_1 ">说明：</SPAN>
+            <BR>购房需交纳的第一组税费是契税、印花税、交易手续费、权属登记费。<BR><STRONG>契税:</STRONG>金额是房价的1.5%，一般情况下是在交易签证时交一半，入住后拿房产证时交另一半<BR><STRONG>印花税:</STRONG>金额为房价的0.05%，在交易签证时交纳<BR><STRONG>交易手续费:</STRONG>一般是每平方米2.5元，也在交易签证时交纳<BR><STRONG>权属登记费:</STRONG>100元到200元之间<BR></DIV></DIV><!--Left End--><!--Right-->
+
+</BODY></HTML>

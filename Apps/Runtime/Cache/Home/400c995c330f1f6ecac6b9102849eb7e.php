@@ -699,12 +699,12 @@
             <div class="xj_gjx">
                 <h3><s></s><span>工具箱</span></h3>
                 <ul>
-                    <li class="ico1"><a target="_blank" href="<?php echo ($cfg["url"]); ?>tool/gfnl.html">贷款计算器</a></li>
-                    <li class="ico1"><a target="_blank" href="<?php echo ($cfg["url"]); ?>tool/sf.html">税费计算器</a></li>
-                    <li class="ico2"><a target="_blank" href="<?php echo ($cfg["url"]); ?>tool/debx.html">等额本息还款</a></li>
-                    <li class="ico3"><a target="_blank" href="<?php echo ($cfg["url"]); ?>tool/debj.html">等额本金还款</a></li>
-                    <li class="ico4"><a target="_blank" href="<?php echo ($cfg["url"]); ?>tool/gjjdk.html">公积金贷款计算</a></li>
-                    <li class="ico4"><a target="_blank" href="<?php echo ($cfg["url"]); ?>tool/tqhd.html">提前还款计算</a></li>
+                    <li class="ico1"><a target="_blank" href="<?php echo U('Tool/Index/gfnl');?>">贷款计算器</a></li>
+                    <li class="ico1"><a target="_blank" href="<?php echo U('Tool/Index/sf');?>">税费计算器</a></li>
+                    <li class="ico2"><a target="_blank" href="<?php echo U('Tool/Index/debx');?>">等额本息还款</a></li>
+                    <li class="ico3"><a target="_blank" href="<?php echo U('Tool/Index/debj');?>">等额本金还款</a></li>
+                    <li class="ico4"><a target="_blank" href="<?php echo U('Tool/Index/gjjdk');?>">公积金贷款计算</a></li>
+                    <li class="ico4"><a target="_blank" href="<?php echo U('Tool/Index/tqhd');?>">提前还款计算</a></li>
                 </ul>
 
             </div>

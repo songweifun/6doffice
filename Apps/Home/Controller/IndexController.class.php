@@ -216,25 +216,26 @@ class IndexController extends CommonController{
             $dotime->brokerIntegral($this->broker_integral_time);
         }
 
-        /*//全站统计
+        //全站统计
         if($today>$toTime['statistics']){
-            $dotime->statistics();
+            $dotime->statistics($this->statistics_time);
         }
+
         //小区图片数量导入
         if($today>$toTime['borough_pic_num']){
-            $dotime->boroughPicNum();
+            $dotime->boroughPicNum($this->borough_pic_num_time);
         }
 
-//房源刷新执行
-        $dotime->dorefresh();
+        //房源刷新执行
+        $dotime->dorefresh($this->vip1refresh,$this->vip2refresh);
 
 
-//房源过期处理
-        if ($page->expired_switch==1){
+        //房源过期处理
+        if ($this->expired_switch==1){
             if($today>$toTime['houseInvalid']){
-                $dotime->houseInvalid();
+                $dotime->houseInvalid($this->house_invalid_time);
             }
-        }*/
+        }
     }
 
     /**

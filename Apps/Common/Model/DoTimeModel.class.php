@@ -67,8 +67,9 @@ class DoTimeModel extends Model{
         $result=M('member')->where(array('user_type'=>1))->select();
 
         foreach ($result as $rs) {
-            $housesell_num=M('housesell')->field(array('sum(*)'=>'sum'))->where(array('status'=>1,'broker_id'=>$rs['id']))->select();
-            $houserent_num=M('housesell')->field(array('sum(*)'=>'sum'))->where(array('status'=>1,'broker_id'=>$rs['id']))->select();
+            $housesell_num=M('housesell')->where(array('status'=>1,'broker_id'=>$rs['id']))->getField('count(*)');
+            $houserent_num=M('housesell')->where(array('status'=>1,'broker_id'=>$rs['id']))->getField('count(*)');
+            //p($housesell_num);die;
             M('member')->where(array('id'=>$rs['id']))->save(array('sell_num'=>$housesell_num,'rent_num'=>$houserent_num));
         }
 
@@ -103,9 +104,10 @@ class DoTimeModel extends Model{
             }else{
                 $active_str = '';
             }
-            $total_loginday=M('member_loginlog')->field(array('count(*)'))->where(array('username'=>$rs['username']))->select();
+            $total_loginday=M('member_loginlog')->where(array('username'=>$rs['username']))->getField('count(*)');
+            //p($total_loginday);die;
             $registe_day = (time() - $rs['add_time'])/86400;
-            $total_rate = $total_loginday/$registe_day;
+            $total_rate = $total_loginday / $registe_day;
             M('member')->where(array('id'=>$rs['id']))->save(array('active_str'=>$active_str,'active_rate'=>$activeRate,'active_total'=>$total_rate));
         }
         $totime = mktime(0,0,0,date('m'),date('d'),date('Y'))+$broker_active_Rate_time;
@@ -119,7 +121,7 @@ class DoTimeModel extends Model{
     function brokerIntegral($broker_integral_time) {
         $result=M('member')->where(array('user_type'=>1))->select();
 
-        $integral = M('IntegralRule');
+        $integral = D('IntegralRule');
         foreach ($result as $rs) {
             //取得昨天的登陆情况
             $dateNow = mktime(0,0,0,date('m'),date('d'),date('Y'));
@@ -156,5 +158,124 @@ class DoTimeModel extends Model{
         }
         $totime = mktime(0,0,0,date('m'),date('d'),date('Y'))+$broker_integral_time;
         return $this->where(array('id'=>1))->save(array('broker_integral'=>$totime));//$broker_integral_time 统计一次
+    }
+
+    /**
+     * 全站数据统计
+     */
+    function statistics($statistics_time) {
+        $borough = M('borough');
+        $borough_num = $borough->count();
+        M('statistics')->where(array('stat_index'=>'boroughNum'))->save(array('stat_value'=>$borough_num));
+        $member = M('member');
+        $broker_num = $member->where(array('status'=>0,'user_type'=>1))->count();
+        M('statistics')->where(array('stat_index'=>'brokerNum'))->save(array('stat_value'=>$broker_num));
+        $houseSell=M('housesell');
+        $sumPrice =$houseSell->where('status =1 or status =2')->getField('sum(house_price/house_totalarea)');
+        //p($sumPrice);die;
+
+        $housesell_num = $houseSell->where('status =1 or status =2')->count();
+        //p($statistics_time);die;
+        if($housesell_num){
+            $avgPrice = $sumPrice*10000/$housesell_num;
+            M('statistics')->where(array('stat_index'=>'avgprice'))->save(array('stat_value'=>$avgPrice));
+        }
+        $totime = mktime(0,0,0,date('m'),date('d'),date('Y'))+$statistics_time;
+        return $this->where(array('id'=>1))->save(array('statistics'=>$totime));//$statistics_time 统计一次
+    }
+
+    /**
+     * 小区图片数量导入
+     */
+    function boroughPicNum($borough_pic_num_time) {
+        $result=M('borough')->select();
+        foreach ($result as $rs) {
+            $borough_pic_num=M('borough_pic')->where(array('borough_id'=>$rs['id']))->getField('count(*)');
+            $borough_draw_num=M('borough_draw')->where(array('borough_id'=>$rs['id']))->getField('count(*)');
+            M('borough')->where(array('id'=>$rs['id']))->save(array('layout_picture'=>$borough_pic_num,'layout_drawing'=>$borough_draw_num));
+        }
+        $totime = mktime(0,0,0,date('m'),date('d'),date('Y'))+$borough_pic_num_time;
+        return $this->where(array('id'=>1))->save(array('borough_pic_num'=>$totime));//$borough_pic_num_time 统计一次
+    }
+
+    /**
+     * 房源刷新统计脚本执行
+     */
+    function dorefresh($vip1refresh,$vip2refresh) {
+        $today = mktime(0,0,0,date('m'),date('d'),date('Y'));
+        $data=$this->where(array('id'=>1))->getField('time');
+        $housesell=M('housesell');
+        $houserent=M('houserent');
+        if($today != $data) {
+            $housesell->setField('refresh',2);
+            $houserent->setField('refresh',2);
+            $member = M('member');
+            $vip1MemberId = $member->field('id')->where(array('vip'=>1))->select();
+            $vip2MemberId = $member->field('id')->where(array('vip'=>2))->select();
+            //p($vip2MemberId);die;
+
+
+            foreach($vip1MemberId as $key=>$v )
+            {
+                $housesell->where(array('broker_id'=>$v['id']))->save(array('refresh'=>$vip1refresh));
+                $houserent->where(array('broker_id'=>$v['id']))->save(array('refresh'=>$vip1refresh));
+            }
+
+            foreach($vip2MemberId as $key=>$v )
+            {
+                $housesell->where(array('broker_id'=>$v['id']))->save(array('refresh'=>$vip2refresh));
+                $houserent->where(array('broker_id'=>$v['id']))->save(array('refresh'=>$vip2refresh));
+            }
+
+            return $this->where(array('id'=>1))->save(array('time'=>$today));
+        }
+    }
+
+    /**
+     * 房源过期处理
+     */
+    function houseInvalid($house_invalid_time) {
+        $housesell=M('housesell');
+        $houserent=M('houserent');
+        $sellIdarr=$housesell->field('id')->where(array('updated'=>array('lt',time()-604800),'status'=>1))->select();
+        $rentIdarr=$houserent->field('id')->where(array('updated'=>array('lt',time()-604800),'status'=>1,'broker_id'=>array('neq',0)))->select();
+        foreach($sellIdarr as $v){
+            $sellId[]=$v['id'];
+        }
+        foreach($rentIdarr as $v){
+            $rentId[]=$v['id'];
+        }
+        //p($rentId);die;
+        if($sellId){//如果有超过7天未刷新房源 进行下架处理
+            $housesell->where(array('id'=>array('in',$sellId)))->save(array('house_downtime'=>time(),'status'=>2));
+
+        }
+        if($rentId){//如果有超过7天未刷新房源 进行下架处理
+            $houserent->where(array('id'=>array('in',$sellId)))->save(array('house_downtime'=>time(),'status'=>2));
+
+        }
+
+        //删除发布90天以上的房源包含个人发布
+        $deleteSellIdarr = $housesell->field('id')->where(array('created'=>array('lt',time()-7776000)))->select();
+
+        $deleteRentIdarr = $houserent->field('id')->where(array('created'=>array('lt',time()-7776000)))->select();
+        foreach($deleteSellIdarr as $v){
+            $deleteSellId[]=$v['id'];
+        }
+        foreach($deleteRentIdarr as $v){
+            $deleteRentId[]=$v['id'];
+        }
+        if($deleteSellId){//如果有90天以上的房源 进行删除处理
+            D('HouseSellRelation')->deleteSell($deleteSellId);
+        }
+        if($deleteRentId){//如果有90天以上的房源 进行删除处理
+            D('HouseRentRelation')->deleteRent($deleteRentId);
+        }
+
+        $totime = mktime(0,0,0,date('m'),date('d'),date('Y'))+$house_invalid_time;
+        return $this->where(array('id'=>1))->save(array('houseInvalid'=>$totime));
+
+
+
     }
 }

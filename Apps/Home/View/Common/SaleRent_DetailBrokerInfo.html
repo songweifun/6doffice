@@ -1,0 +1,77 @@
+<div id="navigation-propview">
+    <if condition="$dataInfo.broker_id neq 0">
+    <div class="propBrokerPhoto">
+        <img src="<if condition='$brokerInfo.avatar neq null'>__ROOT__/Uploads/<!--{$brokerInfo.avatar}--><else/>__PUBLIC__/images/demoPhoto.jpg</if>" width="100" height="133" />
+    </div>
+    <div class="prop_new_line">
+        <a href="<!--{$cfg.url_shop}--><!--{$brokerInfo.id}-->" target="_blank"><!--{$brokerInfo.realname}-->（经纪人）</a>
+    </div>
+    <div class="prop_new_line">
+        <img src="__PUBLIC__/images/rank/<!--{$brokerInfo.brokerRank}-->.png"/>
+    </div>
+    <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" style=" margin:0 auto;">
+
+        <tr>
+            <td height="28">所属公司：<if condition="$brokerInfo.company_name neq null"><a target="_blank" href="<!--{$cfg.url}-->cshop/<!--{$brokerInfo.company_id}-->"><!--{$brokerInfo.company_name}--> - <!--{$brokerInfo.outlet_last}--></a><else/><!--{$brokerInfo.outlet_first}--> - <!--{$brokerInfo.outlet_last}--></if></td>
+        </tr>
+        <if condition="$brokerInfo.company_name neq null">
+        <tr>
+            <td height="28">公司电话：<!--{$brokerInfo.company_phone}--></td>
+        </tr>
+        </if>
+
+        <tr>
+
+            <td height="28">
+                认证：<if condition="$brokerInfo.idcard eq null">
+                <img src="__PUBLIC__/images/no_brokerIdentity.png" align="absmiddle" alt="未经过 <!--{$cfg.page.titlec}-->实名认证" />
+                <else/>
+                <img src="__PUBLIC__/images/brokerIdentity.png" align="absmiddle" alt="已通过 <!--{$cfg.page.titlec}-->实名认证" /></if>
+                <if condition="$brokerInfo.aptitude eq null">
+                <img src="__PUBLIC__/images/no_brokerAptitude.png" align="absmiddle" alt="未经过 <!--{$cfg.page.titlec}-->执业认证" />
+                <else/>
+                <img src="__PUBLIC__/images/brokerAptitude.png" align="absmiddle" alt="已通过 <!--{$cfg.page.titlec}-->资质认证" /></if>
+            </td>
+        </tr>
+
+        <tr>
+            <td height="30" align="center" valign="bottom">
+                <if condition="$brokerInfo.qq neq null">
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<!--{$brokerInfo.qq}-->&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<!--{$brokerInfo.qq}-->:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                </if>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td height="45" align="center" valign="bottom"><a href="<!--{$cfg.url_shop}--><!--{$brokerInfo.id}-->" target="_blank"><img src="__PUBLIC__/images/gotodp.gif" width="105" height="32" /></a></td>
+        </tr>
+        <tr>
+            <td height="22" align="center" valign="bottom">
+            </td>
+        </tr>
+        <else/>
+        <div class="propBrokerPhoto">
+            <img src="__PUBLIC__/images/demoPhoto.jpg" width="100" height="133" />
+        </div>
+        <div class="prop_new_line">
+            <!--{$dataInfo.owner_name}-->(个人)
+        </div>
+        <div class="prop_new_line">
+            <a href="delete.php?house_id=<!--{$dataInfo.id}-->" onclick="shanchu('<!--{$dataInfo.id}-->');return false;">删除该房源</a>
+        </div>
+        <div class="prop_new_line">
+            <a href="edit.php?house_id=<!--{$dataInfo.id}-->" onclick="edit('<!--{$dataInfo.id}-->');return false;">编辑该房源</a>
+        </div>
+        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" style=" margin:0 auto;">
+
+            <tr>
+            </tr>
+            <tr>
+                <td height="160" style="border-bottom:1px #ccc dashed;"></td>
+            </tr>
+            </if>
+
+
+        </table>
+</div>
