@@ -68,7 +68,7 @@
     function community()
     {
         document.topSearchForm.xz.value="小区";
-        document.topSearchForm.action = '<!--{$cfg.url}-->community/index.php';}
+        document.topSearchForm.action = "<!--{:U(MODULE_NAME.'/Community/index')}-->";}
 
     function company()
     {
@@ -187,7 +187,7 @@
                 </form>
             <elseif condition="$menu eq 'community'"/>
                 <div class="xg_nvain">
-                    <form name="topSearchForm" method="GET" action="<!--{$cfg.url}-->community/index.php">
+                    <form name="topSearchForm" method="GET" action="<!--{:U(MODULE_NAME.'/Community/index')}-->">
                         <input name="q" type="text" id="ts"  class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或划片学校'){this.value = '可输入小区名、路名或划片学校';}" onfocus="if(this.value == '可输入小区名、路名或划片学校'){this.value = '';}" value="<if condition='$Think.get.q eq null'>可输入小区名、路名或划片学校<else/><!--{$Think.get.q}--></if>" />
                 </div>
                 <ul id="sddm2">

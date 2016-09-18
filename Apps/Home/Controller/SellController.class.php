@@ -459,7 +459,7 @@ class SellController extends CommonController{
         $house->addClick($id);
 
 
-
+        $this->menu='sale';
         $this->display();
     }
 

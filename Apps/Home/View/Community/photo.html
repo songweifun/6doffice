@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <link href="__PUBLIC__/css/fuzhu.css" rel="stylesheet" type="text/css" />
+    <SCRIPT src="__PUBLIC__/js/jquery-1.4.2.min.js" type=text/javascript></SCRIPT>
+    <SCRIPT src="__PUBLIC__/js/ScrollPic.js" type=text/javascript></SCRIPT>
+</head>
+
+<body>
+<include file="Common/selltop"/>
+<div class="content">
+    <include file="Common:community_view_nav"/>
+    <div class="view">
+        <include file="Common:community_view_left"/>
+        <div class="view_right">
+            <div class="view_content">
+                <include file="Common:community_right_menu"/>
+                <div class="view_right_cc" id=view_right_cc>
+                    <div class="main">
+
+                        <div class="photo2">
+                            <div class="btn1"><!-- <a href="#"  ><img src="images/leftbar.gif" /></a> --></div>
+                            <div class="picturespace">
+                                <div class="picture2">
+                                    <table cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td>
+                                                <if condition="$boroughImageList neq null">
+                                                    <if condition="$next_img_id gt $borough_img_num">
+                                                        <a href="#view_right_cc"><img  src="__ROOT__/Uploads/<!--{$pic_url}-->" alt="<!--{$dataInfo.borough_name}-->小区照片-<!--{$dataInfo.cityarea_name}--><!--{$item.citypart_name}-->" /></a>
+                                                    <else/>
+                                                        <a href="<!--{:U(MODULE_NAME.'/Community/photo')}-->/id/<!--{$dataInfo.id}-->/p_id/<!--{$next_img_id}-->#view_right_cc"><img title="点击查看下一页" src="__ROOT__/Uploads/<!--{$pic_url}-->" alt="<!--{$dataInfo.borough_name}-->小区照片-<!--{$dataInfo.cityarea_name}--><!--{$item.citypart_name}-->" /></a>
+                                                    </if>
+                                                <else/>
+                                                        <a href="#"><img src="/themes/2010a/images/housePhotoDefault_240_180.gif" alt="<!--{$dataInfo.borough_name}-->小区照片-<!--{$dataInfo.cityarea_name}--><!--{$item.citypart_name}-->" /></a>
+                                                </if>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="info"></div>
+                            </div>
+
+                            <div class="btn2"><!-- <a href="#"  ><img src="images/rightbar.gif" /></a> --></div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="view_content">
+                        <div class="view_content_top"><p align="center">小区照片</p></div>
+                        <div class=blk_29_yx>
+                            <div class=LeftBottonFZ id=LeftArr></div>
+                            <div class=Cont id=ISL_Cont_1>
+                                <foreach  name="boroughImageList" item="item">
+
+                                <div class=box><a href="<!--{:U(MODULE_NAME.'/Community/photo')}-->/id/<!--{$dataInfo.id}-->/p_id/<!--{$key+1}-->#view_right_cc"><img src="<if condition='$item.pic_thumb neq null'>__ROOT__/Uploads/<!--{$item.pic_thumb}--><else/>__ROOT__/Uploads/<!--{$item.pic_url}--></if>"  width="86" height="64" alt="<!--{$item.borough_name}-->小区照片-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->小区照片-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a>
+                                </div>
+                                </foreach>
+
+                            </div>
+                            <div class=RightBottonFZ id=RightArr></div>
+                        </div>
+                        <SCRIPT language=javascript type=text/javascript>
+                            <!--//--><![CDATA[//><!--
+                            var scrollPic_02 = new ScrollPic();
+                            scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+                            scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+                            scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+
+                            scrollPic_02.frameWidth     = 565;//显示框宽度
+                            scrollPic_02.pageWidth      = 140; //翻页宽度
+
+                            scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+                            scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
+                            scrollPic_02.autoPlay       = false; //自动播放
+                            scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+
+                            scrollPic_02.initialize(); //初始化
+
+                            //--><!]]>
+                        </SCRIPT>
+                    </div>
+
+                </div>
+            </div>
+            <div class="view_content">
+            </div>
+        </div>
+        <p align="right">&nbsp;</p>
+        <span class="xj_c xj_c01"></span>
+        <span class="xj_c xj_c06"></span>
+        <span class="xj_c xj_c03"></span>
+        <span class="xj_c xj_c04"></span></div>
+</div>
+<include file="Common:foot"/>
+</body>
+</html>

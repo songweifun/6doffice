@@ -1,7 +1,7 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo ($title); ?></title>
 <link href="/6doffice/Public/css/css.css" rel="stylesheet" type="text/css" />
 <link href="/6doffice/Public/css/style.css" rel="stylesheet" type="text/css" />
@@ -105,7 +105,7 @@
     function community()
     {
         document.topSearchForm.xz.value="小区";
-        document.topSearchForm.action = '<?php echo ($cfg["url"]); ?>community/index.php';}
+        document.topSearchForm.action = "<?php echo U(MODULE_NAME.'/Community/index');?>";}
 
     function company()
     {
@@ -207,7 +207,7 @@
                 </form>
             <?php elseif($menu == 'community'): ?>
                 <div class="xg_nvain">
-                    <form name="topSearchForm" method="GET" action="<?php echo ($cfg["url"]); ?>community/index.php">
+                    <form name="topSearchForm" method="GET" action="<?php echo U(MODULE_NAME.'/Community/index');?>">
                         <input name="q" type="text" id="ts"  class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或划片学校'){this.value = '可输入小区名、路名或划片学校';}" onfocus="if(this.value == '可输入小区名、路名或划片学校'){this.value = '';}" value="<?php if($_GET['q']== null): ?>可输入小区名、路名或划片学校<?php else: echo ($_GET['q']); endif; ?>" />
                 </div>
                 <ul id="sddm2">

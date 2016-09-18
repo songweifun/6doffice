@@ -76,27 +76,27 @@
                     <tr>
                         <td width="200" align="right">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 个符合要求的小区&nbsp;</td>
                         <td>
-                            <!--{if $pageno > 1}-->
-                            <a href="index.php?q=<!--{$smarty.get.q}-->&letter=<!--{$smarty.get.letter}-->&cityarea=<!--{$smarty.get.cityarea}-->&borough=<!--{$smarty.get.borough}-->&price=<!--{$smarty.get.price}-->&totalarea=<!--{$smarty.get.totalarea}-->&room=<!--{$smarty.get.room}-->&type=<!--{$smarty.get.type}-->&feature=<!--{$smarty.get.feature}-->&switch=<!--{$smarty.get.switch}-->&showstyle=<!--{$smarty.get.showstyle}-->&list_num=<!--{$smarty.get.list_num}-->&list_order=<!--{$smarty.get.list_order}-->&pageno=<!--{$pageno-1}-->" onfocus=blur()>
-                                <img src="<!--{$cfg.path.images}-->sale01a.jpg" border="0" class="RL-Prev"/>
+                            <if condition="$pageno gt 1">
+                            <a href="index.php?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno-1}-->" onfocus=blur()>
+                                <img src="__PUBLIC__/images/sale01a.jpg" border="0" class="RL-Prev"/>
                             </a>
-                            <!--{else}-->
+                            <else/>
                             <a href="javascript:void(0);">
-                                <img src="<!--{$cfg.path.images}-->sale01.jpg" border="0" class="RL-Prev"/>
+                                <img src="__PUBLIC__/images/sale01.jpg" border="0" class="RL-Prev"/>
                             </a>
-                            <!--{/if}-->
+                            </if>
                         </td>
                         <td id="RL_NoPage"><!--{$pageno}-->/<!--{$page_count}--></td>
                         <td>
-                            <!--{if $pageno < $page_count and $pageno < 100}-->
-                            <a href="index.php?q=<!--{$smarty.get.q}-->&letter=<!--{$smarty.get.letter}-->&cityarea=<!--{$smarty.get.cityarea}-->&borough=<!--{$smarty.get.borough}-->&price=<!--{$smarty.get.price}-->&totalarea=<!--{$smarty.get.totalarea}-->&room=<!--{$smarty.get.room}-->&type=<!--{$smarty.get.type}-->&feature=<!--{$smarty.get.feature}-->&switch=<!--{$smarty.get.switch}-->&showstyle=<!--{$smarty.get.showstyle}-->&list_num=<!--{$smarty.get.list_num}-->&list_order=<!--{$smarty.get.list_order}-->&pageno=<!--{$pageno+1}-->" onfocus=blur()>
-                                <img src="<!--{$cfg.path.images}-->sale02a.jpg" border="0" class="RL-Next"/>
+                            <if condition="($pageno lt $page_count) and ($pageno lt 100)">
+                            <a href="index.php?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno+1}-->" onfocus=blur()>
+                                <img src="__PUBLIC__/images/sale02a.jpg" border="0" class="RL-Next"/>
                             </a>
-                            <!--{else}-->
+                            <else/>
                             <a href="javascript:void(0);">
-                                <img src="<!--{$cfg.path.images}-->sale01.jpg" border="0" class="RL-Prev"/>
+                                <img src="__PUBLIC__/images/sale01.jpg" border="0" class="RL-Prev"/>
                             </a>
-                            <!--{/if}-->
+                            </if>
                         </td>
                     </tr>
                 </table>
@@ -104,46 +104,46 @@
         </div>
         <div class="all_fy_bg" style=" margin-top:-1px;">
             <div class="all_fy_bgl">
-                <a href="javascript:void(0)" onclick="quickSearch('sell_num desc','list_order');" class="<!--{if $smarty.get.list_order=='sell_num desc'}-->input_mrpxx<!--{else}-->input_mrpx<!--{/if}-->" >
+                <a href="javascript:void(0)" onclick="quickSearch('sell_num desc','list_order');" <if condition="$Think.get.list_order eq 'sell_num desc'">class="input_mrpxx"<else/>class="input_mrpx"</if> >
                     默认排序
                 </a>
-                <a href="javascript:void(0)" onclick="quickSearch('house_num desc','list_order');" class="<!--{if $smarty.get.list_order=='house_num desc'}-->input_mrpxx<!--{else}-->input_mrpx<!--{/if}-->" >
+                <a href="javascript:void(0)" onclick="quickSearch('house_num desc','list_order');" <if condition="$Think.get.list_order eq 'house_num desc'">class="input_mrpxx"<else/>class="input_mrpx"</if> >
                     按房源量
                 </a>
-                <a href="javascript:void(0);" onclick="quickSearch('borough_avgprice asc','list_order');return false;" class="<!--{if $smarty.get.list_order=='borough_avgprice asc'}-->input_zj<!--{else}-->input_pxbg56<!--{/if}-->" >
-                    按均价<!--{if $smarty.get.list_order=='borough_avgprice asc'}--><!--{if $smarty.get.list_order=='borough_avgprice asc'}-->&darr;<!--{else}-->&uarr;<!--{/if}--><!--{else}-->&uarr;<!--{/if}-->
+                <a href="javascript:void(0);" onclick="quickSearch('borough_avgprice asc','list_order');return false;"  <if condition="$Think.get.list_order eq 'borough_avgprice asc'">class="input_zj"<else/>class="input_pxbg56"</if>>
+                    按均价<if condition="$Think.get.list_order eq 'borough_avgprice asc'"><if condition="$Think.get.list_order eq 'borough_avgprice asc'">&darr;<else/>&uarr;</if><else/>&uarr;</if>
                 </a>
-                <a href="javascript:void(0);" onclick="quickSearch('percent_change desc','list_order');return false;" class="<!--{if $smarty.get.list_order=='percent_change desc'}-->input_zj<!--{else}-->input_pxbg56<!--{/if}-->" >
-                    按涨跌<!--{if $smarty.get.list_order=='percent_change asc'}--><!--{if $smarty.get.list_order=='percent_change asc'}-->&darr;<!--{else}-->&uarr;<!--{/if}--><!--{else}-->&uarr;<!--{/if}-->
+                <a href="javascript:void(0);" onclick="quickSearch('percent_change desc','list_order');return false;" <if condition="$Think.get.list_order eq 'percent_change desc'">class="input_zj"<else/>class="input_pxbg56"</if> >
+                    按涨跌<if condition="$Think.get.list_order eq 'percent_change asc'"><if condition="$Think.get.list_order eq 'percent_change asc'">&darr;<else/>&uarr;</if><else/>&uarr;</if>
                 </a>
             </div>
         </div>
 
 
         <div class="Community_content">
-            <!--{foreach from=$dataList item=item key=key}-->
+            <foreach name="dataList" item="item">
             <ol id="list_body">
                 <div class="h15"></div>
                 <div class="property2">
                     <div class="photo">
-                        <a href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="<!--{if $item.borough_thumb}--><!--{$cfg.url_upfile}--><!--{$item.borough_thumb}--><!--{else}--><!--{$cfg.path.images}-->housePhotoDefault.gif<!--{/if}-->" width="100" height="75" alt="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a></div>
+                        <a href="<!--{:U(MODULE_NAME.'/Community/general')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><img src="<if condition='$item.borough_thumb neq null'>__ROOT__/Uploads/<!--{$item.borough_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="100" height="75" alt="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a></div>
                     <div class="Community_title" style="margin-left:10px;">
                         <h4>
-                            <a href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--><!--{if $item.borough_alias}-->(<!--{$item.borough_alias}-->)<!--{/if}--></a></h4>
+                            <a href="<!--{:U(MODULE_NAME.'/Community/general')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--><if condition="$item.borough_alias neq null">(<!--{$item.borough_alias}-->)</if></a></h4>
                         <address><a href="<!--{$cfg.url_community}-->index.php?cityarea=<!--{$item.cityarea_id}-->"><!--{$item.cityarea_name}--></a> - <!--{$item.borough_address}-->
 
 
                         </address>
-                        <p>二手房源：<span><a href="sale.php?id=<!--{$item.id}-->" title="查看二手房源" target="_blank"><!--{$item.sell_num}-->套</a></span></p><p>出租房源：<span><a href="rent.php?id=<!--{$item.id}-->" title="查看租房源" target="_blank"><!--{$item.rent_num}-->套</a></span></p>
+                        <p>二手房源：<span><a href="<!--{:U(MODULE_NAME.'/Community/sell')}-->/id/<!--{$item.id}-->" title="查看二手房源" target="_blank"><!--{$item.sell_num}-->套</a></span></p><p>出租房源：<span><a href="<!--{:U(MODULE_NAME.'/Community/rent')}-->/id/<!--{$item.id}-->" title="查看租房源" target="_blank"><!--{$item.rent_num}-->套</a></span></p>
                     </div>
-                    <!--{if $item.percent_change > 0}--><div class="Community_price">↑ <!--{$item.percent_change|abs}-->%</div><!--{/if}--><!--{if $item.percent_change < 0}--><div class="Community_price_d">↓ <!--{$item.percent_change|abs}-->%</div><!--{/if}--><!--{if $item.percent_change == 0}--><div class="Community_price">--</div><!--{/if}-->
-                    <div class="Community_tags">均价：<!--{if $item.borough_avgprice>0}--><span><!--{$item.borough_avgprice}--></span><!--{else}-->--<!--{/if}--></span>元/平米</div>
+                    <if condition="$item.percent_change gt 0"><div class="Community_price">↑ <!--{$item.percent_change|abs}-->%</div></if><if condition="$item.percent_change lt 0"><div class="Community_price_d">↓ <!--{$item.percent_change|abs}-->%</div></if><if condition="$item.percent_change eq 0"><div class="Community_price">--</div></if>
+                    <div class="Community_tags">均价：<if condition="$item.borough_avgprice gt 0"><span><!--{$item.borough_avgprice}--></span><else/>--</if></span>元/平米</div>
                 </div>
                 <div class="h23"></div>
                 <div class="hr"></div>
                 <div class="h15"></div>
             </ol>
-            <!--{/foreach}-->
+            </foreach>
             <div class="Community-div">
                 <div class="contain">
                     <!-- 小区列表分页 -->
@@ -159,23 +159,23 @@
     <div class="sale_xx_right">
         <div class="region">
             <h3>热门小区</h3>
-            <!--{ foreach from=$boroughList key=key item=item}-->
+            <foreach name="boroughList" item="item">
             <div class="region_main">
                 <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto">
                     <tr>
-                        <td colspan="2" align="center"><a href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="<!--{if $item.borough_thumb}--><!--{$cfg.url_upfile}--><!--{$item.borough_thumb}--><!--{else}--><!--{$cfg.path.images}-->housePhotoDefault.gif<!--{/if}-->" width="100" height="80" class="Top_Community" alt="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a></td>
+                        <td colspan="2" align="center"><a href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="<if condition='$item.borough_thumb neq null'>__ROOT__/Uploads/<!--{$item.borough_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="100" height="80" class="Top_Community" alt="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a></td>
                     </tr>
                     <tr>
                         <td width="58%" height="32" align="right"><strong><a href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--></a></strong> </td>
                         <td width="42%" align="left" class="font_2f5aaf">&nbsp;<strong><a href="<!--{$cfg.url_community}-->index.php?borough=<!--{$item.citypart_id}-->&cityarea=<!--{$item.cityarea_id}-->"><!--{$item.citypart_name}--></a></strong></td>
                     </tr>
                     <tr>
-                        <td height="32" align="right"><strong class="top_jg"><!--{if $item.borough_avgprice}--><!--{$item.borough_avgprice}--></strong>元/平米<!--{else}-->--<!--{/if}--></td>
-                        <td align="left" class="Community_z">&nbsp;	<!--{if $item.percent_change<>0}--><!--{if $item.percent_change < 0}-->↓<!--{$item.percent_change|abs}-->%<!--{else}-->↑<!--{$item.percent_change}-->%<!--{/if}--><!--{else}-->--<!--{/if}--></td>
+                        <td height="32" align="right"><strong class="top_jg"><if condition="$item.borough_avgprice neq null"><!--{$item.borough_avgprice}--></strong>元/平米<else/>--</if></td>
+                        <td align="left" class="Community_z">&nbsp;	<if condition="$item.percent_change neq 0"><if condition="$item.percent_change lt 0">↓<!--{$item.percent_change|abs}-->%<else/>↑<!--{$item.percent_change}-->%</if><else/>--</if></td>
                     </tr>
                 </table>
             </div>
-            <!--{/foreach}-->
+            </foreach>
 
 
         </div>

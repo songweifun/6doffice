@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <link href="__PUBLIC__/css/fuzhu.css" rel="stylesheet" type="text/css" />
+    <SCRIPT src="__PUBLIC__/js/js.js" type=text/javascript></SCRIPT>
+    <SCRIPT src="__PUBLIC__/js/ScrollPic.js" type=text/javascript></SCRIPT>
+    <SCRIPT src="__PUBLIC__/js/jquery-1.4.2.min.js" type=text/javascript></SCRIPT>
+    <style media="all" type="text/css">
+        .iframe_map{margin-top:15px; border:1px solid #c6def3;}
+    </style>
+</head>
+
+<body>
+<include file="Common/selltop"/>
+<div class="content">
+    <include file="Common:community_view_nav"/>
+    <div class="view">
+        <include file="Common:community_view_left"/>
+        <div class="view_right">
+            <div class="view_content">
+                <include file="Common:community_right_menu"/>
+                <div class="view_right_bb">
+                    <div id=b1>
+                        <div class="xxjs"><iframe class="iframe_map" name="gmap" frameborder="0" width="637" height="240" src="<!--{:U(MODULE_NAME.'/BaiduMap/index')}-->/id/<!--{$dataInfo.id}-->" scrolling="No"></iframe><div><a name="map"></a></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="view_content">
+                <div class="view_content_top"><span><a href="sale.php?id=<!--{$dataInfo.id}-->" target="_self">查看全部出售房源>></a></span>出售房源</div>
+                <div class="view_content_main">
+                    <if condition="$boroughSellList neq null"><!-- 小区出售房源 -->
+                    <foreach  name="boroughSellList" item="item">
+                    <div class="ox">
+                        <table width="201" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="99" height="80" rowspan="3" align="center" valign="middle" class="oxx"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" target="_blank"><img src="<if condition='$item.house_thumb neq null'>__ROOT__/Uploads/<!--{$item.house_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="86" height="64" title="<!--{$dataInfo.borough_name}-->-<!--{$dataInfo.cityarea_name}--><!--{$item.citypart_name}-->"/></a></td>
+                                <td width="105" height="22" align="left" valign="bottom"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html"><strong><!--{$item.house_room}-->室<!--{$item.house_hall}-->厅<!--{$item.house_toilet}-->卫</a></td>
+                            </tr>
+                            <tr>
+                                <td height="18" align="left" style="color:#707070"><!--{$item.house_totalarea}-->平米</td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="left" class="font17"><span><!--{$item.house_price}--></span>万元</td>
+                            </tr>
+                        </table>
+                    </div>
+                    </foreach>
+                    <!-- 小区出售房源 结束 -->
+                    </if>
+                </div>
+            </div>
+            <div style="height:10px; clear:both;"></div>
+            <div class="view_content">
+                <div class="view_content_top"><span><if condition="$boroughRentList neq null"><a href="rent.php?id=<!--{$dataInfo.id}-->" target="_self">查看全部出租房源>></a></if></span>出租房源</div>
+                <div class="view_content_main">
+                    <if condition="$boroughRentList neq null"><!-- 小区出租房源 -->
+                    <foreach  name="boroughRentList" item="item">
+                    <div class="ox">
+                        <table width="201" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="105" height="80" rowspan="3" align="center" valign="middle" class="oxx"><a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" target="_blank"><img src="<if condition='$item.house_thumb neq null'>__ROOT__/Uploads/<!--{$item.house_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="86" height="64" title="<!--{$dataInfo.borough_name}-->-<!--{$dataInfo.cityarea_name}--><!--{$dataInfo.citypart_name}-->"/></a></td>
+                                <td width="105" height="22" align="left" valign="bottom"><a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html"><strong><!--{$item.house_room}-->室<!--{$item.house_hall}-->厅<!--{$item.house_toilet}-->卫</strong></a></td>
+                            </tr>
+                            <tr>
+                                <td height="18" align="left" style="color:#707070"><!--{$item.house_totalarea}-->平米</td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="left" class="font17"><span><!--{$item.house_price}--></span>元/月</td>
+                            </tr>
+                        </table>
+                    </div>
+                    </foreach>
+                    <!-- 小区出售房源 结束 -->
+                    <else/>
+                    此小区暂未有租房房源！
+                    </if>
+                </div>
+            </div>
+            <div style="height:10px; clear:both;"></div>
+            <div class="view_content">
+                <div class="view_content_top"><p align="center">小区照片</p></div>
+                <div class=blk_29_yx>
+                    <div class=LeftBottonFZ id=LeftArr></div>
+                    <div class=Cont id=ISL_Cont_1>
+                        <foreach  name="boroughImageList" item="item">
+                        <div class=box><a href="<!--{$cfg.url_community}-->p-<!--{$dataInfo.id}-->-<!--{$key+1}-->.html"><img src="<if condition='$item.pic_thumb neq null'>__ROOT__/Uploads/<!--{$item.pic_thumb}--><else/>__ROOT__/Uploads/<!--{$item.pic_url}--></if>" title="<!--{$dataInfo.borough_name}-->"/></a>
+                            <P><a href="<!--{$cfg.url_community}-->p-<!--{$dataInfo.id}-->-<!--{$key+1}-->.html"></a></P>
+                        </div>
+                        </foreach>
+
+                    </div>
+                    <div class=RightBottonFZ id=RightArr></div>
+                </div>
+                <SCRIPT language=javascript type=text/javascript>
+                    <!--//--><![CDATA[//><!--
+                    var scrollPic_02 = new ScrollPic();
+                    scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+                    scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+                    scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+
+                    scrollPic_02.frameWidth     = 565;//显示框宽度
+                    scrollPic_02.pageWidth      = 140; //翻页宽度
+
+                    scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+                    scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
+                    scrollPic_02.autoPlay       = false; //自动播放
+                    scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+
+                    scrollPic_02.initialize(); //初始化
+
+                    //--><!]]>
+                </SCRIPT>
+            </div>
+        </div>
+        <p align="right">&nbsp;</p>
+        <span class="xj_c xj_c01"></span>
+        <span class="xj_c xj_c06"></span>
+        <span class="xj_c xj_c03"></span>
+        <span class="xj_c xj_c04"></span></div>
+</div>
+<include file="Common:foot"/>
+</body>
+</html>

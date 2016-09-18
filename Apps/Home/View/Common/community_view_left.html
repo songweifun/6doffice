@@ -1,0 +1,59 @@
+<div class="view_left"><h3><!--{$dataInfo.borough_name}--></h3>
+    <div class="view_left_border">
+        <table width="302" border="0" align="center" cellpadding="0" cellspacing="0" class="view_tu_border" style="margin:10px auto 0;">
+            <tr>
+                <td height="228" align="center" valign="middle" class="view_datu"><a href="<!--{$cfg.url_community}-->p-<!--{$dataInfo.id}-->.html" title="<!--{$dataInfo.borough_name}-->-<!--{$dataInfo.cityarea_name}--><!--{$dataInfo.citypart_name}-->"><img id="big_src_img" src="<if condition='$dataInfo.borough_thumb neq null'>__ROOT__/Uploads/<!--{$dataInfo.borough_thumb}--><else/><!--{$cfg.path.images}-->housePhotoDefault_240_180.gif</if>" width="314" height="235" /></a></td>
+            </tr>
+            <tr>
+                <td height="28" align="center"><a href="#"><strong><!--{$dataInfo.borough_name}--></strong></a></td>
+            </tr>
+            <tr>
+                <td><table width="302" height="65" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <foreach  name="boroughImageList" item="item">
+                        <if condition="$key lt 4">
+                        <td width="25%" class="view_xiaotu"><a href="<!--{$cfg.url_community}-->p-<!--{$dataInfo.id}-->.html" target="_blank"><img onmouseover="document.getElementById('big_src_img').src=this.src" src="<if condition='$item.pic_thumb neq null'>__ROOT__/Uploads/<!--{$item.pic_thumb}--><else/>__ROOT__/Uploads/<!--{$item.pic_url}--></if>" width="68" height="50" /></a></td>
+                        </if>
+                        </foreach>
+                    </tr>
+                </table></td>
+            </tr>
+        </table>
+        <div class="view_intr">
+            <ul>
+                <li>小区名称: <span><!--{$dataInfo.borough_name}--></span></li>
+                <li>小区地址: <!--{$dataInfo.borough_address}--> <span></span></li>
+                <li>小区板块: <!--{$dataInfo.borough_section}--> <span></span></li>
+                <li>挂牌均价:<if condition="$dataInfo.borough_avgprice neq null"><span class="colorF90"><span class="size16px familyAlpha weightBold"><!--{$dataInfo.borough_avgprice}--></span>元/㎡</span><else/>--</if> <if condition="$dataInfo.percent_change neq 0"><if condition="$dataInfo.percent_change lt 0"><span class="color690">↓<!--{$dataInfo.unsign_percent_change}-->%</span><else/><span class="colorF60">↑<!--{$dataInfo.unsign_percent_change}-->%</span></if><else/>--</if></li>
+                <li>物业类型:<!--{$dataInfo.borough_type}--></li>
+                <li>绿化率:<!--{$dataInfo.borough_green}-->%</li>
+                <li >周边学校:<!--{$dataInfo.elementary_school}--></li>
+                <li>出售房源: <a href="sale.php?id=<!--{$dataInfo.id}-->"><!--{$dataInfo.sell_num}-->套</a></li>
+                <li>出租房源: <a href="rent.php?id=<!--{$dataInfo.id}-->"><!--{$dataInfo.rent_num}-->套</a></li>
+            </ul>
+        </div>
+
+        <div class="view_intr">
+            <ul>
+                <li>公交线路:<!--{$dataInfo.borough_bus }--></li>
+                <li>附近景点:<!--{$dataInfo.borough_sight}--></li>
+                <li>附近购物:<!--{$dataInfo.borough_shop}--></li>
+                <li>附近餐饮:<!--{$dataInfo.borough_dining }--></li>
+                <li>附近医院:<!--{$dataInfo.borough_hospital }--></li>
+                <li>小区配套:<!--{$dataInfo.borough_support }--></li>
+                <li>停车位:<!--{$dataInfo.borough_parking }--></li>
+                <li>建筑面积:<!--{$dataInfo.borough_totalarea }--></li>
+                <li>开发商:<!--{$dataInfo.borough_developer}--></li>
+            </ul>
+        </div>
+
+        <div class="view_intr_wenzi" >
+            <h3>小区简介</h3>
+            <div id="limittext">
+                <!--{$dataInfo.borough_content}-->
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript'  src='__PUBLIC__/js/jquery.limittext.js'></script>
+    <script type='text/javascript'  src='__PUBLIC__/js/test.js'></script>
+</div>

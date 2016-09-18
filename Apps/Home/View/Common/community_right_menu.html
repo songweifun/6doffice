@@ -1,0 +1,10 @@
+<div id="c" style="margin-top:10px;">
+    <ul>
+        <li id=a1 <if condition="$community_menu eq 'general'">class="li2"<else/>class="li1"</if>><a href="<!--{:U(MODULE_NAME.'/Community/general')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>首页</a></li>
+        <li id=a2 <if condition="$community_menu eq 'sale'">class="li2"<else/>class="li1"</if>><a href="<!--{:U(MODULE_NAME.'/Community/sell')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>二手房</a></li>
+        <li id=a3 <if condition="$community_menu eq 'rent'">class="li2"<else/>class="li1"</if>><a href="<!--{:U(MODULE_NAME.'/Community/rent')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>租房</a></li>
+
+        <li id=a4 <if condition="$community_menu eq 'photo'">class="li2"<else/>class="li1"</if>><a href="<!--{:U(MODULE_NAME.'/Community/photo')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>小区照片</a></li>
+        <li id=a5 <if condition="$community_menu eq 'structure'">class="li2"<else/>class="li1"</if>><a href="<!--{:U(MODULE_NAME.'/Community/structrue')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>户型图</a></li></ul>
+    <!-- <div class="Count">有 <span>342</span> 套房子正在出售出租，最新发布：<span>42</span> 套</div> -->
+</div>
