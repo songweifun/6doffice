@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>回复信息</title>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+
+    <!--{$cssFiles}-->
+    <!--{$jsFiles}-->
+    <style>
+        textarea { width:400px; height:70px; font-size:12px; padding:2px; border:1px solid #bababa; }
+        input.btn {border:1px solid #b4c91a; color:#660; font-size:14px; font-weight:bold; padding:3px 10px; *padding:3px 0 0; margin-right:10px; cursor:pointer; }
+    </style>
+</head>
+<body>
+<div>
+    <form name="dataForm" method="POST" action="">
+        <table cellpadding="0" cellspacing="5" border="0">
+            <tr>
+                <td><span class="must">*</span>回复信息：<br/>
+                    <textarea name="reply" cols="30" rows="10" id="reply"></textarea> </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="subbtn"name="提交" type="button" class="btn" value="回复" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+
+
+
+    $('#subbtn').click(function(){
+        var reply = document.getElementById('reply').value;
+        if(!reply){
+            alert("请填回复能容");
+            die;
+        }
+        $.ajax({
+            url:"<!--{:U(MODULE_NAME.'/Shop/replay')}-->/action/reply/id/<!--{$Think.get.id}-->/broker_id/<!--{$Think.get.broker_id}-->",
+            data:{reply:reply},
+            type:'post',
+            dataType:'json',
+            success:function(result){
+                if(result.status==true){
+                    alert(result.msg);
+                    parent.location.reload();
+                    window.parent.layer.closeAll();
+
+
+                }else{
+                    alert(result.msg)
+                }
+
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

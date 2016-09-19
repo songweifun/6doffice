@@ -1,0 +1,42 @@
+
+<div class="agent_tit">
+    <h2><if condition="$Think.get.company_id neq null">团队精英<else/>全部经纪人</if></h2>
+    <div class="agent_titr">
+        <table>
+            <tr>
+                <td width="200" align="right">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 位符合要求的经纪人&nbsp;</td>
+                <td>
+                    <if condition="$pageno gt 1">
+                    <a href="index.php?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&company_id=<!--{$Think.get.company_id}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno-1}-->" onfocus=blur()>
+                        <img src="__PUBLIC__/images/sale01a.jpg" border="0" class="RL-Prev"/>
+                    </a>
+                    <else/>
+                    <a href="javascript:void(0);">
+                        <img src="__PUBLIC__/images/sale01.jpg" border="0" class="RL-Prev"/>
+                    </a>
+                    </if>
+                </td>
+                <td id="RL_NoPage"><!--{$pageno}-->/<!--{$page_count}--></td>
+                <td>
+                    <if condition="($pageno lt $page_count) and ($pageno lt 100)">
+                    <a href="index.php?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&company_id=<!--{$Think.get.company_id}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno+1}-->" onfocus=blur()>
+                        <img src="__PUBLIC__/images/sale02a.jpg" border="0" class="RL-Next"/>
+                    </a>
+                    <else/>
+                    <a href="javascript:void(0);">
+                        <img src="__PUBLIC__/images/sale02.jpg" border="0" class="RL-Prev"/>
+                    </a>
+                    </if>
+                </td>
+            </tr>
+        </table></div><!--end agent_titr-->
+</div><!--end agent_tit-->
+<div class="all_fy_bg" style=" margin-top:-2px !important;_margin-top:-1px;">
+    <div class="all_fy_bgl">
+        <a title="默认排序" onclick="quickSearch2('default','list_order');return false;" href="javascript:" <if condition="$Think.get.list_order eq 'default'">class="input_mrpxx"<else/>class="input_mrpx"</if> onfocus=blur()>默认排序</a>
+        <a title="按活跃度从高到低排序" onclick="quickSearch2('active_rate desc','list_order');return false;" href="javascript:"  <if condition="$Think.get.list_order eq 'active_rate desc'">class="input_mrpxx"<else/>class="input_mrpx"</if> onfocus="blur()">按活跃度</a>
+        <a title="按房源量从多到少排序" onclick="quickSearch2('sell_num desc','list_order');return false;" href="javascript:"  <if condition="$Think.get.list_order eq 'sell_num desc'"> class="input_mrpxx"<else/>class="input_mrpx"</if> onfocus=blur()>按房源量</a>
+        <a title="按积分从多到少排序" onclick="quickSearch2('scores desc','list_order');return false;" href="javascript:"   <if condition="$Think.get.list_order eq 'scores desc'">class="input_zj"<else/>class="input_pxbg56"</if> onfocus=blur()>按等级</a>
+        <a title="按注册时间排序" onclick="quickSearch2('add_time desc','list_order');return false;" href="javascript:"   <if condition="$Think.get.list_order eq 'add_time desc'">class="input_mrpxx5"<else/>class="input_mrpx5"</if> onfocus=blur()>按注册时间</a>
+    </div>
+</div>

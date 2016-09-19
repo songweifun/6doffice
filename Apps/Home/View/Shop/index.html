@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" src="__PUBLIC__/js/js.js"></script>
+</head>
+
+<body>
+<include file="Common:selltop"/>
+<div class="blank"></div>
+
+<include file="Common:shop_head"/>
+
+<div class="content_erji">
+    <div id="brok_c">
+        <ul>
+            <li id=r1 class="liv"><a onclick="xz(1)" href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>精选房源</a></li>
+            <li id=r2 class="liq"><a onclick="xz(2)" href="<!--{:U(MODULE_NAME.'/Shop/sell')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>二手房源</a></li>
+            <li id=r3 class="liq"><a onclick="xz(3)" href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>出租房源</a></li>
+            <li id=r3 class="liq"><a onclick="xz(4)" href="<!--{:U(MODULE_NAME.'/Shop/evaluate')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>服务评价</a></li>
+            <li id=r5 class="liq"><a onclick="xz(5)" href="<!--{:U(MODULE_NAME.'/Shop/profile')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>关于我</a></li>
+    </div>
+    <div id=h1 class="txt">
+        <div class="content">
+            <div class="Broker_left">
+                <div class="nTab"\>
+                    <!-- 标题开始 -->
+                    <div class="TabTitle">
+                        <ul id="myTab1">
+                            <li class="active" onclick="nTabs(this,0);">出售房源</li>
+                            <li class="normal" onclick="nTabs(this,1);">出租房源</li>
+                        </ul>
+                    </div>
+                    <!-- 内容开始 -->
+                    <div class="TabContent">
+                        <div id="myTab1_Content0"><div class="Broker_intr">
+                            <ul><li>  <p><strong>按小区:</strong></p></li></ul>
+                            <ul>
+
+                                <li class="br_normal"><span><a href="sale.php?id=<!--{$Think.get.id}-->" target="_blank">不限</a></span></li>
+                                <foreach name="saleCountBorough" item="item">
+                                <li><a href="sale.php?id=<!--{$dataInfo.id}-->&borough_id=<!--{$item.borough_id}-->"><!--{$item.borough_name}-->(<!--{$item.house_num}-->)</a></li>
+                                </foreach>
+                                <div style="height:12px; clear:both; overflow:hidden"></div>
+                            </ul>
+                        </div>
+                            <div style="height:12px; clear:both; overflow:hidden"></div>
+                            <div class="Broker_intr">
+                                <ul>
+                                    <li><strong>按售价:</strong></li>
+                                    <li class="br_normal"><span><a href="sale.php?id=<!--{$Think.get.id}-->" target="_blank">不限</a></span>
+                                    </li>
+                                    <foreach name="saleCountPrice" item="item">
+                                    <li><a href="sale.php?id=<!--{$dataInfo.id}-->&price=<!--{$item.price}-->"><!--{$item.house_price}-->(<!--{$item.house_num}-->)</a></li>
+                                    </foreach>
+                                    <div style="height:12px; clear:both; overflow:hidden"></div>
+                                </ul>
+                            </div>
+
+                            <div style="height:12px; clear:both; overflow:hidden"></div>
+                        </div>
+                        <div id="myTab1_Content1" class="none"><div class="Broker_intr">
+                            <ul>
+                                <li><strong>按小区:</strong></li>
+                                <li class="br_normal"><span><a href="rent.php?id=<!--{$Think.get.id}-->" target="_blank">不限</a></span>
+                                </li>
+                                <foreach name="rentCountBorough" item="item">
+                                <li><a href="rent.php?id=<!--{$dataInfo.id}-->&borough_id=<!--{$item.borough_id}-->"><!--{$item.borough_name}-->(<!--{$item.house_num}-->)</a></li>
+                                </foreach>
+                                <div style="height:12px; clear:both; overflow:hidden"></div>
+                            </ul>
+                        </div>
+                            <div style="height:12px; clear:both; overflow:hidden"></div>
+                            <div class="Broker_intr">
+                                <ul>
+                                    <li><strong>按租金:</strong></li>
+                                    <li class="br_normal"><span><a href="rent.php?id=<!--{$Think.get.id}-->" target="_blank">不限</a></span>
+                                    </li>
+                                    <foreach name="rentCountPrice" item="item">
+                                    <li><a href="rent.php?id=<!--{$dataInfo.id}-->&price=<!--{$item.price}-->"><!--{$item.house_price}-->(<!--{$item.house_num}-->)</a></li>
+                                    </foreach>
+                                    <div style="height:12px; clear:both; overflow:hidden"></div>
+                                </ul>
+                            </div>
+
+                            <div style="height:12px; clear:both; overflow:hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="jjr_right">
+                <div class="jjr_yuanjiao_jx">
+                    <h3>精选二手房源</h3>
+                    <div class="h15"></div>
+                    <foreach name="salePromote" item="item">
+                    <div style="height:6px; clear:both; overflow:hidden;"></div>
+                    <ol id="list_body">
+                        <div class="property_jjr">
+                            <div class="photo" style="margin-left:10px; margin-top:2px;">
+                                <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.house_title}-->" alt="" target="_blank"><img class="thumbnail" id="apf_id_69_a" src="<if condition='$item.house_thumb neq null'>__ROOT__/Uploads/<!--{$item.house_thumb}--><else/>__PUBLIC__/images/aa.png</if>" alt="" /></a>
+                            </div>
+                            <div class="jjr_details">
+                                <h4>
+                                    <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="" target="_blank"><!--{$item.house_title}--></a>
+
+                                    <if condition="item.is_more_pic eq 1"><span><img src="__PUBLIC__/images/duotu_sale.gif" titile="多图" align="absmiddle" class="er_duotu"></span ></if>
+                                </h4>
+                                <address>小区：<if condition="item.borough_name neq null"><!--{$item.borough_name}--></if> </address>
+                                <div class="jjr_ppp">
+                                    <p>售价：<span><!--{$item.house_price}-->万</span> </p>
+                                    <p>房型：<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅<!--{$item.house_toilet}-->卫</p>
+                                    <p>面积：<!--{$item.house_totalarea}-->平米</p>
+                                    <p>楼层：<!--{$item.house_topfloor}-->/<!--{$item.house_floor}--></p>
+                                    <p>单价：<!--{$item.avg_price}-->元/平米</p>
+                                    <p>房龄：<!--{$item.house_age}-->年</p></div>
+                            </div>
+                            <div class="jjr_tags">
+                                <if condition="$item.is_vexation eq 1"><img src="__PUBLIC__/images/sale_js.gif" title="急售" alt="急售" /></if>&nbsp;<if condition="$item.is_new eq 1"><img src="__PUBLIC__/images/newpush.gif" title="新推" alt="新推" /></if>
+                            </div>
+                        </div>
+                        <div style="height:6px; clear:both; overflow:hidden;"></div>
+                        <div class="hr"></div>
+                    </ol>
+                    </foreach>
+
+                    <div style="height:11px; clear:both; overflow:hidden;"></div>
+                    <div style="height:13px; clear:both; overflow:hidden;"></div>
+                    <p align="right"></p>
+                    <span class="xj_c xj_c01"></span>
+                    <span class="xj_c xj_c06"></span>
+                    <span class="xj_c xj_c03"></span>
+                    <span class="xj_c xj_c04"></span>     </div>
+
+                <div class="jjr_yuanjiao_jx">
+                    <h3>精选出租房源</h3>
+                    <div class="h15"></div>
+                    <foreach name="rentPromote" item="item">
+                    <div style="height:6px; clear:both; overflow:hidden;"></div>
+
+                    <ol id="list_body">
+                        <div class="property_jjr">
+                            <div class="photo" style="margin-left:10px; margin-top:2px;">
+                                <a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="<!--{$item.house_title}-->" alt="" target="_blank"><img class="thumbnail" id="apf_id_69_a" src="<if condition='$item.house_thumb neq null'>__ROOT__/Uploads/<!--{$item.house_thumb}--><else/>__PUBLIC__/images/aa.png</if>" alt="" /></a>
+                            </div>
+                            <div class="jjr_details">
+                                <h4>
+                                    <a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="" target="_blank"><!--{$item.house_title}--></a>
+                                    <if condition="$item.is_more_pic eq 1"><span><img src="__PUBLIC__/images/duotu_sale.gif" titile="多图" align="absmiddle" class="er_duotu"></span ></if>
+                                </h4>
+                                <address>小区：<!--{$item.borough_name}--> </address>
+                                <div class="jjr_ppp">
+                                    <p>租金：<span><!--{$item.house_price}-->万</span> </p>
+                                    <p>房型：<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅<!--{$item.house_toilet}-->卫</p>
+                                    <p>面积：<!--{$item.house_totalarea}-->平米</p>
+                                    <p>楼层：<!--{$item.house_topfloor}-->/<!--{$item.house_floor}--></p>
+
+                                    <p>房龄：<!--{$item.house_age}-->年</p></div>
+                            </div>
+                            <div class="jjr_tags">
+                                <if condition="$item.is_vexation eq 1"><img src="__PUBLIC__/images/sale_js.gif" title="急租" alt="急租" /></if>&nbsp;<if condition="$item.is_new eq 1"><img src="__PUBLIC__/images/newpush.gif" title="新推" alt="新推" /></if>
+                            </div>
+                        </div>
+                        <div style="height:6px; clear:both; overflow:hidden;"></div>
+                        <div class="hr"></div>
+                    </ol>
+
+                    </foreach>
+                    <div style="height:11px; clear:both; overflow:hidden;"></div>
+                    <div style="height:13px; clear:both; overflow:hidden;"></div>
+                    <p align="right"></p>
+                    <span class="xj_c xj_c01"></span>
+                    <span class="xj_c xj_c06"></span>
+                    <span class="xj_c xj_c03"></span>
+                    <span class="xj_c xj_c04"></span>     </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<include file="Common:foot"/>
+</body>
+</html>

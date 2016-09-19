@@ -248,52 +248,45 @@ function array_to_hashmap(& $arr, $keyField, $valueField = null)
  */
 function cookies($id)
 {
-	$TempNum=5;
+	$TempNum = 5;
 	//setcookie("RecentlyGoods", "12,31,90,39");
 	//RecentlyGoods 最近商品RecentlyGoods临时变量
-	if (isset($_COOKIE['RecentlyGoods']))
-	{
-		$RecentlyGoods=$_COOKIE['RecentlyGoods'];
-		$RecentlyGoodsArray=explode(",", $RecentlyGoods);
-		$RecentlyGoodsNum=count($RecentlyGoodsArray); //RecentlyGoodsNum 当前存储的变量个数
+	if (isset($_COOKIE['RecentlyGoods'])) {
+		$RecentlyGoods = $_COOKIE['RecentlyGoods'];
+		$RecentlyGoodsArray = explode(",", $RecentlyGoods);
+		$RecentlyGoodsNum = count($RecentlyGoodsArray); //RecentlyGoodsNum 当前存储的变量个数
 	}
-	if($id!="")
-	{
-		if (strstr($RecentlyGoods,(string)$id))
-		{
+	if ($id != "") {
+		if (strstr($RecentlyGoods, (string)$id)) {
 
-		}
-		else
-		{
-			if($RecentlyGoodsNum<$TempNum) //如果COOKIES中的元素小于指定的大小，则直接进行输入COOKIES
+		} else {
+			if ($RecentlyGoodsNum < $TempNum) //如果COOKIES中的元素小于指定的大小，则直接进行输入COOKIES
 			{
-				if($RecentlyGoods=="")
-				{
-					setcookie("RecentlyGoods",$id,time()+432000,"/");
+				if ($RecentlyGoods == "") {
+					setcookie("RecentlyGoods", $id, time() + 432000, "/");
+				} else {
+					$RecentlyGoodsNew = $RecentlyGoods . "," . $id;
+					setcookie("RecentlyGoods", $RecentlyGoodsNew, time() + 432000, "/");
 				}
-				else
-				{
-					$RecentlyGoodsNew=$RecentlyGoods.",".$id;
-					setcookie("RecentlyGoods", $RecentlyGoodsNew,time()+432000,"/");
-				}
-			}
-			else //如果大于了指定的大小后，将第一个给删去，在尾部再加入最新的记录。
+			} else //如果大于了指定的大小后，将第一个给删去，在尾部再加入最新的记录。
 			{
-				$pos=strpos($RecentlyGoods,",")+1; //第一个参数的起始位置
-				$FirstString=substr($RecentlyGoods,0,$pos); //取出第一个参数
-				$RecentlyGoods=str_replace($FirstString,"",$RecentlyGoods); //将第一个参数删除
-				$RecentlyGoodsNew=$RecentlyGoods.",".$id; //在尾部加入最新的记录
-				setcookie("RecentlyGoods", $RecentlyGoodsNew,time()+432000,"/");
+				$pos = strpos($RecentlyGoods, ",") + 1; //第一个参数的起始位置
+				$FirstString = substr($RecentlyGoods, 0, $pos); //取出第一个参数
+				$RecentlyGoods = str_replace($FirstString, "", $RecentlyGoods); //将第一个参数删除
+				$RecentlyGoodsNew = $RecentlyGoods . "," . $id; //在尾部加入最新的记录
+				setcookie("RecentlyGoods", $RecentlyGoodsNew, time() + 432000, "/");
 			}
 		}
 	}
+}
+
+
 	/**
 	 * 将时间戳转换为固定格式字符串
 	 * @param $time
 	 * @return string
 	 */
-	function time2Units ($time)
-	{
+	function time2Units($time){
 		$year = floor($time / 60 / 60 / 24 / 365);
 		$time -= $year * 60 * 60 * 24 * 365;
 		$month = floor($time / 60 / 60 / 24 / 30);
@@ -308,22 +301,35 @@ function cookies($id)
 		$time -= $minute * 60;
 		$second = $time;
 		$elapse = '';
-
-		$unitArr = array('年' =>'year', '个月'=>'month', '周'=>'week', '天'=>'day',
-				'小时'=>'hour', '分钟'=>'minute', '秒'=>'second'
-		);
-
-		foreach ( $unitArr as $cn => $u )
-		{
-			if ( $$u > 0 )
-			{
+		$unitArr = array('年' =>'year', '个月'=>'month', '周'=>'week', '天'=>'day', '小时'=>'hour', '分钟'=>'minute', '秒'=>'second');
+		foreach ( $unitArr as $cn => $u ) {
+			if ( $$u > 0 ) {
 				$elapse = $$u . $cn;
 				break;
 			}
 		}
-
 		return $elapse;
 	}
+
+/**
+ * 将一个二维数组按照指定列进行排序，类似 SQL 语句中的 ORDER BY
+ * @param $rowset
+ * @param $args
+ * @return mixed
+ */
+function array_sortby_multifields($rowset, $args)
+{
+	$sortArray = array();
+	$sortRule = '';
+	foreach ($args as $sortField => $sortDir) {
+		foreach ($rowset as $offset => $row) {
+			$sortArray[$sortField][$offset] = $row[$sortField];
+		}
+		$sortRule .= '$sortArray[\'' . $sortField . '\'], ' . $sortDir . ', ';
+	}
+	if (empty($sortArray) || empty($sortRule)) { return $rowset; }
+	eval('array_multisort(' . $sortRule . '$rowset);');
+	return $rowset;
 }
 
 ?>

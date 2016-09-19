@@ -1,0 +1,55 @@
+<div class="nav_item" style="height:80px"><!--高度改为自动 -->
+    <div class="nav_item_list"  style="height:80px"><!--高度改为自动                     下面那个list_1也是，头部空30PX，加原高51现为81PX -->
+        <div class="nav_item_list_l" style="padding-top:30px; width:100%;height:49px;background:url(__ROOT__/Uploads/<!--{$dataInfo.banner}-->) no-repeat"><span><!--{$dataInfo.realname}-->的店铺</span>&nbsp;&nbsp;<a href="#" class="region_title01" style="color:#003295;"><!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$Think.get.id}--></a>&nbsp;&nbsp;<a href="#" class="region_title01"  style="color:#FF0000" onclick="javascript:window.external.AddFavorite('<!--{$cfg.url_shop}--><!--{$dataInfo.id}-->',' <!--{$cfg.page.title}-->--<!--{$dataInfo.realname}-->的网店');return false;">收藏</a></div>
+        <div class="nav_item_list_r"><!-- 这里有 <span>342</span> 套房子正在出售出租，最新发布的有 <span>42</span> 套 --></div>
+    </div>
+</div>
+<div class="content">
+    <div class="person">
+        <div class="person_a">
+            <div class="person_a1"><img height="133" width="115" src="<if condition='$dataInfo.avatar neq null'>__ROOT__/Uploads/<!--{$dataInfo.avatar}--><else/>__PUBLIC__/images/demoPhoto.jpg</if>" />
+            </div>
+            <div class="person_a2">
+                <ul>
+                    <li>姓名：<font class="t14 blue"><!--{$dataInfo.realname}--></font></li>
+                    <li>等级：<img src="__PUBLIC__/images/rank/<!--{$dataInfo.brokerRank}-->.png"
+                                border="0"/></li>
+                    <li>所属公司：<if condition="$dataInfo.company_name neq null"><a target="_blank" href="<!--{:U(MODULE_NAME.'/Cshop/index')}-->/id/<!--{$dataInfo.company_id}-->"><!--{$dataInfo.company_name}--> - <!--{$dataInfo.outlet_last}--></a><else/><!--{$dataInfo.outlet_first}--> - <!--{$dataInfo.outlet_last}--></if></li>
+                    <li>服务区域：<!--{$dataInfo.cityarea_name}--></li>
+
+                    <li>
+                        认证：<if condition="$dataInfo.idcard eq null">
+                        <img src="__PUBLIC__/images/no_brokerIdentity.png" align="absmiddle" alt="未经过 <!--{$cfg.page.titlec}-->实名认证" />
+                        <else/>
+                        <img src="__PUBLIC__/images/brokerIdentity.png" align="absmiddle" alt="已通过 <!--{$cfg.page.titlec}-->实名认证" />
+                        </if>
+                        <if condition="$dataInfo.aptitude eq null">
+                        <img src="__PUBLIC__/images/no_brokerAptitude.png" align="absmiddle" alt="未经过 <!--{$cfg.page.titlec}-->执业认证" />
+                        <else/>
+                        <img src="__PUBLIC__/images/brokerAptitude.png" align="absmiddle" alt="已通过 <!--{$cfg.page.titlec}-->资质认证" />
+                        </if>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="person_b">
+            <div class="person_b1">
+                <ul>
+                    <li>注册时间：<!--{$dataInfo.add_time|date="Y-m-d",###}--></li>
+                    <li>上次登录：<!--{$dataInfo.last_login|date="Y-m-d",###}--></li>
+                    <li>网店人气：<!--{$shopConf.click_num}--></li>
+                    <li>联系电话：<font class="red b"><!--{$dataInfo.mobile}--></font></li>
+                    <li>电子邮件：<font class="blue"><!--{$dataInfo.email}--></font></li>
+                </ul>
+            </div>
+        </div>
+        <div class="person_c">
+            <div class="person_c1">
+                <ul>
+                    <li><font class="t14 b">店铺公告</font></li>
+                    <li><!--{$shopConf.shop_notice}--></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+

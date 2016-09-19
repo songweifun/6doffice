@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<include file="Common:selltop"/>
+
+<include file="Common:shop_head"/>
+
+
+
+
+<div id="brok_c">
+    <li id=r1 class="liq"><a onclick="xz(1)" href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>精选房源</a></li>
+    <li id=r2 class="liq"><a onclick="xz(2)" href="<!--{:U(MODULE_NAME.'/Shop/sell')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>二手房源</a></li>
+    <li id=r3 class="liq"><a onclick="xz(3)" href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>出租房源</a></li>
+    <li id=r3 class="liq"><a onclick="xz(4)" href="<!--{:U(MODULE_NAME.'/Shop/evaluate')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>服务评价</a></li>
+    <li id=r5 class="liv"><a onclick="xz(5)" href="<!--{:U(MODULE_NAME.'/Shop/profile')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>关于我</a></li>
+</div>
+
+<div id="h1">
+    <div class="bj_house" style=" margin-top:15px; clear:both; height:auto !important; height:497px;width:980px;">
+
+        <h3>自我介绍</h3>
+        <p><!--{$dataInfo.introduce}--></p>
+        <h3>从业资料</h3>
+        <ul>
+            <li>公司名称：<!--{$dataInfo.company}--></li>
+            <li>所在门店：<!--{$dataInfo.outlet}--></li>
+            <li>门店地址：<!--{$dataInfo.outlet_addr}--></li>
+            <li>固定电话：<!--{$dataInfo.com_tell}--></li>
+            <li>公司传真：<!--{$dataInfo.com_fax}--></li>
+        </ul>
+        <h3>联系方式</h3>
+        <ul>
+            <li>移动电话：<!--{$dataInfo.mobile}--></li>
+            <li>电子邮件：<!--{$dataInfo.email}--></li>
+            <li>QQ：<!--{$dataInfo.qq}--></li>
+            <li>MSN：<!--{$dataInfo.msn}--></li>
+        </ul>
+        <div style="clear:both;"></div>
+
+
+
+
+
+    </div>
+</div>
+
+<include file="Common:foot"/>
+</body>
+</html>

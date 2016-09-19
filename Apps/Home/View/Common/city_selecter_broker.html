@@ -1,0 +1,89 @@
+<script language="javascript">
+    /*function changeSearch(formDom){
+     location.href=formDom.value;
+     }*/
+    function quickSearch2(domValue,domType){
+        var inputDom = document.getElementById(domType);
+        if(inputDom){
+            inputDom.value=domValue;
+        }
+
+        var cityareaValue = document.getElementById('cityarea').value;
+        var specialtyValue = document.getElementById('specialty').value;
+        var company_id = document.getElementById('company_id').value;
+        var boroughValue = document.getElementById('borough').value;
+        if(domType == 'cityarea') boroughValue = '';
+
+        var qValue = document.getElementById('S_q').value;
+        if(qValue == "可输入经纪人名、门店名，或公司名称关键词"){
+            qValue ="";
+        }
+
+        //var identityValue = document.getElementById('identity').value;
+        var list_numValue = document.getElementById('list_num').value;
+        var list_orderValue = document.getElementById('list_order').value;
+        var pagenoValue = document.getElementById('pageno').value;
+//	location.href='index.php?cityarea='+cityareaValue+'&identity='+identityValue+'&list_num='+list_numValue+'&list_order='+list_orderValue;
+        location.href='index.php?q='+qValue+'&cityarea='+cityareaValue+'&specialty='+specialtyValue+'&company_id='+company_id+'&borough='+boroughValue+'&list_num='+list_numValue+'&list_order='+list_orderValue;
+        return false;
+    }
+</script>
+<div class="filter">
+    <input type="hidden" id="cityarea" name="cityarea" value="<!--{$Think.get.cityarea}-->">
+    <input type="hidden" id="specialty" name="specialty" value="<!--{$Think.get.specialty}-->">
+    <input type="hidden" id="avgprice" name="avgprice" value="<!--{$Think.get.avgprice}-->">
+    <input type="hidden" id="borough" name="borough" value="<!--{$Think.get.borough}-->">
+    <input type="hidden" id="company_id" name="company_id" value="<!--{$Think.get.company_id}-->">
+    <input type="hidden" id="type" name="type" value="<!--{$Think.get.type}-->">
+    <input type="hidden" id="list_num" name="list_num" value="10">
+    <input type="hidden" id="list_order" name="list_order" value="">
+    <input type="hidden" id="pageno" name="pageno" value="<!--{$Think.get.pageno}-->">
+    <input type="hidden" id="S_q" name="S_q" value="<!--{$Think.get.q}-->">
+
+    <notempty name="cityarea_option">
+    <div>
+        <ul>
+            <li class="filterTarget">区域：</li>
+            <if condition="$Think.get.cityarea eq null">
+                    <li class="linkOn"><a href="index.php?identity=<!--{$Think.get.identity}-->&specialty=<!--{$Think.get.specialty}-->&company_id=<!--{$Think.get.company_id}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+                <else/>
+                    <li><a href="index.php?identity=<!--{$Think.get.identity}-->&specialty=<!--{$Think.get.specialty}-->&company_id=<!--{$Think.get.company_id}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+            </if>
+            <foreach name="cityarea_option" item="item">
+                <if condition='$key eq $Think.get.cityarea '>
+                    <li class="linkOn"><a href="index.php?cityarea=<!--{$key}-->&specialty=<!--{$Think.get.specialty}-->&company_id=<!--{$Think.get.company_id}-->&identity=<!--{$Think.get.identity}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                    <else/>
+                    <li><a href="index.php?cityarea=<!--{$key}-->&specialty=<!--{$Think.get.specialty}-->&company_id=<!--{$Think.get.company_id}-->&identity=<!--{$Think.get.identity}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                </if>
+            </foreach>
+        </ul>
+
+        <ul>
+            <li class="filterTarget">特长：</li>
+            <if condition="$Think.get.specialty eq null">
+                <li class="linkOn"><a href="index.php?identity=<!--{$Think.get.identity}-->&cityarea=<!--{$Think.get.cityarea}-->&company_id=<!--{$Think.get.company_id}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+            <else/>
+                <li><a href="index.php?identity=<!--{$Think.get.identity}-->&cityarea=<!--{$Think.get.cityarea}-->&company_id=<!--{$Think.get.company_id}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+            </if>
+
+            <foreach name="specialty_option" item="item">
+                    <if condition="$key eq $Think.get.specialty">
+                        <li class="linkOn"><a href="index.php?specialty=<!--{$key}-->&cityarea=<!--{$Think.get.cityarea}-->&company_id=<!--{$Think.get.company_id}-->&identity=<!--{$Think.get.identity}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                    <else/>
+                        <li><a href="index.php?specialty=<!--{$key}-->&cityarea=<!--{$Think.get.cityarea}-->&company_id=<!--{$Think.get.company_id}-->&identity=<!--{$Think.get.identity}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+                </if>
+            </foreach>
+        </ul>
+    </div>
+
+    <if condition="$Think.get.company_id neq null">
+    <ul>
+        <li class="filterTarget">公司：</li>
+        <li class="linkOn"><!--{$companyName}--></li>
+
+    </ul>
+    </if>
+    <p align="right">&nbsp;</p>
+
+    </notempty>
+</div>

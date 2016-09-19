@@ -100,7 +100,7 @@
     function broker()
     {
         document.topSearchForm.xz.value="经纪人";
-        document.topSearchForm.action = '<?php echo ($cfg["url"]); ?>broker/index.php';}
+        document.topSearchForm.action = "<?php echo U(MODULE_NAME.'/Broker/index');?>";}
 
     function community()
     {
@@ -145,7 +145,7 @@
                         <li <?php if($menu == 'sale'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Sell/index');?>">二手房</a></li>
                         <li <?php if($menu == 'rent'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_rent"]); ?>">租  房</a></li>
                         <?php if($newhouseOpen == 1): ?><li <?php if($menu == 'newHouse'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_newHouse"]); ?>">新  房</a></li><?php endif; ?>
-                        <li <?php if(($menu == 'broker') or ($menu=='shop')): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_broker"]); ?>">经纪人</a></li>
+                        <li <?php if(($menu == 'broker') or ($menu=='shop')): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Broker/index');?>">经纪人</a></li>
                         <li <?php if($menu == 'community'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Community/index');?>">小  区</a></li>
                         <li <?php if($menu == 'company'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_company"]); ?>">公  司</a></li>
                         <?php if($bbsOpen == 1): ?><li><a href="<?php echo ($cfg["url_bbs"]); ?>">论  坛</a></li><?php endif; ?>

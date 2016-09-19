@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <include file="Common:head"/>
+    <css file="__PUBLIC__/css/shopCommon.css"/>
+
+
+    <!-- 引入layer弹窗 -->
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+    <!-- 鼠标滑过事件 -->
+    <script>
+
+        function setTab(name,cursel,n){
+            for(i=1;i<n;i++){
+                var menu=document.getElementById(name+i);
+                var con=document.getElementById("con_"+name+"_"+i);
+                menu.className=i==cursel?"hover":"";
+                con.style.display=i==cursel?"block":"none";
+            }
+        }
+    </script>
+    <style type="text/css">
+        body {margin: 0px; font-size:12px}
+        .w990{ width:990px; margin:auto}
+        .w990 .left{ float:left; width:400px; border:1px solid #E8F3FF; padding:10px 0;_overflow:hidden}
+        .w990 .right{ float:right; width:578px;_overflow:hidden}
+    </style>
+</head>
+<body>
+<include file="Common:selltop"/>
+<div class="blank"></div>
+
+<include file="Common:shop_head"/>
+<div class="blank"></div>
+<div id="brok_c">
+    <li id=r1 class="liq"><a onclick="xz(1)" href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>精选房源</a></li>
+    <li id=r2 class="liq"><a onclick="xz(2)" href="<!--{:U(MODULE_NAME.'/Shop/sell')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>二手房源</a></li>
+    <li id=r3 class="liq"><a onclick="xz(3)" href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>出租房源</a></li>
+    <li id=r3 class="liv"><a onclick="xz(4)" href="<!--{:U(MODULE_NAME.'/Shop/evaluate')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>服务评价</a></li>
+    <li id=r5 class="liq"><a onclick="xz(5)" href="<!--{:U(MODULE_NAME.'/Shop/profile')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>关于我</a></li>
+    </ul>
+</div>
+<div class="blank"></div>
+<div class="w990">
+    <div class="left">
+        <div class="tips1"><span>服务评价</span>您的评价将是其他网友的重要参考依据。</div>
+        <div class="tips2">为<!--{$dataInfo.realname}-->的服务打分</div>
+        <div class="shop-rating">
+            <span class="title">房屋信息准确度：</span>
+            <ul class="rating-level" id="stars1">
+                <li><a class="one-star" star:value="1" href="#">1</a></li>
+                <li><a class="two-stars" star:value="2" href="#">2</a></li>
+                <li><a class="three-stars" star:value="3" href="#">3</a></li>
+                <li><a class="four-stars" star:value="4" href="#">4</a></li>
+                <li><a class="five-stars" star:value="5" href="#">5</a></li>
+            </ul>
+            <span class="result" id="stars1-tips"></span>
+        </div>
+
+        <!--
+            # 星级评分
+            # star:value = 分数
+        -->
+        <div class="shop-rating">
+            <span class="title2">服务态度满意度：</span>
+            <ul class="rating-level" id="stars2">
+                <li><a class="one-star" star:value="1" href="#">1</a></li>
+                <li><a class="two-stars" star:value="2" href="#">2</a></li>
+                <li><a class="three-stars" star:value="3" href="#">3</a></li>
+                <li><a class="four-stars" star:value="4" href="#">4</a></li>
+                <li><a class="five-stars" star:value="5" href="#">5</a></li>
+            </ul>
+            <span class="result" id="stars2-tips"></span>
+        </div>
+        <div class="shop-rating">
+            <span class="title3">业务水平专业度：</span>
+            <ul class="rating-level" id="stars3">
+                <li><a class="one-star" star:value="1" href="#">1</a></li>
+                <li><a class="two-stars" star:value="2" href="#">2</a></li>
+                <li><a class="three-stars" star:value="3" href="#">3</a></li>
+                <li><a class="four-stars" star:value="4" href="#">4</a></li>
+                <li><a class="five-stars" star:value="5" href="#">5</a></li>
+            </ul>
+            <span class="result" id="stars3-tips"></span>
+        </div>
+        <!-- END 星级评分 -->
+
+
+
+        <form name="evaluate" action="<!--{:U(MODULE_NAME.'/Shop/evaluate')}-->/action/save" method="post" class="forma">
+            <input type="hidden" name="broker_id" value="<!--{$Think.get.id}-->"/>
+            <input type="hidden" id="stars1-input" name="accurate" value="" size="2" />
+            <input type="hidden" id="stars2-input" name="satisfaction" value="" size="2" />
+            <input type="hidden" id="stars3-input" name="specialty" value="" size="2" />
+
+            <script type="text/javascript">
+                function ChkPost(){
+
+                }
+
+
+                var Class = {
+                    create: function() {
+                        return function() { this.initialize.apply(this, arguments); }
+                    }
+                }
+                var Extend = function(destination, source) {
+                    for (var property in source) {
+                        destination[property] = source[property];
+                    }
+                }
+                function stopDefault( e ) {
+                    if ( e && e.preventDefault ){
+                        e.preventDefault();
+                    }else{
+                        window.event.returnValue = false;
+                    }
+                    return false;
+                }
+                /**
+                 * 星星打分组件
+                 *
+                 * @author	Yunsd
+                 * @date		2010-7-5
+                 */
+                var Stars = Class.create();
+                Stars.prototype = {
+                    initialize: function(star,options) {
+                        this.SetOptions(options); //默认属性
+                        var flag = 999; //定义全局指针
+                        var isIE = (document.all) ? true : false; //IE?
+                        var starlist = document.getElementById(star).getElementsByTagName('a'); //星星列表
+                        var input = document.getElementById(this.options.Input) || document.getElementById(star+"-input"); // 输出结果
+                        var tips = document.getElementById(this.options.Tips) || document.getElementById(star+"-tips"); // 打印提示
+                        var nowClass = " " + this.options.nowClass; // 定义选中星星样式名
+                        var tipsTxt = this.options.tipsTxt; // 定义提示文案
+                        var len = starlist.length; //星星数量
+
+
+                        for(i=0;i<len;i++){ // 绑定事件 点击 鼠标滑过
+                            starlist[i].value = i;
+                            starlist[i].onclick = function(e){
+                                stopDefault(e);
+                                this.className = this.className + nowClass;
+                                flag = this.value;
+                                input.value = this.getAttribute("star:value");
+                                tips.innerHTML = tipsTxt[this.value]
+                            }
+                            starlist[i].onmouseover = function(){
+                                if (flag< 999){
+                                    var reg = RegExp(nowClass,"g");
+                                    starlist[flag].className = starlist[flag].className.replace(reg,"")
+                                }
+                            }
+                            starlist[i].onmouseout = function(){
+                                if (flag< 999){
+                                    starlist[flag].className = starlist[flag].className + nowClass;
+                                }
+                            }
+                        };
+                        if (isIE){ //FIX IE下样式错误
+                            var li = document.getElementById(star).getElementsByTagName('li');
+                            for (var i = 0, len = li.length; i < len; i++) {
+                                var c = li[i];
+                                if (c) {
+                                    c.className = c.getElementsByTagName('a')[0].className;
+                                }
+                            }
+                        }
+                    },
+                    //设置默认属性
+                    SetOptions: function(options) {
+                        this.options = {//默认值
+                            Input:			"",//设置触保存分数的INPUT
+                            Tips:			"",//设置提示文案容器
+                            nowClass:	"current-rating",//选中的样式名
+                            tipsTxt:		["1分-不合格","2分-有待改进","3分-合格","4分-优秀","5分-非常优秀"]//提示文案
+                        };
+                        Extend(this.options, options || {});
+                    }
+                }
+
+                /* For TEST */
+                function teststars(){
+                    alert(document.getElementById("stars1-input").value + "|" + document.getElementById("stars2-input").value+ "|" + document.getElementById("stars3-input").value)
+                }
+
+                var Stars1 = new Stars("stars1",{nowClass:"current-rating",tipsTxt:["1分-不合格","2分-有待改进","3分-合格","4分-优秀","5分-非常优秀"]})
+                var Stars2 = new Stars("stars2",{nowClass:"current-rating",tipsTxt:["1分-不合格","2分-有待改进","3分-合格","4分-优秀","5分-非常优秀"]})
+                var Stars3 = new Stars("stars3")
+            </script>
+            <div class="tips2">写点儿评价吧（选填）</div>
+            <textarea name="content" class="wbq" onfocus="value=''">写写您在找房过程中对该经纪人服务的体验</textarea>
+            <input name="" type="submit"  class="btn" value="提交"/>
+        </form>
+
+    </div>
+    <div class="right">
+        <div class="bta"><!--{$dataInfo.realname}-->的服务动态</div>
+        <div class="dtnr">
+            <div class="dj"><span>好评率 <font style=" color:#f00; font-size:16px; font-family:Arial, Helvetica, sans-serif;"><!--{if $good}--><!--{$good}-->%<!--{else}-->无评价<!--{/if}--></font></span><span>(<!--{$row_count}-->条评价)</span></div>
+            <div id="lib_Tab1">
+                <div class="lib_Menubox">
+                    <ul>
+                        <if condition="$aveAccurate neq null">
+                            <li id="one1" onmousemove="setTab('one',1,4)" class="hover">
+                                <div class="fx">房屋信息准确度：<span><!--{$aveAccurate}--></span></div>
+                                <div class="pj">比平均水平</div>
+                                <div class="pjs"><if condition="$aveAccurate gt 3">高<!--{$percentageAcc}-->%<else/>低<!--{$percentageAcc}-->%</if></div>
+                                <div id="qc"></div>
+                            </li>
+                        <else/>
+                            <li id="one1" onmousemove="setTab('one',1,4)" class="hover">
+                                <div class="fx">房屋信息准确度：<span>无</span></div>
+                                <div class="pj">比平均水平</div>
+                                <div class="pjs">无</div>
+                                <div id="qc"></div>
+                            </li>
+                        </if>
+
+                        <if condition="$aveSatisfaction neq null">
+                        <li id="one2" onmousemove="setTab('one',2,4)" ><div class="fx">服务态度满意度：<span><!--{$aveSatisfaction}--></span></div><div class="pj">比平均水平</div><div class="pjs"><if condition="$aveSatisfaction gt 3">高<!--{$percentageSat}-->%<else/>低<!--{$percentageSat}-->%</if></div><div id="qc"></div></li>
+                        <else/>
+                        <li id="one2" onmousemove="setTab('one',2,4)" ><div class="fx">服务态度满意度：<span>无</span></div><div class="pj">比平均水平</div><div class="pjs">无</div><div id="qc"></div></li>
+                        </if>
+
+                        <if condition="$aveSpecialty neq null">
+                        <li id="one3" onmousemove="setTab('one',3,4)"><div class="fx">业务水平专业度：<span><!--{$aveSpecialty}--></span></div><div class="pj">比平均水平</div><div class="pjs"><if condition="$aveSpecialty gt 3">高<!--{$percentageSpe}-->%<else/>低<!--{$percentageSpe}-->%</if></div><div id="qc"></div></li>
+                        <else/>
+                        <li id="one3" onmousemove="setTab('one',3,4)"><div class="fx">业务水平专业度：<span>无</span></div><div class="pj">比平均水平</div><div class="pjs">无</div><div id="qc"></div></li>
+                        </if>
+
+
+                    </ul>
+                </div>
+                <div class="lib_Contentbox">
+                    <div id="con_one_1" >
+                        <div class="box00001">房屋信息准确度：<span><!--{$row_count}-->条</span></div>
+                        <ul class="box0001">
+                            <li><!--{$start.acc5}-->条</li>
+                            <li><!--{$start.acc4}-->条</li>
+                            <li><!--{$start.acc3}-->条</li>
+                            <li><!--{$start.acc2}-->条</li>
+                            <li><!--{$start.acc1}-->条</li>
+                        </ul>
+
+                    </div>
+                    <div id="con_one_2" style="display:none"><div class="box00001">服务态度满意度：<span><!--{$row_count}-->条</span></div>
+                        <ul class="box0001">
+                            <li><!--{$start.sat5}-->条</li>
+                            <li><!--{$start.sat4}-->条</li>
+                            <li><!--{$start.sat3}-->条</li>
+                            <li><!--{$start.sat2}-->条</li>
+                            <li><!--{$start.sat1}-->条</li>
+                        </ul></div>
+                    <div id="con_one_3" style="display:none"><div class="box00001">业务水平专业度：<span><!--{$row_count}-->条</span></div>
+                        <ul class="box0001">
+                            <li><!--{$start.spe5}-->条</li>
+                            <li><!--{$start.spe4}-->条</li>
+                            <li><!--{$start.spe3}-->条</li>
+                            <li><!--{$start.spe2}-->条</li>
+                            <li><!--{$start.spe1}-->条</li>
+                        </ul></div>
+                </div>
+            </div>
+        </div>
+        <div class="bta">近期评价(<!--{$row_count}-->)</div>
+        <ul class="df">
+            <if condition="$dataList neq null">
+            <foreach name="dataList" item="item">
+            <li>
+                <div class="bt">网友 <!--{$item.ip}--> 评价</div>
+                <div class="nr">
+                    <span><b>房源信息:</b><i> <!--{$item.accurate}--></i>(<if condition="$item.accurate eq 1">不合格<elseif condition="$item.accurate eq 2"/>有待改进<elseif condition="$item.accurate eq 3"/>合格<elseif condition="$item.accurate eq 4"/>优秀<elseif condition="$item.accurate eq 5"/>非常优秀</if>)</span>
+                    <span><b>服务态度:</b><i> <!--{$item.satisfaction}--></i>(<if condition="$item.satisfaction eq 1">不合格<elseif condition="$item.satisfaction eq 2"/>有待改进<elseif condition="$item.satisfaction eq 3"/>合格<elseif condition="$item.satisfaction eq 4"/>优秀<elseif condition="$item.satisfaction eq 5"/>非常优秀</if>)</span>
+                    <span><b>业务水平:</b><i> <!--{$item.specialty}--></i>(<if condition="$item.specialty eq 1">不合格<elseif condition="$item.specialty eq 2"/>有待改进<elseif condition="$item.specialty eq 3"/>合格<elseif condition="$item.specialty eq 4"/>优秀<elseif condition="$item.specialty eq 5"/>非常优秀</if>)</span>
+                </div>
+                <div class="nr"><!--{$item.content}--></div>
+                <if condition="$item.reply neq null">
+                <div class="nr"><font color="#FF0000">经纪人回复：<!--{$item.reply}--></font></div>
+                </if>
+
+                <div class="shijian"><!--{$item.time|date="m月d日",###}-->   <if condition="$broker_id eq $item.broker_id "><a href="reply.php?id=<!--{$item.id}-->&broker_id=<!--{$item.broker_id}-->" onclick="reply('<!--{$item.id}-->','<!--{$item.broker_id}-->');return false;">回复</a>  </if></div>
+
+            </li>
+            </foreach>
+            <else/>
+            <li>
+                <div>没有评价信息</div>
+            </li>
+            </if>
+
+        </ul>
+        <div class="fypage">
+            <!--{$pagePanel}-->
+        </div>
+    </div>
+    <div id="qc"></div>
+</div>
+<script language="javascript">
+    function reply(id,broker_id){
+        var url="<!--{:U(MODULE_NAME.'/Shop/replay')}-->/id/"+id+'/broker_id/'+broker_id
+        //alert(url)
+        layer.open({
+            type: 2,
+            title: ['回复消息', ''],
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['430px' , '200px'],
+            content: url,
+            scrollbar: false,
+        });
+
+        //TB_show('回复消息',"<!--{:U(MODULE_NAME.'/Shop/replay')}-->"+'?id='+id+'&broker_id='+broker_id+'&height=160&width=430&modal=true&rnd='+Math.random(),false);
+
+    }
+</script>
+<include file="Common:foot"/>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+    <script language="javascript">
+        function changeSearch(formDom){
+            location.href=formDom.value;
+        }
+        function quickSearch(domValue,domType){
+            var inputDom = document.getElementById(domType);
+            if(inputDom){
+                inputDom.value=domValue;
+            }
+            var priceValue = document.getElementById('price').value;
+            var roomValue = document.getElementById('room').value;
+            var boroughidValue = document.getElementById('borough_id').value;
+            var totalareaValue = document.getElementById('totalarea').value;
+            var list_numValue = document.getElementById('list_num').value;
+            var list_orderValue = document.getElementById('list_order').value;
+            location.href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->"+'?id=<!--{$dataInfo.id}-->&borough_id='+boroughidValue+'&price='+priceValue+'&room='+roomValue+'&totalarea='+totalareaValue+'&list_num='+list_numValue+'&list_order='+list_orderValue;
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+<include file="Common:selltop"/>
+
+<include file="Common:shop_head"/>
+
+<input type="hidden" id="price" name="price" value="<!--{$Think.get.price}-->">
+<input type="hidden" id="search_type" name="search_type" value="<!--{$Think.get.search_type}-->">
+<input type="hidden" id="cityarea" name="cityarea" value="<!--{$Think.get.cityarea}-->">
+<input type="hidden" id="totalarea" name="totalarea" value="<!--{$Think.get.totalarea}-->">
+<input type="hidden" id="room" name="room" value="<!--{$Think.get.room}-->">
+<input type="hidden" id="list_num" name="list_num" value="10">
+<input type="hidden" id="list_order" name="list_order" value="">
+
+<input type="hidden" id="borough_id" name="borough_id" value="<!--{$Think.get.borough_id}-->">
+<div class="content_erji">
+    <div id="brok_c">
+        <li id=r1 class="liq"><a onclick="xz(1)" href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>精选房源</a></li>
+        <li id=r2 class="liq"><a onclick="xz(2)" href="<!--{:U(MODULE_NAME.'/Shop/sell')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>二手房源</a></li>
+        <li id=r3 class="liv"><a onclick="xz(3)" href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>出租房源</a></li>
+        <li id=r3 class="liq"><a onclick="xz(4)" href="<!--{:U(MODULE_NAME.'/Shop/evaluate')}-->/id/<!--{$Think.get.id}-->" onfocus=blur()>服务评价</a></li>
+        <li id=r5 class="liq"><a onclick="xz(5)" href="<!--{:U(MODULE_NAME.'/Shop/profile')}-->/id/<!--{$dataInfo.id}-->" onfocus=blur()>关于我</a></li>
+    </div>
+    <div id=h1 class="txt">
+        <div class="content">
+            <div class="Broker_left">
+                <div class="left_b">
+                    <h3>房源分类</h3>
+                    <div class="Broker_intr">
+                        <ul>
+
+                            <li><strong>按小区:</strong></li>
+                            <li <if condition="$Think.get.borough_id eq null">class="br_normal"</if>><span><a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$Think.get.id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->" >不限</a></span></li>
+                            <foreach name="rentCountBorough" item="item">
+                                <li <if condition="$Think.get.borough_id eq $item.borough_id ">class="br_normal"</if>><span><a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$dataInfo.id}-->&borough_id=<!--{$item.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->"><!--{$item.borough_name}-->(<!--{$item.house_num}-->)</a></span></li>
+                            </foreach>
+                            <div style="height:12px; clear:both; overflow:hidden"></div>
+                        </ul>
+
+                    </div>
+                    <div style="height:12px; clear:both; overflow:hidden"></div>
+                    <div class="Broker_intr">
+                        <ul>
+                            <li><strong>按租金:</strong></li>
+                            <li <if condition="$Think.get.price eq null">class="br_normal"</if>><span><a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$Think.get.id}-->&borough_id=<!--{$Think.get.borough_id}-->&room=<!--{$Think.get.room}-->">不限</a></span></li>
+                            <foreach name="rentCountPrice" item="item">
+                                <li <if condition="$Think.get.price eq $item.price ">class="br_normal"</if>><span><a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$item.price}-->&room=<!--{$Think.get.room}-->"><!--{$item.house_price}-->(<!--{$item.house_num}-->)</a></span></li>
+                            </foreach>
+                            <div style="height:12px; clear:both; overflow:hidden"></div>
+                        </ul>
+
+                    </div>
+                    <div style="height:12px; clear:both; overflow:hidden"></div>
+                    <div class="Broker_intr" style="border-bottom:none;">
+                        <ul>
+                            <li><strong>按房型:</strong></li>
+                            <li <if condition="$Think.get.room eq null">class="br_normal"</if>><span><a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$Think.get.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->" >不限</a></span></li>
+                            <foreach name="rentCountRoom" item="item">
+                                <li <if condition="$Think.get.room eq $item.room ">class="br_normal"</if>><span><a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$item.room}-->"><!--{$item.house_room}-->(<!--{$item.house_num}-->)</a></span></li>
+                            </foreach>
+                        </ul>
+
+                    </div>
+                    <div style="height:12px; clear:both; overflow:hidden"></div>
+                </div>
+            </div>
+            <div class="jjr_right">
+                <div class="jjr_content">
+                    <div id="jjr_xx_top">
+                        <div class="bg_bg">全部房源</div>
+                        <div class="jjr_er_next">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="190" height="30">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 套符合要求的房子</td>
+                                    <td width="23" align="left">
+                                        <if condition="$pageno gt 1">
+                                            <a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$dataInfo.id}-->&letter=<!--{$Think.get.letter}-->&room=<!--{$Think.get.room}-->&totalarea=<!--{$Think.get.totalarea}-->&price=<!--{$Think.get.price}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno-1}-->" onfocus=blur()><img src="__PUBLIC__/images/sale01a" border="0" class="RL-Prev"/></a>
+                                            <else/>
+                                            <img src="__PUBLIC__/images/rl_page_Prev_null_bg.png" border="0" class="RL-Prev"/>
+                                        </if>
+                                    </td>
+                                    <td id="RL_NoPage"><font><!--{$pageno}--></font>/<!--{$page_count}--></td>
+                                    <td width="23" align="right">
+                                        <if condition="$pageno lt $page_count"><a href="<!--{:U(MODULE_NAME.'/Shop/rent')}-->?id=<!--{$dataInfo.id}-->&letter=<!--{$Think.get.letter}-->&room=<!--{$Think.get.room}-->&totalarea=<!--{$Think.get.totalarea}-->&price=<!--{$Think.get.price}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno+1}-->" onfocus=blur()><img src="__PUBLIC__/images/rl_page_Next_bg.png" border="0" class="RL-Next"/></a><else/><img src="__PUBLIC__/images/rl_page_Next_Null_bg.png" border="0" class="RL-Next"/></if>
+                                    </td>
+                                </tr>
+                            </table></div>
+
+
+
+                    </div>
+                </div>
+                <div class="jjr_content">
+                    <div class="view_all" style="padding-top:3px; border-left:1px #b9d6f4 solid; border-right:1px #b9d6f4 solid;">
+                        <div class="all_fy_bgl">
+                            <if condition="$Think.get.list_order eq 'default'">
+                                <a onClick="quickSearch('default','list_order');return false;" href="javascript:" class="input_mrpxx" onfocus=blur()>默认排序</a>
+                                <else/>
+                                <a onClick="quickSearch('default','list_order');return false;" href="javascript:" class="input_mrpx" onfocus=blur()>默认排序</a>
+                            </if>
+                            <if condition="$Think.get.list_order eq 'house_price asc'">
+                                <a onClick="quickSearch('house_price desc','list_order');return false;" href="javascript:" class="input_zj" onfocus=blur()>总价&darr;</a>
+                                <else/>
+                                <a onClick="quickSearch('house_price asc','list_order');return false;" href="javascript:" class="input_pxbg56" onfocus=blur()>总价&uarr;</a>
+                            </if>
+                            <if condition="$Think.get.list_order eq 'house_totalarea asc'">
+                                <a onClick="quickSearch('house_totalarea desc','list_order');return false;" href="javascript:" class="input_zj" onfocus=blur()>面积&darr;</a>
+                                <else/>
+                                <a onClick="quickSearch('house_totalarea asc','list_order');return false;" href="javascript:" class="input_pxbg56" onfocus=blur()>面积&uarr;</a>
+                            </if>
+                            <if condition="$Think.get.list_order eq 'avg_price asc'">
+                                <a onClick="quickSearch('avg_price desc','list_order');return false;" href="javascript:" class="input_zj" onfocus=blur()>单价&darr;</a>
+                                <else/>
+                                <a onClick="quickSearch('avg_price asc','list_order');return false;" href="javascript:" class="input_pxbg56" onfocus=blur()>单价&uarr;</a>
+                            </if>
+
+
+                            <if condition="$Think.get.list_order eq 'created asc'">
+                                <a onClick="quickSearch('created desc','list_order');return false;" href="javascript:"  class="input_zj" onfocus=blur()>时间&uarr;</a>
+                                <else/>
+                                <a onClick="quickSearch('created asc','list_order');return false;" href="javascript:"  class="input_pxbg56" onfocus=blur()>时间&darr;</a>
+                            </if>
+
+
+
+                        </div>
+                    </div>
+                    <div class="jjr_yuanjiao">
+                        <div class="h15"></div>
+                        <foreach name="dataList" item="item">
+                            <!-- 循环体 -->
+                            <div style="height:6px; clear:both; overflow:hidden;"></div>
+                            <ol id="list_body">
+                                <div class="property_jjr">
+                                    <div class="photo" style="margin-left:10px; margin-top:2px;">
+                                        <a href="<!--{:U(MODULE_NAME.'/Rent/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" alt="" target="_blank"><img class="thumbnail" id="apf_id_69_a" src="<if condition='$item.house_thumb neq null'>__ROOT__/Uploads/<!--{$item.house_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" alt="" /></a>	    </div>
+                                    <div class="jjr_details">
+                                        <h4>
+                                            <a href="<!--{:U(MODULE_NAME.'/Rent/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.house_title}--></a><if condition="$item.is_hot eq 1"><span><img src="__PUBLIC__/images/sale_rd.gif" title="热点" align="absmiddle" class="er_duotu"></span ></if>
+                                            <if condition="$item.is_more_pic eq 1"><span><img src="__PUBLIC__/images/duotu_sale.gif" titile="多图" align="absmiddle" class="er_duotu"></span ></if></h4>
+                                        <address>小区：<!--{$item.borough_name}--> </address><!--<a href="#" target="_blank" class="input_jjr"></a> -->
+                                        <div class="jjr_ppp"><p>租金：<span><!--{$item.house_price}-->元</span> </p><p>房型：<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅</p><p>面积：<!--{$item.house_totalarea}-->平米</p><p>楼层：<!--{$item.house_floor}-->F/<!--{$item.house_topfloor}-->F</p><p>单价：<!--{$item.avg_price}-->元/平米</p><p>房龄：<!--{$item.house_age}-->年</p></div>
+                                    </div>
+                                    <div class="jjr_tags">
+                                        <if condition="$item.is_vexation eq 1"><img src="__PUBLIC__/images/rentjz.gif" title="急租" alt="急租" /></if>&nbsp;<if condition="$item.is_new eq 1"><img src="__PUBLIC__/images/newpush.gif" title="新推" alt="新推" /></if>
+                                    </div>
+                                </div>
+                                <div style="height:6px; clear:both; overflow:hidden;"></div>
+                                <div class="hr"></div>
+                            </ol>
+                            <!-- 循环体 结束 -->
+                        </foreach>
+
+
+
+                        <div class="jjr-div">
+                            <div class="contain">
+                                <div class="multipage">
+                                    <!--{$pagePanel}-->
+                                </div>
+                            </div>
+                            <div class="result">共有  <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 套符合要求的房子</div>
+                        </div>
+                        <div style="height:13px; clear:both; overflow:hidden;"></div>
+                        <p align="right"></p>
+                        <span class="xj_c xj_c03"></span>
+                        <span class="xj_c xj_c04"></span>     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<include file="Common:foot"/>
+</body>
+</html>

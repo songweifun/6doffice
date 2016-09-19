@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function changeSearch(formDom){
+            location.href=formDom.value;
+        }
+
+        function quickSearch(domValue,domType){
+            var inputDom = document.getElementById(domType);
+            if(inputDom){
+                inputDom.value=domValue;
+            }
+            var cityareaValue = document.getElementById('cityarea').value;
+            var qValue = document.getElementById('S_q').value;
+            var typeValue = document.getElementById('type').value;
+            var avgprice = document.getElementById('avgprice').value;
+            var boroughValue = document.getElementById('borough').value;
+            var list_numValue = document.getElementById('list_num').value;
+            var list_orderValue = document.getElementById('list_order').value;
+            if(domType == 'cityarea') boroughValue = '';
+            location.href="<!--{:U(MODULE_NAME.'/Broker/index')}-->"+'?q='+qValue+'&borough='+boroughValue+'&cityarea='+cityareaValue+'&type='+typeValue+'&list_num='+list_numValue+'&list_order='+list_orderValue+'&avgprice='+avgprice;
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+<include file="Common:selltop"/>
+
+<include file="Common:city_selecter_broker"/>
+<div style="height:20px; clear:both; overflow:hidden;"></div>
+<div class="content">
+    <div class="w746">
+        <include file="Common:broker_content_head"/>
+        <div class="agent_list">
+            <ul>
+                <foreach name="dataList" item="item">
+                <li class="cur">
+                    <div class="agent_img">
+                        <a href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$item.id}-->" target="_blank" title="<!--{$item.realname}-->-<!--{$item.outlet}-->"><img src=" <if condition='$item.avatar neq null'>__ROOT__/Uploads/<!--{$item.avatar}--><else/>__PUBLIC__/images/demoPhoto.jpg</if>" alt="" />
+                        </a><span><a href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$item.id}-->" target="_blank">进入店铺</a></span>
+                    </div><!--end agent_img-->
+                    <div class="agent_txt">
+                        <div class="agent_name">
+                            <b><a href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$item.id}-->" target="_blank"><!--{$item.realname}--></a></b>
+                            <!-- <div class="star"><p></p></div> --><div><img src="__PUBLIC__/images/rank/<!--{$item.brokerRank}-->.png"
+                        /></div><!--end star-->
+                        </div><!--end agent_name-->
+                        <p>所属公司： <if condition="$item.company_name neq null"><a target="_blank" href="<!--{$cfg.url}-->cshop/<!--{$item.company_id}-->"><!--{$item.company_name}--> - <!--{$item.outlet_last}--></a><else/><!--{$item.outlet_first}--> - <!--{$item.outlet_last}--></if></p>
+                        <p>服务区域：<a href="<!--{$cfg.url_sale}-->index.php?cityarea=<!--{$item.cityarea_id}-->"><!--{$item.cityarea_name}--></a></p>
+                        <p>联系电话：<span><!--{$item.mobile}--></span></p>
+                        <p class="gray">最近登录：<!--{$item.last_login}-->前</p>
+                    </div><!--end agent_txt-->
+                </li>
+                </foreach>
+            </ul>
+            <div class="jjr-div">
+                <div class="contain">
+                    <!-- 小区列表分页 -->
+                    <!--{$pagePanel}-->
+                    <!-- 小区列表分页 结束 -->                </div>
+                <div class="result">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 位符合要求的经纪人</div>
+            </div><!--end page-->
+        </div><!--end agent_list-->
+    </div>
+    <div class="w230">
+        <div class="agent_box">
+            <div class="agent_boxt">
+                <h2>推荐经纪人</h2>
+            </div><!--end agent_boxt-->
+            <div class="agent_boxc">
+                <div class="agent_rec">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <foreach name="arrRecommendBroker" item="item">
+                        <tr>
+                            <td align="left" width="40%"><a href="<!--{$cfg.url_shop}--><!--{$item.id}-->" class="agent_recl" target="_blank"><!--{$item.realname}--></a></td>
+                            <td align="right"></td>
+                            <td><img src="__PUBLIC__/images/rank/<!--{$item.brokerRank}-->.png"
+                            /></td>
+                        </tr>
+                        </foreach>
+                    </table>
+                </div><!--end agent_rec-->
+            </div><!--end agent_boxc-->
+            <div class="agent_boxb"></div><!--end agent_boxb-->
+        </div><!--end agent_box-->
+    </div>
+</div>
+<include file="Common:foot"/>
+</body>
+</html>

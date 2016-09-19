@@ -38,8 +38,8 @@
                     <if condition="$newhouseOpen eq 1">
                     <li <if condition="$menu eq 'newHouse'">class="xg_cur"</if>><a href="<!--{$cfg.url_newHouse}-->">新  房</a></li>
                     </if>
-                    <li <if condition="$menu eq 'broker'">class="xg_cur"</if>><a href="<!--{$cfg.url_broker}-->">经纪人</a></li>
-                    <li <if condition="$menu eq 'community'">class="xg_cur"</if>><a href="<!--{$cfg.url_community}-->">小  区</a></li>
+                    <li <if condition="$menu eq 'broker'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Broker/index')}-->">经纪人</a></li>
+                    <li <if condition="$menu eq 'community'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Community/index')}-->">小  区</a></li>
                     <li <if condition="$menu eq 'company'">class="xg_cur"</if>><a href="<!--{$cfg.url_company}-->">公  司</a></li>
                     <if condition="$bbsOpen eq 1">
                     <li><a href="<!--{$cfg.url_bbs}-->">论  坛</a></li>
