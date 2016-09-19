@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- 引入layer弹窗 -->
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+    <script language="javascript">
+        function showBox(item_id){
+            var url="<!--{:U(MODULE_NAME.'/Company/join')}-->/company_id/"+item_id
+            //alert(url)
+            layer.open({
+                type: 2,
+                title: ['加入公司', ''],
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area : ['300px' , '250px'],
+                content: url,
+                scrollbar: false,
+            });
+
+            //TB_show('加入公司','join.php?company_id='+item_id+'&height=200&width=300&modal=true&rnd='+Math.random(),false);
+
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        function changeSearch(formDom){
+            location.href=formDom.value;
+        }
+
+        function quickSearch(domValue,domType){
+            var inputDom = document.getElementById(domType);
+            if(inputDom){
+                inputDom.value=domValue;
+            }
+            var cityareaValue = document.getElementById('cityarea').value;
+            var qValue = document.getElementById('S_q').value;
+            var typeValue = document.getElementById('type').value;
+            var avgprice = document.getElementById('avgprice').value;
+            var boroughValue = document.getElementById('borough').value;
+            var list_numValue = document.getElementById('list_num').value;
+            var list_orderValue = document.getElementById('list_order').value;
+            if(domType == 'cityarea') boroughValue = '';
+            location.href='index.php?q='+qValue+'&borough='+boroughValue+'&cityarea='+cityareaValue+'&type='+typeValue+'&list_num='+list_numValue+'&list_order='+list_orderValue+'&avgprice='+avgprice;
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+<include file="Common:selltop"/>
+
+<div style="height:20px; clear:both; overflow:hidden;"></div>
+<div class="content">
+    <div class="w746">
+        <include file="Common:company_content_head"/>
+        <div class="company_list">
+            <ul>
+                <foreach name="dataList" item="item">
+                <li class="cur">
+                    <div class="company_img">
+                        <a target="_blank" href="<!--{:U(MODULE_NAME.'/cshop/index')}-->/id/<!--{$item.id}-->"><img src="<if condition='$item.company_logo neq null'>__ROOT__/Uploads/<!--{$item.company_logo}--><else/>__PUBLIC__/images/demoCompanyLogo.jpg</if>" />
+                        </a>
+                    </div>
+                    <!--end company_img-->
+                    <div class="company_txt">
+                        <div class="company_name">
+                            <b><a href="<!--{:U(MODULE_NAME.'/cshop/index')}-->/id/<!--{$item.id}-->" target="_blank"><!--{$item.company_name}--></a></b>
+                        </div><!--end company_name-->
+                        <p>公司地址：<!--{$item.company_address}--></p>
+                        <if condition="$item.type neq 0">
+                        <p>负责人：<!--{$item.company_clerk}--></p>
+                        <else/>
+                        <p>经纪人数量：<a target="_blank" href="<!--{:U(MODULE_NAME.'/Broker/index')}-->?company_id=<!--{$item.id}-->"><!--{$item.brokerCount}--></a></p>
+                        </if>
+                        <p>联系电话：<span><!--{$item.company_phone}--></span></p>
+                        <div class="company_logon">
+                            <if condition="$item.type neq 0">
+                            <a target="_blank" href="<!--{:U(MODULE_NAME.'/cshop/index')}-->/id/<!--{$item.id}-->">浏览公司网站</a>
+                            <else/>
+                            <a href="join.php?company_id=<!--{$item.id}-->" onclick="showBox('<!--{$item.id}-->');return false;">加入该公司</a>
+                            </if>
+                        </div>
+                    </div><!--end company_txt-->
+                </li>
+                </foreach>
+            </ul>
+            <div class="jjr-div">
+                <div class="contain">
+                    <!-- 小区列表分页 -->
+                    <!--{$pagePanel}-->
+                    <!-- 小区列表分页 结束 -->                </div>
+                <div class="result">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 家符合要求的公司</div>
+            </div><!--end page-->
+        </div><!--end company_list-->
+    </div>
+    <div class="w230">
+        <div class="company_box">
+            <div class="company_boxt">
+                <h2>推荐中介公司</h2>
+            </div><!--end company_boxt-->
+            <div class="company_boxc">
+                <div class="company_rec">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <foreach name="commendDataList" item="item">
+                        <tr>
+                            <td align="left" width="90%"><a href="<!--{:U(MODULE_NAME.'/cshop/index')}-->/id`/<!--{$item.id}-->" class="company_recl" target="_blank"><!--{$item.company_name}--></a></td>
+                            <td align="right"></td>
+                        </tr>
+                        </foreach>
+                    </table>
+                </div><!--end company_rec-->
+            </div><!--end company_boxc-->
+            <div class="company_boxb"></div><!--end company_boxb-->
+        </div><!--end company_box-->
+    </div>
+</div>
+<include file="Common:foot"/>
+</body>
+</html>

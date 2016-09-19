@@ -1,0 +1,48 @@
+
+<div class="agent_tit">
+    <div id="c"><ul>
+        <input type="hidden" id="switch" name="switch" value="<!--{$Think.get.switch}-->">
+        <li <if condition="$Think.get.switch eq null">class="li2"<else/>class="li1"</if>><span><a href="<!--{:U(MODULE_NAME.'/Company/index')}-->/switch/" >中介公司</a></span></li>
+        <if condition="$guest eq 1">
+        <li <if condition="$Think.get.switch eq 'move'">class="li2"<else/>class="li1"</if>><span><a href="<!--{:U(MODULE_NAME.'/Company/index')}-->/switch/move">搬家公司</a></span></li>
+        </if>
+        <li <if condition="$Think.get.switch eq 'decoration'">class="li2"<else/>class="li1"</if>><span><a href="<!--{:U(MODULE_NAME.'/Company/index')}-->/switch/decoration">装修公司</a></span></li>
+
+
+
+    </ul>
+        <div class="agent_titr">
+            <table>
+                <tr>
+                    <td width="200" align="right">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 位符合要求的公司&nbsp;</td>
+                    <td>
+                        <if condition="$pageno gt 1">
+                        <a href="<!--{:U(MODULE_NAME.'/Company/index')}-->?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno-1}-->" onfocus=blur()>
+                            <img src="__PUBLIC__/images/sale01a.jpg" border="0" class="RL-Prev"/>
+                        </a>
+                        <else/>
+                        <a href="javascript:void(0);">
+                            <img src="__PUBLIC__/images/sale01.jpg" border="0" class="RL-Prev"/>
+                        </a>
+                        </if>
+                    </td>
+                    <td id="RL_NoPage"><!--{$pageno}-->/<!--{$page_count}--></td>
+                    <td>
+                        <if condition="($pageno lt $page_count) and ($pageno lt 100)">
+                        <a href="<!--{:U(MODULE_NAME.'/Company/index')}-->?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno+1}-->" onfocus=blur()>
+                            <img src="__PUBLIC__/images/sale02a.jpg" border="0" class="RL-Next"/>
+                        </a>
+                        <else/>
+                        <a href="javascript:void(0);">
+                            <img src="__PUBLIC__/images/sale02.jpg" border="0" class="RL-Prev"/>
+                        </a>
+                        </if>
+                    </td>
+                </tr>
+            </table></div><!--end agent_titr-->
+    </div><!--end agent_tit-->
+    <div class="all_fy_bg" style=" margin-top:-2px !important;_margin-top:-1px;">
+        <div class="all_fy_bgl">
+            <!--   <form action="" method="get"><input name="" type="text" /><input value="搜索中介公司" name="" type="button" /></form> -->
+        </div>
+    </div></div>
