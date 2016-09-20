@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--></title>
+    <meta name="keywords" content="<!--{$keyword}-->" />
+    <meta name="description" content="<!--{$description}-->" />
+
+    <css file="__PUBLIC__/css/shopCommon.css"/>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/<!--{$stylecss}-->"/>
+</head>
+<body>
+
+
+<div class="head">
+    <div class="headMain">
+        <div class="title"><!--{$dataInfo.company_name}--></div>
+        <div class="link">主页地址：<!--{$cfg.url}-->cshop/<!--{$dataInfo.id}-->&nbsp;&nbsp;<a href="#"  onclick="javascript:window.external.AddFavorite('<!--{$cfg.url}-->cshop/<!--{$dataInfo.id}-->',' <!--{$cfg.page.title}-->--<!--{$dataInfo.company_name}-->');return false;">收藏</a></div>
+        <ul class="headNav">
+            <li ><a href="<!--{:U(MODULE_NAME.'/Cshop/index')}-->/id/<!--{$dataInfo.id}-->"><span>公司首页</span></a></li>
+            <li><a href="<!--{:U(MODULE_NAME.'/Cshop/sell')}-->/id/<!--{$dataInfo.id}-->"><span>二手房</span></a></li>
+            <li ><a href="<!--{:U(MODULE_NAME.'/Cshop/rent')}-->/id/<!--{$dataInfo.id}-->"><span>租房</span></a></li>
+            <li><a target="_blank" href="<!--{:U(MODULE_NAME.'/Broker/index')}-->/company_id/<!--{$dataInfo.id}-->"><span>团队精英</span></a></li>
+            <li  class="linkOn"><a href="<!--{:U(MODULE_NAME.'/Cshop/profile')}-->/id/<!--{$dataInfo.id}-->"><span>关于我们</span></a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="main">
+    <div class="mainRight mainRight2">
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">公司信息</div>
+            <div class="userInfo">
+                <div class="txtBox1">
+                    <img class="pic" src="<!--{if $dataInfo.company_logo}--><!--{$cfg.url}-->upfile/<!--{$dataInfo.company_logo}--><!--{else}--><!--{$cfg.path.images}-->demoCompanyLogo.jpg<!--{/if}-->" width="240" height="70" />
+
+
+                </div>
+
+                <div class="txtBox2">
+                    <p>公司名称：<span class="weightBold"><!--{$dataInfo.company_name}--></span></p>
+                    <p>公司地址：<!--{$dataInfo.company_address}--></p>
+
+                </div>
+                <div class="txtBox3">
+                    <p>联系人：<!--{$dataInfo.company_clerk}--></p>
+                    <p>联系电话：<!--{$dataInfo.company_phone}--></p>
+                    <p>电子邮件：<span class="text familyAlpha weightBold"><!--{$dataInfo.email}--></span></p>
+                    <!--{if $dataInfo.qq}-->
+                    <p>在线Q Q：<span class="text familyAlpha weightBold"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<!--{$dataInfo.qq}-->&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<!--{$dataInfo.qq}-->:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></span></p><!--{/if}-->
+
+                </div>
+            </div>
+            <div class="cb"></div>
+        </div></div>
+
+
+    </div>
+
+    <div class="mainLeft mainLeft2">
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">公司简介</div>
+            <div class="profileBox">
+                <div class="title"><!--{$dataInfo.company_name}-->简介</div>
+                <div class="text">
+                    <p><!--{$dataInfo.company_about}--></p>
+                </div>
+
+
+            </div>
+        </div></div>
+    </div>
+</div>
+
+
+</body>
+</html>

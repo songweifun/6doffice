@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--></title>
+    <meta name="keywords" content="<!--{$keyword}-->" />
+    <meta name="description" content="<!--{$description}-->" />
+
+    <css file="__PUBLIC__/css/shopCommon.css"/>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/<!--{$stylecss}-->"/>
+</head>
+<body>
+
+
+<div class="head">
+    <div class="headMain">
+        <div class="title"><!--{$dataInfo.company_name}--></div>
+        <div class="link">主页地址：<!--{$cfg.url}-->cshop/<!--{$dataInfo.id}-->&nbsp;&nbsp;<a href="#"  onclick="javascript:window.external.AddFavorite('<!--{$cfg.url}-->cshop/<!--{$dataInfo.id}-->',' <!--{$cfg.page.title}-->--<!--{$dataInfo.company_name}-->');return false;">收藏</a></div>
+        <ul class="headNav">
+            <li ><a href="<!--{:U(MODULE_NAME.'/Cshop/index')}-->/id/<!--{$dataInfo.id}-->"><span>公司首页</span></a></li>
+            <li class="linkOn"><a href="<!--{:U(MODULE_NAME.'/Cshop/sell')}-->/id/<!--{$dataInfo.id}-->"><span>二手房</span></a></li>
+            <li><a href="<!--{:U(MODULE_NAME.'/Cshop/rent')}-->/id/<!--{$dataInfo.id}-->"><span>租房</span></a></li>
+            <li><a target="_blank" href="<!--{:U(MODULE_NAME.'/Broker/index')}-->/company_id/<!--{$dataInfo.id}-->"><span>团队精英</span></a></li>
+            <li><a href="<!--{:U(MODULE_NAME.'/Cshop/profile')}-->/id/<!--{$dataInfo.id}-->"><span>关于我们</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="main">
+    <div class="mainLeft">
+        <div class="comMainBox">
+            <!-- 二手房列表 -->
+            <div class="dataListBox">
+                <table class="tHead" cellpadding="0" cellspacing="1" border="0">
+                    <thead>
+                    <tr>
+                        <td width="13%">图片</td>
+                        <td width="32%">标题/小区名/户型</td>
+                        <td width="11%">
+                            <if condition="$Think.get.list_order eq 'house_totalarea desc'">
+                                    <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=house_totalarea asc">
+                                        面积
+                                        <if condition="$Think.get.list_order eq 'house_totalarea desc'">
+                                            <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                            <elseif condition="$Think.get.list_order eq 'house_totalarea asc'"/>
+                                            <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                        </if>
+                                    </a>
+                                <else/>
+                                    <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=house_totalarea desc">
+                                        面积
+                                        <if condition="$Think.get.list_order eq 'house_totalarea desc'">
+                                            <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                            <elseif condition="$Think.get.list_order eq 'house_totalarea asc'"/>
+                                            <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                        </if>
+                                    </a>
+                                </if>
+                        </td>
+                        <td width="11%">楼层</td>
+                        <td width="15%">
+                            <if condition="$Think.get.list_order eq 'house_price desc'">
+                                    <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=house_price asc">
+                                        总价
+                                        <if condition="Think.get.list_order eq 'house_price desc'">
+                                        <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                        <elseif condition="$Think.get.list_order eq 'house_price asc'"/>
+                                        <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                        </if>
+                                    </a>
+                                <else/>
+                                    <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=house_price desc">
+                                        总价
+                                        <if condition="Think.get.list_order eq 'house_price desc'">
+                                            <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                            <elseif condition="$Think.get.list_order eq 'house_price asc'"/>
+                                            <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                        </if>
+                                    </a>
+                                </if>
+
+                            /
+                            <if condition="$Think.get.list_order eq 'avg_price desc'">
+                                    <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=avg_price asc">
+                                        单价
+                                        <if condition="$Think.get.list_order eq 'avg_price desc'">
+                                        <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                            <elseif condition="$Think.get.list_order eq 'avg_price asc'"/>
+                                        <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                        </if>
+                                    </a>
+                                <else/>
+                                        <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=avg_price desc">
+                                            单价
+                                            <if condition="$Think.get.list_order eq 'avg_price desc'">
+                                                <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                                <elseif condition="$Think.get.list_order eq 'avg_price asc'"/>
+                                                    <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                            </if>
+                                        </a>
+                                </if>
+                        </td>
+                        <td width="18%">
+                            <if condition="$Think.get.list_order eq 'created desc'">
+                                <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=created asc">
+                                    发布时间
+                                    <if condition="$Think.get.list_order eq 'created desc'">
+                                    <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                    <elseif condition="$Think.get.list_order eq 'created asc'"/>
+                                    <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                    </if>
+                                </a>
+                                <else/>
+                                    <a href="?id=<!--{$dataInfo.id}-->&borough_id=<!--{$Think.get.borough_id}-->&price=<!--{$Think.get.price}-->&room=<!--{$Think.get.room}-->&list_order=created desc">
+                                        发布时间
+                                        <if condition="$Think.get.list_order eq 'created desc'">
+                                            <img src="__PUBLIC__/images/shop/arrow_down.gif">
+                                            <elseif condition="$Think.get.list_order eq 'created asc'"/>
+                                            <img src="__PUBLIC__/images/shop/arrow_up.gif">
+                                        </if>
+                                    </a>
+                                </if>
+                        </td>
+                    </tr>
+                    </thead>
+                </table>
+                <table class="tBody" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                    <foreach name="dataList" item="item">
+                    <!-- 循环体 -->
+                    <tr onmouseover="this.className='mouseOver'" onmouseout="this.className=''">
+                        <td width="13%">
+                            <span class="thumbnail">
+                                <a href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank">
+                                    <img src="<if condition='$item.house_thumb neq null'>__ROOT__/Uploads/<!--{$item.house_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="80" height="60" />
+                                </a>
+                            </span>
+                        </td>
+                        <td class="tdAlignLeft" width="32%">
+                            <p><a class="color000" href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.house_title}--></a></p>
+                            <p><span class="weightBold"><!--{$item.borough_name}--></span>&nbsp;<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅<!--{$item.house_toilet}-->卫<!--{$item.house_veranda}-->阳</p>
+                            <p>
+
+                            </p>
+                        </td>
+                        <td width="11%"><span class="familyAlpha"><!--{$item.house_totalarea}-->㎡</span></td>
+                        <td width="11%"><span class="familyAlpha"><!--{$item.house_floor}-->F/<!--{$item.house_topfloor}-->F</span></td>
+                        <td width="15%">
+                            <p><span class="familyAlpha colorF60"><span class="size16px weightBold"><!--{$item.house_price}-->万</span></p>
+                            <p><span class="familyAlpha colorF60"><!--{$item.avg_price}-->元/㎡</span></p>
+                        </td>
+                        <td class="tdAlignLeft" width="18%">
+                            <p><!--{$item.updated|date='Y-m-d',###}--></p>
+                        </td>
+                    </tr>
+                    <!-- 循环体 结束 -->
+                    </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 二手房列表 结束 -->
+
+            <!-- 二手房列表分页 -->
+            <!--{$pagePanel}-->
+            <!-- 二手房列表分页 结束 -->
+
+        </div>
+    </div>
+
+    <div class="mainRight">
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">房源搜索</div>
+            <div class="houseSeach">
+                <form name="searchForm" action="<!--{:U(MODULE_NAME.'/Cshop/sell')}-->" method="GET">
+                    <input type="hidden" name="id" value="<!--{$dataInfo.id}-->">
+                    <input class="inps" name="q" type="text"  size="30" style="width:175px;" value="<if condition='$Think.get.q neq null'><!--{$Think.get.q}--><else/>输入小区名或房源编号</if>" onblur="if(this.value ==''||this.value == '输入小区名或房源编号'){this.value = '输入小区名或房源编号';this.style.color = '#999999';}" onfocus="if(this.value == '输入小区名或房源编号'){this.value = '';this.style.color = '#333333';}" style="color:#999;" />
+                    <input class="searchSmt" type="submit" value="搜 索" />
+                </form>
+            </div>
+        </div></div>
+
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">房源分类</div>
+            <div class="houseType">
+                <div class="TypeItemBox" id="houseType1">
+                    <p class="TypeItemTitle">按小区：</p>
+                    <ul class="TypeItem">
+                        <foreach name="saleCountBorough" item="item">
+                        <li><a href="<!--{:U(MODULE_NAME.'/Cshop/sell')}-->?id=<!--{$dataInfo.id}-->&borough_id=<!--{$item.borough_id}-->"><!--{$item.borough_name}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                    <p class="TypeItemTitle">按售价：</p>
+                    <ul class="TypeItem">
+                        <foreach name="saleCountPrice" item="item">
+                        <li><a href="<!--{:U(MODULE_NAME.'/Cshop/sell')}-->?id=<!--{$dataInfo.id}-->&price=<!--{$item.price}-->"><!--{$item.house_price}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                    <p class="TypeItemTitle">按户型：</p>
+                    <ul class="TypeItem TypeItem1">
+                        <foreach name="saleCountRoom" item="item">
+                        <li><a href="<!--{:U(MODULE_NAME.'/Cshop/sell')}-->?id=<!--{$dataInfo.id}-->&room=<!--{$item.room}-->"><!--{$item.house_room}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                </div>
+            </div>
+        </div></div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--></title>
+    <meta name="keywords" content="<!--{$keyword}-->" />
+    <meta name="description" content="<!--{$description}-->" />
+    <css file="__PUBLIC__/css/shopCommon.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/<!--{$stylecss}-->"/>
+
+    <!--{$cssFiles}-->
+    <!--{$jsFiles}-->
+    <script type="text/javascript" language="javascript">
+        function setTabs(str){
+            for(var i=1; i<3; i++){
+                document.getElementById('houseType' + i).style.display = 'none';
+                document.getElementById('houseTypeStyle' + i).className = '';
+            }
+            document.getElementById('houseType' + str).style.display = '';
+            document.getElementById('houseTypeStyle' + str).className = 'linkOn';
+        }
+    </script>
+</head>
+<body>
+
+<div class="head">
+    <div class="headMain">
+        <div class="title"><!--{$dataInfo.company_name}--></div>
+        <div class="link">主页地址：<!--{$cfg.url}-->cshop/<!--{$dataInfo.id}-->&nbsp;&nbsp;<a href="#"  onclick="javascript:window.external.AddFavorite('<!--{$cfg.url}-->cshop/<!--{$dataInfo.id}-->',' <!--{$cfg.page.title}-->--<!--{$dataInfo.company_name}-->');return false;">收藏</a></div>
+        <ul class="headNav">
+            <li class="linkOn"><a href="<!--{:U(MODULE_NAME.'/Cshop/index')}-->/id/<!--{$dataInfo.id}-->"><span>公司首页</span></a></li>
+            <li><a href="<!--{:U(MODULE_NAME.'/Cshop/sell')}-->/id/<!--{$dataInfo.id}-->"><span>二手房</span></a></li>
+            <li><a href="<!--{:U(MODULE_NAME.'/Cshop/rent')}-->/id/<!--{$dataInfo.id}-->"><span>租房</span></a></li>
+            <li><a target="_blank" href="<!--{:U(MODULE_NAME.'/Broker/index')}-->/company_id/<!--{$dataInfo.id}-->"><span>团队精英</span></a></li>
+            <li><a href="<!--{:U(MODULE_NAME.'/Cshop/profile')}-->/id/<!--{$dataInfo.id}-->"><span>关于我们</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="main">
+    <div class="mainLeft">
+
+
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead"><div class="titleMore">二手房<a href="<!--{$cfg.url_cshop}-->sale.php?id=<!--{$dataInfo.id}-->" class="titleMoreLink">更多房源<span class="familyArial">&gt;&gt;</span></a></div></div>
+            <div class="houseList2">
+                <ul><!-- 最多显示12条 -->
+                    <foreach name="companySaleList" item="item">
+                    <li>
+                        <p><a class="aUnderline" href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html"><!--{$item.house_title}--></a></p>
+                        <p><!--{$item.borough_name}--></p>
+                        <p class="houseInfoText familyAlpha"><!--{$item.house_room}-->室<!--{$item.house_hall}-->厅<!--{$item.house_toilet}-->卫<!--{$item.house_veranda}-->阳&nbsp;&nbsp;<!--{$item.house_totalarea}-->㎡&nbsp;&nbsp;<!--{$item.house_floor}-->F/<!--{$item.house_topfloor}-->F&nbsp;&nbsp;<span class="price"><!--{$item.house_price}-->万</span>(<!--{$item.avg_price}-->元/㎡)</p>
+                    </li>
+                    </foreach>
+                </ul>
+                <div class="cb"></div>
+            </div>
+        </div></div>
+
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead"><div class="titleMore">租房<a href="<!--{$cfg.url_cshop}-->rent.php?id=<!--{$dataInfo.id}-->" class="titleMoreLink">更多房源<span class="familyArial">&gt;&gt;</span></a></div></div>
+            <div class="houseList2">
+                <ul><!-- 最多显示12条 -->
+                    <foreach name="companyRentList" item="item">
+                    <li>
+                        <p><a class="aUnderline" href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html"><!--{$item.house_title}--></a></p>
+                        <p><!--{$item.borough_name}--></p>
+                        <p class="houseInfoText familyAlpha"><!--{$item.house_room}-->室<!--{$item.house_hall}-->厅<!--{$item.house_toilet}-->卫<!--{$item.house_veranda}-->阳&nbsp;&nbsp;<!--{$item.house_totalarea}-->㎡&nbsp;&nbsp;<!--{$item.house_fitment}-->&nbsp;&nbsp;<span class="price"><!--{$item.house_price}-->元/月</span></p>
+                    </li>
+                    </foreach>
+                </ul>
+                <div class="cb"></div>
+            </div>
+        </div></div>
+    </div>
+
+    <div class="mainRight">
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">公司信息</div>
+            <div class="userInfo">
+                <div class="txtBox1">
+                    <img class="pic" src="<if condition='$dataInfo.company_logo neq null'>__ROOT__/Uploads/<!--{$dataInfo.company_logo}--><else/>__PUBLIC__/images/demoCompanyLogo.jpg</if>" width="240" height="70" />
+
+
+                </div>
+
+                <div class="txtBox2">
+                    <p>公司名称：<span class="weightBold"><!--{$dataInfo.company_name}--></span></p>
+
+                    <p>公司地址：<!--{$dataInfo.company_address}--></p>
+
+                </div>
+                <div class="txtBox3">
+                    <p>联系人：<!--{$dataInfo.company_clerk}--></p>
+                    <p>联系电话：<!--{$dataInfo.company_phone}--></p>
+                    <p>电子邮件：<span class="text familyAlpha weightBold"><!--{$dataInfo.email}--></span></p>
+                    <if condition="$dataInfo.qq neq null">
+                    <p>在线Q Q：<span class="text familyAlpha weightBold"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<!--{$dataInfo.qq}-->&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<!--{$dataInfo.qq}-->:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></span></p>
+                    </if>
+                </div>
+            </div>
+            <div class="cb"></div>
+        </div></div>
+
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">业务描述</div>
+            <div class="userNews"><!--{$dataInfo.company_description}--></div>
+        </div></div>
+
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">房源搜索</div>
+            <div class="houseSeach">
+                <form name="searchForm" action="sale.php" method="GET">
+                    <input type="hidden" name="id" value="<!--{$dataInfo.id}-->">
+                    <select name="searchType" id="searchType" onchange="document.searchForm.action=this.value">
+                        <option value="sale.php?id=<!--{$dataInfo.id}-->">出售</option>
+                        <option value="rent.php?id=<!--{$dataInfo.id}-->">出租</option>
+                    </select>
+                    <input class="inps" name="q" type="text" size="30" style="width:130px; *width:118px;" value="输入小区名或房源编号" onblur="if(this.value ==''||this.value == '输入小区名或房源编号'){this.value = '输入小区名或房源编号';this.style.color = '#999999';}" onfocus="if(this.value == '输入小区名或房源编号'){this.value = '';this.style.color = '#333333';}" style="color:#999;" />
+                    <input class="searchSmt" type="submit" value="搜 索" />
+                </form>
+            </div>
+        </div></div>
+
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">房源分类</div>
+            <div class="houseType">
+                <div class="houseTypeTab">
+                    <ul>
+                        <li id="houseTypeStyle1" class="linkOn"><a href="javascript:setTabs(1);">出售房源</a></li>
+                        <li id="houseTypeStyle2"><a href="javascript:setTabs(2);">租房源</a></li>
+                    </ul>
+                </div>
+                <div class="TypeItemBox" id="houseType1">
+                    <p class="TypeItemTitle">按小区：</p>
+                    <ul class="TypeItem">
+                        <foreach name="saleCountBorough" item="item">
+                        <li><a href="sale.php?id=<!--{$dataInfo.id}-->&borough_id=<!--{$item.borough_id}-->"><!--{$item.borough_name}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                    <p class="TypeItemTitle">按售价：</p>
+                    <ul class="TypeItem">
+                        <foreach name="saleCountPrice" item="item">
+                        <li><a href="sale.php?id=<!--{$dataInfo.id}-->&price=<!--{$item.price}-->"><!--{$item.house_price}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                    <p class="TypeItemTitle">按户型：</p>
+                    <ul class="TypeItem TypeItem1">
+                        <foreach name="saleCountRoom" item="item">
+                        <li><a href="sale.php?id=<!--{$dataInfo.id}-->&room=<!--{$item.room}-->"><!--{$item.house_room}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                </div>
+                <div class="TypeItemBox" id="houseType2" style="display:none;">
+                    <p class="TypeItemTitle">按小区：</p>
+                    <ul class="TypeItem">
+                        <foreach name="rentCountBorough" item="item">
+                        <li><a href="rent.php?id=<!--{$dataInfo.id}-->&borough_id=<!--{$item.borough_id}-->"><!--{$item.borough_name}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                    <p class="TypeItemTitle">按租金：</p>
+                    <ul class="TypeItem">
+                        <foreach name="rentCountPrice" item="item">
+                        <li><a href="rent.php?id=<!--{$dataInfo.id}-->&price=<!--{$item.price}-->"><!--{$item.house_price}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                    <p class="TypeItemTitle">按户型：</p>
+                    <ul class="TypeItem TypeItem1">
+                        <foreach name="rentCountRoom" item="item">
+                        <li><a href="rent.php?id=<!--{$dataInfo.id}-->&room=<!--{$item.room}-->"><!--{$item.house_room}-->(<!--{$item.house_num}-->)</a></li>
+                        </foreach>
+                    </ul>
+                </div>
+            </div>
+        </div></div>
+        <if condition="$brokerFriends neq null">
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead"><div class="titleMore">店长人脉<span class="size12px weightNormal familyAlpha">(<!--{$brokerFriendCount}-->)</span></div></div>
+            <div class="userFriends">
+                <ul><!-- 最多显示9条 按活跃度排序 -->
+                    <foreach name="brokerFriends" item="item">
+                    <li><a href="<!--{$cfg.url_cshop}--><!--{$item.friend_id}-->" target="_blank" title="<!--{$item.realname}-->"><img src="<!--{if $item.avatar}-->__ROOT__/Uploads/<!--{$item.avatar}--><!--{else}-->__PUBLIC__/images/demoPhoto_52_52.gif<!--{/if}-->" /></a><p><a class="color666" href="<!--{$cfg.url_cshop}--><!--{$item.friend_id}-->" target="_blank"><!--{$item.realname}--></a></p></li>
+                    </foreach>
+                </ul>
+            </div>
+        </div></div>
+        </if>
+        <if condition="$cshopViewer neq null">
+        <div class="comMainBox"><div class="boxBg">
+            <div class="boxHead">最近光顾</div>
+            <div class="userFriends">
+                <ul><!-- 最多显示6条 按来访时间排序 -->
+                    <foreach name="cshopViewer" item="item">
+                    <if condition="$item.user_type eq 1">
+                        <li><img src="<if condition='$item.avatar neq null'>__ROOT__/Uploads/<!--{$item.avatar}--><else/>__PUBLIC__/images/demoPhoto_52_52.gif</if>" /><p>
+                            <if condition="$item.realname neq null"><a class="color666" href="<!--{$cfg.url_cshop}--><!--{$item.friend_id}-->" target="_blank"></if>
+                            <if condition="$item.realname neq null"><!--{$item.realname}--><else/>访客</if>
+                            <if condition="$item.realname neq null"></a></if></p>
+                        </li>
+                    <else/>
+                    <li><img src="<!--{if $item.avatar}-->__ROOT__/Uploads/<!--{$item.avatar}--><!--{else}-->__PUBLIC__/images/demoPhoto_52_52.gif<!--{/if}-->" /><p><!--{if $item.first_name}--><!--{$item.first_name}--><!--{if $item.gender}-->小姐<!--{else}-->先生<!--{/if}--><!--{else}-->访客<!--{/if}--></p></li>
+                    </if>
+                    </foreach>
+                </ul>
+            </div>
+        </div></div>
+        <!--{/if}-->
+    </div>
+</div>
+
+</body>
+</html>

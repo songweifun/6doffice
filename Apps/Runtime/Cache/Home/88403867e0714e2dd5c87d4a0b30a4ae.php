@@ -147,7 +147,7 @@
                         <?php if($newhouseOpen == 1): ?><li <?php if($menu == 'newHouse'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_newHouse"]); ?>">新  房</a></li><?php endif; ?>
                         <li <?php if(($menu == 'broker') or ($menu=='shop')): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Broker/index');?>">经纪人</a></li>
                         <li <?php if($menu == 'community'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Community/index');?>">小  区</a></li>
-                        <li <?php if($menu == 'company'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_company"]); ?>">公  司</a></li>
+                        <li <?php if($menu == 'company'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Company/index');?>">公  司</a></li>
                         <?php if($bbsOpen == 1): ?><li><a href="<?php echo ($cfg["url_bbs"]); ?>">论  坛</a></li><?php endif; ?>
                     </ul>
                     <!--  <span class="xg_phone"><a href="#">手机</a></span> <span class="xg_ditie"><a href="#">地铁找房</a></span> --><span class="xg_map"><?php if($menu == 'sale'): ?><a href="<?php echo ($cfg["url"]); ?>m/map">地图找房</a><?php elseif($menu == 'rent'): ?><a href="<?php echo ($cfg["url"]); ?>m/maprent">地图找房</a><?php else: ?><a href="<?php echo ($cfg["url"]); ?>m/map">地图找房</a><?php endif; ?></span>  </div>
@@ -227,8 +227,8 @@
                 </form>
             <?php elseif($menu == 'company'): ?>
                 <div class="xg_nvain">
-                    <form name="topSearchForm" method="GET" action="<?php echo ($cfg["url"]); ?>company/index.php">
-                        <input name="q" type="text"  id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入公司名称'){this.value = '可输入公司名称';}" onfocus="if(this.value == '可输入公司名称'){this.value = '';}" value="<!--{if $Think.get.q==""}-->可输入公司名称<!--{else}--><?php echo ($_GET['q']); ?><!--{/if}-->" />
+                    <form name="topSearchForm" method="GET" action="<?php echo U(MODULE_NAME.'/Company/index');?>">
+                        <input name="q" type="text"  id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入公司名称'){this.value = '可输入公司名称';}" onfocus="if(this.value == '可输入公司名称'){this.value = '';}" value="<?php if($_GET['q']== null): ?>可输入公司名称<?php else: echo ($_GET['q']); endif; ?>" />
                 </div>
                 <ul id="sddm2">
                 <li>
@@ -247,7 +247,7 @@
                 </form>
             <?php elseif(($menu == 'broker') or ($menu == 'shop')): ?>
                 <div class="xg_nvain">
-                    <form name="topSearchForm" method="GET" action="<?php echo ($cfg["url"]); ?>broker/index.php">
+                    <form name="topSearchForm" method="GET" action="<?php echo U(MODULE_NAME.'/Broker/index');?>">
                         <input name="q" type="text" id="ts"  class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入经纪人名、门店名，或公司名称关键词'){this.value = '可输入经纪人名、门店名，或公司名称关键词';}" onfocus="if(this.value == '可输入经纪人名、门店名，或公司名称关键词'){this.value = '';}" value="<?php if($_GET['q']== null): ?>可输入经纪人名、门店名，或公司名称关键词<?php else: echo ($_GET['q']); endif; ?>" />
                 </div>
                 <ul id="sddm2">
@@ -287,7 +287,7 @@
                 </form>
         <?php else: ?>
                 <div class="xg_nvain">
-                    <form name="topSearchForm" method="GET" action="<?php echo ($cfg["url"]); ?>sale/index.php">
+                    <form name="topSearchForm" method="GET" action="<?php echo U(MODULE_NAME.'/Sell/index');?>">
                         <input name="q" type="text"  id="ts" class="xg_navinp1" onblur="if(this.value ==''||this.value == '可输入小区名、路名或房源特征'){this.value = '可输入小区名、路名或房源特征';}" onfocus="if(this.value == '可输入小区名、路名或房源特征'){this.value = '';}" value="<?php if($_GET['q']== null): ?>可输入小区名、路名或房源特征<?php else: echo ($_GET['q']); endif; ?>" />
                 </div>
                 <ul id="sddm2">

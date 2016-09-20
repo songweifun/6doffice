@@ -35,7 +35,7 @@
 
 <div class="xg_nav">
     <div class="xg_navcont1">
-        <div class="xg_logo"><a title="<?php echo ($cfg["page"]["titlec"]); ?>" href="<?php echo ($cfg["url"]); ?>"><img alt="<?php echo ($cfg["page"]["titlec"]); ?>" src="<?php echo ($cfg["path"]["images"]); ?>logo.png" height="53" /></a><span>租售引擎</span></div>
+        <div class="xg_logo"><a title="<?php echo ($titlec); ?>" href="<?php echo U(MODULE_NAME.'/Index/index');?>"><img alt="<?php echo ($titlec); ?>" src="/6doffice/Public/images/logo.png" height="53" /></a><span>租售引擎</span></div>
         <div class="xg_menu">
             <div class="xg_menucont">
                 <ul>
@@ -47,7 +47,7 @@
                     <?php if($newhouseOpen == 1): ?><li <?php if($menu == 'newHouse'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_newHouse"]); ?>">新  房</a></li><?php endif; ?>
                     <li <?php if($menu == 'broker'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Broker/index');?>">经纪人</a></li>
                     <li <?php if($menu == 'community'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Community/index');?>">小  区</a></li>
-                    <li <?php if($menu == 'company'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_company"]); ?>">公  司</a></li>
+                    <li <?php if($menu == 'company'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Company/index');?>">公  司</a></li>
                     <?php if($bbsOpen == 1): ?><li><a href="<?php echo ($cfg["url_bbs"]); ?>">论  坛</a></li><?php endif; ?>
                 </ul>
                 <span class="xg_map"><a href="<?php echo ($cfg["url"]); ?>m/map">地图找房</a></span>  </div>

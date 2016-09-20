@@ -323,9 +323,9 @@ class ShopController extends CommonController{
         }
         $this->assign('shopConf', $shopConf);
         if($shopConf['shop_style']){
-            //$page->addCss($shopConf['shop_style']);
+            $this->assign('stylecss',$shopConf['shop_style']);
         }else{
-            //$page->addCss('shopStyleDefault.css');
+            $this->assign('stylecss','shopStyleDefault.css');
         }
         //实例化和字典
         $houseSell = M('housesell');
@@ -549,9 +549,9 @@ class ShopController extends CommonController{
         }
         $this->assign('shopConf', $shopConf);
         if($shopConf['shop_style']){
-            //$page->addCss($shopConf['shop_style']);
+            $this->assign('stylecss',$shopConf['shop_style']);
         }else{
-            //$page->addCss('shopStyleDefault.css');
+            $this->assign('stylecss','shopStyleDefault.css');
         }
         //实例化和字典
         $houseRent = M('houserent');
@@ -821,9 +821,9 @@ class ShopController extends CommonController{
             }
             $this->assign('shopConf', $shopConf);
             if($shopConf['shop_style']){
-                //$page->addCss($shopConf['shop_style']);
+                $this->assign('stylecss',$shopConf['shop_style']);
             }else{
-                //$page->addCss('shopStyleDefault.css');
+                $this->assign('stylecss','shopStyleDefault.css');
             }
 
             $list_num = intval($_GET['list_num']);
@@ -1013,9 +1013,9 @@ class ShopController extends CommonController{
         }
         $this->assign('shopConf', $shopConf);
         if($shopConf['shop_style']){
-            //$page->addCss($shopConf['shop_style']);
+            $this->assign('stylecss',$shopConf['shop_style']);
         }else{
-            //$page->addCss('shopStyleDefault.css');
+            $this->assign('stylecss','shopStyleDefault.css');
         }
         $this->menu="shop";
         $this->display();
