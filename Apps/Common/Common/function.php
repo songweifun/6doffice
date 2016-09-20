@@ -246,7 +246,7 @@ function array_to_hashmap(& $arr, $keyField, $valueField = null)
  * @return null
  *
  */
-function cookies($id)
+function cookiesmy($id)
 {
 	$TempNum = 5;
 	//setcookie("RecentlyGoods", "12,31,90,39");
@@ -268,13 +268,52 @@ function cookies($id)
 					$RecentlyGoodsNew = $RecentlyGoods . "," . $id;
 					setcookie("RecentlyGoods", $RecentlyGoodsNew, time() + 432000, "/");
 				}
-			} else //如果大于了指定的大小后，将第一个给删去，在尾部再加入最新的记录。
-			{
+			} else{//如果大于了指定的大小后，将第一个给删去，在尾部再加入最新的记录。
 				$pos = strpos($RecentlyGoods, ",") + 1; //第一个参数的起始位置
 				$FirstString = substr($RecentlyGoods, 0, $pos); //取出第一个参数
 				$RecentlyGoods = str_replace($FirstString, "", $RecentlyGoods); //将第一个参数删除
 				$RecentlyGoodsNew = $RecentlyGoods . "," . $id; //在尾部加入最新的记录
 				setcookie("RecentlyGoods", $RecentlyGoodsNew, time() + 432000, "/");
+			}
+		}
+	}
+}
+
+
+/**
+ * 把浏览过的房源写入cookies
+ * @param id
+ * @return null
+ *
+ */
+function cookiesmyrent($id)
+{
+	$TempNum = 5;
+	//setcookie("RRecentlyGoods", "12,31,90,39");
+	//RRecentlyGoods 最近商品RRecentlyGoods临时变量
+	if (isset($_COOKIE['RRecentlyGoods'])) {
+		$RRecentlyGoods = $_COOKIE['RRecentlyGoods'];
+		$RRecentlyGoodsArray = explode(",", $RRecentlyGoods);
+		$RRecentlyGoodsNum = count($RRecentlyGoodsArray); //RRecentlyGoodsNum 当前存储的变量个数
+	}
+	if ($id != "") {
+		if (strstr($RRecentlyGoods, (string)$id)) {
+
+		} else {
+			if ($RRecentlyGoodsNum < $TempNum) //如果COOKIES中的元素小于指定的大小，则直接进行输入COOKIES
+			{
+				if ($RRecentlyGoods == "") {
+					setcookie("RRecentlyGoods", $id, time() + 432000, "/");
+				} else {
+					$RRecentlyGoodsNew = $RRecentlyGoods . "," . $id;
+					setcookie("RRecentlyGoods", $RRecentlyGoodsNew, time() + 432000, "/");
+				}
+			} else{//如果大于了指定的大小后，将第一个给删去，在尾部再加入最新的记录。
+				$pos = strpos($RRecentlyGoods, ",") + 1; //第一个参数的起始位置
+				$FirstString = substr($RRecentlyGoods, 0, $pos); //取出第一个参数
+				$RRecentlyGoods = str_replace($FirstString, "", $RRecentlyGoods); //将第一个参数删除
+				$RRecentlyGoodsNew = $RRecentlyGoods . "," . $id; //在尾部加入最新的记录
+				setcookie("RRecentlyGoods", $RRecentlyGoodsNew, time() + 432000, "/");
 			}
 		}
 	}

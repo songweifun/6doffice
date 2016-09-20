@@ -154,7 +154,7 @@ class IndexController extends CommonController{
         $boroughList = $borough->where(array('isdel'=>0,'is_checked'=>1))->order('sell_num+rent_num desc')->limit('0,13')->select();
         foreach ($boroughList as $key =>$item ){
             $boroughList[$key]['cityarea_name'] = $cityarea_option[$item['cityarea_id']];
-            $boroughList[$key]['borough_name'] = substrs($item['borough_name'],8);
+            $boroughList[$key]['borough_name'] = substrs($item['borough_name'],14);
         }
        $this->assign('boroughList', $boroughList);
 

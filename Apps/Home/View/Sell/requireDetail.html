@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <script src="__PUBLIC__/js/select.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/js/js.js" type="text/javascript"></script>
+    <script language="JavaScript" type="text/javascript" src="__PUBLIC__/js/FormValid.js"></script>
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/menuSearch.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<include file="Common:selltop"/>
+
+<div id="content">
+    <div id="requireMain">
+        <div class="requireTitle">
+            <span class="title"><span class="colorF90">[求购]</span><!--{$dataInfo.requirement_short}--></span>
+            <span class="replyNum">回复：<span class="familyAlpha colorF90"><!--{$reply_num}--></span>条</span>
+        </div>
+        <div class="requireDetail">
+            <table cellpadding="0" cellspacing="10" border="0" style="width:100%">
+                <tr>
+                    <td width="10%">求购要求：</td>
+                    <td width="90%"><!--{$dataInfo.requirement|nl2br}--></td>
+                </tr>
+                <tr>
+                    <td>信息编号：</td>
+                    <td><!--{$dataInfo.house_no}--></td>
+                </tr>
+                <tr>
+                    <td>联 系 人：</td>
+                    <td><!--{$dataInfo.linkman}--></td>
+                </tr>
+                <tr>
+                    <td>联系电话：</td>
+                    <td><!--{$dataInfo.link_tell}--></td>
+                </tr>
+                <tr>
+                    <td>发布时间：</td>
+                    <td><!--{$dataInfo.add_time|date="Y-m-d",###}--></td>
+                </tr>
+            </table>
+        </div>
+        <foreach name="replyList" item="item">
+        <!-- 循环体 -->
+        <div class="detailReply">
+            <table cellpadding="0" cellspacing="10" border="0" style="width:100%">
+                <tr>
+                    <td colspan="2"><span class="colorF90 weightBold">房源供应回复</span><span>&nbsp;<!--{$item.add_time|date="Y-m-d",###}--></span></td>
+                </tr>
+                <tr>
+                    <td width="16%">房源简述：</td>
+                    <td width="84%"><!--{$item.content|nl2br}--></td>
+                </tr>
+                <tr>
+                    <td>联 系 人：</td>
+                    <td><!--{$item.linkman}--></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 循环体 结束 -->
+        </foreach>
+        <div class="replyForm">
+            <form name="replyForm" action="<!--{:U(MODULE_NAME.'/Sell/requireDetail')}-->/id/<!--{$dataInfo.id}-->/action/reply" method="POST"  onsubmit="return validator(this)" >
+                <table cellpadding="0" cellspacing="10" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="2" class="color333 size14px weightBold">提供房源支持</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="13%"><span class="must">*</span>联 系 人：</td>
+                        <td width="87%"><input type="text" name="linkman" class="inp" value="<!--{$username}-->" valid="required" errmsg="请填写联系人!" /></td>
+                    </tr>
+                    <tr>
+                        <td><span class="must">*</span>房源简述及联系方式：</td>
+                        <td><textarea name="content" valid="required" errmsg="请填写内容!"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><span class="must">*</span>验证码：</td>
+                        <td><input type="text" name="vaild" class="inp" style="width:70px;" size="8" valid="required" errmsg="验证码不能为空!" />&nbsp;<img id="verify" src="<!--{:U(MODULE_NAME.'/Rent/verify')}-->/id/4" /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="submit" class="btn" value="提交" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+    <!-- 左侧内容 结束 -->
+</div>
+<include file="Common:foot"/>
+</body>
+<script>
+    $('#verify').click(function(){
+        var src=$(this).attr('src');
+        $(this).attr('src',src+'/'+Math.random());
+    })
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+
+    <script src="__PUBLIC__/js/select.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/js/js.js" type="text/javascript"></script>
+    <script language="JavaScript" type="text/javascript" src="__PUBLIC__/js/FormValid.js"></script>
+    <link href="__PUBLIC__/css/add.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/menuSearch.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<include file="Common:selltop"/>
+
+<div id="content">
+    <div id="requireMain">
+        <div class="requireTitle">
+            发布求租&nbsp;<img src="__PUBLIC__/images/requireFree.gif" align="absmiddle" />
+        </div>
+        <div class="sysConfirm" id="sysConfirm">
+            <div class="confirmTxt">发布成功！您的求租信息编号为：<a class="familyAlpha colorF90 aUnderline" href="<!--{:U(MODULE_NAME.'/Rent/requireDetail')}-->/id/<!--{$dataInfo.id}-->" target="_parent"><!--{$dataInfo.house_no}--></a>
+                <p>您发布的信息只有经过 <!--{$title}-->审核通过后才能对外显示</p>
+                <p>请常回来看看回复，以免错过符合您要求的房源</p>
+                <p><a class="colorF90 aUnderline" href="<!--{:U(MODULE_NAME.'/Rent/index')}-->"任务完成，再去淘一淘房源吧！</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Common:foot"/>
+</body>
+</html>

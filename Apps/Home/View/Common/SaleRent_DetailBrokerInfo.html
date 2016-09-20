@@ -12,7 +12,7 @@
     <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" style=" margin:0 auto;">
 
         <tr>
-            <td height="28">所属公司：<if condition="$brokerInfo.company_name neq null"><a target="_blank" href="<!--{$cfg.url}-->cshop/<!--{$brokerInfo.company_id}-->"><!--{$brokerInfo.company_name}--> - <!--{$brokerInfo.outlet_last}--></a><else/><!--{$brokerInfo.outlet_first}--> - <!--{$brokerInfo.outlet_last}--></if></td>
+            <td height="28">所属公司：<if condition="$brokerInfo.company_name neq null"><a target="_blank" href="<!--{:U(MODULE_NAME.'/Cshop/index')}-->/id/<!--{$brokerInfo.company_id}-->"><!--{$brokerInfo.company_name}--> - <!--{$brokerInfo.outlet_last}--></a><else/><!--{$brokerInfo.outlet_first}--> - <!--{$brokerInfo.outlet_last}--></if></td>
         </tr>
         <if condition="$brokerInfo.company_name neq null">
         <tr>
@@ -24,13 +24,13 @@
 
             <td height="28">
                 认证：<if condition="$brokerInfo.idcard eq null">
-                <img src="__PUBLIC__/images/no_brokerIdentity.png" align="absmiddle" alt="未经过 <!--{$cfg.page.titlec}-->实名认证" />
+                <img src="__PUBLIC__/images/no_brokerIdentity.png" align="absmiddle" alt="未经过 <!--{$titlec}-->实名认证" />
                 <else/>
-                <img src="__PUBLIC__/images/brokerIdentity.png" align="absmiddle" alt="已通过 <!--{$cfg.page.titlec}-->实名认证" /></if>
+                <img src="__PUBLIC__/images/brokerIdentity.png" align="absmiddle" alt="已通过 <!--{$titlec}-->实名认证" /></if>
                 <if condition="$brokerInfo.aptitude eq null">
-                <img src="__PUBLIC__/images/no_brokerAptitude.png" align="absmiddle" alt="未经过 <!--{$cfg.page.titlec}-->执业认证" />
+                <img src="__PUBLIC__/images/no_brokerAptitude.png" align="absmiddle" alt="未经过 <!--{$titlec}-->执业认证" />
                 <else/>
-                <img src="__PUBLIC__/images/brokerAptitude.png" align="absmiddle" alt="已通过 <!--{$cfg.page.titlec}-->资质认证" /></if>
+                <img src="__PUBLIC__/images/brokerAptitude.png" align="absmiddle" alt="已通过 <!--{$titlec}-->资质认证" /></if>
             </td>
         </tr>
 
@@ -44,7 +44,7 @@
 
 
         <tr>
-            <td height="45" align="center" valign="bottom"><a href="<!--{$cfg.url_shop}--><!--{$brokerInfo.id}-->" target="_blank"><img src="__PUBLIC__/images/gotodp.gif" width="105" height="32" /></a></td>
+            <td height="45" align="center" valign="bottom"><a href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$brokerInfo.id}-->" target="_blank"><img src="__PUBLIC__/images/gotodp.gif" width="105" height="32" /></a></td>
         </tr>
         <tr>
             <td height="22" align="center" valign="bottom">

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$city}-->二手房,<!--{$city}-->租房,<!--{$city}-->新楼盘,网络经纪人,<!--{$city}-->房产网 | <!--{$title}--> - 二手房</title>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+
+
+    <!--{$cssFiles}-->
+    <!--{$jsFiles}-->
+    <style>
+        textarea { width:400px; height:100px; font-size:12px; padding:2px; border:1px solid #bababa; }
+        input.btn {border:1px solid #b4c91a; color:#660; font-size:14px; font-weight:bold; padding:3px 10px; *padding:3px 0 0; margin-right:10px; cursor:pointer; }
+    </style>
+</head>
+<body>
+<div>
+    <form name="dataForm" method="POST" action="">
+        <table cellpadding="0" cellspacing="5" border="0">
+            <tr>
+                <td><span class="must">*</span>举报原因：<br/>
+                    <textarea id="reason" name="reason" cols="30" rows="10"></textarea> </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="btn" id="addButton" value="举报" onclick="return report()" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script language="javascript">
+
+    function report(){
+        var reason = document.getElementById('reason').value;
+        if(!reason){
+            alert("请填写举报的原因");
+            return false;
+        }
+
+        $.post("<!--{:U(MODULE_NAME.'/Rent/report')}-->/action/save/house_type/sell",{reason:reason,house_id:<!--{$Think.get.house_id}-->},function(data){
+            if(data.status ==false){
+                alert('举报出错');
+                return false;
+            }
+            alert('感谢你的配合，我们将尽快核实你的举报信息！');
+            //window.TB_remove();
+            window.parent.layer.closeAll(); //疯狂模式，关闭所有层
+        });
+
+        return false;
+    }
+</script>
+</body>
+</html>

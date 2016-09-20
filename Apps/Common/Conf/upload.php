@@ -43,7 +43,7 @@
   			'height'=>480,
   			'exts' =>array('jpeg','jpg','gif','bmp','png'),
 			'rootPath'=>'./Uploads/',
-			'saveName'=>array('date','YmdHis').'_'.mt_rand(),
+			'saveName'=>date('YmdHis').'_'.mt_rand(),
 			'autoSub'=>false,
 			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),

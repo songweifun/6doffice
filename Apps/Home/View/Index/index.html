@@ -67,8 +67,8 @@
 
                         </div><br />
 
-                        <form action="community/index.php" id="price_form" method="get">
-                            <div class="tip">还能查<a class="hidelink" target="_blank" href="community/index.php"><!--{$city}-->小区房价</a>，快试试</div>
+                        <form action="<!--{:U(MODULE_NAME.'/Community/index')}-->" id="price_form" method="get">
+                            <div class="tip">还能查<a class="hidelink" target="_blank" href="<!--{:U(MODULE_NAME.'/Community/index')}-->"><!--{$city}-->小区房价</a>，快试试</div>
                             <div class="searchbox">
                                 <input type="text" id="price_form_kw" onblur="javascript:if(this.value==''){this.value='请输入小区名或路名…';this.className='treads_input';}" onfocus="javascript:if(this.value=='请输入小区名或路名…')this.value='';this.className='treads_input2';" value="请输入小区名或路名…" x-webkit-speech="" lang="zh-CN" class="treads_input" name="q">
                                 <input type="submit" value="查房价" onclick="javascript:if($('price_form_kw').value=='请输入小区名或路名…'){$('price_form_kw').value='';};" onmouseover="this.style.cursor='pointer'" class="btn">
@@ -101,7 +101,7 @@
                                 <dl>
                                     <dt>
                                         <span>
-                                          <a class="fcd-img" target="_blank" href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                          <a class="fcd-img" target="_blank" href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" pl="h_intr" >
                                               <if condition="$item['house_thumb'] neq null">
                                                     <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
                                               <else/>
@@ -110,7 +110,7 @@
 
                                           </a>
                                           <p class="fcd-name">
-                                              <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                              <a href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" pl="h_intr" >
                                                   <!--{$item.borough_name}-->
                                               </a>
                                           </p>
@@ -139,7 +139,7 @@
                             <dl>
                                 <dt>
                                     <span >
-                                      <a class="fcd-img" target="_blank" href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                      <a class="fcd-img" target="_blank" href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" pl="h_intr" >
                                           <if condition="$item['house_thumb'] neq null">
                                               <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
                                               <else/>
@@ -147,7 +147,7 @@
                                           </if>
                                       </a>
                                       <p class="fcd-name">
-                                          <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                          <a href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" pl="h_intr" >
                                               <!--{$item.borough_name}-->
                                           </a>
                                       </p>
@@ -177,7 +177,7 @@
                                 <dl>
                                     <dt>
                                         <span >
-                                          <a class="fcd-img" target="_blank" href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                          <a class="fcd-img" target="_blank" href="<!--{:U(MODULE_NAME.'/Rent/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" pl="h_intr" >
                                               <if condition="$item['house_thumb'] neq null">
                                                   <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
                                                   <else/>
@@ -185,7 +185,7 @@
                                               </if>
                                           </a>
                                           <p class="fcd-name">
-                                              <a href="<!--{$cfg.url_rent}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" pl="h_intr" >
+                                              <a href="<!--{:U(MODULE_NAME.'/Rent/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" pl="h_intr" >
                                                   <!--{$item.borough_name}-->
                                               </a>
                                           </p>
@@ -229,7 +229,7 @@
                 <div class="left">
                     <foreach name="houseSellThemes1" item="item">
                     <div class="img">
-                        <a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank">
+                        <a href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" target="_blank">
                             <if condition="$item['house_thumb'] neq null">
                                 <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
                                 <else/>
@@ -248,7 +248,7 @@
 
                         <foreach name="houseSellThemes" item="item">
                             <li>
-                                <div class="kua"><a href="<!--{$cfg.url_sale}-->d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank">
+                                <div class="kua"><a href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" target="_blank">
                                     <div class="iimg">
                                         <if condition="$item['house_thumb'] neq null">
                                             <img src="__ROOT__/Uploads/<!--{$item.house_thumb}-->" />
@@ -281,10 +281,10 @@
         <div class="columnl">
             <div class="new_title">
                 <dd>
-                    <h1>最新二手房源</h1><div class="news_more" style="padding:8px 8px 0 0;"><a href="sale" target="_blank">更多>></a></div>
+                    <h1>最新二手房源</h1><div class="news_more" style="padding:8px 8px 0 0;"><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->" target="_blank">更多>></a></div>
                 </dd>
                 <dd style="margin-left: 6px; width:300px;">
-                    <h1>最新出租房源</h1><div class="news_more" style="padding:8px 0 0 0;"><a href="rent" target="_blank">更多>></a></div>
+                    <h1>最新出租房源</h1><div class="news_more" style="padding:8px 0 0 0;"><a href="<!--{:U(MODULE_NAME.'/Rent/index')}-->" target="_blank">更多>></a></div>
                 </dd>
             </div>
             <div class="co_main">
@@ -293,7 +293,7 @@
                         <foreach name="houseSellNew" item="item">
                         <tr>
                             <td width="34" height="24" align="center"></td>
-                            <td width="161" align="left"><a href="<!--{$cfg.url}-->sale/d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank"><span style="color:#2f5aaf"><!--{$item.cityarea_name}--> - </span><!--{$item.borough_name}--></a>&nbsp;</td>
+                            <td width="161" align="left"><a href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" target="_blank"><span style="color:#2f5aaf"><!--{$item.cityarea_name}--> - </span><!--{$item.borough_name}--></a>&nbsp;</td>
                             <td width="37" class="nshi"><!--{$item.description}--></td>
                             <td width="68" align="right"><span style="color:#FF0000; font-weight:bold"><!--{$item.house_price}--></span>万元</td>
                         </tr>
@@ -305,7 +305,7 @@
                         <foreach name="houseRentNew"  item="item">
                         <tr>
                             <td width="34" height="24" align="center"></td>
-                            <td width="151"><a href="<!--{$cfg.url}-->rent/d-<!--{$item.id}-->.html" title="<!--{$item.title}-->" target="_blank"><span style="color:#2f5aaf"><!--{$item.cityarea_name}--> - </span><!--{$item.borough_name}--></a>&nbsp;</td>
+                            <td width="151"><a href="<!--{:U(MODULE_NAME.'/Rent/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.title}-->" target="_blank"><span style="color:#2f5aaf"><!--{$item.cityarea_name}--> - </span><!--{$item.borough_name}--></a>&nbsp;</td>
                             <td width="37" class="nshi"><!--{$item.description}--></td>
                             <td width="78" align="right"><span style="color:#FF0000; font-weight:bold"><!--{$item.house_price}--></span>元/月</td>
                         </tr>
@@ -334,20 +334,20 @@
                 <UL class="servers icon" id=servers>
                     <table width="100%" cellspacing="5" cellpadding="4">
                         <tr>
-                            <td><a href="<!--{$cfg.url}-->member/houseSale.php" ><span></span><img src="__PUBLIC__/images/login/sale.gif"></a></td>
-                            <td><a href="<!--{$cfg.url}-->member/houseRent.php" ><span></span><img src="__PUBLIC__/images/login/rent.gif"></a></td>
+                            <td><a href="<!--{:U('Member/houseSell/addSell')}-->" ><span></span><img src="__PUBLIC__/images/login/sale.gif"></a></td>
+                            <td><a href="<!--{:U('Member/houseRent/addRent')}-->" ><span></span><img src="__PUBLIC__/images/login/rent.gif"></a></td>
                         </tr>
                         <tr>
-                            <td><a href="<!--{$cfg.url}-->member/pwdEdit.php" ><span></span><img src="__PUBLIC__/images/login/pwd.gif"></a></td>
-                            <td><a href="<!--{$cfg.url}-->member/manageSale.php" ><span></span><img src="__PUBLIC__/images/login/house.gif"></a></td>
+                            <td><a href="<!--{:U('Member/ManageBroker/pwdEdit')}-->" ><span></span><img src="__PUBLIC__/images/login/pwd.gif"></a></td>
+                            <td><a href="<!--{:U('Member/HouseSell/index')}-->" ><span></span><img src="__PUBLIC__/images/login/house.gif"></a></td>
                         </tr>
                         <tr>
-                            <td><a href="<!--{$cfg.url}-->member/shopProfile.php" ><span></span><img src="__PUBLIC__/images/login/shop.gif"></a></td>
-                            <td><a href="<!--{$cfg.url}-->member/brokerProfile.php" ><span></span><img src="__PUBLIC__/images/login/base.gif"></a></td>
+                            <td><a href="<!--{:U('Member/ManageShop/shopProfile')}-->" ><span></span><img src="__PUBLIC__/images/login/shop.gif"></a></td>
+                            <td><a href="<!--{:U('Member/ManageBroker/brokerProfile')}-->" ><span></span><img src="__PUBLIC__/images/login/base.gif"></a></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td align="right"><a href="<!--{$cfg.url}-->login/login.php?action=logout">退出登录>></a></td>
+                            <td align="right"><a href="<!--{:U('Member/Login/logout')}-->">退出登录>></a></td>
                         </tr>
                     </table>
 
@@ -370,10 +370,10 @@
                     <ul>
                         <li class="reg"><a href="<!--{:U('Member/Login/index')}-->">经纪人注册</a></li>
                         <li ><a href="<!--{:U('Member/Login/index')}-->">经纪人登录</a></li>
-                        <li class="reg"><a href="<!--{$cfg.url}-->guest/houseSale.php" target="_blank">游客发布</a></li>
-                        <li><a href="<!--{$cfg.url}-->guest/guestManage.php" target="_blank">游客房源管理</a></li>
-                        <li class="reg"><a href="<!--{$cfg.url_sale}-->requireForm.php" target="_blank">我要求购</a></li>
-                        <li><a href="<!--{$cfg.url_rent}-->requireForm.php" target="_blank">我要求租</a></li>
+                        <li class="reg"><a href="<!--{:U(MODULE_NAME.'/Guest/houseSale')}-->" target="_blank">游客发布</a></li>
+                        <li><a href="<!--{:U(MODULE_NAME.'/Guest/guestManage')}-->" target="_blank">游客房源管理</a></li>
+                        <li class="reg"><a href="<!--{:U(MODULE_NAME.'/Sell/requireForm')}-->" target="_blank">我要求购</a></li>
+                        <li><a href="<!--{:U(MODULE_NAME.'/Rent/requireForm')}-->" target="_blank">我要求租</a></li>
                     </ul>
                 </div>
 
@@ -435,7 +435,7 @@
                             <DL>
                                 <DT class=home_bg_all>
                                     <A title=<!--{$item.realname}-->
-                                        href="<!--{$cfg.url_shop}--><!--{$item.id}-->" target="_blank" hidefoucs="true">
+                                        href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$item.id}-->" target="_blank" hidefoucs="true">
                                         <if condition="$item['avatar'] neq null">
                                             <IMG src="__ROOT__/Uploads/<!--{$item.avatar}-->" width=45 height=60>
                                             <else/>
@@ -444,7 +444,7 @@
                                     </A>
                                 </DT>
                                 <DD class=dd_name>
-                                    <A title=<!--{$item.realname}-->  href="<!--{$cfg.url_shop}--><!--{$item.id}-->"  target=_blank hidefoucs="true"><!--{$item.realname}--> </A>
+                                    <A title=<!--{$item.realname}-->  href="<!--{:U(MODULE_NAME.'/Shop/index')}-->/id/<!--{$item.id}-->"  target=_blank hidefoucs="true"><!--{$item.realname}--> </A>
                                 </DD>
                                 <DD>
                                     <if condition="$item['idcard'] eq null">
@@ -461,7 +461,7 @@
                                 </DD>
                                 <DD>
                                     <if condition="$item['company_name'] neq null">
-                                        <a target="_blank" href="<!--{$cfg.url}-->cshop/<!--{$item.company_id}-->"><!--{$item.company_name}--> - <!--{$item.outlet_last}--></a>
+                                        <a target="_blank" href="<!--{:U(MODULE_NAME.'/Cshop/index')}-->/id/<!--{$item.company_id}-->"><!--{$item.company_name}--> - <!--{$item.outlet_last}--></a>
                                     <else/>
                                         <!--{$item.outlet_first}--> - <!--{$item.outlet_last}-->
                                     </if>
@@ -479,15 +479,15 @@
         <div class="bj_house">
             <h3>房价走势</h3>
             <div class="blank"></div>
-            <div class="search_house"><form action="community/index.php" method="get">
+            <div class="search_house"><form action="<!--{:U(MODULE_NAME.'/Community/index')}-->" method="get">
                 <input type="text" class="xj_input_text house_name" value="请输入小区名称" name="q" onclick="if(this.value='请输入小区名称'){this.value='';this.style.color='#000';}" onblur="if(this.value==''){ this.value='请输入小区名称';this.style.color='#A1A1A1';}else{this.style.color='#000';}"/>
                 <input type="submit" class="btn_house" value="搜索小区"/></form>
             </div>
-            <p align="right"><a href="community" class="see_more" style="color:#2f5aaf;">查看更多小区>></a></p>
+            <p align="right"><a href="<!--{:U(MODULE_NAME.'/Community/index')}-->" class="see_more" style="color:#2f5aaf;">查看更多小区>></a></p>
             <table width="276" border="0" cellspacing="0" cellpadding="0" class="tab_house" style="margin: 0pt auto;">
                 <foreach name="boroughList" item="item">
                 <tr class="<if condition='($key%2) eq 1'>bg_blue</if>">
-                    <td width="49%"><a target="_blank" title='<!--{$item.borough_name}-->' href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html"><!--{$item.cityarea_name}--> - <span class="color_blue"><!--{$item.borough_name}--></span></a></td>
+                    <td width="49%"><a target="_blank" title='<!--{$item.borough_name}-->' href="<!--{:U(MODULE_NAME.'/Community/general')}-->/id/<!--{$item.id}-->"><!--{$item.cityarea_name}--> - <span class="color_blue"><!--{$item.borough_name}--></span></a></td>
                     <td width="35%"><if condition="$item['borough_avgprice'] neq null"><!--{$item.borough_avgprice}-->元/平方<else/>-</if></td>
                     <if condition="$item['percent_change'] neq 0">
                         <if condition="$item['percent_change'] lt 0">
@@ -521,8 +521,8 @@
         <div class="content_left">
             <div class="columnl tjzj1">
                 <div class="new_title">
-                    <h1>品牌中介 <span>中介合作：<!--{$cfg.page.rexian}--></span></h1>
-                    <div class="news_more" style="padding:8px 8px 0 0;"><a target="_blank" href="<!--{$cfg.url_company}-->">更多&gt;&gt;</a></div>
+                    <h1>品牌中介 <span>中介合作：<!--{$rexian}--></span></h1>
+                    <div class="news_more" style="padding:8px 8px 0 0;"><a target="_blank" href="<!--{:U(MODULE_NAME.'/Company/index')}-->">更多&gt;&gt;</a></div>
                 </div>
                 <div class="co_main">
                     <ul>

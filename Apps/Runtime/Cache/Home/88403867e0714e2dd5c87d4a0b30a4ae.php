@@ -143,7 +143,7 @@
                         <li <?php if($menu == 'index'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Index/index');?>">首  页</a></li>
                         <?php if($newsOpen == 1): ?><li><a href="<?php echo ($cfg["url_news"]); ?>">新  闻</a></li><?php endif; ?>
                         <li <?php if($menu == 'sale'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Sell/index');?>">二手房</a></li>
-                        <li <?php if($menu == 'rent'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_rent"]); ?>">租  房</a></li>
+                        <li <?php if($menu == 'rent'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Rent/index');?>">租  房</a></li>
                         <?php if($newhouseOpen == 1): ?><li <?php if($menu == 'newHouse'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_newHouse"]); ?>">新  房</a></li><?php endif; ?>
                         <li <?php if(($menu == 'broker') or ($menu=='shop')): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Broker/index');?>">经纪人</a></li>
                         <li <?php if($menu == 'community'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Community/index');?>">小  区</a></li>
@@ -519,7 +519,7 @@
                 <li <?php if($_GET['switch']== 'morePic'): ?>class="li2"<?php else: ?>class="li1"<?php endif; ?>><span><a href="<?php echo U(MODULE_NAME.'/Sell/index');?>?switch=morePic">多图</a></span></li>
 
                 <li <?php if($_GET['switch']== 'promote'): ?>class="li2"<?php else: ?>class="li1"<?php endif; ?>><span><a href="<?php echo U(MODULE_NAME.'/Sell/index');?>?switch=promote">店长</a></span></li>
-                <li class="li1"><span><a target="_blank" href="<?php echo ($cfg["url"]); ?>sale/requireList.php">求购信息</a></span></li>
+                <li class="li1"><span><a target="_blank" href="<?php echo U(MODULE_NAME.'/Sell/requireList');?>">求购信息</a></span></li>
                 <li class="li1"><span><a target="_blank" href="<?php echo ($cfg["url"]); ?>m/map">地图找房</a></span></li>
             </ul>
             <!-- 上一页 下一页 -->
@@ -602,7 +602,9 @@
                                 </div>
                                 <div class="details" style="margin-left:10px;">
                                     <h4>
-                                        <a class="color000" href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["house_title"]); ?></a><!--{include file="inc/four_tag.tpl"}-->
+                                        <a class="color000" href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["borough_name"]); ?>" target="_blank"><?php echo ($item["house_title"]); ?></a><?php if($item["video"] != null): ?><span><img src="/6doffice/Public/images/video.gif" title="有视频房源"  align="absmiddle" class="er_duotu"/></span><?php endif; ?>
+<?php if($item["is_more_pic"] == 1): ?><span><img src="/6doffice/Public/images/duotu_sale.gif" titile="多图" align="absmiddle" class="er_duotu"></span ><?php endif; ?>
+
                                     </h4>
                                     <address>小区：<?php echo ($item["borough_name"]); ?></address>
                                     <div class="all_fyyy"><p>单价：<?php echo ($item["avg_price"]); ?>元/平米</p><p>面积：<?php echo ($item["house_totalarea"]); ?>平米</p><p>楼层：<?php echo ($item["house_floor"]); ?>/<?php echo ($item["house_topfloor"]); ?></p><br /><p>户型：<?php echo ($item["house_room"]); ?>室<?php echo ($item["house_hall"]); ?>厅</p>
@@ -642,7 +644,9 @@
                                     <td align="left" bgcolor="#f6f6f6"><table width="210" border="0" align="center" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td height="33" align="left" valign="middle" bgcolor="#f6f6f6" class="price_zz">售价：<span><?php echo ($item["house_price"]); ?></span><span class="aabb">万元</span></td>
-                                            <td align="right" valign="middle" bgcolor="#f6f6f6"><!--{include file="inc/four_tag.tpl"}--></td>
+                                            <td align="right" valign="middle" bgcolor="#f6f6f6"><?php if($item["video"] != null): ?><span><img src="/6doffice/Public/images/video.gif" title="有视频房源"  align="absmiddle" class="er_duotu"/></span><?php endif; ?>
+<?php if($item["is_more_pic"] == 1): ?><span><img src="/6doffice/Public/images/duotu_sale.gif" titile="多图" align="absmiddle" class="er_duotu"></span ><?php endif; ?>
+</td>
                                         </tr>
                                     </table></td>
                                 </tr>
@@ -683,7 +687,9 @@
                                 <td align="left" bgcolor="#f6f6f6"><table width="210" border="0" align="center" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td height="33" align="left" valign="middle" bgcolor="#f6f6f6" class="price_zz">售价：<span><?php echo ($item["house_price"]); ?></span><span class="aabb">万元</span></td>
-                                        <td align="right" valign="middle" bgcolor="#f6f6f6"><!--{include file="inc/four_tag.tpl"}--></td>
+                                        <td align="right" valign="middle" bgcolor="#f6f6f6"><?php if($item["video"] != null): ?><span><img src="/6doffice/Public/images/video.gif" title="有视频房源"  align="absmiddle" class="er_duotu"/></span><?php endif; ?>
+<?php if($item["is_more_pic"] == 1): ?><span><img src="/6doffice/Public/images/duotu_sale.gif" titile="多图" align="absmiddle" class="er_duotu"></span ><?php endif; ?>
+</td>
                                     </tr>
                                 </table></td>
                             </tr>

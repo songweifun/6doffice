@@ -16,11 +16,11 @@
     <div style="height:18px; clear:both; overflow:hidden"></div>
 </div>
 <!--室内照片-->
-<if condition="$dataInfo.housesell_pic neq null">
+<if condition="$houseImageList neq null">
 <div class="xx_xx_bg">
     <div id="gotopdiv"><span style="float:left">室内照片</span><span class="gotop"><a name="roompic"></a><a href="#">返回顶部</a></span></div>
     <div style="height:8px; clear:both; overflow:hidden"></div>
-    <foreach name='dataInfo.housesell_pic' item="item">
+    <foreach name='houseImageList' item="item">
     <!-- 循环体 -->
     <div class="shinei_photo"><a href="__ROOT__/Uploads/<!--{$item.pic_url}-->" title="<!--{$dataInfo.borough_name}--><!--{$dataInfo.house_room}-->居-<!--{$item.pic_desc}-->" target="_blank"><img src="<if condition='$item.pic_url neq null'>__ROOT__/Uploads/<!--{$item.pic_url}--><else/>__ROOT__/Uploads/<!--{$item.pic_url}--></if>" /></a></div>
     <div class="photo_mc"><!--{$item.pic_desc}--></div>

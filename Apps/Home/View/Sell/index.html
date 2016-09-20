@@ -48,7 +48,7 @@
                 <li <if condition="$Think.get.switch eq 'morePic'">class="li2"<else/>class="li1"</if>><span><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?switch=morePic">多图</a></span></li>
 
                 <li <if condition="$Think.get.switch eq 'promote'">class="li2"<else/>class="li1"</if>><span><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->?switch=promote">店长</a></span></li>
-                <li class="li1"><span><a target="_blank" href="<!--{$cfg.url}-->sale/requireList.php">求购信息</a></span></li>
+                <li class="li1"><span><a target="_blank" href="<!--{:U(MODULE_NAME.'/Sell/requireList')}-->">求购信息</a></span></li>
                 <li class="li1"><span><a target="_blank" href="<!--{$cfg.url}-->m/map">地图找房</a></span></li>
             </ul>
             <!-- 上一页 下一页 -->
@@ -156,7 +156,7 @@
                                 </div>
                                 <div class="details" style="margin-left:10px;">
                                     <h4>
-                                        <a class="color000" href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.house_title}--></a><!--{include file="inc/four_tag.tpl"}-->
+                                        <a class="color000" href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.house_title}--></a><include file="Common:four_tag"/>
                                     </h4>
                                     <address>小区：<!--{$item.borough_name}--></address>
                                     <div class="all_fyyy"><p>单价：<!--{$item.avg_price}-->元/平米</p><p>面积：<!--{$item.house_totalarea}-->平米</p><p>楼层：<!--{$item.house_floor}-->/<!--{$item.house_topfloor}--></p><br /><p>户型：<!--{$item.house_room}-->室<!--{$item.house_hall}-->厅</p>
@@ -203,7 +203,7 @@
                                     <td align="left" bgcolor="#f6f6f6"><table width="210" border="0" align="center" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td height="33" align="left" valign="middle" bgcolor="#f6f6f6" class="price_zz">售价：<span><!--{$item.house_price}--></span><span class="aabb">万元</span></td>
-                                            <td align="right" valign="middle" bgcolor="#f6f6f6"><!--{include file="inc/four_tag.tpl"}--></td>
+                                            <td align="right" valign="middle" bgcolor="#f6f6f6"><include file="Common:four_tag"/></td>
                                         </tr>
                                     </table></td>
                                 </tr>
@@ -253,7 +253,7 @@
                                 <td align="left" bgcolor="#f6f6f6"><table width="210" border="0" align="center" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td height="33" align="left" valign="middle" bgcolor="#f6f6f6" class="price_zz">售价：<span><!--{$item.house_price}--></span><span class="aabb">万元</span></td>
-                                        <td align="right" valign="middle" bgcolor="#f6f6f6"><!--{include file="inc/four_tag.tpl"}--></td>
+                                        <td align="right" valign="middle" bgcolor="#f6f6f6"><include file="Common:four_tag"/></td>
                                     </tr>
                                 </table></td>
                             </tr>

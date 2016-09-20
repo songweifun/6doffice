@@ -2,22 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: david
- * Date: 16/9/13
- * Time: 下午1:37
+ * Date: 16/9/20
+ * Time: 上午11:35
  */
 namespace Home\Controller;
 use Think\Controller;
-class SellController extends CommonController{
+class RentController extends CommonController{
     /**
-     * 二手房首页
+     * 出租主页
      */
     public function index(){
-        
-        $this->title = $this->city.'二手房 - '.$this->titlec;   //网站名称
+
+        $this->title = $this->city.'租房 - '.$this->titlec;   //网站名称
 
         //关键词和描述
-        $this->keyword = $this->sale_keyword;
-        $this->description = $this->sale_description;
+        $this->keyword = $this->rent_keyword;
+        $this->description = $this->rent_description;
 
 
         //区域字典
@@ -27,17 +27,16 @@ class SellController extends CommonController{
         $this->assign('house_type_option', $house_type_option);
 
         $house_price_option = array(
-            '0-40'=>'40万以下',
-            '40-60'=>'40-60万',
-            '60-80'=>'60-80万',
-            '80-100'=>'80-100万',
-            '100-120'=>'100-120万',
-            '120-150'=>'120-150万',
-            '150-200'=>'150-200万',
-            '200-250'=>'200-250万',
-            '250-300'=>'250-300万',
-            '300-500'=>'300-500万',
-            '500-0'=>'500万以上'
+            '0-600'=>'600元以下',
+            '600-800'=>'600-800元',
+            '800-1000'=>'800-1000元',
+            '1000-1200'=>'1000-1200元',
+            '1200-1500'=>'1200-1500元',
+            '1500-2000'=>'1500-2000元',
+            '2000-3000'=>'2000-3000元',
+            '3000-4000'=>'3000-4000元',
+            '4000-5000'=>'4000-5000元',
+            '5000-0'=>'5000元以上'
         );
         $this->assign('house_price_option', $house_price_option);
 
@@ -133,7 +132,7 @@ class SellController extends CommonController{
 
         //room
         $room = intval($_GET['room']);
-       $this->assign('room', $room);
+        $this->assign('room', $room);
         if($room){
             $where .= ' and house_room = '.$room;
 
@@ -264,11 +263,10 @@ class SellController extends CommonController{
             $list_num = 10;
         }
 
-        $house = D('HouseSellView');
+        $house = D('HouseRentView');
         $row_count = $house->getCount(1,$where);
 
         $Page= new \Think\Page($row_count,$list_num);// 实例化分页类 传入总记录数和每页显示的记录数(10)
-        //$dataList =$house->query('select * from fke_housesell where is_checked=1'.$where.$list_order.' limit '.$Page->firstRow.','.$Page->listRows);
 
         //page
         $page_count=ceil($row_count/$list_num)>0?ceil($row_count/$list_num):1;
@@ -282,7 +280,7 @@ class SellController extends CommonController{
         $this->assign('next_page',$next_page);
 
 
-        $dataList =M('housesell')->where('is_checked=1'.$where)->order($list_order)->limit($Page->firstRow.','.$Page->listRows)-> select();
+        $dataList =M('houserent')->where('is_checked=1'.$where)->order($list_order)->limit($Page->firstRow.','.$Page->listRows)-> select();
         $member = D('MemberView');
 
         //积分配置文件
@@ -295,7 +293,7 @@ class SellController extends CommonController{
                 $dataList[$key]['avg_price'] = "未知";
             }
             //图片数量
-            $dataList[$key]['pic_num'] = M('housesell_pic')->where(array('id'=>$item['id']))->count();
+            $dataList[$key]['pic_num'] = M('houserent_pic')->where(array('id'=>$item['id']))->count();
             //经纪人信息
 
             $dataList[$key]['broker_info'] = $member->getInfo($item['broker_id'],'*',true);
@@ -310,21 +308,21 @@ class SellController extends CommonController{
         $this->assign('pagePanel', $Page->show());//分页条
 
         //p($dataList);die;
-        $this->menu='sale';
+        $this->menu='rent';
 
         //执行脚本，房源置顶过期
-        $topHouseId=M('housesell_top')->field('housesell_id')->where(array('to_time'=>array('elt',time())))->select();
+        $topHouseId=M('houserent_top')->field('houserent_id')->where(array('to_time'=>array('elt',time())))->select();
         if($topHouseId){
             foreach($topHouseId as $item){
-                M('housesell')->where(array('id'=>$item['housesell_id']))->setField('is_top',0);
-                M('housesell_top')->where(array('housesell_id'=>$item['housesell_id']))->delete();
+                M('houserent')->where(array('id'=>$item['houserent_id']))->setField('is_top',0);
+                M('houserent_top')->where(array('houserent_id'=>$item['houserent_id']))->delete();
             }
         }
 
         //右边浏览过房源
-        //p($_COOKIE['RecentlyGoods']);
-        if($_COOKIE['RecentlyGoods']){
-            $browseHouse=M('housesell')->where(array('id'=>array('in',$_COOKIE['RecentlyGoods'])))->select();
+        //p($_COOKIE['RRecentlyGoods']);
+        if($_COOKIE['RRecentlyGoods']){
+            $browseHouse=M('houserent')->where(array('id'=>array('in',$_COOKIE['RRecentlyGoods'])))->select();
             $this->assign('browseList', $browseHouse);
         }
 
@@ -332,7 +330,7 @@ class SellController extends CommonController{
 
 
         //右边的优质房源列表
-        $bestList = M('housesell')->where('is_checked=1 and is_index =1')->order('order_weight desc')->limit(4)->select();
+        $bestList = M('houserent')->where('is_checked=1 and is_index =1')->order('order_weight desc')->limit(4)->select();
 
         foreach ($bestList as $key =>$item ){
             $bestList[$key]['title'] =substrs($item['house_title'],15);
@@ -343,7 +341,7 @@ class SellController extends CommonController{
     }
 
     /**
-     * 展示页
+     * 租赁详情
      */
     public function detail(){
 
@@ -358,23 +356,22 @@ class SellController extends CommonController{
         $this->assign('cityarea_option', $cityarea_option);
 
         $house_price_option = array(
-            '0-40'=>'40万以下',
-            '40-60'=>'40-60万',
-            '60-80'=>'60-80万',
-            '80-100'=>'80-100万',
-            '100-120'=>'100-120万',
-            '120-150'=>'100-120万',
-            '150-200'=>'150-200万',
-            '200-250'=>'200-250万',
-            '250-300'=>'250-300万',
-            '300-500'=>'300-500万',
-            '500-0'=>'500万以上'
+            '0-600'=>'600元以下',
+            '600-800'=>'600-800元',
+            '800-1000'=>'800-1000元',
+            '1000-1200'=>'1000-1200元',
+            '1200-1500'=>'1200-1500元',
+            '1500-2000'=>'1500-2000元',
+            '2000-3000'=>'2000-3000元',
+            '3000-4000'=>'3000-4000元',
+            '4000-5000'=>'4000-5000元',
+            '5000-0'=>'5000元以上'
         );
         $this->assign('house_price_option', $house_price_option);
 
         //房屋产权
         $belongLists =getArray('belong');
-        $house = D('HouseSellRelation');
+        $house = D('HouseRentRelation');
         //房源特色
         $house_feature_option = getArray('house_feature');
         $this->assign('house_feature_option', $house_feature_option);
@@ -382,39 +379,47 @@ class SellController extends CommonController{
         $id = I('get.id');
 
         if(!$id){
-           $this->redirect('index');
+            $this->redirect('index');
         }
 
         //将浏览过的房源写入cookies
-        cookiesmy($id);
+        cookiesmyrent($id);
 
         //详细信息
         $dataInfo = $house->relation(true)->where(array('id'=>$id))->find();
         //p($dataInfo);
-        $houseImageList=$dataInfo['housesell_pic'];
-        $this->assign('houseImageList',$houseImageList);
         if(!$dataInfo){
             $this->redirect('index','该房源不存在或已删除');
         }
-
+        //房屋类型
+        $houseTypeLists = getArray('house_type');
+        $dataInfo['house_type'] = $houseTypeLists[$dataInfo['house_type']];
         $dataInfo['updated'] = time2Units(time()-$dataInfo['updated']);
-        $dataInfo['belong'] = $belongLists[$dataInfo['belong']];
         $dataInfo['cityarea_name'] = $cityarea_option[$dataInfo['cityarea_id']];
         $dataInfo['house_toward'] = getCaption('house_toward',$dataInfo['house_toward']);//取字典名称
 
         if($dataInfo['house_feature']){
-            $dataInfo['house_feature'] =  getCaption('house_feature',$dataInfo['house_feature']);
+            $dataInfo['house_feature'] =  getCaption('rent_feature',$dataInfo['house_feature']);
         }
 
         $dataInfo['house_fitment'] =  getCaption('house_fitment',$dataInfo['house_fitment']);
+        $dataInfo['house_support'] =  getCaption('house_installation',$dataInfo['house_support']);
+        $dataInfo['house_deposit'] =  getCaption('rent_deposittype',$dataInfo['house_deposit']);
 
-        if($dataInfo['house_price'] && $dataInfo['house_totalarea']){
-            $dataInfo['avg_price'] = round($dataInfo['house_price']*10000/$dataInfo['house_totalarea']);
-        }else{
-            $dataInfo['avg_price'] = "未知";
-        }
+
         $this->assign('dataInfo', $dataInfo);
         //p($dataInfo);
+        $houseImageList=$dataInfo['houserent_pic'];
+        $this->assign('houseImageList',$houseImageList);
+        if(!$dataInfo['house_thumb'] && $houseImageList) {
+            //没有缩略图，把房源图片抽出一张
+
+            $rand_key = array_rand($houseImageList);
+            $dataInfo['house_thumb'] = $houseImageList[$rand_key]['pic_thumb'] ? $houseImageList[$rand_key]['pic_thumb'] : $houseImageList[$rand_key]['pic_url'];
+            M('houserent')->where(array('id'=>$id))->save(array('house_thumb'=>$dataInfo['house_thumb']));
+        }
+
+
 
         //经纪人详细情况
 
@@ -479,11 +484,11 @@ class SellController extends CommonController{
         $brokerOthersList = $house->where('1=1'.$where," and (is_checked = 0 or is_checked = 1 )")->order('order_weight desc')->limit(4)->select();
         $this->assign('brokerOthersList', $brokerOthersList);
 
-        //页面标题
-        $this->title = $dataInfo['borough_name'].'二手房，'.$dataInfo['house_room'].'室'.$dataInfo['house_hall'].'厅'.$dataInfo['house_toilet'].'卫'.$dataInfo['house_veranda'].'阳，'.$dataInfo['house_title'].' - '.$this->city.$this->titlec;
+        //标题
+        $this->title = $dataInfo['borough_name'].'出租，'.$dataInfo['house_room'].'室'.$dataInfo['house_hall'].'厅'.$dataInfo['house_toilet'].'卫'.$dataInfo['house_veranda'].'阳，'.$dataInfo['house_title'].' - '.$this->city.$this->titlec;
 
         //关键词
-        $this->keyword = $dataInfo['borough_name'].'二手房,'.$dataInfo['borough_name'].'房屋出售,'.$dataInfo['borough_name'];
+        $this->keyword = $dataInfo['borough_name'].'出租,'.$dataInfo['borough_name'].'房屋出租,'.$dataInfo['borough_name'].'租房,'.$dataInfo['borough_name'];
 
         //描述
         $this->description='';
@@ -492,55 +497,21 @@ class SellController extends CommonController{
         $house->addClick($id);
 
 
-        $this->menu='sale';
+        $this->menu='rent';
         $this->display();
     }
-
     /**
-     * 举报
-     */
-    public function report(){
-
-        $this->title =  $this->title.' - 虚假举报';
-        $action=I('get.action');
-        if($action == 'save'){
-            //保存在ajax页面
-            $house_id = intval($_POST['house_id']);
-            $house = M('housesell');
-            $report_target=$house->where(array('id'=>$house_id))->getField('broker_id');
-
-            $reason = $_POST['reason'];
-            $report = M('report');
-            $dataFiled = array(
-                'house_type'=>'sell',
-                'house_id'=>$house_id,
-                'report_target'=>$report_target,
-                'reason'=>$reason,
-                'addtime'=>time(),
-            );
-            try{
-                $report->add($dataFiled);
-                $this->ajaxReturn(array('status'=>true));
-            }catch (Exception $e){
-                $this->ajaxReturn(array('status'=>false));
-            }
-            exit;
-        }
-        $this->display();
-
-    }
-
-    /**
-     * 求购
+     * 我要求租
      */
     public function requireForm(){
+
         $houseWanted = M('house_wanted');
         $action=I('get.action');
 
         if($action =="save"){
             //p($_POST);die;
             //回复
-            $wanted_type=1;
+            $wanted_type=2;
             $statistics = M('statistics');
             $house_no=$statistics->where(array('stat_index'=>'houseWanted_no'))->getField('stat_value')+1;
             $statistics->where(array('stat_index'=>'houseWanted_no'))->setInc('stat_value',1);
@@ -570,7 +541,7 @@ class SellController extends CommonController{
                 if($_GET['consign']){
                     //$this->redirect('requireExpert?id='.$id);
                 }else{
-                    $this->redirect(MODULE_NAME.'/Sell/requireDone',array('id'=>$id));
+                    $this->redirect(MODULE_NAME.'/Rent/requireDone',array('id'=>$id));
                 }
             }catch (Exception $e){
                 $this->error('出错了');
@@ -582,17 +553,16 @@ class SellController extends CommonController{
             $this->assign('cityarea_option', $cityarea_option);
 
             $house_price_option = array(
-                '0-40'=>'40万以下',
-                '40-60'=>'40-60万',
-                '60-80'=>'60-80万',
-                '80-100'=>'80-100万',
-                '100-120'=>'100-120万',
-                '120-150'=>'100-120万',
-                '150-200'=>'150-200万',
-                '200-250'=>'200-250万',
-                '250-300'=>'250-300万',
-                '300-500'=>'300-500万',
-                '500-0'=>'500万以上'
+                '0-600' => '600元以下',
+                '600-800' => '600-800元',
+                '800-1000' => '800-1000元',
+                '1000-1200' => '1000-1200元',
+                '1200-1500' => '1200-1500元',
+                '1500-2000' => '1500-2000元',
+                '2000-3000' => '2000-3000元',
+                '3000-4000' => '3000-4000元',
+                '4000-5000' => '4000-5000元',
+                '5000-0' => '5000元以上'
             );
             $this->assign('house_price_option', $house_price_option);
 
@@ -601,20 +571,20 @@ class SellController extends CommonController{
             if ($id) {
                 $dataInfo = $houseWanted->where(array('id'=>$id))->find();
                 if (!$dataInfo) {
-                    $this->error('信息不存在或已删除',U(MODULE_NAME.'/Sell/requirelist'));
+                    $this->error('信息不存在或已删除',U(MODULE_NAME.'/Rent/requirelist'));
                 }
                 $dataInfo['requirement_short'] = substrs($dataInfo['requirement'], 40);
                 $this->assign('dataInfo', $dataInfo);
             }
-            $this->display();
         }
-
+        $this->display();
     }
 
     /**
-     * 发布请求成功
+     * 发布求租成功显示页
      */
     public function requireDone(){
+
         $id = intval($_GET['id']);
         if(!$id){
             $this->redirect('requireList');
@@ -624,17 +594,16 @@ class SellController extends CommonController{
         $this->assign('cityarea_option', $cityarea_option);
 
         $house_price_option = array(
-            '0-40'=>'40万以下',
-            '40-60'=>'40-60万',
-            '60-80'=>'60-80万',
-            '80-100'=>'80-100万',
-            '100-120'=>'100-120万',
-            '120-150'=>'100-120万',
-            '150-200'=>'150-200万',
-            '200-250'=>'200-250万',
-            '250-300'=>'250-300万',
-            '300-500'=>'300-500万',
-            '500-0'=>'500万以上'
+            '0-600'=>'600元以下',
+            '600-800'=>'600-800元',
+            '800-1000'=>'800-1000元',
+            '1000-1200'=>'1000-1200元',
+            '1200-1500'=>'1200-1500元',
+            '1500-2000'=>'1500-2000元',
+            '2000-3000'=>'2000-3000元',
+            '3000-4000'=>'3000-4000元',
+            '4000-5000'=>'4000-5000元',
+            '5000-0'=>'5000元以上'
         );
         $this->assign('house_price_option', $house_price_option);
         //详细信息
@@ -642,17 +611,18 @@ class SellController extends CommonController{
         $dataInfo = $houseWanted->where(array('id'=>$id))->find();
 
         if(!$dataInfo){
-            jsurlto('信息不存在或已删除',U(MODULE_NAME.'/Sell/requireList'));
+            jsurlto('信息不存在或已删除',U(MODULE_NAME.'/Rent/requireList'));
         }
         $this->assign('dataInfo', $dataInfo);
         $this->display();
-
     }
 
     /**
-     * 求购详情
+     * 求租详情
      */
     public function requireDetail(){
+
+
         //id
         $id = intval($_GET['id']);
         if(!$id){
@@ -686,7 +656,7 @@ class SellController extends CommonController{
                     'add_time'=>time(),
                 );
                 M('house_wantedreply')->add($insertField);
-                $this->redirect(MODULE_NAME.'/Sell/requireDetail',array('id'=>$id));
+                $this->redirect(MODULE_NAME.'/Rent/requireDetail',array('id'=>$id));
 
             }catch (Exception $e){
                 $this->error('出错了');
@@ -699,26 +669,24 @@ class SellController extends CommonController{
             $cityarea_option = getArray('cityarea');
             $this->assign('cityarea_option', $cityarea_option);
 
-
             $house_price_option = array(
-                '0-40'=>'40万以下',
-                '40-60'=>'40-60万',
-                '60-80'=>'60-80万',
-                '80-100'=>'80-100万',
-                '100-120'=>'100-120万',
-                '120-150'=>'100-120万',
-                '150-200'=>'150-200万',
-                '200-250'=>'200-250万',
-                '250-300'=>'250-300万',
-                '300-500'=>'300-500万',
-                '500-0'=>'500万以上'
+                '0-600'=>'600元以下',
+                '600-800'=>'600-800元',
+                '800-1000'=>'800-1000元',
+                '1000-1200'=>'1000-1200元',
+                '1200-1500'=>'1200-1500元',
+                '1500-2000'=>'1500-2000元',
+                '2000-3000'=>'2000-3000元',
+                '3000-4000'=>'3000-4000元',
+                '4000-5000'=>'4000-5000元',
+                '5000-0'=>'5000元以上'
             );
             $this->assign('house_price_option', $house_price_option);
             //详细信息
             $dataInfo = $houseWanted->where(array('id'=>$id))->find();
 
             if(!$dataInfo){
-                $this->error('信息不存在或已删除',U(MODULE_NAME.'/Sell/requireList'));
+                $this->error('信息不存在或已删除',U(MODULE_NAME.'/Rent/requireList'));
             }
             $dataInfo['requirement_short'] = substrs($dataInfo['requirement'],40);
             $this->assign('dataInfo', $dataInfo);
@@ -732,6 +700,7 @@ class SellController extends CommonController{
         }
 
     }
+
     /**
      * 验证码
      */
@@ -768,7 +737,7 @@ class SellController extends CommonController{
      * 求租列表
      */
     public function requireList(){
-
+        
 
         //区域字典
         $cityarea_option = getArray('cityarea');
@@ -777,21 +746,20 @@ class SellController extends CommonController{
         $this->assign('house_type_option', $house_type_option);
 
         $house_price_option = array(
-            '0-40'=>'40万以下',
-            '40-60'=>'40-60万',
-            '60-80'=>'60-80万',
-            '80-100'=>'80-100万',
-            '100-120'=>'100-120万',
-            '120-150'=>'100-120万',
-            '150-200'=>'150-200万',
-            '200-250'=>'200-250万',
-            '250-300'=>'250-300万',
-            '300-500'=>'300-500万',
-            '500-0'=>'500万以上'
+            '0-600'=>'600元以下',
+            '600-800'=>'600-800元',
+            '800-1000'=>'800-1000元',
+            '1000-1200'=>'1000-1200元',
+            '1200-1500'=>'1200-1500元',
+            '1500-2000'=>'1500-2000元',
+            '2000-3000'=>'2000-3000元',
+            '3000-4000'=>'3000-4000元',
+            '4000-5000'=>'4000-5000元',
+            '5000-0'=>'5000元以上'
         );
         $this->assign('house_price_option', $house_price_option);
 
-        $where =' wanted_type=1 and status=1 and is_solve =0 ';
+        $where =' wanted_type=2 and status=1 and is_solve =0 ';
 
         //q
         $q = $_GET['q']=="输入求租联系人或联系电话" ? "":$_GET['q'];
@@ -818,6 +786,38 @@ class SellController extends CommonController{
 
         $this->assign('dataList', $dataList);
         $this->assign('pagePanel', $Page->show());//分页条
+        $this->display();
+    }
+
+    /**
+     * 举报
+     */
+    public function report(){
+        $this->title =  $this->title.' - 虚假举报';
+        $action=I('get.action');
+        if($action == 'save'){
+            //保存在ajax页面
+            $house_id = intval($_POST['house_id']);
+            $house = M('houserent');
+            $report_target=$house->where(array('id'=>$house_id))->getField('broker_id');
+
+            $reason = $_POST['reason'];
+            $report = M('report');
+            $dataFiled = array(
+                'house_type'=>'rent',
+                'house_id'=>$house_id,
+                'report_target'=>$report_target,
+                'reason'=>$reason,
+                'addtime'=>time(),
+            );
+            try{
+                $report->add($dataFiled);
+                $this->ajaxReturn(array('status'=>true));
+            }catch (Exception $e){
+                $this->ajaxReturn(array('status'=>false));
+            }
+            exit;
+        }
         $this->display();
     }
 }

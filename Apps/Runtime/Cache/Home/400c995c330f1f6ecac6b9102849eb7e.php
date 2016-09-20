@@ -268,8 +268,8 @@
 
                         </div><br />
 
-                        <form action="community/index.php" id="price_form" method="get">
-                            <div class="tip">还能查<a class="hidelink" target="_blank" href="community/index.php"><?php echo ($city); ?>小区房价</a>，快试试</div>
+                        <form action="<?php echo U(MODULE_NAME.'/Community/index');?>" id="price_form" method="get">
+                            <div class="tip">还能查<a class="hidelink" target="_blank" href="<?php echo U(MODULE_NAME.'/Community/index');?>"><?php echo ($city); ?>小区房价</a>，快试试</div>
                             <div class="searchbox">
                                 <input type="text" id="price_form_kw" onblur="javascript:if(this.value==''){this.value='请输入小区名或路名…';this.className='treads_input';}" onfocus="javascript:if(this.value=='请输入小区名或路名…')this.value='';this.className='treads_input2';" value="请输入小区名或路名…" x-webkit-speech="" lang="zh-CN" class="treads_input" name="q">
                                 <input type="submit" value="查房价" onclick="javascript:if($('price_form_kw').value=='请输入小区名或路名…'){$('price_form_kw').value='';};" onmouseover="this.style.cursor='pointer'" class="btn">
@@ -301,14 +301,14 @@
                             <?php if(is_array($houseSellLike)): foreach($houseSellLike as $key=>$item): ?><dl>
                                     <dt>
                                         <span>
-                                          <a class="fcd-img" target="_blank" href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
+                                          <a class="fcd-img" target="_blank" href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
                                               <?php if($item['house_thumb'] != null): ?><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" />
                                               <?php else: ?>
                                                   <img src="/6doffice/Public/images/housePhotoDefault.gif" /><?php endif; ?>
 
                                           </a>
                                           <p class="fcd-name">
-                                              <a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
+                                              <a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
                                                   <?php echo ($item["borough_name"]); ?>
                                               </a>
                                           </p>
@@ -335,13 +335,13 @@
                             <?php if(is_array($houseSellBest)): foreach($houseSellBest as $key=>$item): ?><dl>
                                 <dt>
                                     <span >
-                                      <a class="fcd-img" target="_blank" href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
+                                      <a class="fcd-img" target="_blank" href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
                                           <?php if($item['house_thumb'] != null): ?><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" />
                                               <?php else: ?>
                                               <img src="/6doffice/Public/images/housePhotoDefault.gif" /><?php endif; ?>
                                       </a>
                                       <p class="fcd-name">
-                                          <a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
+                                          <a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
                                               <?php echo ($item["borough_name"]); ?>
                                           </a>
                                       </p>
@@ -369,13 +369,13 @@
                             <?php if(is_array($houseRentBest)): foreach($houseRentBest as $key=>$item): ?><dl>
                                     <dt>
                                         <span >
-                                          <a class="fcd-img" target="_blank" href="<?php echo ($cfg["url_rent"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
+                                          <a class="fcd-img" target="_blank" href="<?php echo U(MODULE_NAME.'/Rent/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
                                               <?php if($item['house_thumb'] != null): ?><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" />
                                                   <?php else: ?>
                                                   <img src="/6doffice/Public/images/housePhotoDefault.gif" /><?php endif; ?>
                                           </a>
                                           <p class="fcd-name">
-                                              <a href="<?php echo ($cfg["url_rent"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
+                                              <a href="<?php echo U(MODULE_NAME.'/Rent/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" pl="h_intr" >
                                                   <?php echo ($item["borough_name"]); ?>
                                               </a>
                                           </p>
@@ -417,7 +417,7 @@
             <div class="w650">
                 <div class="left">
                     <?php if(is_array($houseSellThemes1)): foreach($houseSellThemes1 as $key=>$item): ?><div class="img">
-                        <a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" target="_blank">
+                        <a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" target="_blank">
                             <?php if($item['house_thumb'] != null): ?><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" />
                                 <?php else: ?>
                                 <img src="/6doffice/Public/images/housePhotoDefault.gif" /><?php endif; ?>
@@ -432,7 +432,7 @@
                     <div class="mmdd">
 
                         <?php if(is_array($houseSellThemes)): foreach($houseSellThemes as $key=>$item): ?><li>
-                                <div class="kua"><a href="<?php echo ($cfg["url_sale"]); ?>d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" target="_blank">
+                                <div class="kua"><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" target="_blank">
                                     <div class="iimg">
                                         <?php if($item['house_thumb'] != null): ?><img src="/6doffice/Uploads/<?php echo ($item["house_thumb"]); ?>" />
                                             <?php else: ?>
@@ -462,10 +462,10 @@
         <div class="columnl">
             <div class="new_title">
                 <dd>
-                    <h1>最新二手房源</h1><div class="news_more" style="padding:8px 8px 0 0;"><a href="sale" target="_blank">更多>></a></div>
+                    <h1>最新二手房源</h1><div class="news_more" style="padding:8px 8px 0 0;"><a href="<?php echo U(MODULE_NAME.'/Sell/index');?>" target="_blank">更多>></a></div>
                 </dd>
                 <dd style="margin-left: 6px; width:300px;">
-                    <h1>最新出租房源</h1><div class="news_more" style="padding:8px 0 0 0;"><a href="rent" target="_blank">更多>></a></div>
+                    <h1>最新出租房源</h1><div class="news_more" style="padding:8px 0 0 0;"><a href="<?php echo U(MODULE_NAME.'/Rent/index');?>" target="_blank">更多>></a></div>
                 </dd>
             </div>
             <div class="co_main">
@@ -473,7 +473,7 @@
                     <table width="300" border="0" cellspacing="0" cellpadding="0" class="bgtable">
                         <?php if(is_array($houseSellNew)): foreach($houseSellNew as $key=>$item): ?><tr>
                             <td width="34" height="24" align="center"></td>
-                            <td width="161" align="left"><a href="<?php echo ($cfg["url"]); ?>sale/d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" target="_blank"><span style="color:#2f5aaf"><?php echo ($item["cityarea_name"]); ?> - </span><?php echo ($item["borough_name"]); ?></a>&nbsp;</td>
+                            <td width="161" align="left"><a href="<?php echo U(MODULE_NAME.'/Sell/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" target="_blank"><span style="color:#2f5aaf"><?php echo ($item["cityarea_name"]); ?> - </span><?php echo ($item["borough_name"]); ?></a>&nbsp;</td>
                             <td width="37" class="nshi"><?php echo ($item["description"]); ?></td>
                             <td width="68" align="right"><span style="color:#FF0000; font-weight:bold"><?php echo ($item["house_price"]); ?></span>万元</td>
                         </tr><?php endforeach; endif; ?>
@@ -483,7 +483,7 @@
                     <table width="300" border="0" cellspacing="0" cellpadding="0" class="bgtable" style="margin-left:7px;">
                         <?php if(is_array($houseRentNew)): foreach($houseRentNew as $key=>$item): ?><tr>
                             <td width="34" height="24" align="center"></td>
-                            <td width="151"><a href="<?php echo ($cfg["url"]); ?>rent/d-<?php echo ($item["id"]); ?>.html" title="<?php echo ($item["title"]); ?>" target="_blank"><span style="color:#2f5aaf"><?php echo ($item["cityarea_name"]); ?> - </span><?php echo ($item["borough_name"]); ?></a>&nbsp;</td>
+                            <td width="151"><a href="<?php echo U(MODULE_NAME.'/Rent/detail');?>/id/<?php echo ($item["id"]); ?>" title="<?php echo ($item["title"]); ?>" target="_blank"><span style="color:#2f5aaf"><?php echo ($item["cityarea_name"]); ?> - </span><?php echo ($item["borough_name"]); ?></a>&nbsp;</td>
                             <td width="37" class="nshi"><?php echo ($item["description"]); ?></td>
                             <td width="78" align="right"><span style="color:#FF0000; font-weight:bold"><?php echo ($item["house_price"]); ?></span>元/月</td>
                         </tr><?php endforeach; endif; ?>
@@ -510,20 +510,20 @@
             <?php if($username != null): ?><UL class="servers icon" id=servers>
                     <table width="100%" cellspacing="5" cellpadding="4">
                         <tr>
-                            <td><a href="<?php echo ($cfg["url"]); ?>member/houseSale.php" ><span></span><img src="/6doffice/Public/images/login/sale.gif"></a></td>
-                            <td><a href="<?php echo ($cfg["url"]); ?>member/houseRent.php" ><span></span><img src="/6doffice/Public/images/login/rent.gif"></a></td>
+                            <td><a href="<?php echo U('Member/houseSell/addSell');?>" ><span></span><img src="/6doffice/Public/images/login/sale.gif"></a></td>
+                            <td><a href="<?php echo U('Member/houseRent/addRent');?>" ><span></span><img src="/6doffice/Public/images/login/rent.gif"></a></td>
                         </tr>
                         <tr>
-                            <td><a href="<?php echo ($cfg["url"]); ?>member/pwdEdit.php" ><span></span><img src="/6doffice/Public/images/login/pwd.gif"></a></td>
-                            <td><a href="<?php echo ($cfg["url"]); ?>member/manageSale.php" ><span></span><img src="/6doffice/Public/images/login/house.gif"></a></td>
+                            <td><a href="<?php echo U('Member/ManageBroker/pwdEdit');?>" ><span></span><img src="/6doffice/Public/images/login/pwd.gif"></a></td>
+                            <td><a href="<?php echo U('Member/HouseSell/index');?>" ><span></span><img src="/6doffice/Public/images/login/house.gif"></a></td>
                         </tr>
                         <tr>
-                            <td><a href="<?php echo ($cfg["url"]); ?>member/shopProfile.php" ><span></span><img src="/6doffice/Public/images/login/shop.gif"></a></td>
-                            <td><a href="<?php echo ($cfg["url"]); ?>member/brokerProfile.php" ><span></span><img src="/6doffice/Public/images/login/base.gif"></a></td>
+                            <td><a href="<?php echo U('Member/ManageShop/shopProfile');?>" ><span></span><img src="/6doffice/Public/images/login/shop.gif"></a></td>
+                            <td><a href="<?php echo U('Member/ManageBroker/brokerProfile');?>" ><span></span><img src="/6doffice/Public/images/login/base.gif"></a></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td align="right"><a href="<?php echo ($cfg["url"]); ?>login/login.php?action=logout">退出登录>></a></td>
+                            <td align="right"><a href="<?php echo U('Member/Login/logout');?>">退出登录>></a></td>
                         </tr>
                     </table>
 
@@ -546,10 +546,10 @@
                     <ul>
                         <li class="reg"><a href="<?php echo U('Member/Login/index');?>">经纪人注册</a></li>
                         <li ><a href="<?php echo U('Member/Login/index');?>">经纪人登录</a></li>
-                        <li class="reg"><a href="<?php echo ($cfg["url"]); ?>guest/houseSale.php" target="_blank">游客发布</a></li>
-                        <li><a href="<?php echo ($cfg["url"]); ?>guest/guestManage.php" target="_blank">游客房源管理</a></li>
-                        <li class="reg"><a href="<?php echo ($cfg["url_sale"]); ?>requireForm.php" target="_blank">我要求购</a></li>
-                        <li><a href="<?php echo ($cfg["url_rent"]); ?>requireForm.php" target="_blank">我要求租</a></li>
+                        <li class="reg"><a href="<?php echo U(MODULE_NAME.'/Guest/houseSale');?>" target="_blank">游客发布</a></li>
+                        <li><a href="<?php echo U(MODULE_NAME.'/Guest/guestManage');?>" target="_blank">游客房源管理</a></li>
+                        <li class="reg"><a href="<?php echo U(MODULE_NAME.'/Sell/requireForm');?>" target="_blank">我要求购</a></li>
+                        <li><a href="<?php echo U(MODULE_NAME.'/Rent/requireForm');?>" target="_blank">我要求租</a></li>
                     </ul>
                 </div><?php endif; ?>
         </div>
@@ -606,14 +606,14 @@
                             <DL>
                                 <DT class=home_bg_all>
                                     <A title=<?php echo ($item["realname"]); ?>
-                                        href="<?php echo ($cfg["url_shop"]); echo ($item["id"]); ?>" target="_blank" hidefoucs="true">
+                                        href="<?php echo U(MODULE_NAME.'/Shop/index');?>/id/<?php echo ($item["id"]); ?>" target="_blank" hidefoucs="true">
                                         <?php if($item['avatar'] != null): ?><IMG src="/6doffice/Uploads/<?php echo ($item["avatar"]); ?>" width=45 height=60>
                                             <?php else: ?>
                                             <IMG src="/6doffice/Public/images/demoPhoto.jpg" width=45 height=60><?php endif; ?>
                                     </A>
                                 </DT>
                                 <DD class=dd_name>
-                                    <A title=<?php echo ($item["realname"]); ?>  href="<?php echo ($cfg["url_shop"]); echo ($item["id"]); ?>"  target=_blank hidefoucs="true"><?php echo ($item["realname"]); ?> </A>
+                                    <A title=<?php echo ($item["realname"]); ?>  href="<?php echo U(MODULE_NAME.'/Shop/index');?>/id/<?php echo ($item["id"]); ?>"  target=_blank hidefoucs="true"><?php echo ($item["realname"]); ?> </A>
                                 </DD>
                                 <DD>
                                     <?php if($item['idcard'] == null): ?><SPAN class="home_bg_all f_l rec_icon rec_icon_iden_err" title=实名认证></SPAN>
@@ -625,7 +625,7 @@
                                     <DIV class=clear></DIV>
                                 </DD>
                                 <DD>
-                                    <?php if($item['company_name'] != null): ?><a target="_blank" href="<?php echo ($cfg["url"]); ?>cshop/<?php echo ($item["company_id"]); ?>"><?php echo ($item["company_name"]); ?> - <?php echo ($item["outlet_last"]); ?></a>
+                                    <?php if($item['company_name'] != null): ?><a target="_blank" href="<?php echo U(MODULE_NAME.'/Cshop/index');?>/id/<?php echo ($item["company_id"]); ?>"><?php echo ($item["company_name"]); ?> - <?php echo ($item["outlet_last"]); ?></a>
                                     <?php else: ?>
                                         <?php echo ($item["outlet_first"]); ?> - <?php echo ($item["outlet_last"]); endif; ?>
                                 </DD>
@@ -641,14 +641,14 @@
         <div class="bj_house">
             <h3>房价走势</h3>
             <div class="blank"></div>
-            <div class="search_house"><form action="community/index.php" method="get">
+            <div class="search_house"><form action="<?php echo U(MODULE_NAME.'/Community/index');?>" method="get">
                 <input type="text" class="xj_input_text house_name" value="请输入小区名称" name="q" onclick="if(this.value='请输入小区名称'){this.value='';this.style.color='#000';}" onblur="if(this.value==''){ this.value='请输入小区名称';this.style.color='#A1A1A1';}else{this.style.color='#000';}"/>
                 <input type="submit" class="btn_house" value="搜索小区"/></form>
             </div>
-            <p align="right"><a href="community" class="see_more" style="color:#2f5aaf;">查看更多小区>></a></p>
+            <p align="right"><a href="<?php echo U(MODULE_NAME.'/Community/index');?>" class="see_more" style="color:#2f5aaf;">查看更多小区>></a></p>
             <table width="276" border="0" cellspacing="0" cellpadding="0" class="tab_house" style="margin: 0pt auto;">
                 <?php if(is_array($boroughList)): foreach($boroughList as $key=>$item): ?><tr class="<?php if(($key%2) == 1): ?>bg_blue<?php endif; ?>">
-                    <td width="49%"><a target="_blank" title='<?php echo ($item["borough_name"]); ?>' href="<?php echo ($cfg["url_community"]); ?>g-<?php echo ($item["id"]); ?>.html"><?php echo ($item["cityarea_name"]); ?> - <span class="color_blue"><?php echo ($item["borough_name"]); ?></span></a></td>
+                    <td width="49%"><a target="_blank" title='<?php echo ($item["borough_name"]); ?>' href="<?php echo U(MODULE_NAME.'/Community/general');?>/id/<?php echo ($item["id"]); ?>"><?php echo ($item["cityarea_name"]); ?> - <span class="color_blue"><?php echo ($item["borough_name"]); ?></span></a></td>
                     <td width="35%"><?php if($item['borough_avgprice'] != null): echo ($item["borough_avgprice"]); ?>元/平方<?php else: ?>-<?php endif; ?></td>
                     <?php if($item['percent_change'] != 0): if($item['percent_change'] < 0): ?><td width="10%" class="color_down">↓</td>
                         <?php else: ?>
@@ -677,8 +677,8 @@
         <div class="content_left">
             <div class="columnl tjzj1">
                 <div class="new_title">
-                    <h1>品牌中介 <span>中介合作：<?php echo ($cfg["page"]["rexian"]); ?></span></h1>
-                    <div class="news_more" style="padding:8px 8px 0 0;"><a target="_blank" href="<?php echo ($cfg["url_company"]); ?>">更多&gt;&gt;</a></div>
+                    <h1>品牌中介 <span>中介合作：<?php echo ($rexian); ?></span></h1>
+                    <div class="news_more" style="padding:8px 8px 0 0;"><a target="_blank" href="<?php echo U(MODULE_NAME.'/Company/index');?>">更多&gt;&gt;</a></div>
                 </div>
                 <div class="co_main">
                     <ul>

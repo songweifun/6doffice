@@ -77,4 +77,21 @@ class HouseRentRelationModel extends RelationModel{
         }
         return true;
     }
+
+    /**
+     * 增加点击数 ， 需要增加总数和每天点击数
+     * @param $house_id
+     * @return bool
+     */
+    function addClick($house_id)
+    {
+        $today = date("Y-m-d", time());
+        $stat_id = M('houserent_stat')->where(array('house_id' => $house_id, 'stat_date' => $today))->getField('id');
+        if ($stat_id) {
+            M('houserent_stat')->where(array('id' => $stat_id))->setInc('click_num', 1);
+        } else {
+            M('houserent_stat')->data(array('house_id' => $house_id, 'click_num' => 1, 'stat_date' => $today))->add();
+        }
+        return $this->where(array('id' => $house_id))->setInc('click_num', 1);
+    }
 }
