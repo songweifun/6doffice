@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Home@Common/head"/>
+    <link href="__PUBLIC__/css/region.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<include file="Home@Common/indextop"/>
+<div class="body">
+    <div class="reg">
+        <div class="reg_a">
+            <div style="height:26px; clear:both; overflow:hidden; width:100%"></div>
+            <div class="reg_b1">
+                <div class="reg_b11"><font class="t20 b">公司平台登录</font></div>
+            </div>
+
+        </div>
+        <div class="reg_b">
+
+            <form onsubmit="return validator(this)" action="<!--{:U('login')}-->" method="post" name="loginform" id="loginform">
+                <div class="reg_b3">
+                    <div style="height:3px; clear:both; overflow:hidden"></div>
+                    <div class="reg_b32">
+                        <div class="reg_b321">用户名：</div>
+                        <div class="reg_b322">
+                            <input type="text" name="username" class="input_region">
+                        </div>
+                    </div>
+                    <div style="height:11px; clear:both; overflow:hidden;"></div>
+                    <div class="reg_b32">
+                        <div class="reg_b321">密&nbsp;&nbsp;码：</div>
+                        <div class="reg_b322">
+                            <input type="password" name="passwd" class="input_region">
+                        </div>
+                    </div>
+                    <div style="height:10px; clear:both; overflow:hidden;"></div>
+                    <div class="reg_b32">
+                        <div class="reg_b321">&nbsp;</div>
+                        <div class="reg_b324">
+                            <input name="notForget" value="1" type="checkbox" id="remberme" checked="checked" />
+                            &nbsp;下次直接登录（慎用） <span>
+              <!--<a href="#">忘记密码？</a></span>-->
+                        </div>
+                    </div>
+                    <div style="height:4px; clear:both; overflow:hidden"></div>
+                    <div class="reg_b123"><font color="#FF0000">
+                        <!--{$errorMsg1}-->
+                    </font></div>
+                    <div class="reg_b32">
+                        <div class="reg_b321"></div>
+                        <div class="reg_b323">
+                            <input type="image" src="__PUBLIC__/images/login.jpg" />
+                        </div>
+                    </div>
+                    <div style="height:33px; clear:both; overflow:hidden"></div>
+                    <div class="reg_b33">
+                        <div style="height:10px; clear:both; overflow:hidden;"></div>
+                        <ul>
+                            <li><font class="b" style="font-size:13px; _font-size:12px;">登陆注册有问题请联系：<!--{$rexian}--></font></li>
+
+
+                        </ul>
+                        <div style="height:10px; clear:both; overflow:hidden"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="reg_c"></div>
+    </div>
+</div>
+
+<div class="blank"></div>
+<include file="Home@Common/foot"/>
+</body>
+</html>

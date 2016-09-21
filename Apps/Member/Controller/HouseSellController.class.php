@@ -447,7 +447,6 @@ class HouseSellController extends CommonController{
     public function save(){
         //p($_POST);die;
         $member_id = getAuthInfo('id');
-        $data=array();
         $broker_id=$member_id;
         $creater=getAuthInfo('username');
         $company_id=getAuthInfo('company_id');//将房源和公司联系起来

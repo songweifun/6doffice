@@ -34,7 +34,7 @@
             <div class="boxHead">公司信息</div>
             <div class="userInfo">
                 <div class="txtBox1">
-                    <img class="pic" src="<!--{if $dataInfo.company_logo}--><!--{$cfg.url}-->upfile/<!--{$dataInfo.company_logo}--><!--{else}--><!--{$cfg.path.images}-->demoCompanyLogo.jpg<!--{/if}-->" width="240" height="70" />
+                    <img class="pic" src="<if condition='$dataInfo.company_logo neq null'>__ROOT__/Uploads/<!--{$dataInfo.company_logo}--><else/>__PUBLIC__/images/demoCompanyLogo.jpg</if>" width="240" height="70" />
 
 
                 </div>

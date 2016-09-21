@@ -500,9 +500,9 @@
 
     <div class="xj_left">
         <div class="gpf_login">
-            <a class="gpf_login1" target="_blank" href="<?php echo ($cfg["url"]); ?>guest/consignSale.php">委托房源</a>
-            <a href="<?php echo ($cfg["url"]); ?>pinggu" class="gpf_login2">评估房源</a>
-            <a href="<?php echo ($cfg["url"]); ?>guest/guestManage.php" class="gpf_login3">游客管理</a>
+            <a class="gpf_login1" target="_blank" href="<?php echo U(MODULE_NAME.'/Guest/consignSale');?>">委托房源</a>
+            <a href="<?php echo U(MODULE_NAME.'/Assessment/index');?>" class="gpf_login2">评估房源</a>
+            <a href="<?php echo U(MODULE_NAME.'/Guest/guestManage');?>" class="gpf_login3">游客管理</a>
         </div>
         <div class="blank5"></div>
 

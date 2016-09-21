@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common/head"/>
+    <css file="__PUBLIC__/css/common.css"/>
+    <css file="__PUBLIC__/css/pinggu.css"/>
+    <css file="__PUBLIC__/css/header.css"/>
+    <css file="__PUBLIC__/css/Home_Home2.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/FormValid.js"/>
+    <js file="__PUBLIC__/js/FV_onBlur.js"/>
+
+    <!--{$jsFiles}-->
+    <!--{$cssFiles}-->
+    <script language="javascript">
+        $().ready(function() {
+            $("#borough_name").autocomplete("ajax.php?action=getBoroughList", {
+                minChars: 2,
+                width: 260,
+                delay:0,
+                mustMatch:true,
+                matchContains: false,
+                scrollHeight: 220,
+                selectFirst:true,
+                scroll: true,
+                formatItem: function(data, i, total) {
+                    if(data[1]=="addBorough"){
+                        return '<strong>'+data[0]+'</strong>';
+                    }
+                    return data[0];
+                }
+            });
+
+            $("#borough_name").result(function(event, data, formatted) {
+                if(data[1]=="addBorough"){
+                    //TB_show('增加小区','#TB_inline?height=155&width=400&inlineId=modalWindow',false);
+                    TB_show('增加小区','addBorough.php?height=170&width=400&modal=true&rnd='+Math.random(),false);
+                    $(this).val('');
+                }else{
+                    $("#borough_id").val(data[1]);
+                }
+
+                /*if (data)
+                 $(this).parent().next().find("input").val(data[1]);*/
+            });
+        });
+    </script>
+</head>
+
+<body>
+<include file="Common/selltop"/>
+<div id="box">
+    <!-- 头部 -->
+    <div id="header">
+        <!-- 左侧小区列表 -->
+        <div id="main">
+            <div>
+                <img src="__PUBLIC__/images/pgBanner.jpg" />
+            </div>
+            <div class="topicBg"><span class="topicText">房产初始估价</span></div>
+            <div class="leftBg">
+                <form id="dataForm" method="POST" action="?action=save"  onsubmit="return validator(this)" >
+                    <input type="hidden" name="id" value="<!--{$dataInfo.id}-->">
+                    <p>
+                        <span class="itemTitle"><span class="must">*</span>小区名称：</span>
+					<span>
+						<input type="hidden" id="borough_id" name="borough_id" value="<!--{$dataInfo.borough_id}-->">
+						<input type="text" class="input" id="borough_name" name="borough_name" size="48" value="<if condition='$dataInfo.borough_name neq null'><!--{$dataInfo.borough_name}--><else/>输入小区名称(支持拼音首字母)</if>" onfocus="if (this.value == '输入小区名称(支持拼音首字母)'){this.value = '';}" onblur="if (this.value == ''){this.value = '输入小区名称(支持拼音首字母)';}" valid="required" errmsg="请输入小区名称!" />&nbsp;&nbsp;
+
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle"><span class="must">*</span>建筑类型：</span>
+					<span>
+					<foreach name="house_type_option" item="item">
+						<label for="house_type_<!--{$key}-->"><input type="radio" id="house_type_<!--{$key}-->" name="house_type" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房源类型!" <if condition="$key eq $dataInfo.house_type ">checked</if> /><!--{$item}--></label>&nbsp;&nbsp;
+                        </foreach>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle"><span class="must">*</span>建筑朝向：</span>
+					<span>
+					<foreach name="house_toword_option" item="item">
+						<label for="house_toward_<!--{$key}-->"><input type="radio" id="house_toward_<!--{$key}-->" name="house_toward" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择朝向!" <if condition="$key eq $dataInfo.house_toward">checked</if> /><!--{$item}--></label>&nbsp;&nbsp;
+                        </foreach>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle"><span class="must">*</span>所在楼层：</span>
+					<span>
+						<input type="text" class="input" size="10" name="house_floor" valid="required|isInt" errmsg="请输入所在楼层!|请输入整数！" value="<!--{$dataInfo.house_floor}-->" />&nbsp;层
+					</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="itemTitle"><span class="must">*</span>总楼层：</span>
+					<span>
+						<input type="text" class="input" size="10" name="house_topfloor" valid="required|isInt" errmsg="请输入楼层总数!|请输入整数！" value="<!--{$dataInfo.house_topfloor}-->"  />&nbsp;层
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle"><span class="must">*</span>建筑面积：</span>
+					<span>
+						<input type="text" class="input" size="10" name="house_totalarea" valid="required|isNumber" errmsg="请输入建筑面积!|请输入数字！"  value="<!--{$dataInfo.house_totalarea}-->" />&nbsp;平米
+					</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="itemTitle"><span class="must">*</span>户型：</span>
+					<span>
+					<select name="house_room">
+                        <option value="1" <!--{if 1==$dataInfo.house_room}-->selected<!--{/if}-->>1</option>
+                        <option value="2" <!--{if 2==$dataInfo.house_room}-->selected<!--{/if}-->>2</option>
+                        <option value="3" <!--{if 3==$dataInfo.house_room}-->selected<!--{/if}-->>3</option>
+                        <option value="4" <!--{if 4==$dataInfo.house_room}-->selected<!--{/if}-->>4</option>
+                        <option value="5" <!--{if 5==$dataInfo.house_room}-->selected<!--{/if}-->>5</option>
+                        <option value="6" <!--{if 6==$dataInfo.house_room}-->selected<!--{/if}-->>>5</option>
+                    </select>&nbsp;室&nbsp;
+					<select name="house_hall">
+                        <option value="0" <!--{if 0==$dataInfo.house_hall}-->selected<!--{/if}-->>0</option>
+                        <option value="1" <!--{if 1==$dataInfo.house_hall}-->selected<!--{/if}-->>1</option>
+                        <option value="2" <!--{if 2==$dataInfo.house_hall}-->selected<!--{/if}-->>2</option>
+                        <option value="3" <!--{if 3==$dataInfo.house_hall}-->selected<!--{/if}-->>3</option>
+                        <option value="4" <!--{if 4==$dataInfo.house_hall}-->selected<!--{/if}-->>4</option>
+                        <option value="5" <!--{if 5==$dataInfo.house_hall}-->selected<!--{/if}-->>5</option>
+                        <option value="6" <!--{if 6==$dataInfo.house_hall}-->selected<!--{/if}-->>>5</option>
+                    </select>&nbsp;厅&nbsp;
+					<select name="house_toilet">
+                        <option value="0" <!--{if 0==$dataInfo.house_toilet}-->selected<!--{/if}-->>0</option>
+                        <option value="1" <!--{if 1==$dataInfo.house_toilet}-->selected<!--{/if}-->>1</option>
+                        <option value="2" <!--{if 2==$dataInfo.house_toilet}-->selected<!--{/if}-->>2</option>
+                        <option value="3" <!--{if 3==$dataInfo.house_toilet}-->selected<!--{/if}-->>3</option>
+                        <option value="4" <!--{if 4==$dataInfo.house_toilet}-->selected<!--{/if}-->>4</option>
+                        <option value="5" <!--{if 5==$dataInfo.house_toilet}-->selected<!--{/if}-->>5</option>
+                        <option value="6" <!--{if 6==$dataInfo.house_toilet}-->selected<!--{/if}-->>>5</option>
+                    </select>&nbsp;卫</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle"><span class="must">*</span>是否电梯房：</span>
+					<span>
+					<select name="has_lift" valid="required" errmsg="请选择是否电梯房！">
+                        <option value="">请选择</option>
+                        <option value="1" <!--{if '1'==$dataInfo.has_lift}-->selected<!--{/if}-->>是</option>
+                        <option value="0" <!--{if '0'===$dataInfo.has_lift}-->selected<!--{/if}-->>否</option>
+                    </select></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="itemTitle"><span class="must">*</span>有无架空层：</span>
+					<span><select name="has_empty" valid="required" errmsg="请选择有无架空层！">
+                        <option value="">请选择</option>
+                        <option value="1" <!--{if '1'==$dataInfo.has_empty}-->selected<!--{/if}-->>有</option>
+                        <option value="0" <!--{if '0'===$dataInfo.has_empty}-->selected<!--{/if}-->>无</option>
+                    </select></span>
+                    </p>
+                    <div class="pgBtn"><input type="submit" name="submit" value="" /></div>
+                </form>
+            </div>
+        </div>
+        <!-- 左侧小区列表 结束 -->
+        <!-- 右侧 -->
+        <div id="rightBox">
+            <div class="hz_list_pub">
+                <div class="gpf_content">
+                    <h2 class="title_top">您有房屋出售吗？</h2>
+                    <p class="text">您通过此处发布购房者无需缴纳<span>中介费</span></p>
+                    <div class="pub_btn_box">
+                        <a target="_blank" class="pub_but" hidefocus="true" title="个人房东发布" href="<!--{$cfg.url}-->guest/houseSale.php"></a>
+                    </div>
+                </div>
+            </div>
+            <!--{include file="inc/saleRent_AD.tpl"}-->
+
+        </div>
+        <!-- 右侧 结束 -->
+
+    </div>
+    <!-- 底部 --><!--{include file="inc/foot.tpl"}--><!-- 底部 -->
+</body>
+</html>

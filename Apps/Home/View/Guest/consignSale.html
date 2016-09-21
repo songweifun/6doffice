@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 委托出售信息</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+    <import type="js" file="js.FormValid,js.FV_onBlur"/>
+
+
+
+</head>
+<body>
+<div class="main">
+    <div class="page">
+        <a href="<!--{:U(MODULE_NAME.'/Index/index')}-->"><img src="__PUBLIC__/images/logo.png"></a>
+        <div class="memberBox">
+
+            <div class="bigNote" id="bigNote">
+                <div class="noteTxt">您委托之后，我们工作人员会尽快与您联系确认，如果有问题请拨打<!--{$rexian}-->
+                </div>
+                <div class="closeNote">
+                    <a href="javascript:;" onclick="document.getElementById('bigNote').style.display='none'" title="隐藏提示"><img src="__PUBLIC__/images/closeNote.gif" title="隐藏提示" /></a>
+                </div>
+            </div>
+
+            <form id="dataForm" name="dataForm" action="<!--{:U(MODULE_NAME.'/Guest/consignSale')}-->/action/save" method="POST" onsubmit="return checkForm(this)">
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="4"><span class="concentTitle">委托房源基本信息（必填）</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="row1">小区名称：</td>
+                        <td colspan="3">
+                            <input class="input" name="borough_name" type="text" size="30"  valid="required" errmsg="请输入小区名称!"  />
+
+                            <span class="tip">输入您房源所在的小区</span>
+                            <p id="errMsg_borough_name" class="errorMessage" display="none"></p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="row1">楼&nbsp;&nbsp;&nbsp;&nbsp;层：</td>
+                        <td colspan="3">
+                            第<input class="input" name="house_floor" type="text" size="1" value="<!--{$dataInfo.house_floor}-->"  valid="required|isInt" errmsg="请输入所在楼层!|请输入整数！"  /> 层 /
+                            共<input class="input" name="house_topfloor" type="text" size="1" value="<!--{$dataInfo.house_topfloor}-->" valid="required|isInt" errmsg="请输入楼层总数!|请输入整数！" /> 层
+                            <p id="errMsg_house_floor" class="errorMessage" display="none"></p><p id="errMsg_house_topfloor" class="errorMessage" display="none"></p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="row1">户&nbsp;&nbsp;&nbsp;&nbsp;型：</td>
+                        <td colspan="3">
+                            <input class="input" name="house_room" type="text" size="1" valid="required|isInt" errmsg="请输入几室!|请输入整数！"  /> 室
+                            <input class="input" name="house_hall" type="text" size="1" valid="required|isInt" errmsg="请输入几厅!|请输入整数！" /> 厅
+
+                            <p id="errMsg_house_room" class="errorMessage" display="none"></p><p id="errMsg_house_hall" class="errorMessage" display="none"></p>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="row1">售&nbsp;&nbsp;&nbsp;&nbsp;价：</td>
+                        <td colspan="3">
+                            <input id="h_price" class="input" name="house_price" type="text" size="10" valid="required|isNumber" errmsg="请输入售价!|请输入数字！"  />&nbsp;万元
+                            <span class="tip">您期望的销售价格</span>
+                            <p id="errMsg_house_price" class="errorMessage" display="none"></p>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="row1">房源描述：</td>
+                        <td colspan="3"><span class="tip">&nbsp;请对您的房子进行简单介绍</span><br>
+                            <div style="width:100%;"><input type="hidden" id="house_desc" name="house_desc"  /><input type="hidden" id="house_desc___Config" value="FullPage=false"/><iframe id="house_desc___Frame" src="__ROOT__/Data/FCKeditor/editor/fckeditor.html?InstanceName=house_desc&amp;Toolbar=Basic" width="100%" height="220" frameborder="no" scrolling="no"></iframe></div>
+                            <p><br>&nbsp;<span class="tip">请勿在房源描述内添加其它房产网站链接</span><br>&nbsp;
+                                <span class="tip">请勿在房源描述内留联系电话</span></p></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="memberBoxTable" cellpadding="0" cellspacing="5" border="0">
+                    <thead>
+                    <tr>
+                        <td colspan="4"><span class="concentTitle">第二步：业主信息（必填）</span></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="row1">姓名：</td>
+                        <td><span class="tip">&nbsp;请输入您的姓名</span><br />
+                            <input id="owner_name" class="input" name="owner_name"  type="text" size="40" value='<!--{$dataInfo.owner_name}-->'  valid="required" errmsg="请输入姓名!" />
+                            <p id="errMsg_owner_name" class="errorMessage" display="none"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row1">联系电话：</td>
+                        <td><span class="tip">&nbsp;输入您的联系电话</span><br />
+                            <input id="owner_phone" class="input" name="owner_phone" type="text" size="40" value='<!--{$dataInfo.owner_phone}-->'  valid="required" errmsg="请输入联系电话!" />
+                            <p id="errMsg_owner_phone" class="errorMessage" display="none"></p>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="submitBtn">
+
+                    <input type="submit" value="立即委托" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    initValid(document.dataForm);
+
+    function checkForm(formDom){
+        var Content =FCKeditorAPI.GetInstance("house_desc").GetXHTML();
+        if(Content==null||Content==""){
+            alert('内容不能为空');
+            return false;
+        }else{
+            return validator(formDom);
+        }
+    }
+
+
+    var pictureIndex=1;
+
+
+</script>
+</body>
+</html>

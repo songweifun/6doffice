@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk2312" />
+    <title><!--{$title}--></title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/guestManage.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/css.css" media="screen" />
+</head>
+
+<include file="Common:indextop"/>
+<div id="wrap">
+
+    <div class="cbox">
+        <h2 class="hd"><!--{$titlec}--> 个人房源管理</h2>
+        <div class="bd">
+            <if condition="($dataList neq null) or ($dataList1 neq null)">
+            <p>第一部：请输入您的手机号，查找房源</p>
+
+            <else/>
+            <p class="stepon">第一部：请输入您的手机号，查找房源</p>
+            </if>
+            <form method="get" action="<!--{:U(MODULE_NAME.'/Guest/guestManage')}-->" class="form_s_phone">
+                <input type="hidden" name="action" value="search">
+                <fieldset>
+                    <span class="ipt_text"><input type="text" name="mobile" value="<!--{$Think.get.mobile}-->" /></span>
+                    <input type="submit" value="查找" class="btn_submit" />
+                    <p>本功能只对个人用户开放</p>
+                </fieldset>
+            </form>
+            <if condition="($dataList neq null) or ($dataList1 neq null)">
+            <p class="stepon">第二步：请在下方的列表中，对房源进行修改和删除操作</p>
+            <else/>
+            <p>第二步：请在下方的列表中，对房源进行修改和删除操作</p>
+            </if>
+
+            <if condition="($dataList neq null) or ($dataList1 neq null)">
+            <div class="s_box">
+                <div class="tit">以下是查找<em><!--{$Think.get.mobile}--></em>得到的结果：</div>
+                <ul class="s_box_list">
+                    <foreach item="item" name="dataList">
+                    <li>
+                        <span class="date"><!--{$item.created|date="Y-m-d",###}--></span> <span class="tt"> | <a target="_blank" href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->"><!--{$item.house_title}--></a> <font color="#FF0000"><if condition="$item.is_checked eq 0">(未审核)</if></font></span>
+                        <span class="state">出售</span><span class="act"><a target="_blank" href="<!--{:U(MODULE_NAME.'/Sell/detail')}-->/id/<!--{$item.id}-->">对该房源进行修改或删除</a></span>
+                    </li>
+                    </foreach>
+                    <foreach item="item" name="dataList1">
+                    <li>
+                        <span class="date"><!--{$item.created|date="Y-m-d",###}--></span><span class="tt"> | <a target="_blank" href="<!--{:U(MODULE_NAME.'/Rent/detail')}-->/id/<!--{$item.id}-->"><!--{$item.house_title}--></a> <font color="#FF0000"><if condition="$item.is_checked eq 0">(未审核)</if></font></span>
+                        <span class="state">出租</span><span class="act"><a target="_blank" href="<!--{:U(MODULE_NAME.'/Rent/detail')}-->/id/<!--{$item.id}-->">对该房源进行修改或删除</a></span>
+                    </li>
+                    </foreach>
+                </ul>
+            </div>
+            </if>
+            <div class="more">
+                <if condition="($dataList neq null) or ($dataList1 neq null)">
+                还有更多房源？<a target="_blank" href="<!--{:U(MODULE_NAME.'/Guest/houseSale')}-->">现在就去发布&gt;&gt;</a>
+                <elseif condition="$Think.get.action eq 'search'"/>
+                <font color="#FF0000">没有找到 <!--{$Think.get.mobile}--> 的任何房源</font> <a target="_blank" href="<!--{:U(MODULE_NAME.'/Guest/houseSale')}-->">现在发布出售&gt;&gt;</a> <a href="<!--{:U(MODULE_NAME.'/Guest/houseRent')}-->">现在发布出租&gt;&gt;</a>
+                <else/>
+                <a target="_blank" href="<!--{:U(MODULE_NAME.'/Guest/houseSale')}-->">发布出售&gt;&gt;</a> <a target="_blank" href="<!--{:U(MODULE_NAME.'/Guest/houseRent')}-->">发布出租&gt;&gt;</a>
+                </if>
+            </div>
+            <p class="suggest">对发布者管理有想法？请告诉我们</p>
+        </div>
+
+        <div class="ft"></div>
+    </div>
+</div>
+<div class="blank"></div>
+<include file="Common:foot"/>
+</body>
+</html>

@@ -138,4 +138,8 @@ class CompanyController extends CommonController{
         }
         $this->display();
     }
+
+    public function login(){
+        $this->display();
+    }
 }

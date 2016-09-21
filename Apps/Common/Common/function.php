@@ -110,6 +110,16 @@ function getArray($name) {
 }
 
 /**
+ * 取字典项数组
+ * @param string $name 字典名
+ * @access public
+ * @return array
+ */
+function getArrayAssessment($name) {
+	return require('./Conf/pinggu/' . $name . '.php');
+}
+
+/**
  * 取字典项名称
  * @param string $name 字典名
  * @param string $value 值

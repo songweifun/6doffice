@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--> - 用户中心</title>
+    <css file="__PUBLIC__/css/member.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/map.js"/>
+    <!-- 包括增加表单页面，编辑表单，没有action 也是默认这个页面 -->
+    <js file="__PUBLIC__/js/FormValid.js"/>
+    <js file="__PUBLIC__/js/FV_onBlur.js"/>
+</head>
+<body>
+<include file="Common/companyHeader"/>
+<div class="main">
+    <div class="page">
+        <include file="Common/company_left"/>
+        <div class="memberBox">
+
+            <div class="infoTipBox">
+                <div class="loginTip">
+                    <a target="_blank" href="<!--{:U('Home/Cshop/index')}-->/id/<!--{$companyInfo.id}-->"><img src="<if condition='$companyInfo.company_logo neq null'>__ROOT__/Uploads/<!--{$companyInfo.company_logo}--><else/>__PUBLIC__/images/demoCompanyLogo.jpg</if>" />
+                    </a>
+                </div>
+
+                <div class="universityTip"><a class="underline" href="<!--{:U('Home/Cshop/index')}-->/id/<!--{$companyInfo.id}-->" target="_blank">进入公司网站</a><span class="shopTip familyAlpha">&nbsp;(<!--{:U('Home/Cshop/index')}-->/id/<!--{$companyInfo.id}-->)</span></div>
+                <br />
+                <br />
+
+
+                <h4>帐号信息</h4>
+                <hr>
+                <div class="memberProfile">
+                    <ul>
+                        <li>用户帐号：<span class="familyAlpha color999"><!--{$companyInfo.username}--></span></li>
+                        <li>公司名称：<span class="familyAlpha color999"><!--{$companyInfo.company_name}--></span></li>
+                    </ul>
+                </div><br /><br />
+
+
+                <h4>房源统计</h4>
+                <hr>
+                <div class="memberProfile">
+                    <ul>
+                        <li>出售房源：<span class="familyAlpha color999"> <!--{$saleCount}-->套</span></li>
+                        <li>出租房源：<span class="familyAlpha color999"> <!--{$rentCount}-->套</span></li><br />
+
+                        <li>出售下架：<span class="familyAlpha color999"> <!--{$saleRecycleCount}-->套</span></li>
+                        <li>出租下架：<span class="familyAlpha color999"> <!--{$rentRecycleCount}-->套</span></li><br />
+
+                        <li>出售置顶：<span class="familyAlpha color999"> <!--{$saleTopCount}-->套</span></li>
+                        <li>出租置顶：<span class="familyAlpha color999"> <!--{$rentTopCount}-->套</span></li>
+                    </ul>
+
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <script language="javascript">
+
+        function showBoxType(){
+            TB_show('服务升级','vipShop.php?height=170&width=610&modal=true&rnd='+Math.random(),false);
+        }
+    </script>
+    <script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js" language="javascript"></script>
+</body>
+</html>

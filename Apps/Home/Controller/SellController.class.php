@@ -475,10 +475,11 @@ class SellController extends CommonController{
         $this->assign('cityareaSamePrice', $cityareaSamePrice);
 
         //该经纪人的其他房源
-        $where = " and status =1 and id <> ".$id ." and broker_id = ".$dataInfo['broker_id'];
-        $brokerOthersList = $house->where('1=1'.$where," and (is_checked = 0 or is_checked = 1 )")->order('order_weight desc')->limit(4)->select();
-        $this->assign('brokerOthersList', $brokerOthersList);
-
+        if($dataInfo['broker_id']){
+            $where = " and status =1 and id != ".$id ." and broker_id = ".$dataInfo['broker_id'];
+            $brokerOthersList = $house->where('1=1'.$where," and (is_checked = 0 or is_checked = 1 )")->order('order_weight desc')->limit(4)->select();
+            $this->assign('brokerOthersList', $brokerOthersList);
+        }
         //页面标题
         $this->title = $dataInfo['borough_name'].'二手房，'.$dataInfo['house_room'].'室'.$dataInfo['house_hall'].'厅'.$dataInfo['house_toilet'].'卫'.$dataInfo['house_veranda'].'阳，'.$dataInfo['house_title'].' - '.$this->city.$this->titlec;
 
