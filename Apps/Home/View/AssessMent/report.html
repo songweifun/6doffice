@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common/head"/>
+
+    <css file="__PUBLIC__/css/common.css"/>
+    <css file="__PUBLIC__/css/pinggu.css"/>
+    <css file="__PUBLIC__/css/header.css"/>
+    <css file="__PUBLIC__/css/Home_Home2.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/FormValid.js"/>
+    <js file="__PUBLIC__/js/FV_onBlur.js"/>
+</head>
+
+<body>
+<include file="Common/selltop"/>
+<div id="box">
+    <!-- 头部 -->
+    <div id="header">
+
+        <!-- 左侧小区列表 -->
+        <div id="main">
+            <div class="reportBox">
+                <div class="reportHeader">
+                    <p class="size16px weightBold"><!--{$titlec}-->房产估价报告</p>
+                    <p><span class="familyAlpha">估价时间：<!--{$dataInfo.add_time|date="Y-m-d",###}--></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="familyAlpha">估价ID：<!--{$dataInfo.id}--></span></p>
+                </div>
+                <div class="reportBody">
+                    <p class="familyAlpha size16px">你的房产： <!--{$city}-->市<!--{$dataInfo.borough_info.cityarea_name}--><a class="familyAlpha color690" href="<!--{$cfg.url_community}-->g-<!--{$dataInfo.borough_id}-->.html" target="_blank"><!--{$dataInfo.borough_info.borough_name}--></a></p>
+                    <p class="familyBlack size23px weightBold">交易评估总价：<span class="familyAlpha colorF90"><!--{$dataInfo.house_totalprice}--></span>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交易评估单价：<span class="familyAlpha colorF90"><!--{$dataInfo.house_avgprice}--></span>元/㎡</p>
+                    <p class="familyBlack size23px weightBold">抵押评估总价：<span class="familyAlpha colorF90"><!--{$dataInfo.house_pgprice}--></span>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抵押评估单价：<span class="familyAlpha colorF90"><!--{$dataInfo.house_avgpgprice}--></span>元/㎡</p>
+                    <!--{if $dataInfo.borough_info.borough_avgprice}-->
+                    <!-- 小区房价有数据时显示该行 -->
+                    <p class="familyAlpha weightBold"><!--{$dataInfo.borough_info.borough_name}-->目前均价为：<span class="color690"><!--{$dataInfo.borough_info.borough_avgprice}--></span>元/㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你的房产较目前均价：<span class="colorF90"><!--{$dataInfo.price_compare}--></span></p>
+                    <!--{/if}-->
+                    <p class="reportTip">本次估价报告 <!--{$titlec}-->提供，仅供参考，不具任何法律效应！</p>
+                </div>
+            </div>
+            <!-- 小区概况 -->
+            <div class="communityMainRecBox">
+                <div class="communityMainRecTitleBox">
+                    <span class="communityMainRecTitle size14px color333 weightBold"><a name="communityAnchor"></a>你的房产信息</span>
+                    <!--<span class="communityMainRecMore"><a href="#">返回顶部<span class="familyArial">&gt;&gt;</span></a></span> -->
+                </div>
+                <table class="communityFile" cellpadding="0" cellspacing="5" border="0">
+                    <tr>
+                        <td class="title" width="12%">小区名称：</td><td width="38%"><!--{$dataInfo.borough_info.borough_name}--></td>
+                        <td class="title" width="12%">小区地址：</td><td width="38%"><!--{$dataInfo.borough_info.cityarea_name}-->&nbsp;<!--{$dataInfo.borough_info.borough_address}--></td>
+                    </tr>
+                    <tr>
+                        <td class="title">建筑类型：</td><td><!--{$dataInfo.house_type}--></td>
+                        <td class="title">房产朝向：</td><td><!--{$dataInfo.house_toward}--></td>
+                    </tr>
+                    <tr>
+                        <td class="title">所在楼层：</td><td><!--{$dataInfo.house_floor}-->F</td>
+                        <td class="title">总楼层：</td><td><!--{$dataInfo.house_topfloor}-->F</td>
+                    </tr>
+                    <tr>
+                        <td class="title">建筑面积：</td><td><!--{$dataInfo.house_totalarea}-->㎡</td>
+                        <td class="title">户型结构：</td><td><!--{$dataInfo.house_room}-->室<!--{$dataInfo.house_hall}-->厅<!--{$dataInfo.house_toilet}-->卫</td>
+                    </tr>
+                    <tr>
+                        <td class="title">有无电梯：</td><td><!--{if $dataInfo.has_lift}-->是<!--{else}-->否<!--{/if}--></td>
+                        <td class="title">有无架空：</td><td><!--{if $dataInfo.has_empty}-->是<!--{else}-->否<!--{/if}--></td>
+                    </tr>
+                    <!--{if $dataInfo.is_detail}-->
+                    <tr>
+                        <td class="title">装修情况：</td><td><!--{$dataInfo.house_fitment}-->&nbsp;<!--{if $dataInfo.fitment_year>7}-->7年以上<!--{else}--><!--{$dataInfo.fitment_price}-->万&nbsp;<!--{$dataInfo.fitment_year}-->年<!--{/if}--></td>
+                        <td class="title">房产位置：</td><td><!--{$dataInfo.house_place}--></td>
+                    </tr>
+                    <tr>
+                        <td class="title">房产景观：</td><td><!--{$dataInfo.house_view}--></td>
+                        <td class="title">采风通光：</td><td><!--{$dataInfo.house_light}--></td>
+                    </tr>
+                    <tr>
+                        <td class="title">噪音情况：</td><td><!--{$dataInfo.house_noise}--></td>
+                        <td class="title">建筑质量：</td><td><!--{$dataInfo.house_quality}--></td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <!-- 小区概况 结束 -->
+        </div>
+        <!-- 左侧小区列表 结束 -->
+        <!-- 右侧 -->
+        <div id="rightBox">
+            <div class="hz_list_pub">
+                <div class="gpf_content">
+                    <h2 class="title_top">您有房屋出售吗？</h2>
+                    <p class="text">您通过此处发布购房者无需缴纳<span>中介费</span></p>
+                    <div class="pub_btn_box">
+                        <a target="_blank" class="pub_but" hidefocus="true" title="个人房东发布" href="<!--{$cfg.url}-->guest/houseSale.php"></a>
+                    </div>
+                </div>
+            </div>
+            <include file="Common/saleRent_AD"/>
+
+
+        </div>
+        <!-- 右侧 结束 -->
+
+    </div>
+    <!-- 底部 --><include file="Common/foot"/><!-- 底部 -->
+</body>
+</html>

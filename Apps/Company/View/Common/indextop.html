@@ -1,0 +1,55 @@
+<!-- 新增部分开始 -->
+
+
+<div class="topbar_bg">
+    <div class="topbar">
+        <div style="float:left">
+            您当前所在的城市 <b><!--{$city}--></b> <if condition="$switch_url neq null">
+            <a href="<!--{$switch_url}-->" title="切换城市">【切换城市】</a>
+            </if>
+        </div>
+        <div style="float:right">
+            <if condition="$username neq null">
+            <span class="s_l">您好，<!--{$username}-->！</span><a class="s_l" href="<!--{:U('Member/Index/index')}-->" target="_blank">[我的办公室]</a><a class="s_l" href="<!--{:U('Member/Login/logout')}-->" target="_blank">[退出登录]</a>
+
+            <else/>
+            <span class="s_l">您好，欢迎来到<!--{$titlec}-->！</span><a class="s_l" href="<!--{:U('Member/Login/index')}-->" target="_blank" title="登录">[登录]</a><a class="s_l" href="<!--{:U('Member/Login/index')}-->" target="_blank" title="经纪人注册">[经纪人注册]</a>
+            </if>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="xg_nav">
+    <div class="xg_navcont1">
+        <div class="xg_logo"><a title="<!--{$titlec}-->" href="<!--{:U('Home/Index/index')}-->"><img alt="<!--{$titlec}-->" src="__PUBLIC__/images/logo.png" height="53" /></a><span>租售引擎</span></div>
+        <div class="xg_menu">
+            <div class="xg_menucont">
+                <ul>
+
+                    <li <if condition="$menu eq 'index'">class="xg_cur"</if>><a href="<!--{:U('Home/Index/index')}-->">首  页</a></li>
+                    <if condition="$newsOpen eq 1">
+                    <li><a href="<!--{$cfg.url_news}-->">新  闻</a></li>
+                    </if>
+                    <li <if condition="$menu eq 'sale'">class="xg_cur"</if>><a href="<!--{:U('Home/Sell/index')}-->">二手房</a></li>
+                    <li <if condition="$menu eq 'rent'">class="xg_cur"</if>><a href="<!--{:U('Home/Rent/index')}-->">租  房</a></li>
+                    <if condition="$newhouseOpen eq 1">
+                    <li <if condition="$menu eq 'newHouse'">class="xg_cur"</if>><a href="<!--{$cfg.url_newHouse}-->">新  房</a></li>
+                    </if>
+                    <li <if condition="$menu eq 'broker'">class="xg_cur"</if>><a href="<!--{:U('Home/Broker/index')}-->">经纪人</a></li>
+                    <li <if condition="$menu eq 'community'">class="xg_cur"</if>><a href="<!--{:U('Home/Community/index')}-->">小  区</a></li>
+                    <li <if condition="$menu eq 'company'">class="xg_cur"</if>><a href="<!--{:U('Home/Company/index')}-->">公  司</a></li>
+                    <if condition="$bbsOpen eq 1">
+                    <li><a href="<!--{$cfg.url_bbs}-->">论  坛</a></li>
+                    </if>
+                </ul>
+                <span class="xg_map"><a href="<!--{$cfg.url}-->m/map">地图找房</a></span>  </div>
+            <i></i>
+        </div>
+    </div>
+    <div class="xg_line"></div>
+
+</div>
+<!-- 新增部分结束 -->

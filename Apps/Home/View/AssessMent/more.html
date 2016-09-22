@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common/head"/>
+
+    <css file="__PUBLIC__/css/common.css"/>
+    <css file="__PUBLIC__/css/pinggu.css"/>
+    <css file="__PUBLIC__/css/header.css"/>
+    <css file="__PUBLIC__/css/Home_Home2.css"/>
+    <js file="__PUBLIC__/js/jquery.min.js"/>
+    <js file="__PUBLIC__/js/FormValid.js"/>
+    <js file="__PUBLIC__/js/FV_onBlur.js"/>
+</head>
+
+<body>
+<include file="Common/selltop"/>
+<div id="box">
+    <!-- 头部 -->
+    <div id="header">
+        <!-- 左侧小区列表 -->
+        <div id="main">
+            <div class="initialTip">
+                <p>
+                    <span class="size14px">你评估的房产：</span><span class="colorF90 weightBold size14px familyAlpha"> <!--{$city}-->市<!--{$dataInfo.borough_info.borough_name}-->*室*号</span>
+                </p>
+                <p>
+                    <span class="size16px weightBold">交易初始评估价：</span><span class="colorF90 size16px weightBold familyAlpha"><!--{$dataInfo.house_totalprice}-->万元</span><span class="colorF90 size12px familyAlpha">(<!--{$dataInfo.house_avgprice}-->元/㎡)</span>&nbsp;&nbsp;
+                    <span class="size16px weightBold">抵押初始评估价：</span><span class="colorF90 size16px weightBold familyAlpha"><!--{$dataInfo.house_pgprice}-->万元</span><span class="colorF90 size12px familyAlpha">(<!--{$dataInfo.house_avgpgprice}-->元/㎡)</span>&nbsp;&nbsp;
+                    <span><a class="color690 size12px" href="<!--{:U(MODULE_NAME.'/Assessment/report')}-->/id/<!--{$dataInfo.id}-->" target="_blank">查看初评报告</a></span>
+                </p>
+            </div>
+            <div class="topicBg"><span class="topicText">房产详细估价</span></div>
+            <div class="leftBg">
+                <form id="dataForm" method="POST" action="<!--{:U(MODULE_NAME.'/Assessment/more')}-->/action/save/id/<!--{$dataInfo.id}-->"  onsubmit="return validator(this)" >
+                    <input type="hidden" name="id" value="<!--{$dataInfo.id}-->">
+                    <p>
+                        <span class="itemTitle">装修情况：</span>
+					<span>
+					<foreach name="house_fitment_option" item="item">
+                        <if condition="$key eq 1">
+						<label for="house_fitment_<!--{$key}-->"><input type="radio" id="house_fitment_<!--{$key}-->" name="house_fitment" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择装修情况!" onclick="setFitment(<!--{$fitment_quotiety_option.$key}-->)" /><!--{$item}--></label>&nbsp;&nbsp;
+                        <else/>
+						<label for="house_fitment_<!--{$key}-->"><input type="radio" id="house_fitment_<!--{$key}-->" name="house_fitment" value="<!--{$key}-->"  onclick="setFitment(<!--{$fitment_quotiety_option.$key}-->)" /><!--{$item}--></label>&nbsp;&nbsp;
+                        </if>
+                        </foreach>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle">装修费用：</span>
+                        <span><input type="text" class="input" size="10" id="fitment_price" name="fitment_price" valid="required|isNumber" errmsg="请输入装修费用!|请输入数字！" />&nbsp;万元&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="itemTitle">装修年限：</span>
+					<span>
+						<select name="fitment_year" valid="required" errmsg="请选择装修年限!">
+                            <option value="">装修年限</option>
+                            <option value="1">1年</option>
+                            <option value="2">2年</option>
+                            <option value="3">3年</option>
+                            <option value="4">4年</option>
+                            <option value="5">5年</option>
+                            <option value="6">6年</option>
+                            <option value="7">7年</option>
+                            <option value="8">7年以上</option>
+                        </select>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle">房产位置：</span>
+					<span>
+					<foreach name="house_place_option" item="item">
+                        <if condition="$key eq 1">
+						<label for="house_place_<!--{$key}-->"><input type="radio" id="house_place_<!--{$key}-->" name="house_place" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房产位置!" /><!--{$item}--></label>&nbsp;&nbsp;
+                        <else/>
+						<label for="house_place_<!--{$key}-->"><input type="radio" id="house_place_<!--{$key}-->" name="house_place" value="<!--{$key}-->" /><!--{$item}--></label>&nbsp;&nbsp;
+                       </if>
+                        </foreach   ><span class="color999">（适合较大规模社区选择）</span>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle">房产景观：</span>
+					<span>
+					<foreach name="house_view_option" item="item">
+                        <if condition="$key eq 1">
+						<label for="house_view_<!--{$key}-->"><input type="radio" id="house_view_<!--{$key}-->" name="house_view" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房产位置!" /><!--{$item}--></label>&nbsp;&nbsp;
+                        <else/>
+						<label for="house_view_<!--{$key}-->"><input type="radio" id="house_view_<!--{$key}-->" name="house_view" value="<!--{$key}-->" /><!--{$item}--></label>&nbsp;&nbsp;
+                       </if>
+                        </foreach><span class="color999">（沿海、沿江、沿湖边及超高层电梯楼房为景观好，其他为一般）</span>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle">采光通风：</span>
+					<span>
+					<foreach name="house_light_option" item="item">
+                        <if condition="$key eq 1">
+						<label for="house_light_<!--{$key}-->"><input type="radio" id="house_light_<!--{$key}-->" name="house_light" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择房产位置!" /><!--{$item}--></label>&nbsp;&nbsp;
+                        <else/>
+						<label for="house_light_<!--{$key}-->"><input type="radio" id="house_light_<!--{$key}-->" name="house_light" value="<!--{$key}-->" /><!--{$item}--></label>&nbsp;&nbsp;
+                       </if>
+                        </foreach><span class="color999">（影响采光通风因素包括房产的朝向、楼层、楼距及是否为高大建筑体或自然体遮挡）</span>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle">噪音情况：</span>
+					<span>
+					<foreach name="house_noise_option" item="item">
+                        <if condition="$key eq 1">
+						<label for="house_noise_<!--{$key}-->"><input type="radio" id="house_noise_<!--{$key}-->" name="house_noise" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择噪音情况!" /><!--{$item}--></label>&nbsp;&nbsp;
+                        <else/>
+						<label for="house_noise_<!--{$key}-->"><input type="radio" id="house_noise_<!--{$key}-->" name="house_noise" value="<!--{$key}-->" /><!--{$item}--></label>&nbsp;&nbsp;
+                       </if>
+                        </foreach>
+					</span>
+                    </p>
+                    <p>
+                        <span class="itemTitle">建筑质量：</span>
+					<span>
+					<foreach name="house_quality_option" item="item">
+                        <if condition="$key eq 1">
+						<label for="house_quality_<!--{$key}-->"><input type="checkbox" id="house_quality_<!--{$key}-->" name="house_quality[]" value="<!--{$key}-->" valid="requireChecked" errmsg="请选择建筑质量!" /><!--{$item}--></label>&nbsp;&nbsp;
+                        <else/>
+						<label for="house_quality_<!--{$key}-->"><input type="checkbox" id="house_quality_<!--{$key}-->" name="house_quality[]" value="<!--{$key}-->" /><!--{$item}--></label>&nbsp;&nbsp;
+                       </if>
+                        </foreach>
+					</span>
+                    </p>
+                    <div class="pgBtn">
+                        <input class="moreBtn" type="submit" value="" />&nbsp;
+                        <input class="modifyBtn" type="button" value=""  />
+                        <script>
+                            $('.modifyBtn').click(function(){
+                                location.href="<!--{:U(MODULE_NAME.'/Assessment/index')}-->/id/<!--{$dataInfo.id}-->";
+                                return false
+                            })
+                        </script>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- 左侧小区列表 结束 -->
+        <!-- 右侧 -->
+        <div id="rightBox">
+            <div id="rightBox">
+                <div class="hz_list_pub">
+                    <div class="gpf_content">
+                        <h2 class="title_top">您有房屋出售吗？</h2>
+                        <p class="text">您通过此处发布购房者无需缴纳<span>中介费</span></p>
+                        <div class="pub_btn_box">
+                            <a target="_blank" class="pub_but" hidefocus="true" title="个人房东发布" href="<!--{:U(MODULE_NAME.'/Guest/houseSale')}-->"></a>
+                        </div>
+                    </div>
+                </div>
+                <include file="Common/saleRent_AD"/>
+            </div>
+            <!-- 右侧 结束 -->
+
+        </div>
+        <script language="javascript">
+            function setFitment(itemPrice){
+                var i = itemPrice * <!--{$dataInfo.house_totalarea}-->/10000;
+                document.getElementById("fitment_price").value = i.toFixed(2);
+            }
+        </script>
+        <div class="blank"></div>
+        <!-- 底部 --><include file="Common/foot"/><!-- 底部 -->
+</body>
+</html>
