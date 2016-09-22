@@ -208,7 +208,9 @@ class LoginController extends Controller{
             }else{
                 //写入cookie
                 if(isset($notForget) && $notForget==1){//记住密码一年
-                    setcookie('AUTH_MEMBER_FORGET',$username,time()+60*60*24*365,'/',C('COOKIE_DOMAIN'));
+                    $auth_code = authcode($userarr['id']. "\t" . md5($passwd). "\t" .$userarr['user_type'], 'ENCODE',C('AUTH_KEY'));
+                    setcookie('AUTH_MEMBER_STRING',$auth_code,0,'/',C('COOKIE_DOMAIN'));
+                    //setcookie('AUTH_MEMBER_FORGET',$username,time()+60*60*24*365,'/',C('COOKIE_DOMAIN'));
                 }
 
                 $auth_code = authcode($userarr['id']. "\t" . md5($passwd). "\t" .$userarr['user_type'], 'ENCODE',C('AUTH_KEY'));

@@ -25,5 +25,7 @@ return array(
     'AUTH_KEY'=>'6d_cc_on_board',
     //每隔一小时验证cookie信息是否与数据库一致
     'AUTH_TIME'=>3600,
+    'AUTH_CHECKTIME'=>7200,// 间隔AUTH_CHECKTIME时间检查一次cookie信息是否和数据库一至
+
 
 );

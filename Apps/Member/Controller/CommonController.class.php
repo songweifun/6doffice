@@ -20,15 +20,14 @@ class CommonController extends Controller{
                 $authInfo = getAuthInfo();
                 $user=M('member')->where(array('id'=>$authInfo['id'],'passwd'=>$authInfo['passwd']))->find();
 
-                if ($user['id']) {
+                if ($user['id']) {//根据cookiez中的用户名密码查找到了
+                    //setcookie('AUTH_STRING',authcode($user['user_id'] . "\t" . $user['passwd'], 'ENCODE', C('AUTH_KEY')),0,'/',C('COOKIE_DOMAIN'));
+                    setcookie('AUTH_CHECKTIME', 1, time() + C('AUTH_CHECKTIME'),'/',C('COOKIE_DOMAIN'));
 
-                    setcookie('AUTH_CHECKTIME',1, time()+C('AUTH_TIME'));
-                    //重新设置cookie使用户的Cookie在2个小时内不再失效 ， 如果是cookie设置关闭即失效就没有必要
-                    /*
-                    setcookie('AUTH_MEMBER_STRING',authcode($user_id. "\t" . md5($postInfo['passwd']. "\t" .$user_type), 'ENCODE', $cfg['auth_key']),$cfg['time']+7200,'/',$cfg['domain']);
-                    setcookie('AUTH_MEMBER_NAME',$postInfo['username'],$cfg['time']+7200,'/',$cfg['domain']);
-                    $_COOKIE['AUTH_MEMBER_NAME'] = $postInfo['username'];
-                    */
+
+                }else{//根据cookiez中的用户名密码了没查找到用户直接退出
+                    setcookie('AUTH_MEMBER_STRING', 0, time()-1,'/',C('COOKIE_DOMAIN'));
+
                 }
             }
 

@@ -8,6 +8,10 @@
     <link rel="shortcut icon" href="#" type="image/png">
 
     <title>Login</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/modernizr.min.js"></script>
+
 
     <link href="__PUBLIC__/css/style.css" rel="stylesheet">
     <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
@@ -25,14 +29,20 @@
 
     <form class="form-signin" action="{:U(MODULE_NAME.'/Login/login')}" method="post">
         <div class="form-signin-heading text-center">
-            <h1 class="sign-title">Sign In</h1>
-            <img src="__PUBLIC__/images/login-logo.png" alt=""/>
+            <h1 class="sign-title">后台登录</h1>
+            <img src="__PUBLIC__/images/logo-login.png" alt=""/>
         </div>
         <div class="login-wrap">
             <input type="text" class="form-control" placeholder="用户名" name="name" autofocus>
             <input type="password" class="form-control" placeholder="密码" name="password">
             <input type="text" class="form-control" placeholder="验证码" name="verify" style="width: 150px;float: left">
-            <img src="{:U(MODULE_NAME.'/Login/verify')}" alt="" style="float: left;width: 100px;height: 38px;margin-left: 10px">
+            <img src="{:U(MODULE_NAME.'/Login/verify')}" alt="" style="float: left;width: 100px;height: 38px;margin-left: 10px" id="verifyimage">
+            <script>
+                $('#verifyimage').click(function(){
+                    var src=$(this).attr('src');
+                    $(this).attr('src',src+'/'+Math.random())
+                })
+            </script>
 
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 <i class="fa fa-check"></i>
@@ -85,9 +95,6 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
-<script src="__PUBLIC__/js/bootstrap.min.js"></script>
-<script src="__PUBLIC__/js/modernizr.min.js"></script>
 
 </body>
 </html>
