@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>六度写字楼网后台管理</title>
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a href="index.html"><img src="__PUBLIC__/images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="index.html"><img src="__PUBLIC__/images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+        <div class="left-side-inner">
+
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="__PUBLIC__/images/photos/user-avatar.png" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">John Doe</a></h4>
+                        <span>"Hello There..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">Account Information</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Layouts</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="blank_page.html"> Blank Page</a></li>
+                        <li><a href="boxed_view.html"> Boxed Page</a></li>
+                        <li><a href="leftmenu_collapsed_view.html"> Sidebar Collapsed</a></li>
+                        <li><a href="horizontal_menu.html"> Horizontal Menu</a></li>
+
+                    </ul>
+                </li>
+                <!-- 自己添加的栏目 -->
+
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-book"></i> <span>网站概况</span></a>
+                    <ul class="sub-menu-list">
+                        <li ><a href="{:U(MODULE_NAME.'/Baseinfo/webInfo')}"> 网站信息</a></li>
+                        <li class="active" ><a href="{:U(MODULE_NAME.'/WebConfig/webConfig')}"> 网站配置</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>房源管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="general.html"> 出售管理</a></li>
+                        <li><a href="buttons.html"> 出租管理</a></li>
+                        <li><a href="tabs-accordions.html"> 求购管理</a></li>
+                        <li><a href="typography.html"> 求租管理</a></li>
+                        <li><a href="slider.html"> 委托出售</a></li>
+                        <li><a href="panels.html"> 房源虚假举报</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>Components</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="grids.html"> Grids</a></li>
+                        <li><a href="gallery.html"> Media Gallery</a></li>
+                        <li><a href="calendar.html"> Calendar</a></li>
+                        <li><a href="tree_view.html"> Tree View</a></li>
+                        <li><a href="nestable.html"> Nestable</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="fontawesome.html"><i class="fa fa-bullhorn"></i> <span>Fontawesome</span></a></li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-envelope"></i> <span>Mail</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="mail.html"> Inbox</a></li>
+                        <li><a href="mail_compose.html"> Compose Mail</a></li>
+                        <li><a href="mail_view.html"> View Mail</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>Forms</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="form_layouts.html"> Form Layouts</a></li>
+                        <li><a href="form_advanced_components.html"> Advanced Components</a></li>
+                        <li><a href="form_wizard.html"> Form Wizards</a></li>
+                        <li><a href="form_validation.html"> Form Validation</a></li>
+                        <li><a href="editors.html"> Editors</a></li>
+                        <li><a href="inline_editors.html"> Inline Editors</a></li>
+                        <li><a href="pickers.html"> Pickers</a></li>
+                        <li><a href="dropzone.html"> Dropzone</a></li>
+                        <li><a href="http://www.weidea.net"> More</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>Charts</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="flot_chart.html"> Flot Charts</a></li>
+                        <li><a href="morris.html"> Morris Charts</a></li>
+                        <li><a href="chartjs.html"> Chartjs</a></li>
+                        <li><a href="c3chart.html"> C3 Charts</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="basic_table.html"> Basic Table</a></li>
+                        <li><a href="dynamic_table.html"> Advanced Table</a></li>
+                        <li><a href="responsive_table.html"> Responsive Table</a></li>
+                        <li><a href="editable_table.html"> Edit Table</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href="#"><i class="fa fa-map-marker"></i> <span>Maps</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="google_map.html"> Google Map</a></li>
+                        <li><a href="vector_map.html"> Vector Map</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Extra Pages</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="profile.html"> Profile</a></li>
+                        <li><a href="invoice.html"> Invoice</a></li>
+                        <li><a href="pricing_table.html"> Pricing Table</a></li>
+                        <li><a href="timeline.html"> Timeline</a></li>
+                        <li><a href="blog_list.html"> Blog List</a></li>
+                        <li><a href="blog_details.html"> Blog Details</a></li>
+                        <li><a href="directory.html"> Directory </a></li>
+                        <li><a href="chat.html"> Chat </a></li>
+                        <li><a href="404.html"> 404 Error</a></li>
+                        <li><a href="500.html"> 500 Error</a></li>
+                        <li><a href="registration.html"> Registration Page</a></li>
+                        <li><a href="lock_screen.html"> Lockscreen </a></li>
+                    </ul>
+                </li>
+                <li><a href="login.html"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
+
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+        <form action="">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-offset-0">
+                        <table class="table  table-hover table-condensed table-bordered">
+                            <tr >
+                                <td class="success text-center" colspan="2">
+                                    <h4>基本信息</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>网站标题</strong></th>
+                                <td >
+                                    <input name="webConfig[base_title]" type="text"  size="30" value="{$webConfig.base_title}" /> </td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>网站名称</strong></th>
+                                <td >
+                                    <input name="webConfig[base_titlec]" type="text"  size="30" value="{$webConfig.base_titlec}" /> <font color="#999999">要与网站标题一致</font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>所在城市</strong></th>
+                                <td >
+                                    <input name="webConfig[base_city]" type="text"  size="30" value="{$webConfig.base_city}" /> <font color="#999999">您当前所在的城市</font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>地图城市</strong></th>
+                                <td >
+                                    <input name="webConfig[base_mapcity]" type="text"  size="30" value="{$webConfig.base_mapcity}" /> <font color="#999999">地图归属地区 （例如：哈尔滨市 一定要加“市”）</font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>城市地图lat坐标</strong></th>
+                                <td >
+                                    <input name="webConfig[lat]" type="text"  size="30" value="{$webConfig.lat}" /> <a href="http://www.yanwee.com/forum.php?mod=viewthread&tid=30793" target="_blank">如何设置lat与lnt坐标？</td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-right"><strong>城市地图lnt坐标</strong></th>
+                                <td >
+                                    <input name="webConfig[lnt]" type="text"  size="30" value="{$webConfig.lnt}" /></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>城市切换地址</strong></th>
+                                <td >
+
+                                    <input name="webConfig[switch_url]" type="text"  size="30" value="{$webConfig.switch_url}" /> <font color="#999999">输入切换城市地址既开启切换城市，如果为空是关闭状态</font></td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-right"><strong>切换默认城市地址</strong></th>
+                                <td >
+
+                                    <input name="webConfig[citySwitch_site]" type="text"  size="30" value="{$webConfig.citySwitch_site}" /> <font color="#999999">如果访客所在城市没有开通，则默认跳转到该站，留空则访问切换页面</font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>是否房源自动过期</strong></th>
+                                <td >
+                                    <input name="webConfig[expired_switch]" type="radio" id="1" value="1" <if condition="$webConfig.expired_switch eq 1"> checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[expired_switch]" id="1" value="2" <if condition="$webConfig.expired_switch eq 2"> checked="checked"  </if> /> 否
+
+                                    <font color="#999999">如果开启 超过7天未刷新的房源将下架处理，发布超过90天的房源自动删除</font></td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-right"><strong>实名认证</strong></th>
+                                <td >
+                                    <input name="webConfig[base_is_shop]" type="radio" id="1" value="1" <if condition="$webConfig.base_is_shop eq 1"> checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[base_is_shop]" id="1" value="2" <if condition="$webConfig.base_is_shop eq 2"> checked="checked"  </if> /> 否
+
+                                    <font color="#999999">经纪人是否需要实名认证才开通网店</font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>游客发布</strong></th>
+                                <td >
+                                    <input name="webConfig[base_is_guest]" type="radio" id="1" value="1" <if condition="$webConfig.base_is_guest eq 1"> checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[base_is_guest]" id="1" value="2" <if condition="$webConfig.base_is_guest eq 2"> checked="checked"  </if> /> 否
+
+                                    <font color="#999999">是否开通游客发布功能</font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>经纪人免费注册</strong></th>
+                                <td >
+                                    <input name="webConfig[base_member_open]" type="radio" id="1" value="1" <if condition="$webConfig.base_member_open eq 1"> checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[base_member_open]" id="1" value="2" <if condition="$webConfig.base_member_open eq 2"> checked="checked"  </if> /> 否
+
+                                    <font color="#999999">是否开通免费经纪人注册</font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>是否开启ucenter</strong></th>
+                                <td >
+
+                                    <input name="webConfig[base_uc]" type="radio" id="1" value="1" <if condition="$webConfig.base_uc eq 1"> checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[base_uc]" id="1" value="2" <if condition="$webConfig.base_uc eq 2"> checked="checked"  </if> /> 否
+                                    <a href="http://www.yanwee.com/forum.php?mod=viewthread&tid=30792" target="_blank">如何整合ucenter？</a></td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-right"><strong>新闻频道</strong></th>
+                                <td >
+                                    <input name="webConfig[newsOpen]" type="radio" id="1" value="1" <if condition="$webConfig.newsOpen eq 1"> checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[newsOpen]" id="1" value="2" <if condition="$webConfig.newsOpen eq 2"> checked="checked"  </if> /> 否
+
+
+                                    <font color="#999999">是否开启新闻频道</font> <a href="http://www.yanwee.com/forum.php?mod=viewthread&tid=30791" target="_blank">如何安装新闻频道？</a></td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-right"><strong>新房频道</strong></th>
+                                <td >
+                                    <input name="webConfig[newhouseOpen]" type="radio" id="1" value="1" <if condition="$webConfig.newhouseOpen eq 1" >checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[newhouseOpen]" id="1" value="2" <if condition="$webConfig.newhouseOpen eq 2"> checked="checked"  </if> /> 否
+                                    <font color="#999999">是否开启新房频道</font> </td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-right"><strong>论坛频道</strong></th>
+                                <td >
+
+                                    <input name="webConfig[bbsOpen]" type="radio" id="1" value="1" <if condition="$webConfig.bbsOpen eq 1" >checked="checked"  </if> /> 是
+                                    <input type="radio" name="webConfig[bbsOpen]" id="1" value="2" <if condition="$webConfig.bbsOpen eq 2"> checked="checked"  </if> /> 否
+                                    <font color="#999999">是否开启新闻频道 <a href="http://www.yanwee.com/forum.php?mod=viewthread&tid=30790" target="_blank"> 如何安装整合论坛？</a></font></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>新浪微博ID</strong></th>
+                                <td >
+                                    <input name="webConfig[sinaapp]" type="text"  size="30" value="{$webConfig.sinaapp}" /><font color="#999999"> 输入新浪微博ID</font></td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-right"><strong>统计代码</strong></th>
+                                <td ><textarea name="webConfig[base_tongji]" cols="30" rows="5">{$webConfig.base_tongji}</textarea> <a href="http://new.cnzz.com/user/reg.php?b951a832370420ba4a334e07b526d84a">申请CNZZ统计代码</a></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>备案信息</strong></th>
+                                <td >
+                                    <input name="webConfig[base_beian]" type="text"  size="30" value="{$webConfig.base_beian}" /></td>
+                            </tr>
+
+                            <tr >
+                                <td class="success text-center" colspan="2">
+                                    <h4>联系方式</h4>
+                            </tr>
+
+
+                            <tr >
+                                <th class="text-right"><strong>公司名称</strong></th>
+                                <td >
+                                    <input name="webConfig[contact_gongsi]" type="text"  size="30" value="{$webConfig.contact_gongsi}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>公司地址</strong></th>
+                                <td >
+                                    <input name="webConfig[contact_dizhi]" type="text"  size="30" value="{$webConfig.contact_dizhi}" /></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>邮政编号</strong></th>
+                                <td >
+                                    <input name="webConfig[contact_youbian]" type="text"  size="30" value="{$webConfig.contact_youbian}" /></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>传真</strong></th>
+                                <td >
+                                    <input name="webConfig[contact_chuanzhen]" type="text"  size="30" value="{$webConfig.contact_chuanzhen}" /></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>联系电话</strong></th>
+                                <td >
+                                    <input name="webConfig[contact_dianhua]" type="text"  size="30" value="{$webConfig.contact_dianhua}" /></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>客服热线</strong></th>
+                                <td >
+                                    <input name="webConfig[contact_rexian]" type="text"  size="30" value="{$webConfig.contact_rexian}" /></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right"><strong>QQ号码</strong></th>
+                                <td >
+                                    <input name="webConfig[contact_qq]" type="text"  size="30" value="{$webConfig.contact_qq}" /></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="2" height="50" class="align_c"><input type="Submit" value="保存配置" class="btn btn-primary"></td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </form>
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
+<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
+<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>

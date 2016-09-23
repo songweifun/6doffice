@@ -18,11 +18,11 @@ class LoginController extends Controller{
      * 登录验证
      */
     public function login(){
-        //p($_POST);
+        p($_POST);
         $code=I('post.verify');
         $verify = new \Think\Verify();
         $user=D('Users');
-        $username=I('post.name');
+        $username=trim(I('post.name'));
         $passwd=I('post.password');
         $userInfo=$user->where(array('username'=>$username))->find();
         if(!$verify->check($code)) $this->error('验证码错误');
