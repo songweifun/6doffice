@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>Responsive Table</title>
+
+    <!--responsive table-->
+    <link href="__PUBLIC__/css/table-responsive.css" rel="stylesheet" />
+
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common/header_section"/>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                Responsive Table
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Data Table</a>
+                </li>
+                <li class="active"> Responsive Table </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <section class="panel">
+                        <header class="panel-heading">
+                            信息统计
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                   <thead class="cf">
+                                        <tr class="success">
+                                            <th class="numeric">二手房</th>
+                                            <th class="numeric">租房</th>
+                                            <th class="numeric">经纪人</th>
+                                            <th class="numeric">小区</th>
+                                            <th class="numeric">二手房均价</th>
+                                            <th class="numeric">出售置顶</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="numeric">{$statistics.sellNum}套</td>
+                                            <td class="numeric">{$statistics.rentNum}套</td>
+                                            <td class="numeric">{$statistics.brokerNum}人</td>
+                                            <td class="numeric">{$statistics.boroughNum}个</td>
+                                            <td class="numeric">{$val.avgprice}元/平方</td>
+                                            <td class="numeric">{$Unaudited_housesell}套</td>
+
+                                        </tr>
+
+                                    </tbody>
+                                    <thead class="cf">
+                                        <tr class="success">
+                                            <th class="numeric">出租置顶</th>
+                                            <th class="numeric">新房</th>
+                                            <th class="numeric">中介公司</th>
+                                            <th class="numeric">搬家公司</th>
+                                            <th class="numeric">装修公司</th>
+                                            <th class="numeric"></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="numeric">{$Unaudited_houserent}套</td>
+                                            <td class="numeric">{$newhouse}套</td>
+                                            <td class="numeric">{$companyCount}家</td>
+                                            <td class="numeric">{$moveCompanyCount}家</td>
+                                            <td class="numeric">{$decorationCompanyCount}家</td>
+                                            <td class="numeric"></td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </section>
+                    <section class="panel">
+                        <header class="panel-heading">
+                            当前需要处理
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <section id="">
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                    <tr class="success">
+                                        <th class="numeric">审核小区</th>
+                                        <th class="numeric">身份审核</th>
+                                        <th class="numeric">资质审核</th>
+                                        <th class="numeric">头像审核</th>
+                                        <th class="numeric">未开通经纪人</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="numeric">{$borough_num}个</td>
+                                        <td class="numeric">{$broker_id}位</td>
+                                        <td class="numeric">{$broker_api}位</td>
+                                        <td class="numeric">{$broker_avatar}</td>
+                                        <td class="numeric">{$noOpen}位</td>
+
+                                    </tr>
+
+                                    </tbody>
+                                    <thead class="cf">
+                                    <tr class="success">
+                                        <th class="numeric">个人出租审核</th>
+                                        <th class="numeric">个人出售审核</th>
+                                        <th class="numeric">求购审核</th>
+                                        <th class="numeric">求租审核</th>
+                                        <th class="numeric">未受理委托房源</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="numeric">{$guestRent}套</td>
+                                        <td class="numeric">{$guestSale}套</td>
+                                        <td class="numeric">{$Unaudited_buy}套</td>
+                                        <td class="numeric">{$Unaudited_hold}套</td>
+                                        <td class="numeric">{$consignCount}套</td>
+
+                                    </tr>
+
+                                    </tbody>
+                                    <thead class="cf">
+                                    <tr class="success">
+                                        <th class="numeric">小区更新</th>
+                                        <th class="numeric">未受理加盟信息</th>
+                                        <th class="numeric"></th>
+                                        <th class="numeric"></th>
+                                        <th class="numeric"></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="numeric">{$xiaoqu_num}个</td>
+                                        <td class="numeric">{$UunionCount}个</td>
+                                        <td class="numeric"></td>
+                                        <td class="numeric"></td>
+                                        <td class="numeric"></td>
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </section>
+                    <section class="panel">
+                        <header class="panel-heading">
+                            商业服务
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <section id="">
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                    <tr class="success">
+                                        <th class="numeric">版本信息</th>
+                                        <th class="numeric">授权</th>
+                                        <th class="numeric">在线服务</th>
+                                        <th class="numeric">论坛服务</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="numeric">{$version}</td>
+                                        <td class="numeric"></td>
+                                        <td class="numeric">$1.38</td>
+                                        <td class="numeric">-0.01</td>
+
+
+                                    </tr>
+
+                                    </tbody>
+                                    
+                                </table>
+                            </section>
+                        </div>
+                    </section>
+
+                </div>
+                <div class="col-sm-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            服务器信息
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <section id="">
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                    <tr class="success">
+                                        <th class="numeric">操作系统/PHP</th>
+                                        <th class="numeric">magic_quotes_gpc</th>
+                                        <th class="numeric">上传大小</th>
+                                        <th class="numeric">MYSQL版本</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="numeric">{$xitong}/{$banben}</td>
+                                        <td class="numeric"><if condition="$mag eq 1">on<else/><font color="#FF0000">off</font></if></td>
+                                        <td class="numeric">{$sysinfo['max_upload']}</td>
+                                        <td class="numeric">{$sysinfo['mysql_version']}</td>
+                                        
+
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </section>
+                        </div>
+                    </section>
+
+
+
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer>
+            2014 &copy; AdminEx by <a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>
+
+
