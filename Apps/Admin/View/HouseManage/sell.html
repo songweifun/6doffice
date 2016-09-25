@@ -12,17 +12,9 @@
     <!-- bootstrap -->
 
     <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
-    <!--icheck-->
-    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
 
-    <!--dashboard calendar-->
-    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
 
-    <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
 
     <!--common-->
     <link href="__PUBLIC__/css/style.css" rel="stylesheet">
@@ -36,6 +28,8 @@
     <script src="__PUBLIC__/js/html5shiv.js"></script>
     <script src="__PUBLIC__/js/respond.min.js"></script>
     <![endif]-->
+
+    <css file="__PUBLIC__/css/admin.css"/>
 </head>
 
 <body class="sticky-header">
@@ -51,6 +45,208 @@
         <!-- header section start-->
         <include file="Common:header_section"/>
         <!-- header section end-->
+
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>出售房源管理</caption>
+
+            <td>
+                <a href="sell.php?check=0"><if condition="$Think.get.check eq 0"><font class="red">全部房源</font><else/>全部房源</if></a> |
+                <a href="sell.php?check=10"><if condition="$Think.get.check eq 10"><font class="red">置顶</font><else/>置顶</if></a> |
+                <a href="sell.php?check=5"><if condition="$Think.get.check eq 5"><font class="red">首页推荐</font><else/>首页推荐</if></a> |
+                <a href="sell.php?check=11"><if condition="$Think.get.check eq 11"><font class="red">猜你喜欢</font><else/>猜你喜欢</if></a> |
+                <a href="sell.php?check=12"><if condition="$Think.get.check eq 12"><font class="red">主题推荐</font><else/>主题推荐</if></a>
+
+                <if condition="$guest eq 1">
+                | <a href="sell.php?check=2"><if condition="$Think.get.check eq 2"><font class="red">游客审核</font><else/>游客审核</if></a>
+                </if> |
+                <a href="sell.php?check=13"><if condition="$Think.get.check eq 13"><font class="red">昨日房源</font><else/>昨日房源</if></a>
+                <hr>
+                <a href="sell.php?check=6"><if condition="$Think.get.check eq 6"><font class="red">出售</font><else/>出售</if></a> |
+                <a href="sell.php?check=7"><if condition="$Think.get.check eq 7"><font class="red">下架</font><else/>下架</if></a> |
+                <a href="sell.php?check=9"><if condition="$Think.get.check eq 9"><font class="red">已成交</font><else/>已成交</if></a>
+
+            </td>
+
+        </table>
+
+        <form name="search" method="get" action="{:U(MODULE_NAME.'/HouseManage/sell')}/action/search">
+            <input type="hidden" name="action" value="search">
+            <table cellpadding="0" cellspacing="1" class="table">
+                <caption>信息查询</caption>
+                <tr class="text-center">
+                    <td class="align_c">
+                        <select name='cityarea'>
+                            <option value="">所在区域</option>
+                                <foreach name="areaLists" item="item">
+                                <if condition="$cityarea eq $key">
+                                    <option value="{$key}" selected>{$item}</option>
+                                <else/>
+                                    <option value="{$key}">{$item}</option>
+                                </if>
+                            </foreach>
+                        </select>
+                        <input type="text" name="q" onblur="if(this.value ==''||this.value == '请输入房源编号'){this.value = '请输入房源编号';this.style.color = '#999999';}" onfocus="if(this.value == '请输入房源编号'){this.value = '';this.style.color = '#333333';}" value="<if condition='$q neq null'>{$q}<else/>请输入房源编号</if>" size="35" />&nbsp;
+                        <input type="submit" name="dosubmit" value=" 查询 " class="btn btn-primary"/>
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <form method="POST" action="">
+            <input type="hidden" name="action" value="dateDel" />
+            <table cellpadding="0" cellspacing="1" class="table">
+                <caption>删除房源</caption>
+                <tr class="text-center">
+                    <td class="align_c">
+                        时间：<input style="color:#999999" type="text" name="dateDel" onblur="if(this.value ==''||this.value == '请输入时间。例：2012-02-12'){this.value = '请输入时间。例：2012-02-12';this.style.color = '#999999';}" onfocus="if(this.value == '请输入时间。例：2012-02-12'){this.value = '';this.style.color = '#333333';}" value="请输入时间。例：2012-02-12" size="35" />&nbsp;
+                        <input class="btn btn-primary" type="submit" name="dosubmit" value=" 删除 " />*删除小于这个时间的房源
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <if condition="$Think.get.check eq 12">
+            <form name="editForm" method="POST" action="sell.php?action=saveThemes">
+                <table cellpadding="0" cellspacing="1" class="table_form">
+                    <caption>主题管理</caption>
+                    <tr>
+                        <td class="align_c">
+                            主题描述：<input type="text" name="webConfig[themesDescription]" value="{$webConfig.themesDescription}" size="50" />&nbsp;
+                            主题寄语：<input type="text" name="webConfig[themesMessage]" value="{$webConfig.themesMessage}" size="50" />&nbsp;
+                            <input type="submit" name="dosubmit" value=" 确定 " />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </if>
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="2" class="table table-hover table-bordered table-striped">
+                <caption>出售信息管理</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th width="120">小区/房源标题</th>
+                    <th width="100">经纪人/房东</th>
+                    <th width="80">区域/类型</th>
+                    <th width="90">房源信息</th>
+                    <th width="80">状态</th>
+                    <th width="80">特征</th>
+                    <th width="50">置顶</th>
+                    <th width="80">房源属性</th>
+                    <th width="60">楼层</th>
+                    <th width="100">户型图</th>
+                    <th width="250">实景图</th>
+                    <th width="60">点击数</th>
+                    <th width="100">发布时间</th>
+                    <th width="100">操作</th>
+                </tr>
+                <tbody>
+                <foreach name="dataList" item="item">
+                    <tr>
+                        <td class="align_c" >
+                            <input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.house_title}">
+                        </td>
+                        <td>
+                            <a href="{:U('Home/Sell/detail')}/id/{$item.id}" target="_blank">{$item.borough_name}<br/>{$item.house_title} </a> &nbsp;
+                        </td>
+                        <td class="align_c">
+                            <if condition="($item.broker_id eq 0) and ($item.consigner_id neq 0)">
+                            {$item.consigner_name}
+                                <elseif condition="($item.broker_id neq 0) and ($item.consigner_id eq 0)"/>
+                            <a href="{$cfg.url_shop}{$item.broker_id}" target="_blank">{$item.real_name}</a>
+                            <else/>
+                            <font color="#FF0000">游客</font>
+                            </if>
+                        </td>
+                        <td class="align_c">{$item.cityarea_id}<br/>{$item.house_type} </td>
+                        <td class="align_c">{$item.house_room}室{$item.house_hall}厅{$item.house_toilet}卫{$item.house_veranda}阳 <br/>{$item.house_totalarea}平{$item.house_price}万</td>
+                        <td class="align_c">
+                            <if condition="$item.is_checked eq 0"><font color="red">未审核</font></if>
+                            <if condition="$item.is_checked eq 1">已审核<br /></if>
+                            <if condition="$item.is_checked eq 2">审核不通过</if>
+
+
+                        </td>
+                        <td class="align_c">
+                            <if condition="$item.is_index eq 1"><font color="red">首页推荐</font><else/>首页正常</if>
+                            <br /><if condition="$item.is_like eq 1"><font color="red">猜你喜欢</font><else/>喜欢正常</if>
+                            <br /><if condition="$item.is_themes eq 1"><font color="red">主题推荐</font><else/>主题正常</if>
+                        </td>
+
+
+                        <td class="align_c">
+                            <if condition="$item.is_top eq 1"><font color="red">置顶</font><else/>正常</if>
+                        </td>
+                        <td class="align_c">
+                            <if condition="$item.status eq 1">
+                            出售
+                            <elseif condition="$item.status eq 2"/>
+                            <font color="red">下架</font>
+                            <elseif condition="$item.status eq 4"/>
+                            <font color="red"> 已成交</font>
+                            </if>
+                        </td>
+                        <td class="align_c">{$item.house_floor}F/{$item.house_topfloor}F</td>
+                        <td class="align_c">
+                            <if condition="$item.house_drawing neq null">
+                            <div id="draw_div_{$item.id}" class="upload_shower" >
+                                <a href="managePic.php?house_id={$item.id}&class=sell&type=pic" onclick="showBox('{$item.id}','sell','draw');return false;" onmouseover="showDraw('draw_div_{$item.id}','{$item.id}','{$item.house_drawing}');return false;">
+                                    <img src="__ROOT__/Uploads/{$item.house_drawing}" width="64" height="48">
+                                </a>
+                            </div>
+                            </if>
+                        </td>
+                        <td>
+                            <foreach name="item.house_pic" item="pic_item">
+                                <div id="pic_div_{$item.id}_{$pic_item.id}" class="upload_shower" style="float:left; padding:3px 3px 3px 3px">
+                                    <if condition="$pic_item['pic_thumb'] neq null">
+                                        <assign name="imurl" value="$pic_item['pic_thumb']"/>
+                                    <else/>
+                                        <assign name="imurl" value="$pic_item['pic_url']"/>
+                                    </if>
+
+                                    <a href="managePic.php?house_id={$item.id}&class=sell&type=pic" onclick="showBox('{$item.id}','sell','pic');return false;" onmouseover="showPic('pic_div_{$item.id}_{$pic_item.id}','{$pic_item.id}','{$imurl}');return false;">
+                                        <img  src="__ROOT__/Uploads/<if condition='$pic_item.pic_thumb neq null'>{$pic_item.pic_thumb}<else/>{$pic_item.pic_url}</if>" width="64" height="48">
+                                    </a>
+                                </div>
+                            </foreach>
+                        </td>
+                        <td>今日：<font color="#FF0000">{$item.today_click}</font>次<br />
+                            昨日：<font color="#FF0000">{$item.yestoday_click}</font>次<br />
+
+                            总：<font color="#FF0000">{$item.click_num}</font>次</td>
+                        <td>{$item.created|date='Y-m-d',###}</td>
+                        <td><a target="_blank" href="{:U('Home/Sell/detail')}/id/{$item.id}">查看</a> | <a href="saleEdit.php?id={$item.id}">编辑</a></td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').prop('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+
+                <if condition="$Think.get.check eq 2">
+                <input class="btn btn-primary" type="button" value=" 审核通过 " onclick="if(confirm('你确认审核通过选中的条目么？')){myform.action='__ACTION__/action/docheck/status/1';myform.submit();}">
+                <input class="btn btn-primary" type="button" value=" 删除 " onclick="if(confirm('删除会给用户发送“删除”的站内信，你确认删除选中的条目么？')){myform.action='__ACTION__/action/delete';myform.submit();}">
+                <else/>
+                <input class="btn btn-primary" type="button" value=" 删除 " onclick="if(confirm('删除会给用户发送“删除”的站内信，你确认删除选中的条目么？')){myform.action='__ACTION__/action/delete';myform.submit();}">
+                <input class="btn btn-primary" type="button" value=" 首页推荐 " onclick="if(confirm('首页推荐之后将会在首页的精选二手房处显示，你确定么？')){myform.action='__ACTION__/action/isindex/status/1';myform.submit();}">
+                <input class="btn btn-primary" type="button" value=" 取消推荐 " onclick="if(confirm('取消推荐之后首页的精选二手房将不显示，你确定么？')){myform.action='__ACTION__/action/isindex/status/0';myform.submit();}">
+
+                <input class="btn btn-primary" type="button" value=" 猜你喜欢 " onclick="if(confirm('推荐之后将会在猜你喜欢栏目处显示，你确定么？')){myform.action='__ACTION__/action/islike/status/1';myform.submit();}">
+                <input class="btn btn-primary" type="button" value=" 取消喜欢 " onclick="if(confirm('取消喜欢之后喜欢栏目将不显示，你确定么？')){myform.action='__ACTION__/action/islike/status/0';myform.submit();}">
+
+                <input class="btn btn-primary" type="button" value=" 主题推荐 " onclick="if(confirm('推荐之后将会主题房源处显示，你确定么？')){myform.action='__ACTION__/action/isthemes/status/1';myform.submit();}">
+                <input class="btn btn-primary" type="button" value=" 取消主题 " onclick="if(confirm('取消主题之后主题栏目将不显示，你确定么？')){myform.action='__ACTION__/action/isthemes/status/0';myform.submit();}">
+                </if>
+
+
+            </div>
+            <div class="pagePanel">
+            {$pagePanel}
+            </div>
+            <div id="pic_shower" style="position:absolute;color:white; width:320px; right:-30px; top:-10px; z-index:10000;background-color:#6680aa;display:none;"></div>
+        </form>
+
 
 
 
@@ -71,40 +267,100 @@
 <script src="__PUBLIC__/js/modernizr.min.js"></script>
 <script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
 
-<!--easy pie chart-->
-<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
-<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
-
-<!--Sparkline Chart-->
-<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
-<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
-
-<!--icheck -->
-<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
-<script src="__PUBLIC__/js/icheck-init.js"></script>
-
-<!-- jQuery Flot Chart-->
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
-
-
-<!--Morris Chart-->
-<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
-<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
-
-<!--Calendar-->
-<script src="__PUBLIC__/js/calendar/clndr.js"></script>
-<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
-<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 
 <!--common scripts for all pages-->
 <script src="__PUBLIC__/js/scripts.js"></script>
 
-<!--Dashboard Charts-->
-<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
 
 
+<script language="javascript">
+    function showPic(picDiv,picId,picUrl){
+        //alert('aaaa');
+        if (!e) var e = window.event;
+
+        if(!document.all){
+            mouse_x=e.pageX;
+            mouse_y=e.pageY;
+        }else{
+            mouse_x=document.body.scrollLeft+event.clientX;
+            mouse_y=document.body.scrollTop+event.clientY;
+        }
+        clientW = document.documentElement.clientWidth;
+        clientH = document.documentElement.clientHeight;
+        if (mouse_x+330>clientW){
+            mouse_x = mouse_x-330;
+        }else{
+            mouse_x = mouse_x+30;
+        }
+        if (mouse_y+250>clientH){
+            mouse_y = mouse_y-120;
+        }else{
+            mouse_y = mouse_y+30;
+        }
+        //便于跟踪调试
+        //mouse_x = mouse_x - 510;
+        //alert(picUrl);
+        $('#pic_shower').html('<img src="__ROOT__/Uploads/'+picUrl+'" width="320" height="240">');
+        $('#pic_shower').css('left',mouse_x).css('top',mouse_y).css('display','block');
+
+    }
+    function showDraw(drawDiv,dataId,drawUrl){
+        if (!e) var e = window.event;
+
+        if(!document.all){
+            mouse_x=e.pageX;
+            mouse_y=e.pageY;
+        }else{
+            mouse_x=document.body.scrollLeft+event.clientX;
+            mouse_y=document.body.scrollTop+event.clientY;
+        }
+        //便于跟踪调试
+        /*    clientW = document.body.clientWidth;
+         clientH = document.body.clientHeight;*/
+        clientW = document.documentElement.clientWidth;
+        clientH = document.documentElement.clientHeight;
+        if (mouse_x+330>clientW){
+            mouse_x = mouse_x-330;
+        }else{
+            mouse_x = mouse_x+30;
+        }
+        if (mouse_y+250>clientH){
+            mouse_y = mouse_y-120;
+        }else{
+            mouse_y = mouse_y+30;
+        }
+        //mouse_x = mouse_x - 510;
+        $('#pic_shower').html('<img src="__ROOT__/Uploads/'+drawUrl+'" width="320" height="240" >');
+
+        $('#pic_shower').css('left',mouse_x).css('top',mouse_y).css('display','block');
+    }
+    function hidePic(){
+        //alert('bbb');
+        $('#pic_shower').css('display','none');
+    }
+    function delPic(picId,picDiv){
+        $.get("sellajax.php", { action: "delpic", id: picId ,rnd:Math.random()}, function(data){
+            //alert(data);
+            if(data == 1){
+                $('#'+picDiv).remove();
+                hidePic();
+            }
+        });
+    }
+    function delDraw(dataId,drawDiv){
+        $.get("sellajax.php", { action: "deldraw", id: dataId,rnd:Math.random()}, function(data){
+            if(data == 1){
+                $('#'+drawDiv).remove();
+                hidePic();
+            }
+        });
+    }
+
+    function showBox(item_id,picClass,picType){
+        TB_show('图片管理','managePic.php?cls='+picClass+'&tp='+picType+'&house_id='+item_id+'&height=400&width=700&modal=true&rnd='+Math.random(),false);
+    }
+
+    $(document).click(function(){hidePic();});
+</script>
 </body>
 </html>
