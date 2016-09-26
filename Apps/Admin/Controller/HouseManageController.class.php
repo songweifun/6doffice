@@ -10,6 +10,7 @@ use Think\Controller;
 class HouseManageController extends CommonController{
     public function _initialize()
     {
+        parent::_initialize();
         $this->cate=CONTROLLER_NAME;  //分配栏目
     }
     /**
@@ -19,6 +20,7 @@ class HouseManageController extends CommonController{
         import('Class.Dd',APP_PATH);
         $config = D('WebConfig');
         $housesell=D('Housesell');
+        $return_to = $_SERVER['HTTP_REFERER'];
         $action=I('get.action');
         if($action=='search'){
             $keyword = $_REQUEST['q']=='请输入房源编号'?"":trim($_REQUEST['q']);
@@ -64,7 +66,151 @@ class HouseManageController extends CommonController{
 
 
 
+        }else if($action =="dateDel"){
+//p($_POST);die;
+           if($housesell->dateDel($_POST['dateDel'])){
+                echo '<script>alert("删除成功");location.href="'.U(MODULE_NAME.'/HouseManage/sell',array('check'=>0)).'"</script>';
+            }else{
+                echo '<script>alert("删除失败");location.href='.U(MODULE_NAME.'/HouseManage/sell',array('check'=>0)).'</script>';
+            }
+
+
+
+        }elseif($action=='delete'){
+
+            $ids = I('ids');
+            //p($ids);die;
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+
+            $member =D('Member');
+            $messageRule = D('MessageRule');
+            $innernote = D('Innernote');
+            try{
+
+                foreach ($ids as $id){
+                    $housesell->deleteSell($id);
+                }
+                jsurlto('删除房源成功',U(MODULE_NAME.'/HouseManage/sell',array('check'=>0)));
+            }catch (Exception $e){
+                $this->error('删除失败，',$e->getMessage());
+            }
+            exit;
+
+
+        }elseif($action=='isindex'){//首页推荐
+            $ids = $_POST['ids'];
+            $status = intval($_GET['status']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择推荐条目');
+            }
+            $isIndex = $housesell->getCount(5,'');
+            //p($isIndex);die;
+            if($isIndex>6 && $status ==1){
+                $this->error('推荐条数超过6条，请删除之后在推荐');
+            }
+
+            try{
+                $housesell->update($ids,'is_index',$status);
+                $this->success('操作成功');
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='islike'){//猜你喜欢
+            $ids = $_POST['ids'];
+            $status = intval($_GET['status']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择推荐条目');
+            }
+            $isLike = $housesell->getCount(11,'');
+            if($isLike>6 && $status ==1){
+                $this->error('推荐条数超过6条，请删除之后在推荐');
+            }
+            try{
+                $housesell->update($ids,'is_like',$status);
+                $this->success('操作成功',$return_to);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='isthemes'){//主体推荐
+            $ids = $_POST['ids'];
+
+            $status = intval($_GET['status']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择推荐条目');
+            }
+            $isThemes = $housesell->getCount(12,'');
+            //p($isThemes);die;
+            if($isThemes>6 && $status ==1){
+                $this->error('推荐条数超过6条，请删除之后在推荐');
+            }
+            try{
+                $housesell->update($ids,'is_themes',$status);
+                $this->success('操作成功',$return_to);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+
+        }elseif($action=="docheck"){//游客审核
+
+            $ids = $_POST['ids'];
+            $status = intval($_GET['status']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择审核条目');
+            }
+            try{
+                $housesell->check($ids,$status);
+                $integral = D('IntegralRule');
+                $member =D('Member');
+                $messageRule = D('MessageRule');
+                $innernote = D('Innernote');
+                foreach ($ids as $id){
+                    $dataInfo = $housesell->getInfo($id);
+                    if($status == 1){
+                        //通过，增加积分
+                        if($dataInfo['broker_id']){
+                            //发布一条增加5分
+                            $integral->add($dataInfo['broker_id'],7);
+                            $houseImg = $housesell->getImgNum($id);
+                            if($houseImg>=5){
+                                $integral->add($dataInfo['broker_id'],11);
+                            }
+                            if($dataInfo['drawing_id'] || $dataInfo['house_drawing'] ){
+                                $integral->add($dataInfo['broker_id'],12);
+                            }
+                        }
+                    }else{
+                        //没通过，发送自动站内信
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(1,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $message = sprintf($message,$real_name,U('Home/Sell/index'),$dataInfo['id'],$dataInfo['house_no']);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+                }
+                $this->success('审核房源成功',$return_to);
+        }catch (Exception $e){
+            $this->error($e->getMessage());
+        }
+
+	exit;
+
+
+
         }else{
+
 
 
 

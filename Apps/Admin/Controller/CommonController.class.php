@@ -10,6 +10,8 @@ use Think\Controller;
 class CommonController extends Controller{
 
     public function _initialize(){
+        $page=$this;
+        require(APP_PATH.'Common/commonphp/page.php');
 
         if ($_COOKIE['AUTH_STRING']) {
 

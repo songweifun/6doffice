@@ -130,4 +130,129 @@ class HousesellModel extends Model{
         return M('housesell_pic')->where(array('housesell_id'=>$housesell_id))->select();
 
     }
+
+    /**
+     * 根据时间删除房源
+     * @param $date
+     * @return bool
+     */
+    function dateDel($date){
+
+        list($year, $month, $day) = explode('-', $date);
+        if (checkdate($month, $day, $year)) {
+            $date =mktime(0,0,0,$month,$day,$year);
+            $idsArr=$this->field('id')->where("created <= ".$date)->select();
+            foreach($idsArr as $v){
+                $ids[]=$v['id'];
+            }
+            //p($ids);die;
+            if($this->deleteSell($ids)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * 删除房源信息
+     * @param mixed $ids 选择的ID
+     * @access public
+     * @return bool
+     */
+    function deleteSell($ids) {
+
+        if (is_array($ids)) {
+            $ids = implode(',',$ids);
+            $where = 'id in (' . $ids . ')';
+            $deletewhere = 'id in (' . $ids . ')';
+            $deletewhere1 = 'housesell_id in (' . $ids . ')';
+            $deletewhere2 = 'house_id in (' . $ids . ')';
+        } else {
+            $where = 'id=' . intval($ids);
+            $deletewhere = 'id='.$ids ;
+            $deletewhere1 = 'housesell_id ='.$ids ;
+            $deletewhere2 = 'house_id='.$ids;
+
+        }
+
+        //更新统计数据
+        $broughId = $this->field('borough_id')->where($where)->select();
+        //p($broughId);die;
+
+        foreach ($broughId as $key=> $item){
+            D('Borough')->where(array('id'=>$item['borough_id']))->setDec('sell_num',1);
+            D('Statistics')->where(array('stat_index'=>'sellNum'))->setDec('stat_value',1);
+        }
+
+        //echo 1;die;
+
+
+
+
+        $this->where($deletewhere)->delete();//删除出售表
+        M('housesell_pic')->where($deletewhere1)->delete();//删除图片
+        M('housesell_stat')->where($deletewhere2)->delete();//删除房源点击
+        M('housesell_bargain')->where($deletewhere2)->delete();//删除成交表*/
+        return true;
+
+    }
+
+    /**
+     * 更新某个字段
+     * @param mixed $ids ID
+     * @access public
+     * @return bool
+     */
+    function update($ids,$field,$value) {
+        if (is_array($ids)) {
+            $ids = implode(',',$ids);
+            $where = ' id in (' . $ids . ')';
+        } else {
+            $where = ' id=' . intval($ids);
+        }
+        return $this->where($where)->save(array($field=>$value));
+    }
+
+    /**
+     * 审核房源
+     * @param mixed $ids 选择的ID
+     * @access public
+     * @return bool
+     */
+    function check($ids,$flag) {
+        $where = '1=1 ';
+        if (is_array($ids)) {
+            $ids = implode(',',$ids);
+            $where .= ' and id in (' . $ids . ')';
+        } else {
+            $where .= ' and id=' . intval($ids);
+        }
+        return $this->where($where)->save(array('is_checked'=>$flag));
+    }
+
+    /**
+     * 取房源信息
+     * @param string $id 小区ID
+     * @param string $field 主表字段
+     * @access public
+     * @return array
+     */
+    function getInfo($id, $field = '*') {
+        return $this->field($field)->where(array('id'=>$id))->find();
+    }
+
+    /**
+     * 图片数量
+     *
+     * @param string 出售房源ID $housesell_id
+     * @return number
+     */
+    function getImgNum($housesell_id)
+    {
+        return M('housesell_pic')->where(array('housesell_id'=>$housesell_id))->count();
+    }
+
 }
