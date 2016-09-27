@@ -210,11 +210,6 @@ class HouseManageController extends CommonController{
 
 
         }else{
-
-
-
-
-
         $webConfig = $config->getInfo(1,'*');
         $check = intval($_GET['check']);
         $where = " and (status =0 or status =1  or status = 2 or status =3 or status = 4 or status =7)";
@@ -272,6 +267,42 @@ class HouseManageController extends CommonController{
      * 求购管理
      */
     public function buy(){
+        $houseWanted = D('HouseWanted');
+        $return_to = $_SERVER['HTTP_REFERER'];
+
+
+        $where =" wanted_type = 1 ";
+
+        if(isset($_GET['status'])){
+            $where .= ' and status ='.intval($_GET['status']);
+        }
+
+        $Page=new \Think\Page($houseWanted->getCount($where),10);
+        $Page -> setConfig('header','共%TOTAL_ROW%条');
+        $Page -> setConfig('first','首页');
+        $Page -> setConfig('last','共%TOTAL_PAGE%页');
+        $Page -> setConfig('prev','上一页');
+        $Page -> setConfig('next','下一页');
+        $Page -> setConfig('link','indexpagenumb');//pagenumb 会替换成页码
+        $Page -> setConfig('theme','%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+        $pageLimit = $Page->firstRow.','.$Page->listRows;
+        $houseWantedList = $houseWanted->getList($pageLimit,'*',$where,'add_time desc');
+        $member = D('Member');
+        foreach ($houseWantedList as $key => $value){
+            if($value['expert_id']){
+                $tmp = explode(',',$value['expert_id']);
+                array_remove_empty($tmp);
+                foreach($tmp as $item){
+                    $houseWantedList[$key]['expert'][] = $member->getInfo($item,'*',true);
+                }
+            }
+        }
+
+        $this->assign('dataList', $houseWantedList);
+        $this->assign('pagePanel', $Page->show());//分页条
+
+
         $this->menu=ACTION_NAME;//分配小栏目
         $this->display();
 
@@ -297,6 +328,139 @@ class HouseManageController extends CommonController{
      */
     public function report(){
         $this->menu=ACTION_NAME;//分配小栏目
+        $this->display();
+
+    }
+
+    /**
+     * 房源图片管理
+     */
+    public function managePic(){
+
+        $this->title =  $this->title.' - 管理房源图片';
+
+        $house_id = intval($_GET['house_id']);
+        if(!$house_id){
+            exit;
+        }
+        if($_GET['cls'] == 'sell'){
+            $house = D('Housesell');
+        }elseif ($_GET['cls'] == 'rent'){
+            $house = D('Houserent');
+        }else{
+            exit;
+        }
+        $borough = D('Borough');
+        $action=I('get.action');
+        if($action=='getBoroughImg'){
+            //删除房源图片 Ajax
+            $houseInfo = $house->getInfo($house_id);
+            if($_GET['tp'] == 'pic'){
+                $boroughImgList = $borough->getImgList($houseInfo['borough_id'],false);
+            }else{
+                $boroughImgList = $borough->getImgList($houseInfo['borough_id'],true);
+            }
+            $str = '';
+            foreach ($boroughImgList as $item){
+                $str .= '<div style="float:left;width:80px;">
+					<img src="'.__ROOT__.'/Uploads/'.$item['pic_url'].'" width="80" height="60">
+				</div>';
+            }
+            echo $str;
+            exit;
+
+        }elseif($action=='delImg'){
+            //删除房源图片 Ajax
+            $ids = explode(',',$_POST['picid']);
+            if($_GET['tp'] == 'pic'){
+                if(is_array($ids)){
+                    array_remove_empty($ids);
+                    foreach ($ids as $id){
+                        $house->delHousePic($id);
+                    }
+                    $house_img = $house->getImgList($house_id,'*');
+                    if($house_img){
+                        $house->update($house_id,'house_thumb',$house_img[0]['pic_url']);
+                    }else{
+                        $house->update($house_id,'house_thumb','');
+                    }
+                }
+            }else{
+                //echo $house_id;
+                $house->delHouseDraw($house_id);
+            }
+            echo 1;
+
+            exit;
+
+        }elseif($action=='moveToBorough'){
+
+            $ids = explode(',',$_POST['picid']);
+            $houseInfo = $house->getInfo($house_id);
+            if($_GET['tp'] == 'pic'){
+                if(is_array($ids)){
+                    array_remove_empty($ids);
+                    foreach ($ids as $id){
+                        //存入小区图片
+                        $imgInfo = $house->getImgInfo($id);
+                        $fieldData = array(
+                            'pic_url'=>$imgInfo['pic_url'],
+                            'pic_thumb'=>$imgInfo['pic_thumb'],
+                            'pic_desc'=>$imgInfo['pic_desc'],
+                            'borough_id'=>$houseInfo['borough_id'],
+                            'creater'=>$imgInfo['creater'],
+                            'addtime'=>$imgInfo['addtime'],
+                        );
+                        $borough->insertPic($fieldData);
+                        //删除
+                        $house->delHousePic($id);
+                    }
+                    $house_img = $house->getImgList($house_id,'*');
+                    if($house_img){
+                        $house->update($house_id,'house_thumb',$house_img[0]['pic_url']);
+                    }
+                }
+            }else{
+                $member = D('Member');
+                $houseInfo['broker_id'] = $houseInfo['broker_id']? $houseInfo['broker_id']:$houseInfo['consigner_id'];
+                if($houseInfo['broker_id']){
+                    $creater = $member->getInfo($houseInfo['broker_id'],'username')['username'];
+                }
+                $fieldData = array(
+                    'pic_url'=>$houseInfo['house_drawing'],
+                    'pic_thumb'=>$houseInfo['house_drawing'],
+                    'pic_desc'=>$houseInfo['borough_name'],
+                    'borough_id'=>$houseInfo['borough_id'],
+                    'creater'=>$creater,
+                    'addtime'=>$houseInfo['created'],
+                );
+                $borough->insertDrawing($fieldData);
+                //$house->delHouseDraw($house_id);
+            }
+            echo 1;
+            exit;
+
+        }else{
+
+            $houseInfo = $house->getInfo($house_id,'*');
+            if($_GET['tp'] == 'pic'){
+                $houseImgList = $house->getImgList($house_id,'*');
+            }else{
+                $houseImgList[0]['pic_url'] = $houseInfo['house_drawing'];
+            }
+            $this->assign('houseImgList',$houseImgList);
+
+            if(!$houseInfo['borough_id']){
+                $this->error("没有选择小区");
+            }
+            if($_GET['tp'] == 'pic'){
+                $boroughImgList = $borough->getImgList($houseInfo['borough_id'],false);
+            }else{
+                $boroughImgList = $borough->getImgList($houseInfo['borough_id'],true);
+            }
+            $this->assign('boroughImgList',$boroughImgList);
+        }
+
         $this->display();
 
     }

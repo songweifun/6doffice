@@ -17,4 +17,16 @@ class HouseWantedModel extends Model{
 
         return $this->where($where)->count();
     }
+
+    /**
+     * 取得信息列表
+     * @access public
+     *
+     * @param array $pageLimit
+     * @return array
+     **/
+    function getList($pageLimit, $fileld='*' ,$where='', $order='id desc') {
+        return $this->field($fileld)->where($where)->order($order)->limit($pageLimit)->select();
+
+    }
 }

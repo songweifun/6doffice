@@ -8,7 +8,15 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>六度写字楼网后台管理</title>
+    <title>{$title}</title>
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/modernizr.min.js"></script>
+    <script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
     <!-- bootstrap -->
 
     <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
@@ -31,6 +39,7 @@
 
     <css file="__PUBLIC__/css/admin.css"/>
     <js file="__PUBLIC__/js/jedate/jedate.min.js"/>
+    <js file="__PUBLIC__/js/layer/layer.js"/>
 </head>
 
 <body class="sticky-header">
@@ -190,7 +199,7 @@
                         <td class="align_c">
                             <if condition="$item.house_drawing neq null">
                             <div id="draw_div_{$item.id}" class="upload_shower" >
-                                <a href="managePic.php?house_id={$item.id}&class=sell&type=pic" onclick="showBox('{$item.id}','sell','draw');return false;" onmouseover="showDraw('draw_div_{$item.id}','{$item.id}','{$item.house_drawing}');return false;">
+                                <a href="{:U(MODULE_NAME.'/HouseManage/managePic')}/house_id/{$item.id}/class/sell/type/pic" onclick="showBox('{$item.id}','sell','draw');return false;" onmouseover="showDraw('draw_div_{$item.id}','{$item.id}','{$item.house_drawing}');return false;">
                                     <img src="__ROOT__/Uploads/{$item.house_drawing}" width="64" height="48">
                                 </a>
                             </div>
@@ -205,7 +214,7 @@
                                         <assign name="imurl" value="$pic_item['pic_url']"/>
                                     </if>
 
-                                    <a href="managePic.php?house_id={$item.id}&class=sell&type=pic" onclick="showBox('{$item.id}','sell','pic');return false;" onmouseover="showPic('pic_div_{$item.id}_{$pic_item.id}','{$pic_item.id}','{$imurl}');return false;">
+                                    <a href="{:U(MODULE_NAME.'/HouseManage/managePic')}/house_id/{$item.id}/class/sell/type/pic" onclick="showBox('{$item.id}','sell','pic');return false;" onmouseover="showPic('pic_div_{$item.id}_{$pic_item.id}','{$pic_item.id}','{$imurl}');return false;">
                                         <img  src="__ROOT__/Uploads/<if condition='$pic_item.pic_thumb neq null'>{$pic_item.pic_thumb}<else/>{$pic_item.pic_url}</if>" width="64" height="48">
                                     </a>
                                 </div>
@@ -260,13 +269,6 @@
     <!-- main content end-->
 </section>
 
-<!-- Placed js at the end of the document so the pages load faster -->
-<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
-<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="__PUBLIC__/js/bootstrap.min.js"></script>
-<script src="__PUBLIC__/js/modernizr.min.js"></script>
-<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
 
 
 <!--common scripts for all pages-->
@@ -370,7 +372,20 @@
     }
 
     function showBox(item_id,picClass,picType){
-        TB_show('图片管理','managePic.php?cls='+picClass+'&tp='+picType+'&house_id='+item_id+'&height=400&width=700&modal=true&rnd='+Math.random(),false);
+        var url="{:U(MODULE_NAME.'/HouseManage/managePic')}/house_id/"+item_id+"/cls/"+picClass+"/tp/"+picType
+        //alert(url);
+        layer.open({
+            type: 2,
+            title: ['图片管理', ''],
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['700px' , '400px'],
+            content: url,
+            scrollbar: false,
+        });
+
+
+        //TB_show('图片管理','managePic.php?cls='+picClass+'&tp='+picType+'&house_id='+item_id+'&height=400&width=700&modal=true&rnd='+Math.random(),false);
     }
 
     $(document).click(function(){hidePic();});

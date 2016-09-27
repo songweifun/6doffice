@@ -37,4 +37,47 @@ class BoroughModel extends Model{
 
     }
 
+    /**
+     * @param $borough_id
+     * @param $imgType 图片类型true:draw,false:pic $getType
+     * @param int $num
+     * @return mixed
+     */
+    function getImgList($borough_id,$imgType,$num = 0)
+    {
+        if($imgType){
+            if($num){
+                return M('borough_draw')->where(array('borough_id'=>$borough_id))->limit($num)->select();
+            }else{
+                return M('borough_draw')->where(array('borough_id'=>$borough_id))->limit($num)->select();
+            }
+        }else{
+            if($num){
+                return M('borough_pic')->where(array('borough_id'=>$borough_id))->limit($num)->select();
+            }else{
+                return M('borough_pic')->where(array('borough_id'=>$borough_id))->limit($num)->select();
+            }
+        }
+    }
+
+    /**
+     * 插入房源图片到小区图片 ，从房源中上传
+     * @param $fileddata
+     * @return mixed
+     */
+    function insertPic($fileddata)
+    {
+        return M('borough_pic')->add($fileddata);
+    }
+
+    /**
+     * 插入户型图到小区图片 ，从房源中上传
+     * @param $fileddata
+     * @return mixed
+     */
+    function insertDrawing($fileddata)
+    {
+        return M('borough_draw')->add($fileddata);
+    }
+
 }

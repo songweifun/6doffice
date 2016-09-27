@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <js file="__PUBLIC__/js/jquery-1.10.2.min.js"/>
+    <css file="__PUBLIC__/css/adminold.css"/>
+    <js file="__PUBLIC__/js/css.js"/>
+</head>
+
+<body>
+
+<div id="modalWindow">
+    <form name="modalWindowForm" method="post" action="">
+        <table cellpadding="2" cellspacing="2" class="table_list">
+            <caption>房源图片管理<if condition="$Think.get.tp eq pic">--实景图<else/>--户型图</if></caption>
+            <tr>
+                <td width="80">房源图片:</td>
+                <td>
+                    <foreach name="houseImgList" item="item">
+                    <div style="float:left;width:80px;">
+                        <img src="__ROOT__/Uploads/{$item.pic_url}" width="80" height="60" onclick="imgCheck(this)"><input type="checkbox" name="imgList[]" class="imglistCheckbox" id="img_{$key}" value="{$item.id}">
+                    </div>
+                    </foreach>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" >
+                    <div class="button_box">
+                        <input type="button" name="delete" class="button_style" value="【X】删除图片" onclick="deleteImg();">&nbsp;&nbsp;
+                        <input type="button" name="toBoroguh" class="button_style" value="【↓】<if condition='$Think.get.tp eq pic'>移动<else/>拷贝</if>到小区" onclick="moveToBorough();">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="80">小区已有图片:</td>
+                <td id="boroughImg">
+                    <foreach name="boroughImgList" item="item">
+                        <div style="float:left;width:80px;">
+                            <img src="__ROOT__/Uploads/{$item.pic_url}" width="80" height="60">
+                        </div>
+                    </foreach>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script language="javascript">
+
+    function imgCheck(ele){
+        var checkEle = ele.nextSibling;
+        if(checkEle.checked==true){
+            checkEle.checked=false;
+        }else{
+            checkEle.checked=true;
+        }
+    }
+    function deleteImg(){
+        var url="{:U(MODULE_NAME.'/HouseManage/managePic')}/action/delImg/cls/{$Think.get.cls}/tp/{$Think.get.tp}/house_id/{$Think.get.house_id}"
+
+        var selectValue='';
+        labelsForChecked = $('#modalWindow').find("input:checkbox:checked");
+
+        jQuery.each(labelsForChecked,function(i,val){selectValue+=','+jQuery(val).val();});
+
+        if(confirm("你确定要删除房源中的图片么？")){
+            $.post(url,{picid:selectValue},function(data){
+                //成功就删除对象
+                if(data == 1 ){
+                    jQuery.each(labelsForChecked,function(i,val){
+                        jQuery(val).parent().remove();
+                    });
+                }
+            });
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function moveToBorough(){
+        var url="{:U(MODULE_NAME.'/HouseManage/managePic')}/action/moveToBorough/cls/{$Think.get.cls}/tp/{$Think.get.tp}/house_id/{$Think.get.house_id}"
+
+        var selectValue='';
+        labelsForChecked = $('#modalWindow').find("input:checkbox:checked");
+
+        jQuery.each(labelsForChecked,function(i,val){selectValue+=','+jQuery(val).val();});
+
+        if(confirm("你确定要把图片移动到小区图片库中么？")){
+            $.post(url,{picid:selectValue},function(data){
+                //成功就删除对象
+                if(data == 1 ){
+                    //户型图不删除
+                    if ("{$Think.get.tp}"=="pic") {
+                        jQuery.each(labelsForChecked, function (i, val) {
+                            jQuery(val).parent().remove();
+                        });
+                    }
+                    reloadBoroughImg();
+                }
+            });
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function reloadBoroughImg(){
+        var url="{:U(MODULE_NAME.'/HouseManage/managePic')}"
+
+        $.get(url,{action:"getBoroughImg",cls:"{$Think.get.cls}",tp:"{$Think.get.tp}",house_id:"{$Think.get.house_id}"},function(data){
+            //成功就删除对象
+            $('#boroughImg').html(data);
+        });
+    }
+</script>
+
+</body>
+</html>

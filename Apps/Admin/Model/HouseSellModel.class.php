@@ -255,4 +255,37 @@ class HousesellModel extends Model{
         return M('housesell_pic')->where(array('housesell_id'=>$housesell_id))->count();
     }
 
+    /**
+     * 删除房源的图片
+     *
+     * @param int $picid
+     * @return bool
+     */
+    function delHousePic($picid )
+    {
+        return M('housesell_pic')->where(array('id'=>$picid))->delete();
+    }
+    /**
+     * 删除房源的户型图
+     *
+     * @param int $dataid
+     * @return bool
+     */
+    function delHouseDraw($dataid)
+    {
+        return $this->where(array('id'=>$dataid))->save(array('house_drawing'=>"",'drawing_id'=>0));
+
+    }
+
+    /**
+     * 图片属性
+     *
+     * @param string 出售房源ID $housesell_id
+     * @return number
+     */
+    function getImgInfo($pic_id,$field = '*')
+    {
+        return M('housesell_pic')->field($field)->where(array('id'=>$pic_id))->find();
+    }
+
 }
