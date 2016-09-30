@@ -11,4 +11,8 @@ class IndexController extends Controller{
     public function rent(){
         $this->display();
     }
+    public function marker(){
+        $markers=M('borough')->field('lat,lng,id,borough_address,borough_name')->select();
+        $this->ajaxReturn($markers);
+    }
 }
