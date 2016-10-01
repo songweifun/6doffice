@@ -29,12 +29,12 @@
         <DIV class=myanjuke>
             <DIV class=logo><A href="<?php echo U(MODULE_NAME.'/Index/index');?>"><IMG border=0 src="/6doffice/Public/images/memberlogo.gif"></A></DIV>
             <DIV class=title><A href=""></A></DIV>
-            <DIV class=nav><A href="<?php echo ($cfg["url"]); ?>"><?php echo ($cfg["page"]["titlec"]); ?></A><SPAN>|</SPAN><A target="_blank" href="<?php echo ($cfg["url_shop"]); echo ($member_id); ?>">我的店铺</A><SPAN>|</SPAN><SPAN
+            <DIV class=nav><A href="<?php echo U('Home/Index/index');?>"><?php echo ($titlec); ?></A><SPAN>|</SPAN><A target="_blank" href="<?php echo U('Home/Shop/index');?>/id/<?php echo ($member_id); ?>">我的店铺</A><SPAN>|</SPAN><SPAN
                     class=helpicon></SPAN><A target="_blank" href="#">帮助</A></DIV>
             <DIV class=corner_links>
                 <UL class=list_menu>
-                    <LI class=list_first>您好，<A target="_blank" href="<?php echo ($cfg["url_shop"]); echo ($member_id); ?>"><?php echo ($username); ?></A> 欢迎回来！</LI>
-                    <LI><A href="<?php echo ($cfg["url"]); ?>member/msgInbox.php">站内信(<?php echo ($msgCount); ?>)</A> </LI>
+                    <LI class=list_first>您好，<A target="_blank" href="<?php echo U('Home/Shop/index');?>/id/<?php echo ($member_id); ?>"><?php echo ($username); ?></A> 欢迎回来！</LI>
+                    <LI><A href="<?php echo U(MODULE_NAME.'/ManageMessage/msgInbox');?>">站内信(<?php echo ($msgCount); ?>)</A> </LI>
                     <LI class=list_last><A
                             href="<?php echo ($cfg["url"]); ?>login/login.php?action=logout">退出</A>
                     </LI></UL></DIV></DIV></DIV>
