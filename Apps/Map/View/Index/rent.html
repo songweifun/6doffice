@@ -364,17 +364,38 @@
 </div>
 
 <div id="baidu_map_propwin" class="baidu_map_propwin ui-draggable" style="top: 135.5px; left: 380px; display: none;">
-    <h2 id="baidu_map_propwin_header" class="h2title baidu_win_bg link_white"><a id="baidu_map_propwin_close" href="javascript:;" title="关闭" class="title_close baidu_win_bg"></a>
+    <h2 id="baidu_map_propwin_header" class="h2title baidu_win_bg link_white">
+        <a id="baidu_map_propwin_close" href="javascript:;" title="关闭" class="title_close baidu_win_bg"></a>
         <span class="h2title_commname">丽晶国际</span>
-        <a id="winCommTitleLink" class="h2title_listlink" target="_blank" href="http://nanjing.anjuke.com/community/view/145748?from=map" data-domain="http://nanjing.anjuke.com">查看小区详情&gt;&gt;</a>
+        <a id="winCommTitleLink" class="h2title_listlink" borough_id="" target="_blank" href="http://nanjing.anjuke.com/community/view/145748?from=map" data-domain="http://nanjing.anjuke.com">查看小区详情&gt;&gt;</a>
     </h2>
     <div id="baidu_map_propwin_content" class="content">
         <div class="prowin_left">
-            <dl id="win_filters_price" class="left_dl_list"><dt>租金:</dt><dd class="selected"><a id="price_filter_0" priceid="0" href="javascript:;">不限</a></dd><dd class="dd_price"><a id="price_filter_45" priceid="45" href="javascript:;">500以下</a></dd><dd class="dd_price"><a id="price_filter_46" priceid="46" href="javascript:;">500-800</a></dd><dd class="dd_price"><a id="price_filter_47" priceid="47" href="javascript:;">800-1000</a></dd><dd class="dd_price"><a id="price_filter_48" priceid="48" href="javascript:;">1000-1500</a></dd><dd class="dd_price"><a id="price_filter_49" priceid="49" href="javascript:;">1500-2000</a></dd><dd class="dd_price"><a id="price_filter_50" priceid="50" href="javascript:;">2000-3000</a></dd><dd class="dd_price"><a id="price_filter_51" priceid="51" href="javascript:;">3000-5000</a></dd></dl>
+            <dl id="win_filters_price" class="left_dl_list">
+                <dt>租金:</dt>
+                <dd class="selected"><a id="price_filter_0" priceid="0" href="javascript:;">不限</a></dd>
+                <dd class="dd_price"><a id="price_filter_45" priceid="45" href="javascript:;">500以下</a></dd>
+                <dd class="dd_price"><a id="price_filter_46" priceid="46" href="javascript:;">500-800</a></dd>
+                <dd class="dd_price"><a id="price_filter_47" priceid="47" href="javascript:;">800-1000</a></dd>
+                <dd class="dd_price"><a id="price_filter_48" priceid="48" href="javascript:;">1000-1500</a></dd>
+                <dd class="dd_price"><a id="price_filter_49" priceid="49" href="javascript:;">1500-2000</a></dd>
+                <dd class="dd_price"><a id="price_filter_50" priceid="50" href="javascript:;">2000-3000</a></dd>
+                <dd class="dd_price"><a id="price_filter_51" priceid="51" href="javascript:;">3000-5000</a></dd>
+            </dl>
             <div class="clear"></div>
-            <dl id="win_filters_model" class="left_dl_list"><dt>房型:</dt><dd class="selected"><a modelid="0" href="javascript:;">不限</a></dd><dd><a modelid="1" href="javascript:;">一室</a></dd><dd><a modelid="2" href="javascript:;">二室</a></dd><dd><a modelid="3" href="javascript:;">三室</a></dd></dl>
+            <dl id="win_filters_model" class="left_dl_list">
+                <dt>房型:</dt>
+                <dd class="selected"><a modelid="0" href="javascript:;">不限</a></dd>
+                <dd><a modelid="1" href="javascript:;">一室</a></dd>
+                <dd><a modelid="2" href="javascript:;">二室</a></dd>
+                <dd><a modelid="3" href="javascript:;">三室</a></dd>
+            </dl>
             <div class="clear"></div>
-            <dl id="win_filters_source" class="left_dl_list"><dt>来源:</dt><dd class="selected"><a sourceid="0" href="javascript:;">不限</a></dd><dd><a sourceid="1" href="javascript:;">经纪人</a></dd><dd><a sourceid="2" href="javascript:;">个人</a></dd></dl>
+            <dl id="win_filters_source" class="left_dl_list"><dt>来源:</dt>
+                <dd class="selected"><a sourceid="0" href="javascript:;">不限</a></dd>
+                <dd><a sourceid="1" href="javascript:;">经纪人</a></dd>
+                <dd><a sourceid="2" href="javascript:;">个人</a></dd>
+            </dl>
             <div class="clear"></div>
         </div>
         <div class="prowin_right">
@@ -423,6 +444,10 @@
     </div>
     <div class="bg_bot baidu_win_bg" style="_margin-top:-2px;"></div>
 </div>
+<input type="hidden" id="filter_room">
+<input type="hidden" id="filter_price">
+<input type="hidden" id="filter_source">
+<input type="hidden" id="filter_order">
 
 </body>
 </html>
@@ -458,11 +483,12 @@
 
     map.addTileLayer(customLayer);//添加自定义图层*/
     // 复杂的自定义覆盖物
-    function ComplexCustomOverlay(point, text, mouseoverText,bid){
+    function ComplexCustomOverlay(point, text, mouseoverText,bid,bname){
         this._point = point;
         this._text = text;
         this._overText = mouseoverText;
         this._bid = bid;
+        this._bname = bname;
         //alert(bid)
 
     }
@@ -518,7 +544,20 @@
                 data:{bid:that._bid},
                 dataType:'json',
                 type:'get',
-                success:function(data){
+                success:function(result){
+                    var data=result.houserent;
+                    var rentCountPrice=result.rentCountPrice;
+                    var rentCountRoom=result.rentCountRoom;
+                    //alert(price.length)
+                    $('.c_ora_red')[0].innerHTML=result.count;
+                    $('.c_gray9')[0].innerHTML=result.pageno+'/'+result.page_count;
+                    $('#winCommTitleLink').attr('href',"<!--{:U('Home/Community/general')}-->/id/"+that._bid)
+                    $('#winCommTitleLink').attr('borough_id',that._bid)
+                    $('.h2title_commname')[0].innerHTML=that._bname
+                    $('#filter_room').val(result.room);
+                    $("#filter_price").val(result.price);
+                    $('#filter_source').val(result.source);
+
                     //alert(data.length)
                     $("#dialog-show-prop-box li").remove()
                     for (var i=0;i<data.length;i++){
@@ -548,9 +587,25 @@
 
                         $("#dialog-show-prop-box").append(li)
                     }
+                    var strprice='<dt>租金:</dt><dd class="selected"><a id="price_filter_0" priceid="0" href="javascript:;">不限</a></dd>'
+
+                    for(var i=0;i<rentCountPrice.length;i++){
+                        strprice+='<dd class="dd_price"><a id="price_filter_45" priceid="'+rentCountPrice[i].price+'" href="javascript:;">'+rentCountPrice[i].house_price+'</a></dd>'
+
+                    }
+                    $('#win_filters_price')[0].innerHTML=strprice;
+                    var strroom='<dt>房型:</dt><dd class="selected"><a modelid="0" href="javascript:;">不限</a></dd>'
+                    for(var i=0;i<rentCountRoom.length;i++){
+                        strroom+='<dd><a modelid="'+rentCountRoom[i].room+'" href="javascript:;">'+rentCountRoom[i].house_room+'</a></dd>'
+
+                    }
+                    $('#win_filters_model')[0].innerHTML=strroom;
                     $('#baidu_map_propwin').css('display','block');
+
                 }
             })
+
+
         }
 
         map.getPanes().labelPane.appendChild(div);
@@ -618,7 +673,7 @@
                 pt = new BMap.Point(data[i].lng,data[i].lat);
                 var marke=new BMap.Marker(pt)
                 //marke.hide()
-                var myCompOverlay = new ComplexCustomOverlay(pt, data[i].borough_name,data[i].borough_name + " " + data[i].rent_num + "套",data[i].id);
+                var myCompOverlay = new ComplexCustomOverlay(pt, data[i].borough_name,data[i].borough_name + " " + data[i].rent_num + "套",data[i].id,data[i].borough_name);
 
                 map.addOverlay(myCompOverlay);
 
@@ -696,6 +751,745 @@
     }
     $('#baidu_map_propwin_close').click(function(){
         $('#baidu_map_propwin').css('display','none');
+
+    })
+
+    //房间筛选
+    $("#win_filters_model").on("click","dd", function() {
+
+        var cookieroom=$('#filter_room').val()
+        var cookieprice= $("#filter_price").val();
+        var cookiesource=$('#filter_source').val();
+
+        //$('#baidu_map_propwin').css('display','none');
+        var bid=$('#winCommTitleLink').attr('borough_id');
+        var room=$(this).children('a').attr('modelid');
+        //alert(cookieprice)
+
+        //alert(room)
+        $.ajax({
+            url:"<!--{:U(MODULE_NAME.'/Index/getHouseRent','','')}-->",
+            data:{bid:bid,room:room,price:cookieprice,source:cookiesource},
+            dataType:'json',
+            type:'get',
+            success:function(result){
+                var data=result.houserent;
+                var rentCountPrice=result.rentCountPrice;
+                var rentCountRoom=result.rentCountRoom;
+                //alert(price.length)
+                $('.c_ora_red')[0].innerHTML=result.count;
+                $('.c_gray9')[0].innerHTML=result.pageno+'/'+result.page_count;
+                $('#filter_room').val(result.room);
+                $("#filter_price").val(result.price);
+                $('#filter_source').val(result.source);
+                $('#filter_order').val(result.list_order);
+
+                //alert(data.length)
+                $("#dialog-show-prop-box li").remove()
+                //alert(data.length)
+                for (var i=0;i<data.length;i++){
+                    var str1="<li>\
+                                <div class='proimg'>\
+                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
+                                </a>\
+                                </div>\
+                                <div class='proname'>\
+                                <p class='title'>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                ";
+
+                    var str2="<i class='icons more_phos'>多图</i>";
+                    var str3="</p>\
+                                <p>整租，"+data[i].house_fitment+"，"+data[i].house_floor+"层，"+data[i].house_room+"室"+data[i].house_hall+"厅</p>\
+                        </div>\
+                        <div class='price'><strong>"+data[i].house_price+"</strong> 元/月</div>\
+                                </li>"
+                    if(data[i].picnum>4){
+                        str=str1+str2+str3;
+                    }else{
+                        str=str1+str3;
+                    }
+                    var li=$(str);
+
+                    $("#dialog-show-prop-box").append(li)
+                }
+
+
+                if($("#filter_price").val()!=""){
+                    var strprice='<dt>租金:</dt><dd><a id="" priceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strprice='<dt>租金:</dt><dd class="selected"><a id="" priceid="" href="javascript:;">不限</a></dd>'
+
+                }
+
+                for(var i=0;i<rentCountPrice.length;i++){
+                    if($("#filter_price").val()==rentCountPrice[i].price) {
+                        strprice += '<dd class="dd_price selected"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+                    }else{
+                        strprice += '<dd class="dd_price"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+
+                    }
+
+                }
+                $('#win_filters_price')[0].innerHTML=strprice;
+                if($("#filter_room").val()==""){
+                    var strroom='<dt>房型:</dt><dd class="selected"><a modelid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strroom='<dt>房型:</dt><dd><a modelid="" href="javascript:;">不限</a></dd>'
+                }
+                for(var i=0;i<rentCountRoom.length;i++){
+                    if($("#filter_room").val()==rentCountRoom[i].room) {
+                        strroom += '<dd class="selected"><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }else{
+                        strroom += '<dd><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }
+
+                }
+                $('#win_filters_model')[0].innerHTML=strroom;
+
+                if($("#filter_source").val()==""){
+                    var strsource='<dt>来源:</dt><dd class="selected"><a sourceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strsource='<dt>来源:</dt><dd><a sourceid="" href="javascript:;">不限</a></dd>'
+                }
+
+                var sourcearr=result.sourcearr;
+
+                for(var i=0;i<sourcearr.length;i++){
+                    if($("#filter_source").val()==sourcearr[i].source_id){
+                        strsource+='<dd class="selected"><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+                    }else{
+                        strsource+='<dd><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+
+                    }
+                }
+
+                $('#win_filters_source')[0].innerHTML=strsource;
+
+                $('#baidu_map_propwin').css('display','block');
+            }
+        })
+    });
+    /********************
+     * 价格筛选
+     */
+    $("#win_filters_price").on("click","dd", function() {
+        var cookieroom=$('#filter_room').val()
+        var cookieprice= $("#filter_price").val();
+        var cookiesource=$('#filter_source').val();
+        //$('#baidu_map_propwin').css('display','none');
+        var bid=$('#winCommTitleLink').attr('borough_id');
+        var price=$(this).children('a').attr('priceid');
+        //alert(price)
+        $.ajax({
+            url:"<!--{:U(MODULE_NAME.'/Index/getHouseRent','','')}-->",
+            data:{bid:bid,price:price,room:cookieroom,source:cookiesource},
+            dataType:'json',
+            type:'get',
+            success:function(result){
+                var data=result.houserent;
+                var rentCountPrice=result.rentCountPrice;
+                var rentCountRoom=result.rentCountRoom;
+                //alert(price.length)
+                $('.c_ora_red')[0].innerHTML=result.count;
+                $('.c_gray9')[0].innerHTML=result.pageno+'/'+result.page_count;
+                $('#filter_room').val(result.room);
+                $("#filter_price").val(result.price);
+                $('#filter_source').val(result.source);
+                $('#filter_order').val(result.list_order);
+
+                //alert(data.length)
+                $("#dialog-show-prop-box li").remove()
+                //alert(data.length)
+                for (var i=0;i<data.length;i++){
+                    var str1="<li>\
+                                <div class='proimg'>\
+                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
+                                </a>\
+                                </div>\
+                                <div class='proname'>\
+                                <p class='title'>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                ";
+
+                    var str2="<i class='icons more_phos'>多图</i>";
+                    var str3="</p>\
+                                <p>整租，"+data[i].house_fitment+"，"+data[i].house_floor+"层，"+data[i].house_room+"室"+data[i].house_hall+"厅</p>\
+                        </div>\
+                        <div class='price'><strong>"+data[i].house_price+"</strong> 元/月</div>\
+                                </li>"
+                    if(data[i].picnum>4){
+                        str=str1+str2+str3;
+                    }else{
+                        str=str1+str3;
+                    }
+                    var li=$(str);
+
+                    $("#dialog-show-prop-box").append(li)
+                }
+                if($("#filter_price").val()!=""){
+                    var strprice='<dt>租金:</dt><dd><a id="" priceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strprice='<dt>租金:</dt><dd class="selected"><a id="" priceid="" href="javascript:;">不限</a></dd>'
+
+                }
+
+                for(var i=0;i<rentCountPrice.length;i++){
+                    if($("#filter_price").val()==rentCountPrice[i].price) {
+                        strprice += '<dd class="dd_price selected"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+                    }else{
+                        strprice += '<dd class="dd_price"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+
+                    }
+
+                }
+                $('#win_filters_price')[0].innerHTML=strprice;
+                if($("#filter_room").val()==""){
+                    var strroom='<dt>房型:</dt><dd class="selected"><a modelid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strroom='<dt>房型:</dt><dd><a modelid="" href="javascript:;">不限</a></dd>'
+                }
+                for(var i=0;i<rentCountRoom.length;i++){
+                    if($("#filter_room").val()==rentCountRoom[i].room) {
+                        strroom += '<dd class="selected"><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }else{
+                        strroom += '<dd><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }
+
+                }
+                $('#win_filters_model')[0].innerHTML=strroom;
+
+                if($("#filter_source").val()==""){
+                    var strsource='<dt>来源:</dt><dd class="selected"><a sourceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strsource='<dt>来源:</dt><dd><a sourceid="" href="javascript:;">不限</a></dd>'
+                }
+
+                var sourcearr=result.sourcearr;
+
+                for(var i=0;i<sourcearr.length;i++){
+                    if($("#filter_source").val()==sourcearr[i].source_id){
+                        strsource+='<dd class="selected"><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+                    }else{
+                        strsource+='<dd><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+
+                    }
+                }
+
+                $('#win_filters_source')[0].innerHTML=strsource;
+
+                $('#baidu_map_propwin').css('display','block');
+            }
+        })
+    });
+
+    //*******************来源**************************//win_filters_source
+    $("#win_filters_source").on("click","dd", function() {
+        var cookieroom=$('#filter_room').val()
+        var cookieprice= $("#filter_price").val();
+        var cookiesource=$('#filter_source').val();
+
+
+
+        var bid=$('#winCommTitleLink').attr('borough_id');
+        var source=$(this).children('a').attr('sourceid');
+        //alert(price)
+        $.ajax({
+            url:"<!--{:U(MODULE_NAME.'/Index/getHouseRent','','')}-->",
+            data:{bid:bid,source:source,room:cookieroom,price:cookieprice},
+            dataType:'json',
+            type:'get',
+            success:function(result){
+                var data=result.houserent;
+                var rentCountPrice=result.rentCountPrice;
+                var rentCountRoom=result.rentCountRoom;
+                //alert(price.length)
+                $('.c_ora_red')[0].innerHTML=result.count;
+                $('.c_gray9')[0].innerHTML=result.pageno+'/'+result.page_count;
+                $('#filter_room').val(result.room);
+                $("#filter_price").val(result.price);
+                $('#filter_source').val(result.source);
+                $('#filter_order').val(result.list_order);
+
+                //alert(data.length)
+                $("#dialog-show-prop-box li").remove()
+                //alert(data.length)
+                for (var i=0;i<data.length;i++){
+                    var str1="<li>\
+                                <div class='proimg'>\
+                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
+                                </a>\
+                                </div>\
+                                <div class='proname'>\
+                                <p class='title'>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                ";
+
+                    var str2="<i class='icons more_phos'>多图</i>";
+                    var str3="</p>\
+                                <p>整租，"+data[i].house_fitment+"，"+data[i].house_floor+"层，"+data[i].house_room+"室"+data[i].house_hall+"厅</p>\
+                        </div>\
+                        <div class='price'><strong>"+data[i].house_price+"</strong> 元/月</div>\
+                                </li>"
+                    if(data[i].picnum>4){
+                        str=str1+str2+str3;
+                    }else{
+                        str=str1+str3;
+                    }
+                    var li=$(str);
+
+                    $("#dialog-show-prop-box").append(li)
+                }
+                if($("#filter_price").val()!=""){
+                    var strprice='<dt>租金:</dt><dd><a id="" priceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strprice='<dt>租金:</dt><dd class="selected"><a id="" priceid="" href="javascript:;">不限</a></dd>'
+
+                }
+
+                for(var i=0;i<rentCountPrice.length;i++){
+                    if($("#filter_price").val()==rentCountPrice[i].price) {
+                        strprice += '<dd class="dd_price selected"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+                    }else{
+                        strprice += '<dd class="dd_price"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+
+                    }
+
+                }
+                $('#win_filters_price')[0].innerHTML=strprice;
+                if($("#filter_room").val()==""){
+                    var strroom='<dt>房型:</dt><dd class="selected"><a modelid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strroom='<dt>房型:</dt><dd><a modelid="" href="javascript:;">不限</a></dd>'
+                }
+                for(var i=0;i<rentCountRoom.length;i++){
+                    if($("#filter_room").val()==rentCountRoom[i].room) {
+                        strroom += '<dd class="selected"><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }else{
+                        strroom += '<dd><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }
+
+                }
+                $('#win_filters_model')[0].innerHTML=strroom;
+
+                if($("#filter_source").val()==""){
+                    var strsource='<dt>来源:</dt><dd class="selected"><a sourceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strsource='<dt>来源:</dt><dd><a sourceid="" href="javascript:;">不限</a></dd>'
+                }
+
+                var sourcearr=result.sourcearr;
+
+                for(var i=0;i<sourcearr.length;i++){
+                    if($("#filter_source").val()==sourcearr[i].source_id){
+                        strsource+='<dd class="selected"><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+                    }else{
+                        strsource+='<dd><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+
+                    }
+                }
+
+                $('#win_filters_source')[0].innerHTML=strsource;
+
+                $('#baidu_map_propwin').css('display','block');
+            }
+        })
+    });
+    //******下一页*****************************//
+
+    //alert(pageno)
+    $('.page_next').click(function(){
+
+        var cookieroom=$('#filter_room').val()
+        var cookieprice= $("#filter_price").val();
+        var cookiesource=$('#filter_source').val();
+
+        var pagenostr=$('.c_gray9')[0].innerHTML;
+        var pagenoarr=pagenostr.split('/')
+        var pageno=parseInt(pagenoarr[0])
+
+        var bid=$('#winCommTitleLink').attr('borough_id');
+        //alert(bid)
+
+        $.ajax({
+            url:"<!--{:U(MODULE_NAME.'/Index/getHouseRent','','')}-->",
+            data:{bid:bid,p:pageno+1,room:cookieroom,price:cookieprice,source:cookiesource},
+            dataType:'json',
+            type:'get',
+            success:function(result){
+                var data=result.houserent;
+                var rentCountPrice=result.rentCountPrice;
+                var rentCountRoom=result.rentCountRoom;
+                //alert(price.length)
+                $('.c_ora_red')[0].innerHTML=result.count;
+                $('.c_gray9')[0].innerHTML=result.pageno+'/'+result.page_count;
+                $('#filter_room').val(result.room);
+                $("#filter_price").val(result.price);
+                $('#filter_source').val(result.source);
+                $('#filter_order').val(result.list_order);
+                if(result.pageno>1){
+                    $('.page_prev').css('visibility','visible')
+                }
+                if(result.pageno>=result.page_count){
+                    $('.page_next').css('visibility','hidden')
+                }
+
+                if(result.pageno==1&&result.page_count==1){
+                    $('.page_next').css('visibility','hidden')
+                    $('.page_prev').css('visibility','hidden')
+                }
+
+                //alert(data.length)
+                $("#dialog-show-prop-box li").remove()
+                //alert(data.length)
+                for (var i=0;i<data.length;i++){
+                    var str1="<li>\
+                                <div class='proimg'>\
+                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
+                                </a>\
+                                </div>\
+                                <div class='proname'>\
+                                <p class='title'>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                ";
+
+                    var str2="<i class='icons more_phos'>多图</i>";
+                    var str3="</p>\
+                                <p>整租，"+data[i].house_fitment+"，"+data[i].house_floor+"层，"+data[i].house_room+"室"+data[i].house_hall+"厅</p>\
+                        </div>\
+                        <div class='price'><strong>"+data[i].house_price+"</strong> 元/月</div>\
+                                </li>"
+                    if(data[i].picnum>4){
+                        str=str1+str2+str3;
+                    }else{
+                        str=str1+str3;
+                    }
+                    var li=$(str);
+
+                    $("#dialog-show-prop-box").append(li)
+                }
+                if($("#filter_price").val()!=""){
+                    var strprice='<dt>租金:</dt><dd><a id="" priceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strprice='<dt>租金:</dt><dd class="selected"><a id="" priceid="" href="javascript:;">不限</a></dd>'
+
+                }
+
+                for(var i=0;i<rentCountPrice.length;i++){
+                    if($("#filter_price").val()==rentCountPrice[i].price) {
+                        strprice += '<dd class="dd_price selected"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+                    }else{
+                        strprice += '<dd class="dd_price"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+
+                    }
+
+                }
+                $('#win_filters_price')[0].innerHTML=strprice;
+                if($("#filter_room").val()==""){
+                    var strroom='<dt>房型:</dt><dd class="selected"><a modelid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strroom='<dt>房型:</dt><dd><a modelid="" href="javascript:;">不限</a></dd>'
+                }
+                for(var i=0;i<rentCountRoom.length;i++){
+                    if($("#filter_room").val()==rentCountRoom[i].room) {
+                        strroom += '<dd class="selected"><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }else{
+                        strroom += '<dd><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }
+
+                }
+                $('#win_filters_model')[0].innerHTML=strroom;
+
+                if($("#filter_source").val()==""){
+                    var strsource='<dt>来源:</dt><dd class="selected"><a sourceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strsource='<dt>来源:</dt><dd><a sourceid="" href="javascript:;">不限</a></dd>'
+                }
+
+                var sourcearr=result.sourcearr;
+
+                for(var i=0;i<sourcearr.length;i++){
+                    if($("#filter_source").val()==sourcearr[i].source_id){
+                        strsource+='<dd class="selected"><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+                    }else{
+                        strsource+='<dd><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+
+                    }
+                }
+
+                $('#win_filters_source')[0].innerHTML=strsource;
+
+                $('#baidu_map_propwin').css('display','block');
+            }
+        })
+
+    })
+    //******************上一页
+
+    $('.page_prev').click(function(){
+
+        var cookieroom=$('#filter_room').val()
+        var cookieprice= $("#filter_price").val();
+        var cookiesource=$('#filter_source').val();
+
+        var pagenostr=$('.c_gray9')[0].innerHTML;
+        var pagenoarr=pagenostr.split('/')
+        var pageno=parseInt(pagenoarr[0])
+
+        var bid=$('#winCommTitleLink').attr('borough_id');
+        //alert(bid)
+
+        $.ajax({
+            url:"<!--{:U(MODULE_NAME.'/Index/getHouseRent','','')}-->",
+            data:{bid:bid,p:pageno-1,room:cookieroom,price:cookieprice,source:cookiesource},
+            dataType:'json',
+            type:'get',
+            success:function(result){
+                var data=result.houserent;
+                var rentCountPrice=result.rentCountPrice;
+                var rentCountRoom=result.rentCountRoom;
+                //alert(price.length)
+                $('.c_ora_red')[0].innerHTML=result.count;
+                $('.c_gray9')[0].innerHTML=result.pageno+'/'+result.page_count;
+
+                $('#filter_room').val(result.room);
+                $("#filter_price").val(result.price);
+                $('#filter_source').val(result.source);
+                $('#filter_order').val(result.list_order);
+                if(result.pageno<=1){
+                    $('.page_prev').css('visibility','hidden')
+                }
+                if(result.pageno<result.page_count){
+                    $('.page_next').css('visibility','visible')
+                }
+                if(result.pageno==1&&result.page_count==1){
+                    $('.page_next').css('visibility','hidden')
+                    $('.page_prev').css('visibility','hidden')
+                }
+
+                //alert(data.length)
+                $("#dialog-show-prop-box li").remove()
+                //alert(data.length)
+                for (var i=0;i<data.length;i++){
+                    var str1="<li>\
+                                <div class='proimg'>\
+                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
+                                </a>\
+                                </div>\
+                                <div class='proname'>\
+                                <p class='title'>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                ";
+
+                    var str2="<i class='icons more_phos'>多图</i>";
+                    var str3="</p>\
+                                <p>整租，"+data[i].house_fitment+"，"+data[i].house_floor+"层，"+data[i].house_room+"室"+data[i].house_hall+"厅</p>\
+                        </div>\
+                        <div class='price'><strong>"+data[i].house_price+"</strong> 元/月</div>\
+                                </li>"
+                    if(data[i].picnum>4){
+                        str=str1+str2+str3;
+                    }else{
+                        str=str1+str3;
+                    }
+                    var li=$(str);
+
+                    $("#dialog-show-prop-box").append(li)
+                }
+                if($("#filter_price").val()!=""){
+                    var strprice='<dt>租金:</dt><dd><a id="" priceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strprice='<dt>租金:</dt><dd class="selected"><a id="" priceid="" href="javascript:;">不限</a></dd>'
+
+                }
+
+                for(var i=0;i<rentCountPrice.length;i++){
+                    if($("#filter_price").val()==rentCountPrice[i].price) {
+                        strprice += '<dd class="dd_price selected"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+                    }else{
+                        strprice += '<dd class="dd_price"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+
+                    }
+
+                }
+                $('#win_filters_price')[0].innerHTML=strprice;
+                if($("#filter_room").val()==""){
+                    var strroom='<dt>房型:</dt><dd class="selected"><a modelid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strroom='<dt>房型:</dt><dd><a modelid="" href="javascript:;">不限</a></dd>'
+                }
+                for(var i=0;i<rentCountRoom.length;i++){
+                    if($("#filter_room").val()==rentCountRoom[i].room) {
+                        strroom += '<dd class="selected"><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }else{
+                        strroom += '<dd><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }
+
+                }
+                $('#win_filters_model')[0].innerHTML=strroom;
+
+                if($("#filter_source").val()==""){
+                    var strsource='<dt>来源:</dt><dd class="selected"><a sourceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strsource='<dt>来源:</dt><dd><a sourceid="" href="javascript:;">不限</a></dd>'
+                }
+
+                var sourcearr=result.sourcearr;
+
+                for(var i=0;i<sourcearr.length;i++){
+                    if($("#filter_source").val()==sourcearr[i].source_id){
+                        strsource+='<dd class="selected"><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+                    }else{
+                        strsource+='<dd><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+
+                    }
+                }
+
+                $('#win_filters_source')[0].innerHTML=strsource;
+
+                $('#baidu_map_propwin').css('display','block');
+            }
+        })
+
+    })
+    //租金排序
+    $('.sort_button').click(function(){
+
+        var cookieroom=$('#filter_room').val()
+        var cookieprice= $("#filter_price").val();
+        var cookiesource=$('#filter_source').val();
+        var cookieorderold=$('#filter_order').val()
+        if(cookieorderold=='house_price asc'){
+            var cookieorder='house_price desc'
+            $(this).removeClass('sort_button baidu_win_bg sort_button_down')
+            $(this).addClass('sort_button baidu_win_bg sort_button_up');
+        }else{
+            var cookieorder='house_price asc'
+            $(this).removeClass('sort_button baidu_win_bg sort_button_up')
+            $(this).addClass('sort_button baidu_win_bg sort_button_down');
+        }
+
+        var pagenostr=$('.c_gray9')[0].innerHTML;
+        var pagenoarr=pagenostr.split('/')
+        var pageno=parseInt(pagenoarr[0])
+
+        var bid=$('#winCommTitleLink').attr('borough_id');
+        //alert(bid)
+
+        $.ajax({
+            url:"<!--{:U(MODULE_NAME.'/Index/getHouseRent','','')}-->",
+            data:{bid:bid,p:pageno,list_order:cookieorder,room:cookieroom,price:cookieprice,source:cookiesource},
+            dataType:'json',
+            type:'get',
+            success:function(result){
+                var data=result.houserent;
+                var rentCountPrice=result.rentCountPrice;
+                var rentCountRoom=result.rentCountRoom;
+                //alert(price.length)
+                $('.c_ora_red')[0].innerHTML=result.count;
+                $('.c_gray9')[0].innerHTML=result.pageno+'/'+result.page_count;
+
+                $('#filter_room').val(result.room);
+                $("#filter_price").val(result.price);
+                $('#filter_source').val(result.source);
+                $('#filter_order').val(result.list_order);
+                if(result.pageno<=1){
+                    $('.page_prev').css('visibility','hidden')
+                }
+                if(result.pageno<result.page_count){
+                    $('.page_next').css('visibility','visible')
+                }
+
+                //alert(data.length)
+                $("#dialog-show-prop-box li").remove()
+                //alert(data.length)
+                for (var i=0;i<data.length;i++){
+                    var str1="<li>\
+                                <div class='proimg'>\
+                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
+                                </a>\
+                                </div>\
+                                <div class='proname'>\
+                                <p class='title'>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                ";
+
+                    var str2="<i class='icons more_phos'>多图</i>";
+                    var str3="</p>\
+                                <p>整租，"+data[i].house_fitment+"，"+data[i].house_floor+"层，"+data[i].house_room+"室"+data[i].house_hall+"厅</p>\
+                        </div>\
+                        <div class='price'><strong>"+data[i].house_price+"</strong> 元/月</div>\
+                                </li>"
+                    if(data[i].picnum>4){
+                        str=str1+str2+str3;
+                    }else{
+                        str=str1+str3;
+                    }
+                    var li=$(str);
+
+                    $("#dialog-show-prop-box").append(li)
+                }
+                if($("#filter_price").val()!=""){
+                    var strprice='<dt>租金:</dt><dd><a id="" priceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strprice='<dt>租金:</dt><dd class="selected"><a id="" priceid="" href="javascript:;">不限</a></dd>'
+
+                }
+
+                for(var i=0;i<rentCountPrice.length;i++){
+                    if($("#filter_price").val()==rentCountPrice[i].price) {
+                        strprice += '<dd class="dd_price selected"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+                    }else{
+                        strprice += '<dd class="dd_price"><a id="" priceid="' + rentCountPrice[i].price + '" href="javascript:;">' + rentCountPrice[i].house_price + '</a></dd>'
+
+                    }
+
+                }
+                $('#win_filters_price')[0].innerHTML=strprice;
+                if($("#filter_room").val()==""){
+                    var strroom='<dt>房型:</dt><dd class="selected"><a modelid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strroom='<dt>房型:</dt><dd><a modelid="" href="javascript:;">不限</a></dd>'
+                }
+                for(var i=0;i<rentCountRoom.length;i++){
+                    if($("#filter_room").val()==rentCountRoom[i].room) {
+                        strroom += '<dd class="selected"><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }else{
+                        strroom += '<dd><a modelid="' + rentCountRoom[i].room + '" href="javascript:;">' + rentCountRoom[i].house_room + '</a></dd>'
+                    }
+
+                }
+                $('#win_filters_model')[0].innerHTML=strroom;
+
+                if($("#filter_source").val()==""){
+                    var strsource='<dt>来源:</dt><dd class="selected"><a sourceid="" href="javascript:;">不限</a></dd>'
+                }else{
+                    var strsource='<dt>来源:</dt><dd><a sourceid="" href="javascript:;">不限</a></dd>'
+                }
+
+                var sourcearr=result.sourcearr;
+
+                for(var i=0;i<sourcearr.length;i++){
+                    if($("#filter_source").val()==sourcearr[i].source_id){
+                        strsource+='<dd class="selected"><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+                    }else{
+                        strsource+='<dd><a sourceid="'+sourcearr[i].source_id+'" href="javascript:;">'+sourcearr[i].source+'</a></dd>'
+
+                    }
+                }
+
+                $('#win_filters_source')[0].innerHTML=strsource;
+
+                $('#baidu_map_propwin').css('display','block');
+            }
+        })
+
 
     })
 </script>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通信API跨域</title>
+    <script>
+        window.addEventListener('message',function(ev){
+            /*if(ev.origin!="http://localhost/html5"){
+                return;
+            }*/
+            document.body.innerHTML="从"+ev.origin+"那里传来的消息.<br>\""+ev.data+"\"";
+            ev.source.postMessage("你好这里是"+this.location,ev.origin)
+        },false)
+    </script>
+</head>
+<body>
+
+</body>
+</html>
