@@ -466,7 +466,7 @@
     // 将地址解析结果显示在地图上,并调整地图视野
     myGeo.getPoint("南京市中山南路1号", function(point){
         if (point) {
-            map.centerAndZoom(point, 14);
+            map.centerAndZoom(point, 16);
             //map.addOverlay(new BMap.Marker(point));
         }else{
             alert("您选择地址没有解析到结果!");
@@ -482,6 +482,36 @@
     });
 
     map.addTileLayer(customLayer);//添加自定义图层*/
+
+    //监听缩放级别
+    var datacache=null;
+    map.addEventListener("zoomend", function(){
+        //alert("地图缩放至：" + this.getZoom() + "级");
+        $('#baidu_map_propwin').css({'display':'none','top':'135px','left':'380px'});
+        //map.clearOverlays();
+
+            map.clearOverlays();
+            var data=datacache;
+                    //alert(data.length)
+                    for(var i=0;i<datacache.length;i++){
+                        //alert(data[i].id)
+                        pt = new BMap.Point(data[i].lng,data[i].lat);
+                        var marke=new BMap.Marker(pt)
+                        //marke.hide()
+                        if(this.getZoom()>16) {
+                            var myCompOverlay = new ComplexCustomOverlay(pt, data[i].borough_name + " " + data[i].rent_num + "套", data[i].borough_name + " " + data[i].rent_num + "套", data[i].id, data[i].borough_name);
+                        }else{
+                            var myCompOverlay = new ComplexCustomOverlay(pt, data[i].borough_name , data[i].borough_name + " " + data[i].rent_num + "套", data[i].id, data[i].borough_name);
+
+                        }
+
+                        map.addOverlay(myCompOverlay);
+
+
+                    }
+
+
+    });
     // 复杂的自定义覆盖物
     function ComplexCustomOverlay(point, text, mouseoverText,bid,bname){
         this._point = point;
@@ -600,7 +630,7 @@
 
                     }
                     $('#win_filters_model')[0].innerHTML=strroom;
-                    $('#baidu_map_propwin').css('display','block');
+                    $('#baidu_map_propwin').css({'display':'block','top':'135px','left':'380px'});
 
                 }
             })
@@ -667,6 +697,7 @@
         dataType:'json',
         type:'post',
         success:function(data){
+            datacache=data;
             //alert(data.pois.location.length)
             for(var i=0;i<data.length;i++){
                 //alert(data[i].id)
@@ -686,7 +717,7 @@
 
             for (var j=0;j<markers.length;j++){//添加事件
 
-                doclick(markers[j])
+                //doclick(markers[j])
             }
         }
 
@@ -1492,4 +1523,56 @@
 
 
     })
+</script>
+
+
+<script>
+
+    var clicked = "Nope.";
+    var mausx = "0";
+    var mausy = "0";
+    var winx = "0";
+    var winy = "0";
+    var difx = mausx - winx;
+    var dify = mausy - winy;
+
+
+    $("html").mousemove(function (event) {
+        mausx = event.clientX;
+        mausy = event.clientY;
+        winx = $("#baidu_map_propwin").offset().left;
+        winy = $("#baidu_map_propwin").offset().top;
+        if (clicked == "Nope.") {
+            difx = mausx - winx;
+            dify = mausy - winy;
+        }
+
+        var newx = event.clientX - difx - $("#baidu_map_propwin").css("marginLeft").replace('px', '');
+        var newy = event.clientY - dify - $("#baidu_map_propwin").css("marginTop").replace('px', '');
+        if(newx<180){
+         $("#baidu_map_propwin").css({ top: newy, left: 180 });
+
+         }else if(newy<80){
+         $("#baidu_map_propwin").css({ top: 80, left: newx });
+         }else{
+         $("#baidu_map_propwin").css({ top: newy, left: newx });
+         }
+        //$("#baidu_map_propwin").css({ top: newy, left: newx });
+
+
+    });
+
+
+    $("#baidu_map_propwin_header").mousedown(function (event) {
+        clicked = "Yeah.";
+    });
+
+
+    $("html").mouseup(function (event) {
+
+        clicked = "Nope.";
+    });
+
+
+
 </script>
