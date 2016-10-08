@@ -498,12 +498,8 @@
                         pt = new BMap.Point(data[i].lng,data[i].lat);
                         var marke=new BMap.Marker(pt)
                         //marke.hide()
-                        if(this.getZoom()>16) {
-                            var myCompOverlay = new ComplexCustomOverlay(pt, data[i].borough_name + " " + data[i].rent_num + "套", data[i].borough_name + " " + data[i].rent_num + "套", data[i].id, data[i].borough_name);
-                        }else{
-                            var myCompOverlay = new ComplexCustomOverlay(pt, data[i].borough_name , data[i].borough_name + " " + data[i].rent_num + "套", data[i].id, data[i].borough_name);
+                        var myCompOverlay = new ComplexCustomOverlay(pt, data[i].rent_num + "套",data[i].borough_name ,data[i].id,data[i].borough_name);
 
-                        }
 
                         map.addOverlay(myCompOverlay);
 
@@ -525,47 +521,118 @@
     ComplexCustomOverlay.prototype = new BMap.Overlay();
     ComplexCustomOverlay.prototype.initialize = function(map){
         this._map = map;
+        var that = this;
         var div = this._div = document.createElement("div");
         div.style.position = "absolute";
-        div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
-        div.style.backgroundColor = "#62AB00";
-        div.style.border = "1px solid #81C15B";
-        div.style.borderRadius = "5px";
+
         div.style.color = "white";
-        div.style.height = "18px";
-        div.style.padding = "2px";
-        div.style.lineHeight = "18px";
-        div.style.whiteSpace = "nowrap";
-        div.style.MozUserSelect = "none";
         div.style.fontSize = "12px"
-        var span = this._span = document.createElement("span");
-        div.appendChild(span);
-        span.appendChild(document.createTextNode(this._text));
-        var that = this;
+        div.style.lineHeight="32px";
+        div.style.width = "200px";
+        div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
 
-        var arrow = this._arrow = document.createElement("div");
-        arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
-        arrow.style.position = "absolute";
-        arrow.style.width = "11px";
-        arrow.style.height = "10px";
-        arrow.style.top = "22px";
-        arrow.style.left = "10px";
-        arrow.style.overflow = "hidden";
-        div.appendChild(arrow);
 
-        div.onmouseover = function(){
-            this.style.backgroundColor = "#FF7604";
-            this.style.borderColor = "#FEB669";
-            this.getElementsByTagName("span")[0].innerHTML = that._overText;
-            arrow.style.backgroundPosition = "0px -20px";
+
+
+
+
+        var prev=document.createElement("div");
+        prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+
+        prev.style.display="inline-block"
+        prev.style.width = "45px";
+        prev.style.height = "40px";
+        prev.style.padding="0 0px 0 10px"
+        var strong=document.createElement('strong');
+        strong.appendChild(document.createTextNode(this._text))
+        prev.appendChild(strong)
+
+        div.appendChild(prev)
+
+        var next=document.createElement("div");
+        next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker_bg_170x28.gif) no-repeat"
+        next.style.backgroundPosition="right top"
+        next.style.display="inline-block"
+        next.style.padding="0 5px 0 5px"
+
+        next.appendChild(document.createTextNode(this._overText))
+
+
+
+
+        if(map.getZoom()>16) {
+            prev.style.width = "";
+            div.appendChild(next)
+
+
+
+
+
+        div.onmouseover=function(){
+            if(map.getZoom()>16){
+                prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
+                next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                next.style.backgroundPosition="right top"
+                prev.style.width = "";
+            }else{
+                prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
+                next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                next.style.backgroundPosition="right top"
+                prev.style.width = "";
+                div.appendChild(next)
+            }
         }
 
-        div.onmouseout = function(){
-            this.style.backgroundColor = "#62AB00";
-            this.style.borderColor = "#81C15B";
-            this.getElementsByTagName("span")[0].innerHTML = that._text;
-            arrow.style.backgroundPosition = "0px 0px";
-        }
+            div.onmouseout=function(){
+                if(map.getZoom()>16){
+                    next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker_bg_170x28.gif) no-repeat"
+                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+                    next.style.backgroundPosition="right top"
+
+                }else{
+                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+                    prev.style.width = "45px";
+                    div.removeChild(next)
+                }
+
+            }
+
+
+        }else{
+
+
+            prev.onmouseover=function(){
+                if(map.getZoom()>16){
+                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
+                    next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                    next.style.backgroundPosition="right top"
+                    prev.style.width = "";
+                }else{
+                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
+                    next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                    next.style.backgroundPosition="right top"
+                    prev.style.width = "";
+                    div.appendChild(next)
+                }
+            }
+
+
+            prev.onmouseout=function(){
+                if(map.getZoom()>16){
+                    next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker_bg_170x28.gif) no-repeat"
+                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+                    next.style.backgroundPosition="right top"
+
+                }else{
+                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+                    prev.style.width = "45px";
+                    div.removeChild(next)
+                }
+
+            }
+
+
+        }//else end
 
         div.onclick=function(){
             //alert(that._bid)
@@ -645,8 +712,8 @@
     ComplexCustomOverlay.prototype.draw = function(){
         var map = this._map;
         var pixel = map.pointToOverlayPixel(this._point);
-        this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
-        this._div.style.top  = pixel.y - 30 + "px";
+        this._div.style.left = pixel.x  + "px";
+        this._div.style.top  = pixel.y + "px";
     }
     //var txt = "银湖海岸城", mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
 
@@ -704,7 +771,7 @@
                 pt = new BMap.Point(data[i].lng,data[i].lat);
                 var marke=new BMap.Marker(pt)
                 //marke.hide()
-                var myCompOverlay = new ComplexCustomOverlay(pt, data[i].borough_name,data[i].borough_name + " " + data[i].rent_num + "套",data[i].id,data[i].borough_name);
+                var myCompOverlay = new ComplexCustomOverlay(pt, data[i].rent_num + "套",data[i].borough_name ,data[i].id,data[i].borough_name);
 
                 map.addOverlay(myCompOverlay);
 
