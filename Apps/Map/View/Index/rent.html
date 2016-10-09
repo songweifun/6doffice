@@ -268,22 +268,20 @@
             <dt>租金:</dt>
             <dd><a class="selected" paramid="0" href="javascript:void(0);" hidefocus="true">不限</a></dd>
             <dd>
-                <a paramid="45" href="javascript:void(0);" hidefocus="true">500以下</a><br>
-                <a paramid="46" href="javascript:void(0);" hidefocus="true">500-800</a><br>
-                <a paramid="47" href="javascript:void(0);" hidefocus="true">800-1000</a><br>
-                <a paramid="48" href="javascript:void(0);" hidefocus="true">1000-1500</a><br>
+                <foreach name="houserent_pricefilter1" item="item">
+                    <a paramid="<!--{$key}-->" href="javascript:void(0);" hidefocus="true"><!--{$item}--></a><br>
+                </foreach>
+
             </dd>
             <dd>
-                <a paramid="49" href="javascript:void(0);" hidefocus="true">1500-2000</a><br>
-                <a paramid="50" href="javascript:void(0);" hidefocus="true">2000-3000</a><br>
-                <a paramid="51" href="javascript:void(0);" hidefocus="true">3000-5000</a><br>
-                <a paramid="52" href="javascript:void(0);" hidefocus="true">5000以上</a><br>
-                <a paramid="" href="javascript:void(0);" hidefocus="true"></a><br>
+                <foreach name="houserent_pricefilter2" item="item">
+                    <a paramid="<!--{$key}-->" href="javascript:void(0);" hidefocus="true"><!--{$item}--></a><br>
+                </foreach>
             </dd>
         </dl>
         <dl id="mapListModel" class="map_l_dl">
             <dt>房型:</dt>
-            <dd><a class="selected" paramid="0" href="javascript:void(0);" hidefocus="true">不限</a></dd>
+            <dd><a class="selected" paramid="" href="javascript:void(0);" hidefocus="true">不限</a></dd>
             <dd>
                 <a paramid="1" href="javascript:void(0);" hidefocus="true">一室</a><br>
                 <a paramid="2" href="javascript:void(0);" hidefocus="true">二室</a><br>
@@ -296,7 +294,7 @@
         </dl>
         <dl id="mapListSource" class="map_l_dl">
             <dt>来源:</dt>
-            <dd><a class="selected" paramid="0" href="javascript:void(0);">不限</a></dd>
+            <dd><a class="selected" paramid="" href="javascript:void(0);">不限</a></dd>
             <dd><a paramid="1" href="javascript:void(0);" hidefocus="true">经纪人</a></dd>
             <dd><a paramid="2" href="javascript:void(0);" hidefocus="true">个人</a></dd>
         </dl>
@@ -317,12 +315,10 @@
                 <ul id="map2_sidebar_fitment_area" style="display: none; top: 34px;" class="map2_sidebar_filter_area">
                     <li class="map2_li_bg"></li>
                     <li class="map2_bg_all selected"><a href="javascript:;" paramid="0">不限</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="25">毛坯</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="26">简单装修</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="123">中等装修</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="27">精装修</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="28">豪华装修</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="29">其他</a></li>
+                    <foreach name="houserent_fitment" item="item">
+                        <li class="map2_bg_all"><a  href="javascript:;" paramid="<!--{$key}-->"><!--{$item}--></a></li>
+                    </foreach>
+
                 </ul>
             </div>
             <div class="clear"></div>
@@ -333,13 +329,10 @@
                 <ul style="display: none; top: -1px; padding:5px 5px 0 5px;" class="house_type_filter map2_sidebar_filter_area" id="map2_house_type_filter">
                     <li class="map2_li_bgbottom"></li>
                     <li class="map2_bg_all selected"><a href="javascript:;" paramid="0">不限</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="1">公寓</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="8">普通住宅</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="4">别墅</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="6">酒店公寓</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="10">商住两用</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="9">平房</a></li>
-                    <li class="map2_bg_all"><a href="javascript:;" paramid="5">其他</a></li>
+                    <foreach name="houserent_type" item="item">
+                        <li class="map2_bg_all"><a href="javascript:;" paramid="<!--{$key}-->"><!--{$item}--></a></li>
+                    </foreach>
+
                 </ul>
             </div>
             <div class="clear"></div>
@@ -359,6 +352,21 @@
 
 
     </div>
+    <script>
+        $('#map_hover_1').mousemove(function(){
+            $('#map2_sidebar_fitment_area').css('display',"")
+        })
+        $('#map_hover_1').mouseout(function(){
+            $('#map2_sidebar_fitment_area').css('display',"none")
+        })
+
+        $('#map_hover_2').mousemove(function(){
+            $('#map2_house_type_filter').css('display',"")
+        })
+        $('#map_hover_2').mouseout(function(){
+            $('#map2_house_type_filter').css('display',"none")
+        })
+    </script>
     <div id="allmap" class="baidu_map" style="width: 1395px;height: 716px"></div>
     <div class="clear"></div>
 </div>
@@ -444,10 +452,19 @@
     </div>
     <div class="bg_bot baidu_win_bg" style="_margin-top:-2px;"></div>
 </div>
+<!--//弹出div删选 -->
 <input type="hidden" id="filter_room">
 <input type="hidden" id="filter_price">
 <input type="hidden" id="filter_source">
 <input type="hidden" id="filter_order">
+
+<!--//父级元素删选-->
+
+<input type="hidden" id="parentfilter_room" value="<!--{$room}-->">
+<input type="hidden" id="parentfilter_price" value="<!--{$price}-->">
+<input type="hidden" id="parentfilter_source" value="<!--{$source}-->">
+<input type="hidden" id="parentfilter_fitment" value="<!--{$fitment}-->">
+<input type="hidden" id="parentfilter_type" value="<!--{$type}-->">
 
 </body>
 </html>
@@ -455,6 +472,7 @@
 <script src="http://api.map.baidu.com/geodata/v3/poi/list/?geotable_id=153394&ak='wFcr45UfFkvNP9kb3zyLn7xCv0pyEzxC'"></script>
 -->
 <script type="text/javascript">
+
     // 百度地图API功能
     var map = new BMap.Map("allmap");    // 创建Map实例
     map.centerAndZoom(new BMap.Point(116.404, 39.915), 14);  // 初始化地图,设置中心点坐标和地图级别
@@ -473,15 +491,7 @@
         }
     }, "南京市");
 
-    /*//根据daboxId创建自定义图层，用户可用自己创建的geotableid替换30960
-    var customLayer=new BMap.CustomLayer({
-        geotableId: 153394,
-        q: '', //检索关键字
-        tags: '', //空格分隔的多字符串
-        filter: '' //过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
-    });
 
-    map.addTileLayer(customLayer);//添加自定义图层*/
 
     //监听缩放级别
     var datacache=null;
@@ -537,7 +547,7 @@
 
 
         var prev=document.createElement("div");
-        prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+        prev.style.background="url(__PUBLIC__/images/marker.png) no-repeat"
 
         prev.style.display="inline-block"
         prev.style.width = "45px";
@@ -550,7 +560,7 @@
         div.appendChild(prev)
 
         var next=document.createElement("div");
-        next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker_bg_170x28.gif) no-repeat"
+        next.style.background="url(__PUBLIC__/images/marker_bg_170x28.gif) no-repeat"
         next.style.backgroundPosition="right top"
         next.style.display="inline-block"
         next.style.padding="0 5px 0 5px"
@@ -570,13 +580,13 @@
 
         div.onmouseover=function(){
             if(map.getZoom()>16){
-                prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
-                next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                prev.style.background="url(__PUBLIC__/images/marker-h.png) no-repeat"
+                next.style.background="url(__PUBLIC__/images/marker-h-l.gif) no-repeat"
                 next.style.backgroundPosition="right top"
                 prev.style.width = "";
             }else{
-                prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
-                next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                prev.style.background="url(__PUBLIC__/images/marker-h.png) no-repeat"
+                next.style.background="url(__PUBLIC__/images/marker-h-l.gif) no-repeat"
                 next.style.backgroundPosition="right top"
                 prev.style.width = "";
                 div.appendChild(next)
@@ -585,12 +595,12 @@
 
             div.onmouseout=function(){
                 if(map.getZoom()>16){
-                    next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker_bg_170x28.gif) no-repeat"
-                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+                    next.style.background="url(__PUBLIC__/images/marker_bg_170x28.gif) no-repeat"
+                    prev.style.background="url(__PUBLIC__/images/marker.png) no-repeat"
                     next.style.backgroundPosition="right top"
 
                 }else{
-                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker.png) no-repeat"
+                    prev.style.background="url(__PUBLIC__/images/marker.png) no-repeat"
                     prev.style.width = "45px";
                     div.removeChild(next)
                 }
@@ -603,13 +613,13 @@
 
             prev.onmouseover=function(){
                 if(map.getZoom()>16){
-                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
-                    next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                    prev.style.background="url(__PUBLIC__/images/marker-h.png) no-repeat"
+                    next.style.background="url(__PUBLIC__/images/marker-h-l.gif) no-repeat"
                     next.style.backgroundPosition="right top"
                     prev.style.width = "";
                 }else{
-                    prev.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h.png) no-repeat"
-                    next.style.background="url(http://pages.haozu.ajkcdn.com/20120824/img/map/marker-h-l.gif) no-repeat"
+                    prev.style.background="url(__PUBLIC__/images/marker-h.png) no-repeat"
+                    next.style.background="url(__PUBLIC__/images/marker-h-l.gif) no-repeat"
                     next.style.backgroundPosition="right top"
                     prev.style.width = "";
                     div.appendChild(next)
@@ -636,9 +646,17 @@
 
         div.onclick=function(){
             //alert(that._bid)
+            //加入父级条件
+            var parentroom=$("#parentfilter_room").val();
+            var parentprice=$("#parentfilter_price").val();
+            var parentsource=$("#parentfilter_source").val();
+            var parentfitment=$("#parentfilter_fitment").val();
+            var parenttype=$("#parentfilter_type").val();
+            //alert(parentprice)
             $.ajax({
                 url:"<!--{:U(MODULE_NAME.'/Index/getHouseRent','','')}-->",
-                data:{bid:that._bid},
+                data:{bid:that._bid,price:parentprice,room:parentroom,source:parentsource,fitment:parentfitment,type:parenttype},
+
                 dataType:'json',
                 type:'get',
                 success:function(result){
@@ -660,13 +678,13 @@
                     for (var i=0;i<data.length;i++){
                         var str1="<li>\
                                 <div class='proimg'>\
-                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <a href="+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+">\
                                 <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
                                 </a>\
                                 </div>\
                                 <div class='proname'>\
                                 <p class='title'>\
-                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
                                 ";
 
                       var str2="<i class='icons more_phos'>多图</i>";
@@ -715,55 +733,21 @@
         this._div.style.left = pixel.x  + "px";
         this._div.style.top  = pixel.y + "px";
     }
-    //var txt = "银湖海岸城", mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
 
 
 
     var markers = [];
     var pt = null;
 
-    function writeObj(obj){
-        var description = "";
-        for(var i in obj){
-            var property=obj[i];
-            description+=i+" = "+property+"\n";
-        }
-        alert(description);
-    }
-    /*$.ajax({
-        url:"http://api.map.baidu.com/geodata/v3/poi/list?callback=?",
-        data:{geotable_id :153394,ak:'wFcr45UfFkvNP9kb3zyLn7xCv0pyEzxC'},
-        dataType:'json',
-        type:'get',
-        success:function(data){
-            //alert(data.pois.location.length)
-            for(var i=0;i<data.length;i++){
-                //alert(data[i].pois.location)
-                pt = new BMap.Point(data[i].pois.location);
-                markers.push(new BMap.Marker(pt));
-            }
 
-            var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers});
-
-        }
-
-    })
-*/
-
-    /*var MAX = 10;
-    var i = 0;
-    for (; i < MAX; i++) {
-        pt = new BMap.Point(Math.random() * 40 + 85, Math.random() * 30 + 21);
-        markers.push(new BMap.Marker(pt));
-
-    }*/
    var url="<!--{:U(MODULE_NAME.'/Index/marker')}-->";
     //alert(url)
     $.ajax({
         url:url,
         dataType:'json',
         type:'post',
-        success:function(data){
+        success:function(arr){
+            data=arr.markers
             datacache=data;
             //alert(data.pois.location.length)
             for(var i=0;i<data.length;i++){
@@ -775,78 +759,14 @@
 
                 map.addOverlay(myCompOverlay);
 
-                marke.bid=data[i].id
-                marke.address=data[i].borough_address
-                marke.name=data[i].borough_name
-                markers.push(marke);
-            }
-            //var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers});
 
-            for (var j=0;j<markers.length;j++){//添加事件
-
-                //doclick(markers[j])
             }
+
         }
 
     })
 
-    var sContent =
-            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>天安门</h4>" +
-            "<img style='float:right;margin:4px' id='imgDemo' src='http://app.baidu.com/map/images/tiananmen.jpg' width='139' height='104' title='天安门'/>" +
-            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>天安门坐落在中国北京市中心,故宫的南侧,与天安门广场隔长安街相望,是清朝皇城的大门...</p>" +
-            "</div>";
-    function doclick(maj){//为避免执行一次外部执行添加事件
-        maj.onclick=function(){
 
-            //alert(maj.bid)
-            var content = '<p style="width:280px;margin:0;line-height:20px;">地址：' + maj.address +  '</p>';
-           var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {  //带检索的信息窗口
-             title: maj.name, //标题
-             width: 290, //宽度
-             height: 40, //高度
-             panel : "panel", //检索结果面板
-             enableAutoPan : true, //自动平移
-             enableSendToPhone: true, //是否显示发送到手机按钮
-             searchTypes :[
-             BMAPLIB_TAB_SEARCH,   //周边检索
-             BMAPLIB_TAB_TO_HERE,  //到这里去
-             BMAPLIB_TAB_FROM_HERE //从这里出发
-             ]
-             });
-
-            searchInfoWindow.open(this);
-             //alert(maj.bid)
-            /*var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-            this.openInfoWindow(infoWindow);*/
-
-        }
-    }
-
-    //customLayer.addEventListener('onhotspotclick',callback);//单击图层事件
-    function callback(e)//单击热点图层
-    {
-        var customPoi = e.customPoi,  //获取poi对象
-                str = [];
-        str.push("address = " + customPoi.address);
-        //str.push("phoneNumber = " + customPoi.phoneNumber);
-        var content = '<p style="width:280px;margin:0;line-height:20px;">地址：' + customPoi.address +  '</p>';
-        var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {  //带检索的信息窗口
-            title: customPoi.title, //标题
-            width: 290, //宽度
-            height: 40, //高度
-            panel : "panel", //检索结果面板
-            enableAutoPan : true, //自动平移
-            enableSendToPhone: true, //是否显示发送到手机按钮
-            searchTypes :[
-                BMAPLIB_TAB_SEARCH,   //周边检索
-                BMAPLIB_TAB_TO_HERE,  //到这里去
-                BMAPLIB_TAB_FROM_HERE //从这里出发
-            ]
-        });
-        var point = new BMap.Point(customPoi.point.lng, customPoi.point.lat);
-        searchInfoWindow.open(point);
-
-    }
     $('#baidu_map_propwin_close').click(function(){
         $('#baidu_map_propwin').css('display','none');
 
@@ -888,13 +808,13 @@
                 for (var i=0;i<data.length;i++){
                     var str1="<li>\
                                 <div class='proimg'>\
-                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <a href="+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+">\
                                 <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
                                 </a>\
                                 </div>\
                                 <div class='proname'>\
                                 <p class='title'>\
-                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
                                 ";
 
                     var str2="<i class='icons more_phos'>多图</i>";
@@ -1003,13 +923,13 @@
                 for (var i=0;i<data.length;i++){
                     var str1="<li>\
                                 <div class='proimg'>\
-                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <a href="+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+">\
                                 <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
                                 </a>\
                                 </div>\
                                 <div class='proname'>\
                                 <p class='title'>\
-                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
                                 ";
 
                     var str2="<i class='icons more_phos'>多图</i>";
@@ -1117,13 +1037,13 @@
                 for (var i=0;i<data.length;i++){
                     var str1="<li>\
                                 <div class='proimg'>\
-                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <a href="+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+">\
                                 <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
                                 </a>\
                                 </div>\
                                 <div class='proname'>\
                                 <p class='title'>\
-                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
                                 ";
 
                     var str2="<i class='icons more_phos'>多图</i>";
@@ -1246,13 +1166,13 @@
                 for (var i=0;i<data.length;i++){
                     var str1="<li>\
                                 <div class='proimg'>\
-                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <a href="+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+">\
                                 <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
                                 </a>\
                                 </div>\
                                 <div class='proname'>\
                                 <p class='title'>\
-                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
                                 ";
 
                     var str2="<i class='icons more_phos'>多图</i>";
@@ -1375,13 +1295,13 @@
                 for (var i=0;i<data.length;i++){
                     var str1="<li>\
                                 <div class='proimg'>\
-                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <a href="+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+">\
                                 <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
                                 </a>\
                                 </div>\
                                 <div class='proname'>\
                                 <p class='title'>\
-                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
                                 ";
 
                     var str2="<i class='icons more_phos'>多图</i>";
@@ -1509,13 +1429,13 @@
                 for (var i=0;i<data.length;i++){
                     var str1="<li>\
                                 <div class='proimg'>\
-                                <a href="+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+">\
+                                <a href="+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+">\
                                 <img alt='' src='__ROOT__/Uploads/"+data[i].house_thumb+"' width='53' border='0' height='40'>\
                                 </a>\
                                 </div>\
                                 <div class='proname'>\
                                 <p class='title'>\
-                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Sell/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
+                                <a class='house_info icon_count_1' data-sign='true' target='_blank' href='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"' ref='"+"<!--{:U('Home/Rent/detail')}-->/id/"+data[i].id+"'>"+data[i].house_title+"</a>\
                                 ";
 
                     var str2="<i class='icons more_phos'>多图</i>";
@@ -1592,7 +1512,7 @@
     })
 </script>
 
-
+<!-- div拖动 -->
 <script>
 
     var clicked = "Nope.";
@@ -1641,5 +1561,305 @@
     });
 
 
+
+</script>
+
+<!-- 主页筛选 -->
+
+<script>
+
+    //价格
+    $("#mapListPrice").on("click","dd a", function() {
+
+        var prices=$("#mapListPrice").find("a");
+
+
+        var parentroom=$("#parentfilter_room").val();
+        //var parentprice=$("#parentfilter_price").val();
+        var parentsource=$("#parentfilter_source").val();
+        var parentfitment=$("#parentfilter_fitment").val();
+        var parenttype=$("#parentfilter_type").val();
+        var parentprice=$(this).attr('paramid');
+        //alert(parentprice)
+
+        var pt = null;
+        var url="<!--{:U(MODULE_NAME.'/Index/marker')}-->";
+        //alert(url)
+        map.clearOverlays();
+        $.ajax({
+            url:url,
+            dataType:'json',
+            type:'get',
+            data:{price:parentprice,room:parentroom,source:parentsource,fitment:parentfitment,type:parenttype},
+
+            success:function(arr){
+
+                data=arr.markers
+                datacache=data;
+                //alert(arr.price)
+                prices.each(function(){
+                    $(this).removeClass('selected')
+                    if($(this).attr('paramid')==arr.price){
+                        $(this).addClass('selected')
+                        //alert($(this).attr('paramid'))
+                    }
+                })
+                //alert(data.pois.location.length)
+                $("#parentfilter_room").val(arr.room);
+                $("#parentfilter_price").val(arr.price);
+                $("#parentfilter_source").val(arr.source);
+                $("#parentfilter_fitment").val(arr.fitment);
+                $("#parentfilter_type").val(arr.type);
+                for(var i=0;i<data.length;i++){
+                    //alert(data[i].id)
+                    pt = new BMap.Point(data[i].lng,data[i].lat);
+
+                    var myCompOverlay = new ComplexCustomOverlay(pt, data[i].rent_num + "套",data[i].borough_name ,data[i].id,data[i].borough_name);
+
+
+                    map.addOverlay(myCompOverlay);
+
+
+                }
+
+            }
+
+        })//ajax end
+
+    })//click end
+
+    //房间
+
+    $("#mapListModel").on("click","dd a", function() {
+
+        var rooms=$("#mapListModel").find("a");
+
+        var parentroom=$("#parentfilter_room").val();
+        var parentprice=$("#parentfilter_price").val();
+        var parentsource=$("#parentfilter_source").val();
+        var parentfitment=$("#parentfilter_fitment").val();
+        var parenttype=$("#parentfilter_type").val();
+        var parentroom=$(this).attr('paramid');
+        //alert(parentroom)
+
+        var pt = null;
+        var url="<!--{:U(MODULE_NAME.'/Index/marker')}-->";
+        //alert(url)
+        map.clearOverlays();
+        $.ajax({
+            url:url,
+            dataType:'json',
+            type:'get',
+            data:{price:parentprice,room:parentroom,source:parentsource,fitment:parentfitment,type:parenttype},
+
+            success:function(arr){
+
+
+
+                data=arr.markers
+                datacache=data;
+
+                rooms.each(function(){
+                    $(this).removeClass('selected')
+                    if($(this).attr('paramid')==arr.room){
+                        $(this).addClass('selected')
+                        //alert($(this).attr('paramid'))
+                    }
+                })
+                //alert(data.pois.location.length)
+                $("#parentfilter_room").val(arr.room);
+                $("#parentfilter_price").val(arr.price);
+                $("#parentfilter_source").val(arr.source);
+                $("#parentfilter_fitment").val(arr.fitment);
+                $("#parentfilter_type").val(arr.type);
+                for(var i=0;i<data.length;i++){
+                    //alert(data[i].id)
+                    pt = new BMap.Point(data[i].lng,data[i].lat);
+
+                    var myCompOverlay = new ComplexCustomOverlay(pt, data[i].rent_num + "套",data[i].borough_name ,data[i].id,data[i].borough_name);
+
+
+                    map.addOverlay(myCompOverlay);
+
+
+                }
+
+            }
+
+        })//ajax end
+
+    })//click end
+    //来源
+    $("#mapListSource").on("click","dd a", function() {
+
+        var sources=$("#mapListSource").find("a");
+
+        var parentroom=$("#parentfilter_room").val();
+        var parentprice=$("#parentfilter_price").val();
+        var parentsource=$("#parentfilter_source").val();
+        var parentfitment=$("#parentfilter_fitment").val();
+        var parenttype=$("#parentfilter_type").val();
+        var parentsource=$(this).attr('paramid');
+        //alert(parentsource)
+
+        var pt = null;
+        var url="<!--{:U(MODULE_NAME.'/Index/marker')}-->";
+        map.clearOverlays();
+        $.ajax({
+            url:url,
+            dataType:'json',
+            type:'get',
+            data:{price:parentprice,room:parentroom,source:parentsource,fitment:parentfitment,type:parenttype},
+
+            success:function(arr){
+
+                data=arr.markers
+                datacache=data;
+
+                sources.each(function(){
+                    $(this).removeClass('selected')
+                    if($(this).attr('paramid')==arr.source){
+                        $(this).addClass('selected')
+                        //alert($(this).attr('paramid'))
+                    }
+                })
+                //alert(data.pois.location.length)
+                $("#parentfilter_room").val(arr.room);
+                $("#parentfilter_price").val(arr.price);
+                $("#parentfilter_source").val(arr.source);
+                $("#parentfilter_fitment").val(arr.fitment);
+                $("#parentfilter_type").val(arr.type);
+                for(var i=0;i<data.length;i++){
+                    //alert(data[i].id)
+                    pt = new BMap.Point(data[i].lng,data[i].lat);
+
+                    var myCompOverlay = new ComplexCustomOverlay(pt, data[i].rent_num + "套",data[i].borough_name ,data[i].id,data[i].borough_name);
+
+
+                    map.addOverlay(myCompOverlay);
+
+
+                }
+
+            }
+
+        })//ajax end
+
+    })//click end
+    //装修
+    $("#map2_sidebar_fitment_area").on("click","li a", function() {
+
+        var fitments=$("#map2_sidebar_fitment_area").find("a");
+
+        var parentroom=$("#parentfilter_room").val();
+        var parentprice=$("#parentfilter_price").val();
+        var parentsource=$("#parentfilter_source").val();
+        var parentfitment=$("#parentfilter_fitment").val();
+        var parenttype=$("#parentfilter_type").val();
+        var parentfitment=$(this).attr('paramid');
+        //alert(parentfitment)
+
+        var pt = null;
+        var url="<!--{:U(MODULE_NAME.'/Index/marker')}-->";
+        //alert(url)
+        map.clearOverlays();
+        $.ajax({
+            url:url,
+            dataType:'json',
+            type:'get',
+            data:{price:parentprice,room:parentroom,source:parentsource,fitment:parentfitment,type:parenttype},
+
+            success:function(arr){
+
+                data=arr.markers
+                datacache=data;
+                //alert(arr.fitment)
+                fitments.each(function(){
+                    $(this).parent().removeClass('selected')
+                    if($(this).attr('paramid')==arr.fitment){
+                        $(this).parent().addClass('selected')
+                        //alert($(this).attr('paramid'))
+                    }
+                })
+                $("#parentfilter_room").val(arr.room);
+                $("#parentfilter_price").val(arr.price);
+                $("#parentfilter_source").val(arr.source);
+                $("#parentfilter_fitment").val(arr.fitment);
+                $("#parentfilter_type").val(arr.type);
+                for(var i=0;i<data.length;i++){
+                    //alert(data[i].id)
+                    pt = new BMap.Point(data[i].lng,data[i].lat);
+
+                    var myCompOverlay = new ComplexCustomOverlay(pt, data[i].rent_num + "套",data[i].borough_name ,data[i].id,data[i].borough_name);
+
+
+                    map.addOverlay(myCompOverlay);
+
+
+                }
+
+            }
+
+        })//ajax end
+
+    })//click end
+
+    //类型
+    $("#map2_house_type_filter").on("click","li a", function() {
+
+        var types=$("#map2_house_type_filter").find("a");
+
+        var parentroom=$("#parentfilter_room").val();
+        var parentprice=$("#parentfilter_price").val();
+        var parentsource=$("#parentfilter_source").val();
+        var parentfitment=$("#parentfilter_fitment").val();
+        var parenttype=$("#parentfilter_type").val();
+        var parenttype=$(this).attr('paramid');
+        //alert(parenttype)
+
+        var pt = null;
+        var url="<!--{:U(MODULE_NAME.'/Index/marker')}-->";
+        //alert(url)
+        map.clearOverlays();
+        $.ajax({
+            url:url,
+            dataType:'json',
+            type:'get',
+            data:{price:parentprice,room:parentroom,source:parentsource,fitment:parentfitment,type:parenttype},
+
+            success:function(arr){
+
+                data=arr.markers
+                datacache=data;
+                //alert(arr.fitment)
+                types.each(function(){
+                    $(this).parent().removeClass('selected')
+                    if($(this).attr('paramid')==arr.type){
+                        $(this).parent().addClass('selected')
+                        //alert($(this).attr('paramid'))
+                    }
+                })
+                $("#parentfilter_room").val(arr.room);
+                $("#parentfilter_price").val(arr.price);
+                $("#parentfilter_source").val(arr.source);
+                $("#parentfilter_fitment").val(arr.fitment);
+                $("#parentfilter_type").val(arr.type);
+                for(var i=0;i<data.length;i++){
+                    //alert(data[i].id)
+                    pt = new BMap.Point(data[i].lng,data[i].lat);
+
+                    var myCompOverlay = new ComplexCustomOverlay(pt, data[i].rent_num + "套",data[i].borough_name ,data[i].id,data[i].borough_name);
+
+
+                    map.addOverlay(myCompOverlay);
+
+
+                }
+
+            }
+
+        })//ajax end
+
+    })//click end
 
 </script>

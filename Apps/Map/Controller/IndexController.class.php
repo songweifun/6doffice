@@ -12,14 +12,88 @@ class IndexController extends Controller{
         $this->display();
     }
     public function rent(){
+        $this->houserent_pricefilter1=array_slice(getArray('houserent_pricefilter'),0,5);
+        $this->houserent_pricefilter2=array_slice(getArray('houserent_pricefilter'),5,10);
+        $this->houserent_fitment=getArray('house_fitment');
+        $this->houserent_type=getArray("house_type");
+
         $this->display();
     }
     public function marker(){
+
         $markers=M('borough')->field('id,lat,lng,borough_address,borough_name,rent_num')->select();
+        $price = $_GET['price'];
+        $room = intval($_GET['room']);
+        $source = intval($_GET['source']);
+        $fitment=intval($_GET['fitment']);
+        $type=intval($_GET['type']);
+        $house=M('houserent');
+
+        if($price||$room||$source||$fitment) {
+            //比较耗时
+            foreach ($markers as $key => $v) {
+
+                $id = $v['id'];
+                $where = ' and status=1 and borough_id = ' . $id;
+
+                //price
+                if ($price) {
+                    $tmp = explode('-', $price);
+                    if ($tmp[0]) {
+                        $where .= ' and house_price >= ' . intval($tmp[0]);
+                    }
+                    if ($tmp[1]) {
+                        $where .= ' and house_price <= ' . intval($tmp[1]);
+                    }
+
+
+                }
+
+                //room
+
+                if ($room) {
+                    $where .= ' and house_room = ' . $room;
+
+                }
+                //选择标签
+
+                if ($source == 1) {
+                    $where .= " and broker_id != 0 ";
+
+                } elseif ($source == 2) {
+                    $where .= " and broker_id = 0 ";
+
+                }
+                if($fitment){
+                    $where.= " and house_fitment= ".$fitment;
+                }
+                if($type){
+                    $where.= " and house_type= ".$type;
+                }
+
+                $rent_num = $house->where('is_checked=1' . $where)->count();
+                $markers[$key]['rent_num'] = $rent_num;
+
+            }
+
+        }
+
+        $arr['price'] = $price;
+        $arr['room'] = $room;
+        $arr['source'] = $source;
+        $arr['fitment'] = $fitment;
+        $arr['type'] = $type;
+
+        $arr['markers']=$markers;
+
+
         //p($markers);die;
-        $this->ajaxReturn($markers);
+        $this->ajaxReturn($arr);
     }
 
+    /**
+     * 异步div获取
+     */
     public function getHouseRent(){
         //import('Class.Dd',APP_PATH);
         $houseRent=M('houserent');
