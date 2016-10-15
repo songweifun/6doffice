@@ -943,7 +943,7 @@ class GuestController extends CommonController{
             var uploader = WebUploader.create({
                 auto: true,
                 swf:'".__ROOT__."/Public/js/webupload/Uploader.swf',
-                server: '".U(MODULE_NAME.'/HouseRent/upload')."/action/doupload/to/".$to."',
+                server: '".U(MODULE_NAME.'/Guest/upload')."/action/doupload/to/".$to."',
                 pick: '#filePicker',
                 accept: {
                     title: 'Images',

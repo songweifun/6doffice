@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>六度写字楼网后台管理</title>
+    <!-- bootstrap -->
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/bootstrap.js"/>
+
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+        <form id="editForm" name="editForm" method="post" action="index.php?action=save" onsubmit="return validator(this)">
+            <input type="hidden" name="id" value="{$borough.id}">
+            <input type="hidden" name="to_url" value="{$to_url}">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>小区概要</caption>
+                <tr>
+                    <th width="13%"><strong>小区名称</strong></th>
+                    <td width="37%">
+
+                        <input name="borough[borough_name]" valid="required" class="inputtitle" type="text" id="name"  size="35" maxlength="30" value="{$borough.borough_name}" errmsg="请填写小区名!" /></td>
+
+                    <th width="13%"><strong>小区别名</strong></th>
+                    <td width="37%"><input name="borough[borough_alias]" type="text" id="borough_alias"  size="35" maxlength="30" value="{$borough.borough_alias}" /></td>
+                </tr>
+
+                <tr>
+                    <th width="13%"><strong>小区地址</strong></th>
+                    <td colspan="3">
+                        <input name="borough[borough_address]" type="text" id="address"  size="70" value="{$borough.borough_address}" /></td>
+                </tr>
+                <if condition="$Think.get.action eq 'edit'">
+                <tr>
+                    <th><strong>地图坐标</strong></th>
+                    <td colspan="3">
+                        <link href="<!--{$cfg.path.css}-->add_map.css" type="text/css" rel="stylesheet" />
+                        <script type="text/javascript" src="<!--{$cfg.path.js}-->jquery-1.4.2.min.js"></script>
+
+                        <input name="borough[layout_map]" type="text" id="layout_map" value="{$borough.layout_map}" size="50" /> <a href="" target="_blank">如何手动获取坐标？</a>
+                        <div id="mapdiv" style="display: none">
+                            <div class='add'>
+                                <span class="maptitle">添加位置</span>
+                                <span style="float:right"></span>
+                            </div>
+                            <div id='mark_mymap' style="width: 1000px;height: 600px"></div>
+                            <div class='detail'>
+                                <span>拖动红色图标到小区所在位置</span> <input type="button" value="添加" onClick="changeImg()" />
+                            </div>
+                        </div>
+
+                        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wFcr45UfFkvNP9kb3zyLn7xCv0pyEzxC"></script>
+
+                        <script type="text/javascript" language="javascript">
+                            function atmark() { //标注接口开始
+                                $("#addmap").html('<img src="__PUBLIC__/images/button-f.gif">');
+                                var map = new BMap.Map("mark_mymap");
+
+                                var myGeo = new BMap.Geocoder();
+                                // 将地址解析结果显示在地图上,并调整地图视野
+                                myGeo.getPoint("南京市中山南路1号", function(point){
+                                    if (point) {
+                                        map.centerAndZoom(point, 16);
+                                        var marker = new BMap.Marker(point);// 创建标注
+                                        map.addOverlay(marker);// 将标注添加到地图中
+                                        marker.enableDragging();// 可拖拽
+                                        marker.addEventListener("dragend", function(e){
+                                            //获取覆盖物位置
+                                            var o_Point_now =  marker.getPosition();
+                                            var lng = o_Point_now.lng;
+                                            var lat = o_Point_now.lat;
+                                            setLatLng(lat, lng);
+                                        })
+
+                                    }else{
+                                        alert("您选择地址没有解析到结果!");
+                                    }
+                                }, "南京市");
+
+                                var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+                                var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+                                map.addControl(top_left_control);
+                                map.addControl(top_left_navigation);
+                            }
+                            function setLatLng(lat,lng) {
+                                //alert(111)
+                                document.getElementById("layout_map").value='('+ lat+','+ lng+')';
+                            }
+                            function changeImg(){
+                                $('#mapdiv').hide();
+                                $("#addmap").html('<img src="__PUBLIC__/images/button-f.gif"><span style="color:red; margin-left:20px">添加成功!</span>');
+                            }
+                        </script>
+                        <div id="addmap" onclick="$('#mapdiv').show();atmark();"><img src="__PUBLIC__/images/button-f.gif"></div>
+
+                        <p id="errMsg_house_mapid" class="errorMessage" display="none"></p>
+                    </td>
+                </tr>
+                </if>
+                <tr>
+                    <th><strong>区域</strong></th>
+                    <td>
+                        <select name="borough[cityarea_id]" id="cityarea_id">
+                        <option  value="">请选择区域</option>
+                            <foreach name="cityarea_option" item="item">
+                                <if condition="$borough.cityarea_id eq $key">
+                                <option  value="{$key}" selected>{$item}</option>
+                                <else/>
+                                <option  value="{$key}">{$item}</option>
+                                </if>
+                            </foreach>
+                        </select>
+                         <span id="quote">
+                            <select name="borough[cityarea2_id]">
+                                <if condition="$borough.cityarea2_id eq null">
+                                <option value="">请选择</option>
+                                <else/>
+                                <option  value="{$borough.cityarea2_id}">{$borough.cityarea2_name}</option>
+                                </if>
+                            </select>
+                        </span>
+                        <script language="javascript">
+                            $("#cityarea_id").change(function(){
+                                $("#quote").load("../areas.php?id="+$("#cityarea_id").val());
+                            });
+                        </script>
+                    </td>
+                    <th><strong>版块</strong></td>
+                    <td>
+                        <select name="borough[borough_section]" id="borough_section">
+                        <option  value="">请选择版块</option>
+                            <foreach name="borough_section_option" item="item">
+                                <if condition="$borough.borough_section eq $key">
+                                    <option  value="{$key}" selected>{$item}</option>
+                                    <else/>
+                                    <option  value="{$key}">{$item}</option>
+                                </if>
+                            </foreach>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th><strong>物业类型</strong></th>
+                    <td><select name="borough[borough_type]" id="borough_type">
+                        <option value="">请选择物业类型</option>
+                        <foreach name="borough_type_option" item="item">
+                            <if condition="$borough.borough_type eq $key">
+                                <option  value="{$key}" selected>{$item}</option>
+                                <else/>
+                                <option  value="{$key}">{$item}</option>
+                            </if>
+                        </foreach>
+                    </select>
+                    </td>
+                    <th><strong>物业公司</strong></th>
+                    <td><input name="boroughInfo[borough_company]" type="text" id="borough_company" value="{$boroughInfo.borough_company}" size="35"/></td>
+                </tr>
+                <tr>
+                    <th><strong>物&nbsp;业&nbsp;费</strong></th>
+                    <td><input name="boroughInfo[borough_costs]" type="text" id="borough_costs"  value="{$boroughInfo.borough_costs}" size="15" maxlength="8" />元(/㎡/月)</td>
+                    <th><strong>开发商</strong></th>
+                    <td><input name="boroughInfo[borough_developer]" type="text" value="{$boroughInfo.borough_developer}"  id="borough_developer" size="35"/></td>
+
+                </tr>
+                <tr>
+                    <th><strong>小区配套</strong></th>
+                    <td colspan="3">
+                        <foreach name="borough_support_option" item="item">
+                            <if condition="in_array($key,$boroughInfo['borough_support'])">
+                                <input type="checkbox" value="{$key}" checked>{$item}
+                                <else/>
+                                <input type="checkbox" value="{$key}">{$item}
+                            </if>
+                        </foreach>
+                    </td>
+                    <td class="align_l">&nbsp;&nbsp;<span id="borough_thumb_dis"><if condition="$borough.borough_thumb neq null"><img src="__ROOT__/Uploads/{$borough.borough_thumb}" width="68" height="50"></if></span><input type="hidden" name="borough[borough_thumb]" value="{$borough.borough_thumb}" id="borough_thumb" ><input type="button" name="add_thum" onclick="addThumbImg('uploadBoroughThumb|borough|thumb');return false;" value="上传小区缩略图" /></td>
+                </tr>
+            </table>
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>周边配套</caption>
+                <tr>
+                    <th width="13%"><strong>公交线路</strong></th>
+                    <td><input name="boroughInfo[borough_bus]" type="text" id="borough_bus" size="50" value="{$boroughInfo.borough_bus}" /></td>
+                    <th width="13%"><strong>银行邮政</strong></th>
+                    <td><input name="boroughInfo[borough_bank]" type="text" id="borough_bank" size="50" value="{$boroughInfo.borough_bank}" /></td>
+                </tr>
+                <tr>
+                    <th><strong>划片小学</strong></th>
+                    <td><input name="borough[elementary_school]" type="text" id="elementary_school" size="50" value="{$borough.elementary_school}" /></td>
+                    <th ><strong>划片中学</strong></th>
+                    <td><input name="borough[middle_school]" type="text" id="middle_school" size="50" value="{$borough.middle_school}" /></td>
+                </tr>
+                <tr>
+                    <th><strong>医院药房</strong></th>
+                    <td><input name="boroughInfo[borough_hospital]" type="text" id="borough_hospital" size="50" value="{$boroughInfo.borough_hospital}" /></td>
+                    <th><strong>超市商场</strong></th>
+                    <td><input name="boroughInfo[borough_shop]" type="text" id="borough_shop" size="50" value="{$boroughInfo.borough_shop}" /></td>
+                </tr>
+                <tr>
+                    <th><strong>餐馆酒店</strong></th>
+                    <td colspan="3"><input name="boroughInfo[borough_dining]" type="text" id="borough_dining" size="50"  value="{$boroughInfo.borough_dining}" /></td>
+
+                </tr>
+                <tr>
+                    <th><strong>公园景观</strong></th>
+                    <td colspan="3">
+                        <foreach name="borough_sight_option" item="item">
+                            <if condition="in_array($key,$boroughInfo['borough_sight'])">
+                                <input type="checkbox" value="{$key}" checked>{$item}&nbsp;
+                                <else/>
+                                <input type="checkbox" value="{$key}">{$item}&nbsp;
+                            </if>
+                        </foreach>
+                        <!--{html_checkboxes name=boroughInfo[borough_sight] options=$borough_sight_option selected=$boroughInfo.borough_sight separator="&nbsp;" }-->
+                    </td>
+                </tr>
+            </table>
+
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>建筑数据</caption>
+                <tr>
+                    <th width="13%"><strong>总建筑面积</strong></th>
+                    <td width="37%"><input name="boroughInfo[borough_totalarea]"  value="{$boroughInfo.borough_totalarea}" type="text"  id="borough_totalarea" size="15" maxlength="15" /> 平米</td>
+                    <th width="13%"><strong>占地面积</strong></th>
+                    <td width="37%"><input name="boroughInfo[borough_area]"  value="{$boroughInfo.borough_area}" type="text" id="borough_area" size="15" maxlength="15" /> 平米</td>
+                </tr>
+                <tr>
+                    <th><strong>总&nbsp;户&nbsp;数</strong></th>
+                    <td><input name="boroughInfo[borough_number]"  value="{$boroughInfo.borough_number}" type="text" id="borough_number" size="15" maxlength="10" valid="isInt" errmsg="总户数必须为数字!" /> 户</td>
+                    <th><strong>绿&nbsp;化&nbsp;率</strong></th>
+                    <td><input name="boroughInfo[borough_green]"  value="{$boroughInfo.borough_green}" type="text" id="borough_green" size="15" maxlength="10" /> %</td>
+                </tr>
+                <tr>
+                    <th><strong>容&nbsp;积&nbsp;率</strong></th>
+                    <td><input name="boroughInfo[borough_volume]"  value="{$boroughInfo.borough_volume}" type="text" id="borough_volume" size="15" maxlength="10" /></td>
+                    <th><strong>停&nbsp;车&nbsp;位</strong></th>
+                    <td><input name="boroughInfo[borough_parking]"  value="{$boroughInfo.borough_parking}" type="text" id="borough_parking" size="15" maxlength="10" /> 个</td>
+                </tr>
+                <tr>
+                    <th><strong>楼盘均价</strong></th>
+                    <td><input name="borough[borough_avgprice]"  value="{$borough.borough_avgprice}" type="text" id="borough_avgprice" size="15" maxlength="15" /> 元/㎡</td>
+                    <th><strong>开盘时间</strong></th>
+                    <td><input name="borough[sell_time]"  value="{$borough.sell_time}" type="text" id="sell_time" size="15" maxlength="10" onClick="WdatePicker({skin:'whyGreen'})" /></td>
+                </tr>
+                <tr>
+                    <th><strong>竣工时间</strong></th>
+                    <td colspan="3"><input name="boroughInfo[borough_completion]"  value="{$boroughInfo.borough_completion}" type="text" id="borough_completion" size="15" maxlength="10" onClick="WdatePicker({skin:'whyGreen'})" /></td>
+                </tr>
+            </table>
+
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>小区介绍</caption>
+                <tr>
+                    <td class="align_c"><textarea name="boroughInfo[borough_content]" id="borough_content" rows="12" style="padding:6px; width:98%; line-height:17px;">{$boroughInfo.borough_content}</textarea></td>
+                </tr>
+            </table>
+
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>小区图片</caption>
+                <tr>
+                    <td colspan="2"><div id="borough_picture_dis" style="display: flex;flex-direction: row">
+                        <foreach name="borough.botough_picture" item="item">
+                        <div class="upload_shower" id="container_picture_{$key}" >
+                            <a href="__ROOT__/Uploads/{$item.pic_url}"><img src="__ROOT__/Uploads/{$item.pic_url}" width="160" height="120"></a>
+                            <br/><input type="text" name="borough_picture_desc[]" value="{$item.pic_desc}" size="12">
+                            <input type="hidden" name="borough_picture_url[]" value="{$item.pic_url}">
+                            <input type="hidden" name="borough_picture_thumb[]" value="{$item.pic_thumb}">
+                            <input type="button" name="deletePicture_{$key}" onclick="dropContainer('container_picture_{$key}')" value="【※】">
+                        </div>
+                        </foreach>
+                    </div></td>
+                </tr>
+                <tr>
+                    <th width="30%"><strong>小区照片：</strong></th>
+                    <td><input type="button" name="add_picture" onclick="addThumbImg('uploadBoroughPicture|borough|picture');return false;" value="点击上传小区照片" /></td>
+                </tr>
+            </table>
+
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>户型图</caption>
+                <tr>
+                    <td colspan="2"><div id="borough_drawing_dis" style="display: flex;flex-direction: row">
+                        <foreach name="borough.botough_drawing" item="item">
+                        <div class="upload_shower" id="container_drawing_{$smarty.foreach.borough_draw.index}">
+                            <a href="__ROOT__/Uploads/{$item.pic_url}"><img src="__ROOT__/Uploads/{$item.pic_url}" width="160" height="120"></a>
+                            <br/><input type="text" name="borough_drawing_desc[]" value="{$item.pic_desc}" size="12">
+                            <input type="hidden" name="borough_drawing_url[]" value="{$item.pic_url}">
+                            <input type="hidden" name="borough_drawing_thumb[]" value="{$item.pic_thumb}">
+                            <input type="button" name="deleteDrawing_{$smarty.foreach.borough_draw.index}" onclick="dropContainer('container_drawing_{$smarty.foreach.borough_draw.index}')" value="【※】">
+                        </div>
+                        </foreach>
+                    </div></td>
+                </tr>
+                <tr>
+                    <th width="30%"><strong>户型图：</strong></th>
+                    <td><input type="button" name="add_drawing" onclick="addThumbImg('uploadBoroughDrawing|borough|drawing');return false;" value="点击上传小区户型图" /></td>
+                </tr>
+            </table>
+            <br/>
+            <table cellpadding="2" cellspacing="1" class="table">
+                <tr>
+                    <td height="50" style="text-align: center"><input type="button" name="Submit" value="保存小区信息" onclick="editForm.submit();" >&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="Return" value="返回小区列表" onclick="javascript:history.go(-1)"> </td>
+                </tr>
+            </table>
+        </form>
+
+        <br/>
+        <table cellpadding="2" cellspacing="1" class="table_form">
+            <caption>帮助</caption>
+            <tr>
+                <td ><div class="helper">
+                    <ul>
+                        <li>上传完小区缩略图后，会自动把这张图片增加到小区的照片中，所以无需重新上传这张照片。</li>
+                    </ul>
+                </div>
+                </td>
+            </tr>
+        </table>
+
+        <script language="javascript">
+            function addThumbImg(targetFunc){
+                var uploadWin = window.open('{:U("Home/Guest/upload")}?to='+targetFunc, 'uploadWindow','width=400,height=100,left=300,top=300,resizable=no,scrollbars=no');
+
+            }
+            function uploadBoroughThumb( furl,fname,thumbUrl ){
+                document.getElementById('borough_thumb').value = furl;
+                //document.getElementById('borough_thumb_desc').value = fname;
+                document.getElementById('borough_thumb_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'">\<img src="__ROOT__/Uploads/'+thumbUrl+'" width="68" height="50"></a>';
+            }
+            var pictureIndex=<!--{$picture_num}-->;
+            function uploadBoroughPicture( furl,fname,thumbUrl ){
+                document.getElementById('borough_picture_dis').innerHTML += '<div class="upload_shower" id="container_picture_'+pictureIndex+'">\
+	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
+	<br/><input type="text" name="borough_picture_desc[]" value="<!--{$borough.borough_name}-->" size="15">\
+	<input type="hidden" name="borough_picture_url[]" value="'+furl+'">\
+	<input type="hidden" name="borough_picture_thumb[]" value="'+thumbUrl+'">\
+	<input type="button" name="deletePicture_'+pictureIndex+'" onclick="dropContainer(\'container_picture_'+pictureIndex+'\')" value="【※】">\
+	</div>';
+                pictureIndex++;
+            }
+
+            var drawingIndex={$drawing_num};
+            function uploadBoroughDrawing( furl,fname,thumbUrl ){
+                alert(1111)
+                document.getElementById('borough_drawing_dis').innerHTML += '<div class="upload_shower" id="container_drawing_'+drawingIndex+'">\
+	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="180" height="120"></a>\
+	<br/><input type="text" name="borough_drawing_desc[]" value="{$borough.borough_name}" size="15">\
+	<input type="hidden" name="borough_drawing_url[]" value="'+furl+'">\
+	<input type="hidden" name="borough_drawing_thumb[]" value="'+thumbUrl+'">\
+	<input type="button" name="deleteDrawing_'+drawingIndex+'" onclick="dropContainer(\'container_drawing_'+drawingIndex+'\')" value="【※】">\
+	</div>';
+                drawingIndex++;
+            }
+            function dropContainer(containerId){
+                var containerEle = document.getElementById(containerId);
+                var parentEle = containerEle.parentElement;
+                parentEle.removeChild(containerEle);
+            }
+        </script>
+
+        <script src="<!--{$cfg.path.js}-->My97DatePicker/WdatePicker.js" language="javascript"></script>
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+
+
+
+</body>
+</html>
