@@ -48,19 +48,24 @@
 			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
   		//小区不需要独立一张图片
-/*  	'thumb' =>array(
+ 	'thumb' =>array(
   			'thumb'=>true,
   			'resizeType'=>5,
   			'thumbResizeType'=>1,
   			'thumbWidth'=>240,
   			'thumbHeight'=>180,
   			'watermarkPos'=>5,
-  			'watermarkPic'=>$cfg['path']['root'].'data/anleye.png',
+  			'watermarkPic'=>'./Data/water/anleye.png',
   			'thumbDir'=>'borough/thumb/',
-  			'originalPath'=>'borough/picture/',
+  			'originalPath'=>'borough/thumb/',
   			'width'=>640,
   			'height'=>480,
-  		),*/
+			'exts' =>array('jpeg','jpg','gif','bmp','png'),
+			'rootPath'=>'./Uploads/',
+			'saveName'=>date('YmdHis').'_'.mt_rand(),
+			'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
+  		),
   ),
   'newHouse' => array(
 		'thumb' =>array(

@@ -175,4 +175,145 @@ class BoroughModel extends Model{
         }
     }
 
+    /**
+     * 保存小区信息
+     * @param array $borough 基本表单数组
+     * @param array $boroughInfo 详细表单数组
+     * @access public
+     * @return bool
+     */
+    function saveBorough($fileddata) {
+
+        $fileddata['boroughInfo']['borough_support'] = implode(',',(array)$fileddata['boroughInfo']['borough_support'] );
+        $fileddata['boroughInfo']['borough_sight'] = implode(',',(array)$fileddata['boroughInfo']['borough_sight'] );
+
+        $fileddata['borough']['borough_letter'] = GetPinyin($fileddata['borough']['borough_name'].$fileddata['borough']['borough_alias'],1);
+        $fileddata['borough']['updated'] = time();
+        if(!$fileddata['borough']['borough_thumb']){
+            //没有上传缩略图
+            if(is_array($fileddata['borough_picture_thumb'])){
+                $fileddata['borough']['borough_thumb']  = $fileddata['borough_picture_thumb'][0];
+            }
+        }
+        if($fileddata['id']){
+            //编辑
+            $borough_id= intval($fileddata['id']);
+            $borough=$this->where(array('id'=>$borough_id))->find();//
+            if($fileddata['borough']['layout_map']) {
+                $this->updateMap($borough_id,$fileddata['borough']['layout_map']);
+            }
+            $this->where(array('id'=>$borough_id))->save($fileddata['borough']);
+            M('borough_info')->where(array('id'=>$borough_id))->save($fileddata['boroughInfo']);
+
+            if($borough['cityarea_id']!=$fileddata['borough']['cityarea_id']||$borough['cityarea2_id']!=$fileddata['borough']['cityarea2_id']){
+                //改变区域同时更新买卖租赁表
+                D('Houserent')->where(array('borough_id'=>$borough_id))->save(array('cityarea_id'=>$fileddata['borough']['cityarea_id'],'cityarea2_id'=>$fileddata['borough']['cityarea2_id']));
+                D('Housesell')->where(array('borough_id'=>$borough_id))->save(array('cityarea_id'=>$fileddata['borough']['cityarea_id'],'cityarea2_id'=>$fileddata['borough']['cityarea2_id']));
+            }
+            //照片
+            M('borough_pic')->where(array('borough_id'=>$borough_id))->delete();
+            if(is_array($fileddata['borough_picture_url'])){
+                foreach($fileddata['borough_picture_url'] as $key => $pic_url){
+                    $imgField = array(
+                        'pic_url'=>$pic_url,
+                        'pic_thumb'=>$fileddata['borough_picture_thumb'][$key],
+                        'pic_desc'=>$fileddata['borough_picture_desc'][$key],
+                        'borough_id'=>$borough_id,
+                        'creater'=>$fileddata['creater'],
+                        'addtime'=>time(),
+                    );
+                    M('borough_pic')->add($imgField);
+                }
+            }
+            //户型图
+            M('borough_draw')->where(array('borough_id'=>$borough_id))->delete();
+            if(is_array($fileddata['borough_drawing_url'])){
+                foreach($fileddata['borough_drawing_url'] as $key => $pic_url){
+                    $imgField = array(
+                        'pic_url'=>$pic_url,
+                        'pic_thumb'=>$fileddata['borough_drawing_thumb'][$key],
+                        'pic_desc'=>$fileddata['borough_drawing_desc'][$key],
+                        'borough_id'=>$borough_id,
+                        'creater'=>$fileddata['creater'],
+                        'addtime'=>time(),
+                    );
+                    M('borough_draw')->add($imgField);
+                }
+            }
+        }else{
+            //增加
+
+            //判断是否已经存在该小区
+            $boroughId = $this->getIdByName($fileddata['borough']['borough_name']);
+            if($boroughId){
+                $this->error('该小区已存在数据库中，请不要重复添加');
+            }
+
+            $fileddata['borough']['is_checked'] = 1;
+            $fileddata['borough']['creater'] = $fileddata['creater'];
+            $fileddata['borough']['created'] = time();
+            $borough_id=$this->add($fileddata['borough']);
+
+            $fileddata['boroughInfo']['id'] = $borough_id;
+            M('borough_info')->add($fileddata['boroughInfo']);
+            if(is_array($fileddata['borough_picture_url'])){
+                foreach($fileddata['borough_picture_url'] as $key => $pic_url){
+                    $imgField = array(
+                        'pic_url'=>$pic_url,
+                        'pic_thumb'=>$fileddata['borough_picture_thumb'][$key],
+                        'pic_desc'=>$fileddata['borough_picture_desc'][$key],
+                        'borough_id'=>$borough_id,
+                        'creater'=>$fileddata['creater'],
+                        'addtime'=>time(),
+                    );
+                    M('borough_pic')->add($imgField);
+                }
+            }
+            if(is_array($fileddata['borough_drawing_url'])){
+                foreach($fileddata['borough_drawing_url'] as $key => $pic_url){
+                    $imgField = array(
+                        'pic_url'=>$pic_url,
+                        'pic_thumb'=>$fileddata['borough_drawing_thumb'][$key],
+                        'pic_desc'=>$fileddata['borough_drawing_desc'][$key],
+                        'borough_id'=>$borough_id,
+                        'creater'=>$fileddata['creater'],
+                        'addtime'=>time(),
+                    );
+                    M('borough_draw')->add($imgField);
+                }
+            }
+        }
+        //图片数量
+        $borough_pic_num=M('borough_pic')->where(array('borough_id'=>$borough_id))->count();
+        $borough_draw_num = M('borough_draw')->where(array('borough_id'=>$borough_id))->count();
+        $this->where(array('id'=>$borough_id))->save(array('layout_picture'=>$borough_pic_num,'layout_drawing'=>$borough_draw_num));
+
+        return true;
+    }
+
+    /**
+     * 修改收集地图数据
+     * @param $borough_id
+     * @param $mapPoint
+     * @return bool
+     */
+    function  updateMap($borough_id,$mapPoint){
+        $mapPoint1=str_ireplace(array('(',')','',''),'',$mapPoint);
+        $data=explode(',',$mapPoint1);
+        return $this->where(array('id'=>$borough_id))->save(array('layout_map'=>$mapPoint,'lat'=>$data[0],'lng'=>$data[1]));
+        //return $this->db->execute('update '.$this->tName." set layout_map='".$mapPoint."' , lat = '".$data[0]."',lng='".$data[1]."'  where id=".$borough_id);
+
+    }
+
+    /**
+     * 通过小区名字取小区ID  。 下拉选择小区使用
+     * @param string $borough_name 小区名字
+     * @access public
+     * @return int id
+     */
+    function getIdByName($borough_name) {
+        return $this->where(array('borough_name'=>array('like',"%".$borough_name."%")))->getField('id');
+        //return $this->db->getValue("select id from ".$this->tName."  where borough_name like '%".$borough_name."%'");
+    }
+
 }

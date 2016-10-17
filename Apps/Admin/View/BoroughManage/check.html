@@ -10,19 +10,14 @@
 
     <title>六度写字楼网后台管理</title>
     <!-- bootstrap -->
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <script src="__PUBLIC__/js/laydate/laydate.js" language="javascript"></script>
+
+
 
     <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
-    <!--icheck-->
-    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/bootstrap.js"/>
 
-    <!--dashboard calendar-->
-    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
-
-    <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
 
     <!--common-->
     <link href="__PUBLIC__/css/style.css" rel="stylesheet">
@@ -36,6 +31,8 @@
     <script src="__PUBLIC__/js/html5shiv.js"></script>
     <script src="__PUBLIC__/js/respond.min.js"></script>
     <![endif]-->
+    <css file="__PUBLIC__/css/admin.css"/>
+
 </head>
 
 <body class="sticky-header">
@@ -52,6 +49,116 @@
         <include file="Common:header_section"/>
         <!-- header section end-->
 
+        <script language="javascript">
+            $().ready(function() {
+                $("#borough_name").autocomplete("ajax.php?action=getBoroughList", {
+                    minChars: 2,
+                    width: 260,
+                    delay:0,
+                    mustMatch:true,
+                    matchContains: false,
+                    scrollHeight: 220,
+                    selectFirst:true,
+                    scroll: true,
+                    formatItem: function(data, i, total) {
+
+                        if(data[1]=="addBorough"){
+                            return '<strong>'+data[0]+'</strong>';
+                        }
+
+                        return data[0];
+                    }
+                });
+
+                $("#borough_name").result(function(event, data, formatted) {
+
+                    if(data[1]=="addBorough"){
+                        //TB_show('增加小区','#TB_inline?height=155&width=400&inlineId=modalWindow',false);
+                        //TB_show('增加小区','addBorough.php?height=170&width=400&modal=true&rnd='+Math.random(),false);
+                        window.open('index.php?action=add','addBorough_win');
+                        $(this).val('');
+                    }else{
+                        $("#borough_id").val(data[1]);
+                        /*
+                         $("#borough_addr").val(data[2]);
+                         $("#borough_addr_tr").css("display","");
+                         */
+                    }
+
+                    /*if (data)
+                     $(this).parent().next().find("input").val(data[1]);*/
+                });
+            });
+
+        </script>
+
+        <!--列表-->
+        <table cellpadding="2" cellspacing="1" class="table">
+            <caption>小区管理</caption>
+            <tr>
+                <td><a href="check.php"><font class="red">待审核小区列表</font></a></td>
+            </tr>
+        </table>
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <thead>
+                <caption>小区信息管理</caption>
+                <tr>
+                    <th width="60">选中</th>
+                    <th>小区名称</th>
+                    <th width="100">所在区域</th>
+                    <th>小区地址</th>
+                    <th>添加人</th>
+                    <th width="100">管理操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach item="item" name="boroughList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}"></td>
+                    <td><a href="{:U('Home/Community/general')}/id/{$item.id}" target="_blank">{$item.borough_name} </a> &nbsp;</td>
+                    <td class="align_c">{$item.cityarea_id} </td>
+                    <td class="align_c">{$item.borough_address}</td>
+                    <td class="align_c">{$item.creater}</td>
+                    <td class="align_c">
+                        <a href="{:U('index')}/action/edit/id/{$item.id}">补充资料</a>
+                    </td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <div style="width:100%">
+                    <div style="float:left; width:450px;">
+                        <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                        <input type="button" value=" 审核通过 " onclick="if(confirm('你确认审核通过选中的条目么？')){myform.action='?action=check';myform.submit();}">
+                        <input type="button" value=" 审核不通过 " onclick="if(confirm('审核不通过为直接删除小区，如果其中有小区请删除，你确认删除审核不通过选中的条目么？')){myform.action='?action=delete';myform.submit();}">
+
+                    </div>
+                    <div id="combine_div" style="float:left;display:none;">
+                        <input type="text" id="borough_name" name="borough_name" >
+                        <input type="hidden" id="borough_id" name="borough_id" >
+
+                    </div>
+                </div>
+            </div>
+            <div class="pagePanel">
+                {$pagePanel}
+            </div>
+        </form>
+        <script language="javascript">
+            function showCombine(){
+                $('#combine_div').toggle();
+            }
+            function combine_to_borough(){
+                if(confirm('合并小区会把该小区的房源移动到目标小区中，你确认合并选中的条目么？')){
+                    myform.action='check.php?action=combine';
+                    myform.submit();
+                }
+                return true;
+            }
+        </script>
+
 
 
         <!--footer section start-->
@@ -64,46 +171,17 @@
 </section>
 
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
 <script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="__PUBLIC__/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/js/modernizr.min.js"></script>
 <script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
 
-<!--easy pie chart-->
-<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
-<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
-
-<!--Sparkline Chart-->
-<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
-<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
-
-<!--icheck -->
-<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
-<script src="__PUBLIC__/js/icheck-init.js"></script>
-
-<!-- jQuery Flot Chart-->
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
-
-
-<!--Morris Chart-->
-<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
-<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
-
-<!--Calendar-->
-<script src="__PUBLIC__/js/calendar/clndr.js"></script>
-<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
-<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 
 <!--common scripts for all pages-->
 <script src="__PUBLIC__/js/scripts.js"></script>
 
-<!--Dashboard Charts-->
-<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
 
 
 </body>

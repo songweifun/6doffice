@@ -61,16 +61,18 @@
         <!-- header section end-->
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">小区列表</a></li>
-            <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">添加小区</a></li>
-            <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">信息不全的小区</a></li>
-        </ul>
+
 
         <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">
-                <form name="search" method="get" action="index.php?action=search">
+
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>小区管理</caption>
+            <tr>
+                <td><a href="{:U('index')}"><font class="red">小区列表</font></a> | <a href="?action=add">添加小区</a> | <a href="?action=search&nofull=1" title="没有填写地址、缩略图">信息不全的小区</a></td>
+            </tr>
+        </table>
+
+                <form name="search" method="get" action="?action=search">
                     <input type="hidden" name="action" value="search">
                     <table cellpadding="0" cellspacing="1" class="table">
                         <caption>信息查询</caption>
@@ -82,7 +84,7 @@
                                     <if condition="$cityarea eq $key">
                                     <option value="{$key}" selected>{$item}</option>
                                     <else/>
-                                    <option value="<!--{$key}-->">{$item}</option>
+                                    <option value="{$key}">{$item}</option>
                                     </if>
                                     </foreach>
                                 </select>
@@ -110,7 +112,9 @@
                         <tbody>
                         <foreach name="boroughList" item="item">
                         <tr>
-                            <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.borough_name}"></td>
+                            <td class="align_c" >
+                                <input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.borough_name}">
+                            </td>
                             <td><a href="{:U('Home/Community/general')}/id/{$item.id}" target="_blank">{$item.borough_name} </a> &nbsp;</td>
                             <td class="align_c">{$item.borough_alias} </td>
                             <td class="align_c">{$item.cityarea_id} </td>
@@ -135,12 +139,12 @@
                 </div>
 
                 </form>
-                <form name="combineForm" id="combineForm" action="index.php?action=combine" method="POST" >
-                    <input type="hidden" name="fromaction" value="<!--{$smarty.request.action}-->">
-                    <input type="hidden" name="q" value="<!--{$smarty.request.q}-->">
-                    <input type="hidden" name="cityarea" value="<!--{$smarty.request.cityarea}-->">
-                    <input type="hidden" name="pageno" value="<!--{$smarty.get.pageno}-->">
-                    <table cellpadding="2" cellspacing="1" class="table_form">
+                <form name="combineForm" id="combineForm" action="?action=combine" method="POST" >
+                    <input type="hidden" name="fromaction" value="{$Think.request.action}">
+                    <input type="hidden" name="q" value="{$Think.request.q}">
+                    <input type="hidden" name="cityarea" value="{$Think.request.cityarea}">
+                    <input type="hidden" name="pageno" value="{$Think.get.p}">
+                    <table cellpadding="2" cellspacing="1" class="table">
                         <caption>合并小区</caption>
                         <tr>
                             <th width="30%"><input type="button" name="selectIdFrom" onclick="selectFromId();" value="点击按钮后选择需要合并的小区"></th>
@@ -152,7 +156,7 @@
                         </tr>
                         <tr>
                             <th></th>
-                            <td><input type="button" name="combine"  value="合并" onclick="combineForm.submit();"></td>
+                            <td><input type="button" name="combine"  class="btn btn-primary" value="合并" onclick="combineForm.submit();"></td>
                         </tr>
                     </table>
                 </form>
@@ -192,10 +196,8 @@
                         $("input[type='checkbox']").bind("click", selectTo);
                     }
                 </script>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="profile">...</div>
-            <div role="tabpanel" class="tab-pane" id="messages">...</div>
-        </div>
+
+
 
 
 

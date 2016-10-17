@@ -11,6 +11,8 @@
     <title>六度写字楼网后台管理</title>
     <!-- bootstrap -->
     <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <script src="__PUBLIC__/js/laydate/laydate.js" language="javascript"></script>
+
 
 
     <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
@@ -46,7 +48,7 @@
         <!-- header section end-->
 
 
-        <form id="editForm" name="editForm" method="post" action="index.php?action=save" onsubmit="return validator(this)">
+        <form id="editForm" name="editForm" method="post" action="?action=save" onsubmit="return validator(this)">
             <input type="hidden" name="id" value="{$borough.id}">
             <input type="hidden" name="to_url" value="{$to_url}">
             <table cellpadding="2" cellspacing="1" class="table">
@@ -70,8 +72,6 @@
                 <tr>
                     <th><strong>地图坐标</strong></th>
                     <td colspan="3">
-                        <link href="<!--{$cfg.path.css}-->add_map.css" type="text/css" rel="stylesheet" />
-                        <script type="text/javascript" src="<!--{$cfg.path.js}-->jquery-1.4.2.min.js"></script>
 
                         <input name="borough[layout_map]" type="text" id="layout_map" value="{$borough.layout_map}" size="50" /> <a href="" target="_blank">如何手动获取坐标？</a>
                         <div id="mapdiv" style="display: none">
@@ -248,7 +248,6 @@
                                 <input type="checkbox" value="{$key}">{$item}&nbsp;
                             </if>
                         </foreach>
-                        <!--{html_checkboxes name=boroughInfo[borough_sight] options=$borough_sight_option selected=$boroughInfo.borough_sight separator="&nbsp;" }-->
                     </td>
                 </tr>
             </table>
@@ -277,11 +276,12 @@
                     <th><strong>楼盘均价</strong></th>
                     <td><input name="borough[borough_avgprice]"  value="{$borough.borough_avgprice}" type="text" id="borough_avgprice" size="15" maxlength="15" /> 元/㎡</td>
                     <th><strong>开盘时间</strong></th>
-                    <td><input name="borough[sell_time]"  value="{$borough.sell_time}" type="text" id="sell_time" size="15" maxlength="10" onClick="WdatePicker({skin:'whyGreen'})" /></td>
+                    <td><input name="borough[sell_time]"  value="{$borough.sell_time}" type="text" id="sell_time" size="15" maxlength="10" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></td>
                 </tr>
                 <tr>
                     <th><strong>竣工时间</strong></th>
-                    <td colspan="3"><input name="boroughInfo[borough_completion]"  value="{$boroughInfo.borough_completion}" type="text" id="borough_completion" size="15" maxlength="10" onClick="WdatePicker({skin:'whyGreen'})" /></td>
+                    <td colspan="3">
+                        <input name="boroughInfo[borough_completion]"  value="{$boroughInfo.borough_completion}" type="text" id="borough_completion" size="15" maxlength="10" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></td>
                 </tr>
             </table>
 
@@ -336,16 +336,18 @@
             <br/>
             <table cellpadding="2" cellspacing="1" class="table">
                 <tr>
-                    <td height="50" style="text-align: center"><input type="button" name="Submit" value="保存小区信息" onclick="editForm.submit();" >&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="Return" value="返回小区列表" onclick="javascript:history.go(-1)"> </td>
+                    <td height="50" style="text-align: center">
+                        <input type="button" class="btn btn-primary" name="Submit" value="保存小区信息" onclick="editForm.submit();" >&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" name="Return" value="返回小区列表" onclick="javascript:history.go(-1)">
+                    </td>
                 </tr>
             </table>
         </form>
 
         <br/>
-        <table cellpadding="2" cellspacing="1" class="table_form">
+        <table cellpadding="2" cellspacing="1" class="table">
             <caption>帮助</caption>
             <tr>
-                <td ><div class="helper">
+                <td><div class="helper">
                     <ul>
                         <li>上传完小区缩略图后，会自动把这张图片增加到小区的照片中，所以无需重新上传这张照片。</li>
                     </ul>
@@ -356,7 +358,7 @@
 
         <script language="javascript">
             function addThumbImg(targetFunc){
-                var uploadWin = window.open('{:U("Home/Guest/upload")}?to='+targetFunc, 'uploadWindow','width=400,height=100,left=300,top=300,resizable=no,scrollbars=no');
+                var uploadWin = window.open('{:U("Home/Guest/webuploader")}?to='+targetFunc, 'uploadWindow','width=400,height=100,left=300,top=300,resizable=no,scrollbars=no');
 
             }
             function uploadBoroughThumb( furl,fname,thumbUrl ){
@@ -364,11 +366,11 @@
                 //document.getElementById('borough_thumb_desc').value = fname;
                 document.getElementById('borough_thumb_dis').innerHTML = '<a href="__ROOT__/Uploads/'+furl+'">\<img src="__ROOT__/Uploads/'+thumbUrl+'" width="68" height="50"></a>';
             }
-            var pictureIndex=<!--{$picture_num}-->;
+            var pictureIndex={$picture_num};
             function uploadBoroughPicture( furl,fname,thumbUrl ){
                 document.getElementById('borough_picture_dis').innerHTML += '<div class="upload_shower" id="container_picture_'+pictureIndex+'">\
 	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="160" height="120"></a>\
-	<br/><input type="text" name="borough_picture_desc[]" value="<!--{$borough.borough_name}-->" size="15">\
+	<br/><input type="text" name="borough_picture_desc[]" value="{$borough.borough_name}" size="15">\
 	<input type="hidden" name="borough_picture_url[]" value="'+furl+'">\
 	<input type="hidden" name="borough_picture_thumb[]" value="'+thumbUrl+'">\
 	<input type="button" name="deletePicture_'+pictureIndex+'" onclick="dropContainer(\'container_picture_'+pictureIndex+'\')" value="【※】">\
@@ -378,7 +380,6 @@
 
             var drawingIndex={$drawing_num};
             function uploadBoroughDrawing( furl,fname,thumbUrl ){
-                alert(1111)
                 document.getElementById('borough_drawing_dis').innerHTML += '<div class="upload_shower" id="container_drawing_'+drawingIndex+'">\
 	<a href="__ROOT__/Uploads/'+furl+'"><img src="__ROOT__/Uploads/'+thumbUrl+'" width="180" height="120"></a>\
 	<br/><input type="text" name="borough_drawing_desc[]" value="{$borough.borough_name}" size="15">\
@@ -395,7 +396,6 @@
             }
         </script>
 
-        <script src="<!--{$cfg.path.js}-->My97DatePicker/WdatePicker.js" language="javascript"></script>
 
 
 

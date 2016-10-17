@@ -380,5 +380,85 @@ function array_sortby_multifields($rowset, $args)
 	eval('array_multisort(' . $sortRule . '$rowset);');
 	return $rowset;
 }
+/**
+ * 取当前用户信息
+ * @access public
+ * @return array
+ */
+function getAdminAuthInfo($field=NULL) {
+	global $cfg;
+	$authInfo = authcode($_COOKIE['AUTH_STRING'], 'DECODE', C('AUTH_KEY'));
+	$authInfo = explode("\t",$authInfo);
+	$result['user_id'] = $authInfo[0];
+	$result['passwd'] = $authInfo[1];
+	if ($field) {
+		if ($result[$field]) {
+			return $result[$field];
+		} else {
+			$info=M('users')->where(array('user_id'=>intval($result['user_id'])))->find();
+			return $info[$field];
+		}
+	}
+	return $result;
+}
+
+/**
+ * 取得中文字符串的拼音
+ */
+function GetPinyin($str,$ishead=0,$isclose=1)
+{
+	$pinyins = Array();
+	$restr = '';
+	$str = trim($str);
+	$slen = strlen($str);
+	if($slen<2)
+	{
+		return $str;
+	}
+	if(count($pinyins)==0)
+	{
+		$fp = fopen('./Data/pingyin/pinyin.dat','r');
+		while(!feof($fp))
+		{
+			$line = trim(fgets($fp));
+			$pinyins[$line[0].$line[1]] = substr($line,3,strlen($line)-3);
+		}
+		fclose($fp);
+	}
+	for($i=0;$i<$slen;$i++)
+	{
+		if(ord($str[$i])>0x80)
+		{
+			$c = $str[$i].$str[$i+1];
+			$i++;
+			if(isset($pinyins[$c]))
+			{
+				if($ishead==0)
+				{
+					$restr .= $pinyins[$c];
+				}
+				else
+				{
+					$restr .= $pinyins[$c][0];
+				}
+			}else
+			{
+				$restr .= "_";
+			}
+		}else if( eregi("[a-z0-9]",$str[$i]) )
+		{
+			$restr .= $str[$i];
+		}
+		else
+		{
+			$restr .= "_";
+		}
+	}
+	if($isclose==0)
+	{
+		unset($pinyins);
+	}
+	return $restr;
+}
 
 ?>
