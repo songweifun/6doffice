@@ -27,6 +27,7 @@ class IntegralRuleModel extends Model{
     function add($member_id,$rule_id){
         $member= D('Member');
         $ruleInfo = $this->getInfo($rule_id);
+        p($ruleInfo);die;
         $member->addScore($member_id,$ruleInfo['rule_score']);
         //log
         $insertField = array(

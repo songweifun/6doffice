@@ -23,7 +23,7 @@ class MemberModel extends Model{
      */
     public function addScore($member_id,$scores){
         $oldscores=$this->where(array('id'=>$member_id))->getField('scores');
-        return $this->where(array('id'=>$member_id))->setField('scores',$oldscores+$scores);
+        return $this->where(array('id'=>$member_id))->setField('scores',$oldscores[0]+$scores);
     }
 
     /**
@@ -57,5 +57,16 @@ class MemberModel extends Model{
             return $this->where(array('id'=>$memberId))->field($field)->find();
         }
 
+    }
+
+    /**
+     * 根据用户名取用户ID
+     *
+     * @param string $username
+     * @return int
+     */
+    function getIdByUsername($username)
+    {
+        return $this->where(array('username'=>$username))->getField('id');
     }
 }

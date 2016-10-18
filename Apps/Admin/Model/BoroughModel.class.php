@@ -160,8 +160,9 @@ class BoroughModel extends Model{
      * @param enum $more_info  是否取出详细的信息
      * @access public
      * @return array
+     * 注意单个返回的是数组
      */
-    function getInfo($id, $field = '*',$more_info = 0,$merge=false) {
+    function getInfo($id, $field = '*',$more_info = 0,$merge=false) {//注意单个返回的是数组
         $borough = $this->where(array('id'=>$id))->field($field)->find();
         if($more_info){
             $boroughInfo=M('borough_info')->where(array('id'=>$id))->find();
@@ -314,6 +315,23 @@ class BoroughModel extends Model{
     function getIdByName($borough_name) {
         return $this->where(array('borough_name'=>array('like',"%".$borough_name."%")))->getField('id');
         //return $this->db->getValue("select id from ".$this->tName."  where borough_name like '%".$borough_name."%'");
+    }
+
+    /**
+     * 审核小区信息
+     * @param mixed $ids 选择的ID
+     * @access public
+     * @return bool
+     */
+    function check($ids) {
+
+        if (is_array($ids)) {
+            $ids = implode(',',$ids);
+            $where = 'id in (' . $ids . ')';
+        } else {
+            $where = 'id=' . intval($ids);
+        }
+        return $this->where($where)->save(array('is_checked'=>1));
     }
 
 }

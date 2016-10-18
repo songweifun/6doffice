@@ -52,6 +52,78 @@
         <include file="Common:header_section"/>
         <!-- header section end-->
 
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>小区更新审核管理</caption>
+            <tr>
+                <td>
+                    <a href="updateCheck.php"><!--{if !isset($smarty.get.status) }--><font class="red">全部</font><!--{else}-->全部<!--{/if}--></a> |
+                    <a href="updateCheck.php?status=0"><!--{if isset($smarty.get.status) && $smarty.get.status == 0}--><font class="red">未审核</font><!--{else}-->未审核<!--{/if}--></a> |
+                    <a href="updateCheck.php?status=1"><!--{if $smarty.get.status==1}--><font class="red">已审核</font><!--{else}-->已审核<!--{/if}--></a>
+
+                </td>
+            </tr>
+        </table>
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>信息列表</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th width="100">小区名字</th>
+                    <th width="60">修改字段</th>
+                    <th>旧值</th>
+                    <th>新值</th>
+                    <th width="60">状态</th>
+                    <th width="60">修改人</th>
+                    <th width="100">修改时间</th>
+                </tr>
+                <tbody>
+                <!--{foreach item=item from=$dataList }-->
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="<!--{$item.id}-->"></td>
+                    <td class="align_c"><a href="<!--{$cfg.url_community}-->g-<!--{$item.borough_id}-->.html" target="_blank"><!--{$item.borough_name}--></a></td>
+                    <td class="align_c"><!--{$item.field_caption}--></td>
+                    <td class="align_c"><!--{$item.old_value}--></td>
+                    <td class="align_c"><!--{$item.new_value}--></td>
+                    <td class="align_c"><!--{if $item.status==0}-->未审核<!--{/if}--><!--{if $item.status==1}--><font color="red">已通过</font><!--{/if}--><!--{if $item.status==2}--><font color="red">已删除</font><!--{/if}--></td>
+                    <td class="align_c"><!--{$item.user.realname}--></td>
+                    <td class="align_c"><!--{$item.add_time|date="Y-m-d",###}--></td>
+                </tr>
+                <!--{/foreach}-->
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="lock" value=" 审核通过 " onclick="if(confirm('你确认审核通过选中的条目么？')){myform.action='updateCheck.php?action=status&dostatus=1';myform.submit();}">
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='updateCheck.php?action=delete';myform.submit();}">
+            </div>
+            <!--{$pagePanel}-->
+
+        </form>
+        <div id="pic_shower" style="position:absolute;color:white; width:106px; right:-30px; top:-10px; z-index:10000;background-color:#6680aa;display:none;"></div>
+        <script language="javascript">
+            function showPic(picUrl){
+                //alert('aaaa');
+                if (!e) var e = window.event;
+
+                if(!document.all){
+                    mouse_x=e.pageX;
+                    mouse_y=e.pageY;
+                }else{
+                    mouse_x=document.body.scrollLeft+event.clientX;
+                    mouse_y=document.body.scrollTop+event.clientY;
+                }
+                $('#pic_shower').html('<img src="<!--{$cfg.url}-->upfile/'+picUrl+'">');
+                $('#pic_shower').css('left',mouse_x+10).css('top',mouse_y+10).css('display','block');
+
+            }
+            function hidePic(){
+                //alert('bbb');
+                $('#pic_shower').css('display','none');
+            }
+            $(document).click(function(){hidePic();});
+        </script>
+
 
 
         <!--footer section start-->
