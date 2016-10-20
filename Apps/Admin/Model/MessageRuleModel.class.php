@@ -5,7 +5,7 @@
  * Date: 16/9/26
  * Time: 下午6:24
  */
-namespace Home\Model;
+namespace Admin\Model;
 use Think\Model;
 class MessageRuleModel extends Model{
 

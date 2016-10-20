@@ -5,7 +5,7 @@
  * Date: 16/9/26
  * Time: 下午6:27
  */
-namespace Home\Model;
+namespace Admin\Model;
 use Think\Model;
 class InnernoteModel extends Model{
 
@@ -29,7 +29,7 @@ class InnernoteModel extends Model{
             'belongs_to'=>$belongs_to,
             'add_time'=>time()
         );
-        return $this->add($insertArray);
+         $this->add($insertArray);
     }
 
 }

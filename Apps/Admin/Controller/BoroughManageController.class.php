@@ -233,7 +233,7 @@ class BoroughManageController extends CommonController{
                         if($dataInfo['creater']){
                             $dataInfo['broker_id'] = $member->getIdByUsername($dataInfo['creater']);
                             $username = $dataInfo['creater'];
-                            $message = $messageRule->getInfo(3,'rule_remark')[0];
+                            $message = $messageRule->getInfo(3,'rule_remark')['rule_remark'];
                             $real_name = $member->getRealName($dataInfo['broker_id'],1);
                             $message = sprintf($message,$real_name,U('Home/Community/general'),$dataInfo['id'],$dataInfo['borough_name']);//此处需要重写数据库格式
                             $innernote->send('系统',$username,'系统消息',$message);
@@ -249,7 +249,7 @@ class BoroughManageController extends CommonController{
                 }
             }
             catch(Exception $e){
-                $page->back($e->getMessage());
+                $this->error($e->getMessage());
                 //$page->back('审核失败');
             }
             exit;
@@ -316,6 +316,8 @@ class BoroughManageController extends CommonController{
      * 小区更新审核
      */
     public function updateCheck(){
+        import('Class.Dd',APP_PATH);
+
         $this->menu=ACTION_NAME;//分配小栏目
         $boroughUpdate = D('BoroughUpdate');
         $member = D('Member');
@@ -325,7 +327,220 @@ class BoroughManageController extends CommonController{
         $action=I('get.action');
         if($action=='delete'){
 
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+
+            $boroughTable = require('./Conf/boroughTable.cfg.php');
+
+
+            try{
+                foreach ($ids as $id){
+                    $dataInfo = $boroughUpdate->getInfo($id);
+
+                    $field = $boroughTable[$dataInfo['field_name']];
+                    $dataInfo['borough_name'] = $borough->getInfo($dataInfo['borough_id'],'borough_name')['borough_name'];
+                    $field_name = $field['caption'];
+
+
+                    if($field['type'] == 'image'){
+                        //图片另外发送
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(18,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            //p($username);die;
+                            $updateTime = date("Y-m-d H:i:s",$dataInfo['add_time']);
+                            $message = sprintf($message,$real_name,$updateTime,U('Home/Community/general'),$dataInfo['borough_id'],$dataInfo['borough_name'],$field_name);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }else{
+                        //其他包括选择，文字的更新
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(4,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $updateTime = date("Y-m-d H:i:s",$dataInfo['add_time']);
+                            $message = sprintf($message,$real_name,$updateTime,U('Home/Community/general'),$dataInfo['borough_id'],$dataInfo['borough_name'],$field_name);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+
+                }
+
+                $boroughUpdate->deleteBoroughUpdate($ids);
+                $this->success('删除成功',U('updateCheck'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+            exit;
+
         }elseif($action=='status'){
+
+
+
+            $back_to = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            $dostatus = intval($_GET['dostatus']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择需要操作的条目');
+            }
+
+            //更新配制表
+            $boroughTable = require('./Conf/boroughTable.cfg.php');
+            //p($boroughTable);die;
+
+
+
+            try{
+                if($dostatus==1){
+                    //通过，更该信息
+                    $integral = D('IntegralRule');
+                    foreach($ids as $key => $a_id) {
+                        //修改单条信息
+                        $boroughUpdate->changeStatus($a_id, $dostatus);
+                        //取得该条信息
+                        $dataInfo = $boroughUpdate->getInfo($a_id);
+                        $dataInfo['borough_name'] = $borough->getInfo($dataInfo['borough_id'], 'borough_name')['borough_name'];
+
+
+                        if (!$field = $boroughTable[$dataInfo['field_name']]) {
+                            //更新非法字段
+                            unset($ids[$key]);
+                            continue;
+                        }
+                        if ($dataInfo['field_name'] == "borough_alias" || $dataInfo['field_name'] == "borough_name") {
+                            //需要更新拼写字段
+                            $borough_name = $borough->getInfo($dataInfo['borough_id'], 'borough_name')['borough_name'];
+                            $borough_letter = GetPinyin($borough_name . $dataInfo['new_value'], 1);
+                            $updateField = array(
+                                "borough_alias" => $dataInfo['new_value'],
+                                "borough_letter" => $borough_letter
+                            );
+                            M($field['table'])->where(array('id' => $dataInfo['borough_id']))->save($updateField);
+
+                            //$borough->db->update($field['table'], $updateField, ' id =' . $dataInfo['borough_id']);
+                            if ($dataInfo['broker_id']) {
+                                $integral->add($dataInfo['broker_id'], 14);
+                            }
+                            $ruleInfo = $integral->getInfo(14);
+                            //发送站内信
+                            $field_name = $field['caption'];
+                            if ($dataInfo['broker_id']) {
+                                $message = $messageRule->getInfo(19, 'rule_remark')['rule_remark'];
+                                $real_name = $member->getRealName($dataInfo['broker_id'], 1);
+                                $username = $member->getInfo($dataInfo['broker_id'], 'username')['username'];
+                                $updateTime = date("Y-m-d H:i:s", $dataInfo['add_time']);
+                                $message = sprintf($message, $real_name, $updateTime, U('Home/Community/general'), $dataInfo['borough_id'], $dataInfo['borough_name'], $field_name, $ruleInfo['rule_score']);
+                                $innernote->send('系统', $username, '系统消息', $message);
+                            }
+
+                        } elseif ($field['type'] == 'image' && $field['num'] > 1) {
+                            //图片和户型图执行插入操作
+                            $images = explode('|', $dataInfo['new_value']);
+
+                            $insertField = array(
+                                'pic_url' => $images[1],
+                                'pic_thumb' => $images[2],
+                                'pic_desc' => $images[0],
+                                'borough_id' => $dataInfo['borough_id'],
+                                'creater' => $member->getInfo($dataInfo['broker_id'], 'username', false)['username'],
+                                'addtime' => time(),
+                            );
+                            //p($insertField);die;
+                            M($field['table'])->add($insertField);//插入小区图片表
+                            //die;
+                            //$borough->db->insert($field['table'], $insertField);
+                            if ($dataInfo['field_name'] == "borough_pic") {
+                                //图片。如果没有缩略图 就拿这张当缩略图
+                                $borough_thumb = $borough->getInfo($dataInfo['borough_id'], 'borough_thumb')['borough_thumb'];
+                                if ($borough_thumb == "") {
+                                    $updateField = array(
+                                        'borough_thumb' => $images[2]
+                                    );
+                                    $borough->where(array('id' => $$dataInfo['borough_id']))->save($updateField);
+                                }
+                            }
+                            //增加积分
+                            if ($dataInfo['broker_id']) {
+                                $integral->add($dataInfo['broker_id'], 15);
+                            }
+                            $ruleInfo = $integral->getInfo(15);
+                            //发送站内信
+                            $field_name = $field['caption'];
+                            if ($dataInfo['broker_id']) {
+                                $message = $messageRule->getInfo(20, 'rule_remark')['rule_remark'];
+                                $real_name = $member->getRealName($dataInfo['broker_id'], 1);
+                                $username = $member->getInfo($dataInfo['broker_id'], 'username')['username'];
+                                $updateTime = date("Y-m-d H:i:s", $dataInfo['add_time']);
+                                $message = sprintf($message, $real_name, $updateTime, U('Home/Community/general'), $dataInfo['borough_id'], $dataInfo['borough_name'], $field_name, $ruleInfo['rule_score']);
+                                $innernote->send('系统', $username, '系统消息', $message);
+                            }
+
+                        } else {
+                            $updateField = array(
+                                $dataInfo['field_name'] => $dataInfo['new_value']
+                            );
+                            M($field['table'])->where(array('id' => $dataInfo['borough_id']))->save($updateField);
+                            //$borough->db->update($field['table'],$updateField,' id ='.$dataInfo['borough_id'] );
+                            if ($dataInfo['broker_id']) {
+                                $integral->add($dataInfo['broker_id'], 14);
+                            }
+                            //发送站内信
+                            $ruleInfo = $integral->getInfo(14);
+                            $field_name = $field['caption'];
+                            if ($dataInfo['broker_id']) {
+                                $message = $messageRule->getInfo(19, 'rule_remark')['rule_remark'];
+                                $real_name = $member->getRealName($dataInfo['broker_id'], 1);
+                                $username = $member->getInfo($dataInfo['broker_id'], 'username')['username'];
+                                $updateTime = date("Y-m-d H:i:s", $dataInfo['add_time']);
+                                $message = sprintf($message, $real_name, $updateTime, U('Home/Community/general'), $dataInfo['borough_id'], $dataInfo['borough_name'], $field_name, $ruleInfo['rule_score']);
+                                $innernote->send('系统', $username, '系统消息', $message);
+                            }
+                        }
+                    }
+                }else{
+                    //其他更改标志即可，无需更改用户信息
+                    $boroughUpdate->changeStatus($ids,$dostatus);
+                    //没通过，发送自动站内信
+
+                    foreach ($ids as $id){
+                        $dataInfo = $boroughUpdate->getInfo($id);
+                        $field = $boroughTable[$dataInfo['field_name']];
+                        $dataInfo['borough_name'] = $borough->getInfo($dataInfo['borough_id'],'borough_name')['borough_name'];
+                        $field_name = $field['caption'];
+                        if($field['type'] == 'image'){
+                            //图片另外发送
+                            if($dataInfo['broker_id']){
+                                $message = $messageRule->getInfo(18,'rule_remark')['rule_remark'];
+                                $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                                $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                                $updateTime = date("Y-m-d H:i:s",$dataInfo['add_time']);
+                                $message = sprintf($message,$real_name,$updateTime,U('Home/Community/general'),$dataInfo['borough_id'],$dataInfo['borough_name'],$field_name);
+                                $innernote->send('系统',$username,'系统消息',$message);
+                            }
+                        }else{
+                            //其他包括选择，文字的更新
+                            if($dataInfo['broker_id']){
+                                $message = $messageRule->getInfo(4,'rule_remark')['rule_remark'];
+                                $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                                $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                                $updateTime = date("Y-m-d H:i:s",$dataInfo['add_time']);
+                                $message = sprintf($message,$real_name,$updateTime,U('Home/Community/general'),$dataInfo['borough_id'],$dataInfo['borough_name'],$field_name);
+                                $innernote->send('系统',$username,'系统消息',$message);
+                            }
+                        }
+
+                    }
+                }
+                $this->success('操作成功',$back_to);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
 
         }else{
 
@@ -343,8 +558,10 @@ class BoroughManageController extends CommonController{
             $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
 
             $pageLimit = $Page->firstRow . ',' . $Page->listRows;
-            $boroughUpdateList = $boroughUpdate->getList($pageLimit,'*',$where,' order by add_time desc ');
-            $boroughTable = require($cfg['path']['conf'].'boroughTable.cfg.php');
+            $boroughUpdateList = $boroughUpdate->getList($pageLimit,'*',$where,'add_time desc ');
+
+            $boroughTable = require('./Conf/boroughTable.cfg.php');
+            //p($boroughUpdateList);die;
 
             foreach ($boroughUpdateList as $key => $value){
                 if(!$field = $boroughTable[$value['field_name']]){
@@ -358,7 +575,7 @@ class BoroughManageController extends CommonController{
                     case 'dd':
                         //可能是用逗号分割的字典
                         $dd_name = $field['dd_name'];
-                        $dd_array = Dd::getArray($dd_name);
+                        $dd_array = \Dd::getArray($dd_name);
 
                         $temp = explode(',',$value['new_value']);
                         if(is_array($temp)){
@@ -380,7 +597,7 @@ class BoroughManageController extends CommonController{
                         $images = explode('|',$value['new_value']);
                         if($images[1]){
                             $boroughUpdateList[$key]['new_value'] = '<a href="#" onmouseover="showPic(\''.$images[1].'\');return false;">
-						<img src="'.$cfg[url].'upfile/'.$images[1].'" width="80" height="64">
+						<img src="'.__ROOT__.'/Uploads/'.$images[1].'" width="80" height="64">
 					</a>';
                         }
                         $img_exist = '';
@@ -388,7 +605,7 @@ class BoroughManageController extends CommonController{
                             $imgList = explode('|',$value['old_value']);
                             foreach ($imgList as $item){
                                 $img_exist.= '<a href="#" onmouseover="showPic(\''.$item.'\');return false;">
-							<img src="'.$cfg[url].'upfile/'.$item.'" width="80" height="64">
+							<img src="'.__ROOT__.'/Uploads/'.$item.'" width="80" height="64">
 						</a>';
                             }
                             $boroughUpdateList[$key]['old_value']  = $img_exist;
@@ -407,11 +624,11 @@ class BoroughManageController extends CommonController{
                         break;
                 }
                 $boroughUpdateList[$key]['user'] = $member->getInfo($value['broker_id'],'*',true);
-                $boroughUpdateList[$key]['borough_name'] = $borough->getInfo($value['borough_id'],'borough_name');
+                $boroughUpdateList[$key]['borough_name'] = $borough->getInfo($value['borough_id'],'borough_name')['borough_name'];
             }
 
-            $page->tpl->assign('dataList', $boroughUpdateList);
-            $page->tpl->assign('pagePanel', $pages->showCtrlPanel());//分页条
+            $this->assign('dataList', $boroughUpdateList);
+            $this->assign('pagePanel', $Page->show());//分页条
         }
 
 
