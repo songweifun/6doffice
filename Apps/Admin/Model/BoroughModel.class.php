@@ -334,4 +334,47 @@ class BoroughModel extends Model{
         return $this->where($where)->save(array('is_checked'=>1));
     }
 
+    /**
+     * 保存评估日志
+     *
+     * @param array $dataField
+     * @return bool
+     */
+    function saveEvaluteLog($dataField)
+    {
+        //$data = $this->db->getValue("select * from ".$this->tNameEvaluate." where borough_id = ".$dataField['borough_id']." and add_time = ".$dataField['add_time']);
+        $data=M('borough_evaluate')->where(array('borough_id'=>$dataField['borough_id'],'add_time'=>$dataField['add_time']))->find();
+        if($data){
+            $fileddata = array(
+                'borough_evaluate'=>$dataField['borough_evaluate'],
+                'creater'=>$dataField['creater']
+            );
+            //$this->db->update($this->tNameEvaluate,$fileddata,'id = '.$data['id']);
+            M('borough_evaluate')->where(array('id'=>$data['id']))->save($fileddata);
+        }else{
+            $fileddata = array(
+                'borough_id'=>$dataField['borough_id'],
+                'borough_evaluate'=>$dataField['borough_evaluate'],
+                'creater'=>$dataField['creater'],
+                'add_time'=>$dataField['add_time']
+            );
+            //$this->db->insert($this->tNameEvaluate,$fileddata);
+            M('borough_evaluate')->add($fileddata);
+        }
+        return true;
+    }
+
+    /**
+     * 取最后一条的评估记录
+     * @param $borough_id
+     * @return mixed
+     */
+    function getLastEvaluateLog($borough_id)
+    {
+        //return $this->db->getValue("select * from ".$this->tNameEvaluate." where borough_id = ".$borough_id." order by add_time desc");
+        return M('borough_evaluate')->where(array('borough_id'=>$borough_id))->order('add_time desc')->find();
+    }
+
+
+
 }

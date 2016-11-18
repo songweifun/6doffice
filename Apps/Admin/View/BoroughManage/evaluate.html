@@ -9,6 +9,9 @@
     <link rel="shortcut icon" href="#" type="image/png">
 
     <title>六度写字楼网后台管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <js file="__PUBLIC__/js/jeditable/jquery.jeditable.js"/>
+
     <!-- bootstrap -->
 
     <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
@@ -36,6 +39,9 @@
     <script src="__PUBLIC__/js/html5shiv.js"></script>
     <script src="__PUBLIC__/js/respond.min.js"></script>
     <![endif]-->
+
+    <css file="__PUBLIC__/css/admin.css"/>
+
 </head>
 
 <body class="sticky-header">
@@ -51,6 +57,107 @@
         <!-- header section start-->
         <include file="Common:header_section"/>
         <!-- header section end-->
+        <style>
+            .input{
+                width:500px;
+            }
+        </style>
+
+        <script language="javascript">
+            var url='{:U("evaluate")}?action=save'
+            $(document).ready(function() {
+                $('.editable').editable(url,{
+                    placeholder:'点击添加评估价',
+                    submit : '确定',
+                    cancel : '取消',
+                    tooltip : '点击编辑信息',
+                    width  : '98%',
+                    cssclass : "input",
+                    height : 18
+                });
+            });
+
+        </script>
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>按时间划分</caption>
+            <tr>
+                <td>
+                    <a href="?time=0&cityarea={$Think.get.cityarea}"><if condition="$Think.get.time eq 0"><span style="color:red;">全部</span><else/>全部</if></a> |
+                    <a href="?time=1&cityarea={$Think.get.cityarea}"><if condition="$Think.get.time eq 1"><span style="color:red;">未评估</span><else/>未评估</if></a> |
+                    <a href="?time=2&cityarea={$Think.get.cityarea}"><if condition="$Think.get.time eq 2"><span style="color:red;">一个月以上未更新</span><else/>一个月以上未更新</if></a> |
+                    <a href="?time=3&cityarea={$Think.get.cityarea}"><if condition="$Think.get.time eq 3"><span style="color:red;">三个月以上未更新</span><else/>三个月以上未更新</if></a>
+                </td>
+            </tr>
+        </table>
+
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>按区域分类</caption>
+            <tr>
+                <td>
+                    <a href="?time={$Think.get.time}"><if condition="$Think.get.cityarea eq 0"><span style="color:red;">全部</span><else/>全部</if></a> |
+                    <foreach name="areaLists" item="item">
+                    <if condition="$key eq $Think.get.cityarea ">
+                    <a href="?cityarea={$key}&time={$Think.get.time}"><span style="color:red;">{$item}</span></a> |
+                    <else/>
+                    <a href="?cityarea={$key}&time={$Think.get.time}">{$item}</a> |
+                    </if>
+                    </foreach>
+                </td>
+            </tr>
+        </table>
+
+        <form name="search" method="get" action="evaluate.php">
+            <input type="hidden" name="action" value="search">
+            <table cellpadding="0" cellspacing="1" class="table">
+                <caption>信息查询</caption>
+                <tr>
+                    <td class="align_c">
+                        <select name='cityarea'>
+                            <option value="">所在区域</option>
+                            <foreach name="areaLists" item="item">
+                            <if condition="$Think.get.cityarea eq $key">
+                            <option value="{$key}" selected>{$item}</option>
+                            <else/>
+                            <option value="{$key}">{$item}</option>
+                            </if>
+                            </foreach>
+                        </select>
+                        <input type="text" name="q" onblur="if(this.value ==''||this.value == '请输入小区名称,小区地址'){this.value = '请输入小区名称,小区地址';this.style.color = '#999999';}" onfocus="if(this.value == '请输入小区名称,小区地址'){this.value = '';this.style.color = '#333333';}" value="<if condition='$q neq null'>{$q}<else/>请输入小区名称,小区地址</if>" size="35" />&nbsp;
+                        <input type="submit" name="dosubmit" value=" 查询 " />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>小区评估标准价管理</caption>
+                <tr>
+                    <th>小区名称</th>
+                    <th>所在区域</th>
+                    <th>小区地址</th>
+                    <th>评估价(元/平方)</th>
+                    <th>最后更新时间</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="boroughList">
+                <tr>
+                    <td><a href="../../community/general.php?id={$item.id}" target="_blank">{$item.borough_name}</a> &nbsp;</td>
+                    <td class="align_c">{$item.cityarea_id}</td>
+                    <td class="align_c">{$item.borough_address}</td>
+                    <td class="align_c"><span class="editable" id="borough_evaluate|{$item.id}">{$item.borough_evaluate}</span></td>
+                    <td class="align_c">{$item.last_update}</td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="pagePanel">
+                {$pagePanel}
+            </div>
+
+        </form>
+
 
 
 
@@ -64,34 +171,15 @@
 </section>
 
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
 <script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="__PUBLIC__/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/js/modernizr.min.js"></script>
 <script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
 
-<!--easy pie chart-->
-<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
-<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
-
-<!--Sparkline Chart-->
-<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
-<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
-
-<!--icheck -->
-<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
-<script src="__PUBLIC__/js/icheck-init.js"></script>
-
-<!-- jQuery Flot Chart-->
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
-<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
 
 
-<!--Morris Chart-->
-<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
-<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
+
 
 <!--Calendar-->
 <script src="__PUBLIC__/js/calendar/clndr.js"></script>

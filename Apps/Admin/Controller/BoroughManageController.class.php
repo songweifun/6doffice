@@ -639,7 +639,112 @@ class BoroughManageController extends CommonController{
      * 评估价更新
      */
     public function evaluate(){
+        import('Class.Dd',APP_PATH);
+
         $this->menu=ACTION_NAME;//分配小栏目
+        $borough=D('Borough');
+        $action=I('get.action');
+        $user=D('Users');
+        if($action=="save"){
+            header('content-Type: text/html; charset=utf-8');
+            $temp = explode('|',$_POST['id']);
+            if(!$temp[1]){
+                exit('wrong parm');
+            }
+
+            $_POST['borough_id'] = intval($temp[1]);
+            $_POST['creater'] = $user->getAuthInfo('id');
+            $_POST['borough_evaluate'] = intval($_POST['value']);
+            $_POST['add_time'] = mktime(0,0,0,date('m'),date('d'),date('Y'));
+            $boroughUpdate= D('BoroughUpdate');
+            try {
+                $borough->saveEvaluteLog($_POST);
+                $datafield = array(
+                    'borough_evaluate'=>$_POST['borough_evaluate'],
+                );
+                //$borough->update($_POST['borough_id'],$datafield);
+                $borough->where(array("id"=>$_POST['borough_id']))->save($datafield);
+                echo $_POST['borough_evaluate'];
+            }catch (Exception $e){
+                echo $e->getMessage();
+            }
+            exit;
+
+        }else{
+            $areaLists = \Dd::getArray('cityarea');
+            $this->assign('areaLists', $areaLists);
+            $keyword = $_REQUEST['q']=='请输入小区名称,小区地址'?"":trim($_GET['q']);
+            $cityarea_id = intval($_GET['cityarea']);
+            $where = " and isdel=0 ";
+            if($cityarea_id){
+                $where .= " and cityarea_id =".$cityarea_id;
+            }
+            if($keyword){
+                $where .= " and (borough_name like '%".$keyword."%' or borough_letter like '%".$keyword."%' or borough_alias like '%".$keyword."%' or borough_address like '%".$keyword."%')";
+            }
+            if($_GET['time']){
+                $time = intval($_GET['time']);
+                switch ($time){
+                    case 1:
+                        //未评估
+                        $where .= " and ( borough_evaluate is null or borough_evaluate = 0 )";
+                        break;
+                    case 2:
+                        //一个月
+                        $lastMonth = mktime(date('h'),date('i'),date('s'),date('m')-1,date('d'),date('y'));
+                        $where .= " and evaluate_time < $lastMonth";
+                        break;
+                    case 3:
+                        //三个月
+                        $lastThreeMonth = mktime(date('h'),date('i'),date('s'),date('m')-3,date('d'),date('y'));
+                        $where .= " and evaluate_time < $lastThreeMonth";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            $Page = new \Think\Page($borough->getCount(1,$where));
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $boroughList = $borough->getList($pageLimit,1,$where,'borough_name asc ');
+
+            foreach ($boroughList as $key => $value){
+                $boroughList[$key]['cityarea_id'] = $areaLists[$value['cityarea_id']];
+                $last_evaluate_log = $borough->getLastEvaluateLog($value['id']);
+                if($last_evaluate_log){
+                    //$borough->update($value['id'],array('evaluate_time'=>$last_evaluate_log['add_time']));
+                    //更新borough表最后更新时间
+                    $borough->where(array('id'=>$value['id']))->save(array('evaluate_time'=>$last_evaluate_log['add_time']));
+                }
+                $value['evaluate_time'] = $value['evaluate_time'] ? $value['evaluate_time'] : $last_evaluate_log['add_time'];
+                if($value['evaluate_time'] ){
+                    $last_time = time()-$value['evaluate_time'];
+                    if($last_time > 2592000){
+                        $boroughList[$key]['last_update'] = intval($last_time/2592000)."个月";
+                    }elseif($last_time > 604800){
+                        $boroughList[$key]['last_update'] = intval($last_time/604800)."个星期";
+                    }elseif($last_time > 86400){
+                        $boroughList[$key]['last_update'] = intval($last_time/86400)."天";
+                    }else{
+                        $boroughList[$key]['last_update'] = "今天";
+                    }
+                }else{
+                    $boroughList[$key]['last_update'] = "未评估";
+                }
+            }
+
+            $this->assign('boroughList', $boroughList);
+            $this->assign('pagePanel', $Page->show());//分页条
+
+
+        }
         $this->display();
 
     }
