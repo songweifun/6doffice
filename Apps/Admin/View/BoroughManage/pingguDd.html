@@ -52,6 +52,75 @@
         <include file="Common:header_section"/>
         <!-- header section end-->
 
+        <if condition="$action eq 'edit'">
+            <form name="addItem" method="post" action="?action=edit" onsubmit="return validator(this)">
+                <input type="hidden" name="di_id" value="{$diInfo.di_id}" />
+                <input type="hidden" name="dd_id" value="{$dd_id}" />
+                <table cellpadding="1" class="table">
+                    <caption>增加新系数</caption>
+                    <tr>
+                        <td>
+                            值：<input name="di_value" value="{$diInfo.di_value}" valid="required|isNumber|isNo" noValue="0" errmsg="值不能为空!|值必须为数字|值不允许为0" />
+                            名称:<input name="di_caption" value="{$diInfo.di_caption}" valid="required" errmsg="名称不能为空!" />
+                            调整系数:<input name="di_quotiety" value="{$diInfo.di_quotiety}" valid="required" errmsg="系数不能为空!" />
+                            <input type="submit" value="保存" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        <form name="myform" method="post" action="?action=delete&dd_id={$dd_id}">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>字典值列表</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th width="60">排序</th>
+                    <th width="200">值</th>
+                    <th>名称</th>
+                    <th>系数</th>
+                    <th width="60">分组</th>
+                    <th width="150">操作</th>
+                </tr>
+                <foreach item="item" name="list">
+                <tr>
+                    <td class="align_c"><input type="checkbox" name="dds[]" value="{$item.di_id}"></td>
+                    <td class="align_c"><input type="text" name="list_order[{$item.di_id}]" value="{$item.list_order}" size="3"></td>
+                    <td class="align_c">{$item.di_value}</td>
+                    <td> {$item.di_caption}</td>
+                    <td> {$item.di_quotiety}</td>
+                    <td><input type="text" name="list_group[{$item.di_id}]" value="{$item.list_group}" size="3"></td>
+                    <td class="align_c"><a href="?action=edit&di_id={$item.di_id}&dd_id={$dd_id}">编辑</a></td>
+                </tr>
+                </foreach>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="delete" value=" 排序 " onclick="myform.action='?action=order&dd_id={$dd_id}';myform.submit();">
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.submit();}">
+            </div>
+        </form>
+        <else/>
+        <form name="myform" method="post" action="dd.php?action=delete">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>字典列表</caption>
+                <tr >
+                    <th width="30">ID</th>
+                    <th>名称</th>
+                    <th width="150">操作</th>
+                </tr>
+                <foreach item="item" name="list">
+                <tr>
+                    <td class="align_c">{$item.dd_id}</td>
+                    <td>{$item.dd_caption}</td>
+                    <td class="align_c"><a href="?action=edit&dd_id={$item.dd_id}">编辑</a></td>
+                </tr>
+                </foreach>
+            </table>
+        </form>
+        </if>
+
+
+
 
 
         <!--footer section start-->

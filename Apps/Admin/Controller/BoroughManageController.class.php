@@ -754,8 +754,64 @@ class BoroughManageController extends CommonController{
      */
     public function pingguDd(){
         $this->menu=ACTION_NAME;//分配小栏目
+
+        $this->title .= '评估调整系数管理';
+        $dd = D('PingguDd');
+        $action=I('get.action');
+        $this->assign('action',$action);
+        if($action=="order"){
+            $order = $_POST['list_order'];//list_order[{$item.di_id}]
+            $group = $_POST['list_group'];
+            $dd_id = intval($_GET['dd_id']);//数组
+            if(empty($order)){
+                exit;
+            }
+
+            try{
+                $dd->orderDd($order,$dd_id);
+                $dd->groupDd($group,$dd_id);
+                $this->success("排序成功",U('pingguDd',array('action'=>"edit","dd_id"=>$dd_id)));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=="edit"){
+            $_GET['dd_id'] = $_GET['dd_id'] ? $_GET['dd_id'] : $_POST['dd_id'];
+            if ($_POST) {//添加编辑项
+                try {
+                    $dd->saveDd($_POST);
+                } catch (Exception $e) {
+                    $this->error($e->getMessage(),U('?action=edit&dd_id=' . $_GET['dd_id']));
+                }
+            }
+
+            if ($_GET['di_id']) {//取编辑项信息
+                $diInfo = $dd->getDiInfo($_GET['di_id']);
+                $this->assign('diInfo', $diInfo);
+            }
+            $this->assign('dd_id', $_GET['dd_id']);
+            $this->assign('list', $dd->getItemList($_GET['dd_id']));
+
+
+        }elseif($action=="delete"){
+
+            //  删除
+            if ($_POST['dds']) {
+                $dd->deleteDds($_POST['dds']);
+            }
+            $this->success("删除成功",U('pingguDd',array('action'=>"edit","dd_id"=>$_GET['dd_id'])));
+
+            exit;
+        }else{
+            $this->assign("list",$dd->getList());
+        }
+
         $this->display();
 
     }
+
+
 
 }
