@@ -75,6 +75,16 @@
                 </ul>
             </li>
 
+            <li class="menu-list <if condition='$cate eq NewHouseManage'>nav-active</if>"><a href=""><i class="fa fa-home"></i> <span>新盘管理</span></a>
+                <ul class="sub-menu-list">
+                    <li <if condition="$menu eq 'index'">class="active"</if> ><a href="{:U(MODULE_NAME.'/NewHouseManage/index')}"> 新盘列表</a></li>
+                    <li <if condition="$menu eq 'add'">class="active"</if> ><a href="{:U(MODULE_NAME.'/NewHouseManage/add')}"> 添加新盘</a></li>
+                    <li <if condition="$menu eq 'updateCheck'">class="active"</if> ><a href="{:U(MODULE_NAME.'/BoroughManage/updateCheck')}"> 小区更新管理</a></li>
+                    <li <if condition="$menu eq 'evaluate'">class="active"</if> ><a href="{:U(MODULE_NAME.'/BoroughManage/evaluate')}"> 评估价更新</a></li>
+                    <li <if condition="$menu eq 'pingguDd'">class="active"</if> ><a href="{:U(MODULE_NAME.'/BoroughManage/pingguDd')}"> 评估系数管理</a></li>
+                </ul>
+            </li>
+
             <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>Components</span></a>
                 <ul class="sub-menu-list">
                     <li><a href="grids.html"> Grids</a></li>

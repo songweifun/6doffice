@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新盘列表</title>
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/bootstrap.js"/>
+
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+    <css file="__PUBLIC__/css/admin.css"/>
+</head>
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table_info">
+            <caption>新盘管理</caption>
+            <tr>
+                <td><a href="?check=1"><if condition="$Think.get.check eq 1"><span style="color:red;">全部新盘</span><else/>全部新盘</if></a> | <a href="?check=2"><if condition="$Think.get.check eq 2"><span style="color:red;">促销楼盘</span><else/>促销楼盘</if></a> | <a href="?check=3"><if condition="$Think.get.check eq 3"><span style="color:red;">推广楼盘</span><else/>推广楼盘</if></a> | <a href="index.php?check=4"><if condition="$Think.get.check eq 4"><span style="color:red;">即将开盘</span><else/>即将开盘</if></a> | <a href="{:U('add')}">添加新盘</a></td>
+            </tr>
+        </table>
+
+        <form name="search" method="get" action="">
+            <table cellpadding="0" cellspacing="1" class="table">
+                <caption>信息查询</caption>
+                <tr>
+                    <td class="align_c">
+                        <select name='cityarea'>
+                            <option value="">所在区域</option>
+                            <foreach name="areaLists" item="item">
+                            <if condition="$cityarea eq $key">
+                            <option value="{$key}" selected>{$item}</option>
+                            <else/>
+                            <option value="{$key}">{$item}</option>
+                            </if>
+                            </foreach>
+                        </select>
+                        <input type="text" name="q" onblur="if(this.value ==''||this.value == '请输入新盘名称,新盘地址'){this.value = '请输入新盘名称,新盘地址';this.style.color = '#999999';}" onfocus="if(this.value == '请输入新盘名称,新盘地址'){this.value = '';this.style.color = '#333333';}" value="<if condition='$q neq null'>{$q}<else/>请输入新盘名称,新盘地址</if>" size="35" />&nbsp;
+                        <input type="submit" name="dosubmit" value=" 查询 " />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>新盘信息管理</caption>
+                <tr>
+                    <th>选中</th>
+                    <th>新盘名称</th>
+                    <th>所在区域</th>
+                    <th>所在板块</th>
+                    <th>推广</th>
+                    <th>促销</th>
+                    <th>新盘地址</th>
+                    <th>添加人</th>
+                    <th width="100">管理操作</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="dataList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.borough_name}"></td>
+                    <td><a href="../../newHouse/detail.php?id={$item.id}" target="_blank">{$item.borough_name} </a> &nbsp;</td>
+                    <td class="align_c">{$item.cityarea_id} </td>
+                    <td class="align_c">{$item.borough_section}</td>
+                    <td class="align_c"><if condition="$item.is_promote eq 1"><span style="color:#FF0000;">是</span><else/>否</if></td>
+                    <td class="align_c"><if condition="$item.is_priceoff eq 1"><span style="color:#FF0000;">是</span><else/>否</if></td>
+
+                    <td class="align_c">{$item.borough_address}</td>
+                    <td class="align_c">{$item.creater}</td>
+                    <td class="align_c">
+                        <a href="?action=edit&id={$item.id}">修改</a> | <a href="?action=intention&id={$item.id}">意向</a> | <a href="?action=news&id={$item.id}">动态</a>
+                    </td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='index.php?action=delete';myform.submit();}">
+                <input type="button" name="delete" value=" 推广 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='index.php?action=promote&value=1';myform.submit();}">
+                <input type="button" name="delete" value=" 取消推广 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='index.php?action=promote&value=0';myform.submit();}">
+                <input type="button" name="delete" value=" 促销 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='index.php?action=priceoff&value=1';myform.submit();}">
+                <input type="button" name="delete" value=" 取消促销 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='index.php?action=priceoff&value=0';myform.submit();}">
+            </div>
+            <div class="pagePanpel">
+                {$pagePanel}
+            </div>
+
+
+        </form>
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+
+
+
+</body>
+
+</html>

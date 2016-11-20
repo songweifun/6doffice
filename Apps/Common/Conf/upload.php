@@ -75,12 +75,16 @@
   			'thumbWidth'=>120,
   			'thumbHeight'=>161,
   			'watermarkPos'=>9,
-  			'watermarkPic'=>'./Data/water/anleye.png',
+			'watermarkPic'=>'./Data/water/anleye.png',
   			'thumbDir'=>'borough/thumb/',
-  			'originalPath'=>'borough/picture/',
+  			'originalPath'=>'borough/thumb/',
   			'width'=>268,
   			'height'=>360,
-  			'allowType' =>array('jpeg','jpg','gif','bmp','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
   ),
   'house' => array(
