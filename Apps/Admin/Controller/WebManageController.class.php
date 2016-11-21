@@ -149,25 +149,25 @@ class WebManageController extends CommonController{
      * 网站配置
      */
     public function webConfig(){
-        $config=M('web_config');
+
+        $this->menu=ACTION_NAME;//分配小栏目
+        $config=D('web_config');
         $action=I('get.action');
         if($action=='save'){
             //p($_POST);die;
-            if($config->where(array('id'=>1))->save($_POST['webConfig'])){
+            //p($_POST);die;
+            if($config->saveConf($_POST['webConfig'])){
                 $this->success('保存成功',U('webconfig'));
-                exit;
             }else{
-                $this->error('保存失败');
+                $this->error("保存失败");
             }
-
-
+            exit;
+        }else{
+            $webConfig = $config->getInfo(1,'*');
+            $this->assign('webConfig', $webConfig);
 
         }
-        $webConfig = $config->where(array('id'=>1))->find();
-        $this->assign('webConfig', $webConfig);
-        //p($webConfig);die;
 
-        $this->menu=ACTION_NAME;//分配小栏目
 
         $this->display();
     }

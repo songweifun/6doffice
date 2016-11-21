@@ -94,6 +94,7 @@ class NewHouseManageController extends CommonController{
         $drawing_num = 0;
 
         if($_GET['id']){
+            $this->assign('action','edit');
             $id = intval($_GET['id']);
             $boroughInfo = $borough->getInfo($id,'*',1);
             $boroughInfo['boroughInfo']['borough_green'] = round($boroughInfo['boroughInfo']['borough_green'],2);
@@ -113,6 +114,124 @@ class NewHouseManageController extends CommonController{
         $this->assign('drawing_num', $drawing_num);
 
         $this->display();
+    }
+
+    /**
+     * 保存新盘
+     */
+    public function save(){
+        //p($_POST);die;
+        $user=D('Users');
+        $borough=D('Borough');
+        $to_url = $_POST['to_url'];
+        $_POST['creater'] = $user->getAuthInfo('username');
+        $_POST['borough']['isnew'] = 1;
+        if($borough->saveBorough($_POST)){
+            $this->success('添加/编辑新盘成功',$to_url);
+        }else{
+            $this->error('添加/编辑新盘失败');
+        }
+    }
+
+    /**
+     * 意向
+     */
+    public function intention(){
+        $borough=D('Borough');
+        $id = intval($_GET['id']);
+        $boroughName = $borough->getInfo($id,'borough_name',0,false)['borough_name'];
+        $linktype = intval($_GET['linktype']);
+        $where = "borough_id = ".$id;
+        if($linktype == 1){
+            $q="参加团购";
+            $where .= " and link_type like '%".$q."%'";
+        }
+        if($linktype == 2){
+            $q="邮寄楼书发我";
+            $where .= " and link_type like '%".$q."%'";
+        }
+        if($linktype == 3){
+            $q="登记现场看房";
+            $where .= " and link_type like '%".$q."%'";
+        }
+        if($linktype == 4){
+            $q="通过电子邮件联系";
+            $where .= " and link_type like '%".$q."%'";
+        }
+        if($linktype == 5){
+            $q="通过电话联系";
+            $where .= " and link_type like '%".$q."%'";
+        }
+        $intentionList = $borough->getIntentionList($where,'addtime desc ');
+        $this->assign('intentionList', $intentionList);
+        $this->assign('id', $id);
+        $this->assign('boroughName', $boroughName);
+        $this->display();
+    }
+
+    /**
+     * 删除意向
+     */
+    public function intentionDelete(){
+        $borough=D('Borough');
+
+        $ids = $_POST['ids'];
+        $to_url = $_SERVER['HTTP_REFERER'];
+        if(!is_array($ids) || empty($ids)){
+            $this->error('没有选择删除条目');
+        }
+        if($borough->intentionDelete($ids)){
+            $this->success('删除意向成功',$to_url);
+        }else{
+            $this->error('删除意向失败');
+        }
+
+        exit;
+    }
+
+    /**
+     * 动态
+     */
+    public function news(){
+        $borough=D('Borough');
+
+        $boroughId = $_GET['id'];
+        $boroughNewsList = $borough->getNewsList($boroughId);
+        //p($boroughNewsList);die;
+        $this->assign('boroughNewsList', $boroughNewsList);
+
+        $this->display();
+
+    }
+
+    /**
+     * 动态保存
+     */
+    public function newsSave(){
+        $borough=D('Borough');
+
+        $to_url = $_SERVER['HTTP_REFERER'];
+        $borough->saveNews($_POST);
+        $this->success('添加成功', $to_url);
+    }
+
+    /**
+     * 删除动态
+     */
+    public function deleteNews(){
+        $borough=D('Borough');
+
+        $ids = $_POST['ids'];
+        $to_url = $_SERVER['HTTP_REFERER'];
+        if(!is_array($ids) || empty($ids)){
+            $this->error('没有选择删除条目');
+        }
+
+        if($borough->deleteNews($ids)){
+            $this->success('删除成功', $to_url);
+        }else{
+            $this->error('删除失败');
+        }
     }
 
 }

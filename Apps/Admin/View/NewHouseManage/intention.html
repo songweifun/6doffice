@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>六度写字楼网后台管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/bootstrap.js"/>
+    <script src="__PUBLIC__/js/laydate/laydate.js" language="javascript"></script>
+
+
+
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+
+    <css file="__PUBLIC__/css/admin.css"/>
+
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+        <!--列表-->
+
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>信息筛选</caption>
+
+            <td>
+                <a href="{:U('intention')}/id/{$id}"><if condition="$Think.get.linktype eq null"><span style="color:red;">全部意向</span><else/>全部意向</if></a> |
+                <a href="{:U('intention')}/id/{$id}/linktype/1"><if condition="$Think.get.linktype eq 1"><span style="color:red;">参加团购</span><else/>参加团购</if></a> |
+                <a href="{:U('intention')}/d/{$id}/linktype/2"><if condition="$Think.get.linktype eq 2"><span style="color:red;">邮寄楼书发我</span><else/>邮寄楼书发我</if></a> |
+                <a href="{:U('intention')}/id/{$id}/linktype/3"><if condition="$Think.get.linktype eq 3"><span style="color:red;">登记现场看房</span><else/>登记现场看房</if></a> |
+                <a href="{:U('intention')}/id/{$id}/linktype/4"><if condition="$Think.get.linktype eq 4"><span style="color:red;">通过电子邮件联系</span><else/>通过电子邮件联系</if></a> |
+                <a href="{:U('intention')}/id/{$id}/linktype/5"><if condition="$Think.get.linktype eq 5"><span style="color:red;">通过电话联系</span><else/>通过电话联系</if></a>
+            </td>
+
+        </table>
+
+
+
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>{$boroughName} 购买意向管理</caption>
+                <tr>
+                    <th width="3%">选中</th>
+                    <th width="5%">姓名</th>
+                    <th width="10%">给开发商留言</th>
+                    <th width="5%">性别</th>
+                    <th width="10%">手机</th>
+                    <th width="10%">QQ</th>
+                    <th width="10%">电子邮件</th>
+                    <th width="10%">家庭电话</th>
+                    <th width="10%">邮政编码</th>
+                    <th width="7%">通信地址</th>
+                    <th width="25%">意向</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="intentionList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}"></td>
+                    <td>{$item.nickname}</td>
+                    <td class="align_c">{$item.content} </td>
+                    <td class="align_c"><if condition="$item.gender eq 0">男<else/>女</if></td>
+                    <td class="align_c">{$item.mobile}</td>
+                    <td class="align_c">{$item.qq}</td>
+                    <td class="align_c">{$item.email}</td>
+                    <td class="align_c">{$item.tel}</td>
+                    <td class="align_c">{$item.postcode}</td>
+                    <td class="align_c">{$item.address}</td>
+                    <td class="align_c">{$item.link_type}</td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input id="intentionDelete" type="button" name="delete" value=" 删除 " >
+            </div>
+            <div class="pagePanel">
+                {$pagePanel}
+            </div>
+
+        </form>
+
+        <script>
+            var intentionDelete=document.getElementById('intentionDelete');
+            intentionDelete.onclick=function(){if(confirm('你确认删除选中的条目么？')){myform.action='{:U("intentionDelete")}';myform.submit();}}
+        </script>
+
+
+
+
+
+
+
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+
+
+
+</body>
+</html>

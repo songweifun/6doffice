@@ -9,21 +9,16 @@
     <link rel="shortcut icon" href="#" type="image/png">
 
     <title>六度写字楼网后台管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
     <!-- bootstrap -->
 
     <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
     <js file="__PUBLIC__/js/bootstrap.js"/>
-    <!--icheck-->
-    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
-    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+    <script src="__PUBLIC__/js/laydate/laydate.js" language="javascript"></script>
 
-    <!--dashboard calendar-->
-    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
 
-    <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
 
     <!--common-->
     <link href="__PUBLIC__/css/style.css" rel="stylesheet">
@@ -72,27 +67,70 @@
                     <td width="37%">
                         <input name="borough[borough_address]" type="text" id="address"  size="35" maxlength="30" value="{$borough.borough_address}" /></td>
                 </tr>
-                <if condition="$Think.get.action eq 'edit'">
-                <tr>
-                    <th><strong>地图坐标</strong></th>
-                    <td colspan="3">
+                <if condition="$action eq 'edit'">
+                    <tr>
+                        <th><strong>地图坐标</strong></th>
+                        <td colspan="3">
 
-                        <input name="borough[layout_map]" type="text" id="layout_map" value="{$borough.layout_map}" size="50" />
-                        <div id="mapdiv">
-                            <div class='add'><span class="maptitle">添加位置</span><span style="float:right"></span></div>
-                            <div id='mark_mymap'></div>
-                            <div class='detail'>
-                                <span>拖动红色图标到小区所在位置</span> <input type="button" value="添加" onClick="changeImg()" />
+                            <input name="borough[layout_map]" type="text" id="layout_map" value="{$borough.layout_map}" size="50" /> <a href="" target="_blank">如何手动获取坐标？</a>
+                            <div id="mapdiv" style="display: none">
+                                <div class='add'>
+                                    <span class="maptitle">添加位置</span>
+                                    <span style="float:right"></span>
+                                </div>
+                                <div id='mark_mymap' style="width: 1000px;height: 600px"></div>
+                                <div class='detail'>
+                                    <span>拖动红色图标到小区所在位置</span> <input type="button" value="添加" onClick="changeImg()" />
+                                </div>
                             </div>
-                        </div>
 
+                            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wFcr45UfFkvNP9kb3zyLn7xCv0pyEzxC"></script>
 
+                            <script type="text/javascript" language="javascript">
+                                function atmark() { //标注接口开始
+                                    $("#addmap").html('<img src="__PUBLIC__/images/button-f.gif">');
+                                    var map = new BMap.Map("mark_mymap");
 
-                        <div id="addmap" onclick="$('#mapdiv').show();atmark();"><img src="{$cfg.path.images}button-f.gif"></div>
+                                    var myGeo = new BMap.Geocoder();
+                                    // 将地址解析结果显示在地图上,并调整地图视野
+                                    myGeo.getPoint("南京市中山南路1号", function(point){
+                                        if (point) {
+                                            map.centerAndZoom(point, 16);
+                                            var marker = new BMap.Marker(point);// 创建标注
+                                            map.addOverlay(marker);// 将标注添加到地图中
+                                            marker.enableDragging();// 可拖拽
+                                            marker.addEventListener("dragend", function(e){
+                                                //获取覆盖物位置
+                                                var o_Point_now =  marker.getPosition();
+                                                var lng = o_Point_now.lng;
+                                                var lat = o_Point_now.lat;
+                                                setLatLng(lat, lng);
+                                            })
 
-                        <p id="errMsg_house_mapid" class="errorMessage" display="none"></p>
-                    </td>
-                </tr>
+                                        }else{
+                                            alert("您选择地址没有解析到结果!");
+                                        }
+                                    }, "南京市");
+
+                                    var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+                                    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+                                    map.addControl(top_left_control);
+                                    map.addControl(top_left_navigation);
+                                }
+                                function setLatLng(lat,lng) {
+                                    //alert(111)
+                                    document.getElementById("layout_map").value='('+ lat+','+ lng+')';
+                                }
+                                function changeImg(){
+                                    $('#mapdiv').hide();
+                                    $("#addmap").html('<img src="__PUBLIC__/images/button-f.gif"><span style="color:red; margin-left:20px">添加成功!</span>');
+                                }
+                            </script>
+                            <div id="addmap" onclick="$('#mapdiv').show();atmark();"><img src="__PUBLIC__/images/button-f.gif"></div>
+
+                            <p id="errMsg_house_mapid" class="errorMessage" display="none"></p>
+                        </td>
+                    </tr>
                 </if>
 
                 <tr>
@@ -170,9 +208,9 @@
                     <td colspan="3">
                         <foreach name="borough_support_option" item="item">
                             <if condition="in_array($key,$boroughInfo['borough_support'])">
-                                <input type="checkbox" value="{$key}" checked>{$item}&nbsp;
+                                <input type="checkbox" name="boroughInfo[borough_support][]" value="{$key}" checked>{$item}&nbsp;
                                 <else/>
-                                <input type="checkbox" value="{$key}">{$item}&nbsp;
+                                <input type="checkbox" name="boroughInfo[borough_support][]"value="{$key}">{$item}&nbsp;
                             </if>
                         </foreach>
                     </td>
@@ -254,9 +292,9 @@
                     <td colspan="3">
                         <foreach name="borough_sight_option" item="item">
                             <if condition="in_array($key,$boroughInfo['borough_sight'])">
-                                <input type="checkbox" value="{$key}" checked>{$item}&nbsp;
+                                <input type="checkbox" name="boroughInfo[borough_sight][]" value="{$key}" checked>{$item}&nbsp;
                                 <else/>
-                                <input type="checkbox" value="{$key}">{$item}&nbsp;
+                                <input type="checkbox" name="boroughInfo[borough_sight][]" value="{$key}">{$item}&nbsp;
                             </if>
                         </foreach>
                     </td>
@@ -287,11 +325,11 @@
                     <th><strong>开盘均价</strong></th>
                     <td><input name="borough[borough_avgprice]"  value="{$borough.borough_avgprice}" type="text" id="borough_avgprice" size="15" maxlength="15" /> 元/㎡</td>
                     <th><strong>开盘时间</strong></th>
-                    <td><input name="borough[sell_time]"  value="{$borough.sell_time}" type="text" id="sell_time" size="15" maxlength="10" onClick="WdatePicker({skin:'whyGreen'})" /></td>
+                    <td><input name="borough[sell_time]"  value="{$borough.sell_time}" type="text" id="sell_time" size="15" maxlength="10" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})" /></td>
                 </tr>
                 <tr>
                     <th><strong>竣工时间</strong></th>
-                    <td colspan="3"><input name="boroughInfo[borough_completion]"  value="{$boroughInfo.borough_completion}" type="text" id="borough_completion" size="15" maxlength="10" onClick="WdatePicker({skin:'whyGreen'})" /></td>
+                    <td colspan="3"><input name="boroughInfo[borough_completion]"  value="{$boroughInfo.borough_completion}" type="text" id="borough_completion" size="15" maxlength="10" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})" /></td>
                 </tr>
             </table>
 
@@ -305,14 +343,14 @@
             <table cellpadding="2" cellspacing="1" class="table">
                 <caption>新盘图片</caption>
                 <tr>
-                    <td colspan="2"><div id="borough_picture_dis">
-                        <foreach name="borough.botough_picture " item="item">
-                        <div class="upload_shower" id="container_picture_{$smarty.foreach.borough_pic.index}">
+                    <td colspan="2"><div id="borough_picture_dis" style="display: flex;flex-direction: row">
+                        <foreach name="borough.botough_picture" item="item">
+                        <div class="upload_shower" id="container_picture_{$key}">
                             <a href="__ROOT__/Uploads/{$item.pic_url}"><img src="__ROOT__/Uploads/{$item.pic_url}" width="160" height="120"></a>
                             <br/><input type="text" name="borough_picture_desc[]" value="{$item.pic_desc}" size="12">
                             <input type="hidden" name="borough_picture_url[]" value="{$item.pic_url}">
                             <input type="hidden" name="borough_picture_thumb[]" value="{$item.pic_thumb}">
-                            <input type="button" name="deletePicture_{$smarty.foreach.borough_pic.index}" onclick="dropContainer('container_picture_{$smarty.foreach.borough_pic.index}')" value="【※】">
+                            <input type="button" name="deletePicture_{$key}" onclick="dropContainer('container_picture_{$key}')" value="【※】">
                         </div>
                         </foreach>
                     </div></td>
@@ -326,15 +364,15 @@
             <table cellpadding="2" cellspacing="1" class="table">
                 <caption>户型图</caption>
                 <tr>
-                    <td colspan="2"><div id="borough_drawing_dis">
-                        <foreach name="borough.botough_drawing " item="item">
-                        <div class="upload_shower" id="container_drawing_{$smarty.foreach.borough_draw.index}">
-                            <a href="__ROOT__/Uploads/{$item.pic_url}"><img src="__ROOT__/Uploads/{$item.pic_url}" width="160" height="120"></a>
-                            <br/><input type="text" name="borough_drawing_desc[]" value="{$item.pic_desc}" size="12">
-                            <input type="hidden" name="borough_drawing_url[]" value="{$item.pic_url}">
-                            <input type="hidden" name="borough_drawing_thumb[]" value="{$item.pic_thumb}">
-                            <input type="button" name="deleteDrawing_{$smarty.foreach.borough_draw.index}" onclick="dropContainer('container_drawing_{$smarty.foreach.borough_draw.index}')" value="【※】">
-                        </div>
+                    <td colspan="2"><div id="borough_drawing_dis" style="display: flex;flex-direction: row">
+                        <foreach name="borough.botough_drawing" item="item">
+                            <div class="upload_shower" id="container_drawing_{$key}">
+                                <a href="__ROOT__/Uploads/{$item.pic_url}"><img src="__ROOT__/Uploads/{$item.pic_url}" width="160" height="120"></a>
+                                <br/><input type="text" name="borough_drawing_desc[]" value="{$item.pic_desc}" size="12">
+                                <input type="hidden" name="borough_drawing_url[]" value="{$item.pic_url}">
+                                <input type="hidden" name="borough_drawing_thumb[]" value="{$item.pic_thumb}">
+                                <input type="button" name="deleteDrawing_{$key}" onclick="dropContainer('container_drawing_{$key}')" value="【※】">
+                            </div>
                         </foreach>
                     </div></td>
                 </tr>
@@ -403,7 +441,7 @@
             }
         </script>
 
-        <script src="{$cfg.path.js}My97DatePicker/WdatePicker.js" language="javascript"></script>
+
 
 
 
@@ -421,7 +459,6 @@
 </section>
 
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
 <script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="__PUBLIC__/js/bootstrap.min.js"></script>

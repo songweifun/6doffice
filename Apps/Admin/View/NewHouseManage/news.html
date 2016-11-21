@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>六度写字楼网后台管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/bootstrap.js"/>
+    <script src="__PUBLIC__/js/laydate/laydate.js" language="javascript"></script>
+
+
+
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+
+    <css file="__PUBLIC__/css/admin.css"/>
+
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+        <form name="addItem" method="post" action="{:U('newsSave')}" onsubmit="return validator(this)">
+            <input type="hidden" name="borough_id" value="{$Think.get.id}" />
+            <table cellpadding="1" class="table">
+                <caption>增加动态</caption>
+                <tr>
+                    <td>
+
+                        动态类型：<input name="type" value="{$dataInfo.type}" valid="required" noValue="0" errmsg="类型不能为空!" />
+                        动态标题：<input name="title" value="{$dataInfo.title}" valid="required" noValue="0" errmsg="标题不能为空!" />
+                        <input type="submit" value="保存" />  <span style="color:#FF0000;">注意：添加之后不可修改只能删除</span>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <form name="myform" method="post" action="{:U('deleteNews')}">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>新闻动态列表</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th width="50">类型</th>
+                    <th width="188">标题</th>
+                    <th width="52">添加时间</th>
+                </tr>
+                <foreach item="item" name="boroughNewsList">
+                <tr>
+                    <td class="align_c"><input type="checkbox" name="ids[]" value="{$item.id}"></td>
+                    <td class="align_c">{$item.type}</td>
+                    <td class="align_c">{$item.title}</td>
+                    <td class="align_c">{$item.time|date="Y-m-d",###}</td>
+                </tr>
+                </foreach>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.submit();}">
+            </div>
+        </form>
+        <div class="pagePanel">
+        {$pagePanel}
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+
+
+
+</body>
+</html>

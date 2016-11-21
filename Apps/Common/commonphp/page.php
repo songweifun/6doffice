@@ -19,13 +19,13 @@ $page->authorizeCode2 = '';    //二级域名  例如 www.a.cn
 网站的基本配置信息
 */
 
-$webConfig = C('BASE');
+$webConfig = C('BASE');//C('BASE')是一个数组配置项 然后在每个公共控制其中设置$page=$this 再用require引入page.php即可把所有的配置项分配到前台
 $page->title = $webConfig['base_title'];   //网站名称
 $page->sinaapp = $webConfig['sinaapp'];   //新浪微博关注ID
 $page->titlec = $webConfig['base_titlec'];   //网站名称  一定要与上面的名称一直
 $page->city = $webConfig['base_city'];   //所在的城市，也就是说网站经营范围
-$page->newsOpen = $webConfig['newsOpen'];   //是否开启新闻频道  1：开启  2：不开启
-$page->bbsOpen = $webConfig['bbsOpen'];   //是否开启论坛频道  1：开启  2：不开启
+$page->newsOpen = $webConfig['newsopen'];   //是否开启新闻频道  1：开启  2：不开启
+$page->bbsOpen = $webConfig['bbsopen'];   //是否开启论坛频道  1：开启  2：不开启
 $page->mapcity = $webConfig['base_mapcity'] ;   //地图归属地区 （例如：哈尔滨市 一定要加“市”）
 $page->switch_url = $webConfig['switch_url'] ;   //切换城市地址
 $page->citySwitch_site = $webConfig['citySwitch_site'] ;   //切换城市地址
@@ -36,7 +36,7 @@ $page->googlekey = $webConfig['base_googlekey'];   //google地图KEY
 $page->tongji = $webConfig['base_tongji'];  //统计代码
 $page->beian = $webConfig['base_beian'] ;  //网站备案号
 $page->uc = $webConfig['base_uc'] ;  //是否开启uc     1：是    2：不是
-$page->newhouseOpen = $webConfig['newhouseOpen'] ;  //是否开启新房频道     1：是    2：不是
+$page->newhouseOpen = $webConfig['newhouseopen'] ;  //是否开启新房频道     1：是    2：不是
 $page->lat = $webConfig['lat'] ;
 $page->lnt = $webConfig['lnt'] ;
 $page->expired_switch = $webConfig['expired_switch'] ;    //1:开启 2：不开启

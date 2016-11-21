@@ -247,7 +247,7 @@ class BoroughModel extends Model{
             //判断是否已经存在该小区
             $boroughId = $this->getIdByName($fileddata['borough']['borough_name']);
             if($boroughId){
-                $this->error('该小区已存在数据库中，请不要重复添加');
+                jsurlto('该小区已存在数据库中，请不要重复添加');
             }
 
             $fileddata['borough']['is_checked'] = 1;
@@ -373,6 +373,95 @@ class BoroughModel extends Model{
     {
         //return $this->db->getValue("select * from ".$this->tNameEvaluate." where borough_id = ".$borough_id." order by add_time desc");
         return M('borough_evaluate')->where(array('borough_id'=>$borough_id))->order('add_time desc')->find();
+    }
+
+    /**
+     * 取得小区购买意向列表
+     * @param string $where_clouse
+     * @param string $order
+     * @return mixed
+     */
+    function getIntentionList($where_clouse = '',$order='') {
+
+        $result=M('borough_intention')->where($where_clouse)->order($order)->select();
+
+
+        return $result;
+    }
+
+
+    /**
+     * 删除购买意向
+     * @param mixed $ids 选择的ID
+     * @access public
+     * @return bool
+     */
+    function intentionDelete($ids) {
+        if (is_array($ids)) {
+            $ids = implode(',',$ids);
+            $where = 'id in (' . $ids . ')';
+        } else {
+            $where = 'id=' . intval($ids);
+        }
+        return M('borough_intention')->where($where)->delete();
+        //return $this->db->execute('delete from '.$this->tNameIntention. $where);
+    }
+
+    /**
+     * 取得新盘动态列表
+     * @param $boroughId
+     * @return mixed
+     */
+    function getNewsList($boroughId) {
+        $result=M('borough_news')->where(array('borough_id'=>$boroughId))->order('time desc')->select();
+
+        return $result;
+    }
+
+
+    /**
+     * 保存新盘动态
+     * @param string $field
+     * @access public
+     * @return array
+     */
+    function saveNews($field) {
+        if ($field['id']) {
+            M('borough_news')->save(array (
+                    'time' =>  time(),
+                    'title' => $field['title'],
+                    'type' => $field['type'],
+                    'borough_id' => $field['borough_id'],
+                )
+            );
+
+        } else {
+            M('borough_news')->add(array(
+                    'time' =>  time(),
+                    'title' => $field['title'],
+                    'type' => $field['type'],
+                    'borough_id' => $field['borough_id'],
+                )
+            );
+        }
+    }
+
+
+    /**
+     * 删除信息
+     * @param mixed $ids 选择的ID
+     * @access public
+     * @return bool
+     */
+    function deleteNews($ids) {
+        if (is_array($ids)) {
+            $ids = implode(',',$ids);
+            $where = 'id in (' . $ids . ')';
+        } else {
+            $where = 'id=' . intval($ids);
+        }
+        return M('borough_news')->where($where)->delete();
+        //return $this->db->execute('delete from '.$this->tNameNews.$where);
     }
 
 

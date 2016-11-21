@@ -205,9 +205,9 @@
                     <td colspan="3">
                         <foreach name="borough_support_option" item="item">
                             <if condition="in_array($key,$boroughInfo['borough_support'])">
-                                <input type="checkbox" value="{$key}" checked>{$item}
+                                <input type="checkbox" name="boroughInfo[borough_support][]" value="{$key}" checked>{$item}
                                 <else/>
-                                <input type="checkbox" value="{$key}">{$item}
+                                <input type="checkbox" name="boroughInfo[borough_support][]" value="{$key}">{$item}
                             </if>
                         </foreach>
                     </td>
@@ -244,9 +244,9 @@
                     <td colspan="3">
                         <foreach name="borough_sight_option" item="item">
                             <if condition="in_array($key,$boroughInfo['borough_sight'])">
-                                <input type="checkbox" value="{$key}" checked>{$item}&nbsp;
+                                <input type="checkbox" name="boroughInfo[borough_sight][]" value="{$key}" checked>{$item}&nbsp;
                                 <else/>
-                                <input type="checkbox" value="{$key}">{$item}&nbsp;
+                                <input type="checkbox" name="boroughInfo[borough_sight][]" value="{$key}">{$item}&nbsp;
                             </if>
                         </foreach>
                     </td>
@@ -319,12 +319,12 @@
                 <tr>
                     <td colspan="2"><div id="borough_drawing_dis" style="display: flex;flex-direction: row">
                         <foreach name="borough.botough_drawing" item="item">
-                        <div class="upload_shower" id="container_drawing_{$smarty.foreach.borough_draw.index}">
+                        <div class="upload_shower" id="container_drawing_{$key}">
                             <a href="__ROOT__/Uploads/{$item.pic_url}"><img src="__ROOT__/Uploads/{$item.pic_url}" width="160" height="120"></a>
                             <br/><input type="text" name="borough_drawing_desc[]" value="{$item.pic_desc}" size="12">
                             <input type="hidden" name="borough_drawing_url[]" value="{$item.pic_url}">
                             <input type="hidden" name="borough_drawing_thumb[]" value="{$item.pic_thumb}">
-                            <input type="button" name="deleteDrawing_{$smarty.foreach.borough_draw.index}" onclick="dropContainer('container_drawing_{$smarty.foreach.borough_draw.index}')" value="【※】">
+                            <input type="button" name="deleteDrawing_{$key}" onclick="dropContainer('container_drawing_{$key}')" value="【※】">
                         </div>
                         </foreach>
                     </div></td>

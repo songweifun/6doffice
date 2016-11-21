@@ -23,8 +23,13 @@ function jsurlto($msg=NULL,$url) {
 	echo "<script language='JavaScript' type='text/javascript'>";
 
 	echo "alert('".$msg."');";
+	if($url){
+
 
 	echo 'document.location="' . $url . '";';
+	}else{
+		echo "history.back();";
+	}
 	echo "</script>";
 }
 
