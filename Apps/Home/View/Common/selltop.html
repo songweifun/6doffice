@@ -48,7 +48,7 @@
     function newHouse()
     {
         document.topSearchForm.xz.value="新房";
-        document.topSearchForm.action = '<!--{$cfg.url}-->newHouse/index.php';
+        document.topSearchForm.action = "<!--{:U(MODULE_NAME.'/NewHouse/index')}-->";
     }
     function sale()
     {
@@ -102,7 +102,7 @@
 
     <div class="xg_nav">
         <div class="xg_navcont1">
-            <div class="xg_logo"><a title="<!--{$cfg.page.titlec}-->" href="<!--{:U(MODULE_NAME.'/Index/index')}-->"><img alt="<!--{$cfg.page.titlec}-->" src="__PUBLIC__/images/logo.png" height="53" /></a></div>
+            <div class="xg_logo"><a title="<!--{$titlec}-->" href="<!--{:U(MODULE_NAME.'/Index/index')}-->"><img alt="<!--{$titlec}-->" src="__PUBLIC__/images/logo.png" height="53" /></a></div>
             <div class="xg_menu">
                 <div class="xg_menucont">
                     <ul>
@@ -114,7 +114,7 @@
                         <li <if condition="$menu eq 'sale'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Sell/index')}-->">二手房</a></li>
                         <li <if condition="$menu eq 'rent'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Rent/index')}-->">租  房</a></li>
                         <if condition="$newhouseOpen eq 1">
-                        <li <if condition="$menu eq 'newHouse'">class="xg_cur"</if>><a href="<!--{$cfg.url_newHouse}-->">新  房</a></li>
+                        <li <if condition="$menu eq 'newHouse'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/NewHouse/index')}-->">新  房</a></li>
                         </if>
                         <li <if condition="($menu eq 'broker') or ($menu=='shop')">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Broker/index')}-->">经纪人</a></li>
                         <li <if condition="$menu eq 'community'">class="xg_cur"</if>><a href="<!--{:U(MODULE_NAME.'/Community/index')}-->">小  区</a></li>

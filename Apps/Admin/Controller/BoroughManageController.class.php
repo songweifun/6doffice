@@ -10,6 +10,7 @@ use Think\Controller;
 class BoroughManageController extends CommonController{
     public function _initialize()
     {
+        parent::_initialize();
         $this->cate=CONTROLLER_NAME;  //分配栏目
     }
 

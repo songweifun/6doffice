@@ -1,0 +1,97 @@
+<div class="Community">
+    <input type="hidden" id="cityarea" name="cityarea" value="<!--{$Think.get.cityarea}-->">
+    <input type="hidden" id="cityarea2" name="cityarea2" value="<!--{$Think.get.cityarea2}-->">
+    <input type="hidden" id="avgprice" name="avgprice" value="<!--{$Think.get.avgprice}-->">
+    <input type="hidden" id="borough" name="borough" value="<!--{$Think.get.borough}-->">
+    <input type="hidden" id="type" name="type" value="<!--{$Think.get.type}-->">
+    <input type="hidden" id="list_num" name="list_num" value="10">
+    <input type="hidden" id="list_order" name="list_order" value="10">
+    <input type="hidden" id="S_q" name="S_q" value="<!--{$Think.get.q}-->">
+    <if condition="$cityarea_option neq null">
+    <div>
+        <ul>
+            <li class="filterTarget">区域：</li>
+            <if condition="$Think.get.cityarea eq null">
+                <li class="linkOn"><a href="?price=<!--{$Think.get.price}-->&section=<!--{$Think.get.section}-->&letter=<!--{$Think.get.letter}-->&cityarea=&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a>
+                <else/>
+                <li><a href="?price=<!--{$Think.get.price}-->&section=<!--{$Think.get.section}-->&letter=<!--{$Think.get.letter}-->&cityarea=&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a>
+
+            </if>
+            </li>
+            <foreach name="cityarea_option" item="item">
+            <if condition="$key eq $Think.get.cityarea ">
+            <li class="linkOn"><a href="?price=<!--{$Think.get.price}-->&section=<!--{$Think.get.section}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$key}-->&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            <else/>
+            <li><a href="?price=<!--{$Think.get.price}-->&section=<!--{$Think.get.section}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$key}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            </if>
+            </foreach>
+        </ul>
+
+
+        <ul>
+            <li class="filterTarget">均价：</li>
+            <if condition="$Think.get.price eq null">
+                <li class="linkOn"><a href="?price=&section=<!--{$Think.get.section}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a>
+                <else/>
+                <li><a href="?price=&section=<!--{$Think.get.section}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->">不限</a>
+
+            </if>
+            </li>
+
+
+            <foreach name="sell_price_option" item="item">
+
+            <li class="<if condition='$key eq $Think.get.price '>linkOn</if>"><a href="?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$key}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&section=<!--{$Think.get.section}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            </foreach>
+        </ul>
+
+        <ul>
+            <li class="filterTarget">板块：</li>
+            <if condition="$Think.get.section eq null">
+
+                <li class="linkOn"><a href="?price=<!--{$Think.get.price}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&section=&list_order=<!--{$Think.get.list_order}-->">不限</a>
+                <else/>
+                <li><a href="?price=<!--{$Think.get.price}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&type=<!--{$Think.get.type}-->&list_num=<!--{$Think.get.list_num}-->&section=&list_order=<!--{$Think.get.list_order}-->">不限</a>
+
+            </if>
+            </li>
+
+
+            <foreach name="boroughCountSection" item="item">
+
+            <li class="<if condition='$key eq $Think.get.section '>linkOn</if>"><a href="?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&letter=<!--{$Think.get.letter}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&section=<!--{$key}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            </foreach>
+        </ul>
+
+        <ul>
+            <li class="filterTarget">类型：</li>
+            <li <if condition="$Think.get.type eq null">class="linkOn"</if>><a href="?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&letter=<!--{$Think.get.letter}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+            <foreach name="house_type_option" item="item">
+            <li class="<if condition='$key eq $Think.get.type '>linkOn</if>"><a href="?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&borough=<!--{$Think.get.borough}-->&letter=<!--{$Think.get.letter}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$key}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            </foreach>
+        </ul>
+
+        <ul>
+            <li class="filterTarget">字母：</li>
+            <li <if condition="$Think.get.letter eq null">class="linkOn"</if>><a href="?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&letter=&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&section=<!--{$Think.get.section}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->">不限</a></li>
+            <foreach name="house_letter_option" item="item">
+            <li class="<if condition='$item.key|strtolower eq $Think.get.letter '>linkOn</if>"><a href="?cityarea=<!--{$Think.get.cityarea}-->&cityarea2=<!--{$Think.get.cityarea2}-->&letter=<!--{$item.key|strtolower}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&section=<!--{$Think.get.section}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&house_age=<!--{$Think.get.house_age}-->&house_floor=<!--{$Think.get.house_floor}-->&company=<!--{$Think.get.company}-->&q=<!--{$Think.get.q}-->&list_order=<!--{$Think.get.list_order}-->"><!--{$item}--></a></li>
+            </foreach>
+        </ul>
+
+
+    </div>
+
+
+
+
+
+    <p align="right">&nbsp;</p>
+    <span class="xj_c xj_c01"></span>
+    <span class="xj_c xj_c06"></span>
+    <span class="xj_c xj_c03"></span>
+    <span class="xj_c xj_c04"></span>
+    </if>
+
+
+</div>

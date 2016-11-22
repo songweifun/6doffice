@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="Common:head"/>
+    <script>
+        function dj(i)
+        {
+            for(j=1;j<6;j++)
+            {
+                if(i==j){
+                    document.getElementById("a"+j).className="li2";
+                    document.getElementById("b"+j).style.display="";
+                }
+                else
+                {
+                    document.getElementById("a"+j).className="li1";
+                    document.getElementById("b"+j).style.display="none";
+                }
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+<script>
+    function fg(r)
+    {
+        for(t=1;t<6;t++)
+        {
+            if(r==t){
+                document.getElementById("c"+t).className="lid";
+                document.getElementById("d"+t).style.display="";
+            }
+            else
+            {
+                document.getElementById("c"+t).className="lic";
+                document.getElementById("d"+t).style.display="none";
+            }
+        }
+
+    }
+</script>
+<script type="text/javascript">
+    function changeSearch(formDom){
+        location.href=formDom.value;
+    }
+
+    function quickSearch(domValue,domType){
+        var inputDom = document.getElementById(domType);
+        if(inputDom){
+            inputDom.value=domValue;
+        }
+        var cityareaValue = document.getElementById('cityarea').value;
+        var qValue = document.getElementById('S_q').value;
+        var typeValue = document.getElementById('type').value;
+        var avgprice = document.getElementById('avgprice').value;
+        var boroughValue = document.getElementById('borough').value;
+        var list_numValue = document.getElementById('list_num').value;
+        var list_orderValue = document.getElementById('list_order').value;
+        if(domType == 'cityarea') boroughValue = '';
+        location.href='?q='+qValue+'&borough='+boroughValue+'&cityarea='+cityareaValue+'&type='+typeValue+'&list_num='+list_numValue+'&list_order='+list_orderValue+'&avgprice='+avgprice;
+        return false;
+    }
+</script>
+<include file="Common:selltop"/>
+<include file="Common/city_selecter_newhouse"/>
+<div class="content_erji">
+    <div class="sale_xx_left">
+        <div id="c">
+            <ul>
+                <li <if condition="$Think.get.state eq null">class="li2"<else/>class="li1"</if>><span><a href="?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->" >全部新盘</a></span></li>
+
+                <li <if condition="$Think.get.state eq 'priceoff'">class="li2"<else/>class="li1"</if>><a href="?state=priceoff"><span>促销楼盘</span></a></li>
+
+                <li <if condition="$Think.get.state eq 'promote'">class="li2"<else/>class="li1"</if>><a href="?state=promote"><span>热推楼盘</span></a></li>
+                <li <if condition="$Think.get.state eq 'new'">class="li2"<else/>class="li1"</if>><a href="?state=new"><span>即将开盘</span></a></li>
+
+                <li class="li1"><span><a target="_blank" href="<!--{$cfg.url}-->m/mapnewhouse">地图找房</a></span></li>
+            </ul>
+            <div class="Community_left_next">
+                <table>
+                    <tr>
+                        <td width="200" align="right">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 个符合要求的楼盘&nbsp;</td>
+                        <td>
+                            <if condition="$pageno gt 1">
+                            <a href="?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno-1}-->" onfocus=blur()>
+                                <img src="__PUBLIC__/images/sale01a.jpg" border="0" class="RL-Prev"/>
+                            </a>
+                            <else/>
+                            <a href="javascript:void(0);">
+                                <img src="__PUBLIC__/images/sale01.jpg" border="0" class="RL-Prev"/>
+                            </a>
+                            </if>
+                        </td>
+                        <td id="RL_NoPage"><!--{$pageno}-->/<!--{$page_count}--></td>
+                        <td>
+                            <if condition="($pageno lt $page_count) and ($pageno lt 100)">
+                            <a href="?q=<!--{$Think.get.q}-->&letter=<!--{$Think.get.letter}-->&cityarea=<!--{$Think.get.cityarea}-->&borough=<!--{$Think.get.borough}-->&price=<!--{$Think.get.price}-->&totalarea=<!--{$Think.get.totalarea}-->&room=<!--{$Think.get.room}-->&type=<!--{$Think.get.type}-->&feature=<!--{$Think.get.feature}-->&switch=<!--{$Think.get.switch}-->&showstyle=<!--{$Think.get.showstyle}-->&list_num=<!--{$Think.get.list_num}-->&list_order=<!--{$Think.get.list_order}-->&p=<!--{$pageno+1}-->" onfocus=blur()>
+                                <img src="__PUBLIC__/images/sale02a.jpg" border="0" class="RL-Next"/>
+                            </a>
+                            <else/>
+                            <a href="javascript:void(0);">
+                                <img src="__PUBLIC__/images/sale01.jpg" border="0" class="RL-Prev"/>
+                            </a>
+                            </if>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="all_fy_bg" style=" margin-top:-1px;">
+            <div class="all_fy_bgl">
+                <a href="javascript:void(0)" onclick="quickSearch('sell_num desc','list_order');" class="<!--{if $Think.get.list_order=='sell_num desc'}-->input_mrpxx<!--{else}-->input_mrpx<!--{/if}-->" >
+                    默认排序
+                </a>
+                <a href="javascript:void(0)" onclick="quickSearch('sell_time desc','list_order');" class="<!--{if $Think.get.list_order=='sell_time desc'}-->input_mrpxx<!--{else}-->input_mrpx<!--{/if}-->" >
+                    按开盘时间
+                </a>
+                <a href="javascript:void(0);" onclick="quickSearch('borough_avgprice asc','list_order');return false;" class="<!--{if $Think.get.list_order=='borough_avgprice asc'}-->input_zj<!--{else}-->input_pxbg56<!--{/if}-->" >
+                    按均价<if condition="$Think.get.list_order eq 'borough_avgprice asc'"><if condition="$Think.get.list_order eq 'borough_avgprice asc'">&darr;<else/>&uarr;</if><else/>&uarr;</if>
+                </a>
+
+            </div>
+        </div>
+
+
+        <div class="Community_content">
+            <foreach name="dataList" item="item">
+            <ol id="list_body">
+                <div class="h15"></div>
+                <div class="property2">
+                    <div class="photo">
+                        <a href="<!--{$cfg.url_newHouse}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="<if condition='$item.borough_thumb neq null'>__ROOT__/Uploads/<!--{$item.borough_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="100" height="75" alt="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a></div>
+                    <div class="Community_title" style="margin-left:10px;">
+                        <h4>
+                            <a href="<!--{$cfg.url_newHouse}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--><!--{if $item.borough_alias}-->(<!--{$item.borough_alias}-->)<!--{/if}--></a>
+
+                            <if condition="$item.borough_properties eq 1">
+                            <img src="__PUBLIC__/images/qfys.jpg"/>
+                                <elseif condition="$item.borough_properties eq 2"/>
+                            <img src="__PUBLIC__/images/xprx.jpg"/>
+                                <elseif condition="$item.borough_properties eq 3"/>
+                            <img src="__PUBLIC__/images/xfxs.jpg"/>
+                                <elseif condition="$item.borough_properties eq 4"/>
+                            <img src="__PUBLIC__/images/sw.jpg"/>
+                            </if>
+
+                        </h4>
+                        <address>地址：<a href="<!--{$cfg.url_community}-->?cityarea=<!--{$item.cityarea_id}-->"><!--{$item.cityarea_name}--></a> - <!--{$item.borough_address}-->
+                        </address>
+                        <address>售楼热线：<font color="#FF0000"><b><!--{$item.sell_phone}--></b></font></address>
+                    </div>
+                    <div class="Community_price">
+                        <!--{$item.borough_developer}-->
+                        <font color="#999999"><p>开盘：<!--{$item.sell_time}--></p>
+                            <p>交房：<!--{$item.borough_completion}--></p></font>
+                    </div>
+
+                    <div class="Community_tags">均价：<if condition="$item.borough_avgprice gt 0"><span><!--{$item.borough_avgprice}--></span><else/>--</if></span>元/平米<br />
+                        <if condition="$item.is_promote neq null">
+                        <img src="__PUBLIC__/images/hotsale.gif"/>
+                        </if>
+                    </div><br />
+
+                </div>
+                <div class="h23"></div>
+                <div class="hr"></div>
+                <div class="h15"></div>
+            </ol>
+            </foreach>
+            <div class="Community-div">
+                <div class="contain">
+                    <!-- 楼盘列表分页 -->
+                    <!--{$pagePanel}-->
+                    <!-- 楼盘列表分页 结束 -->
+                </div>
+                <div class="result">共找到 <span style="color:#61a00d; font-weight:bold;"><!--{$row_count}--></span> 个符合要求的楼盘</div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="w230">
+        <div class="company_box">
+            <div class="company_boxt">
+                <h2>促销楼盘</h2>
+            </div><!--end company_boxt-->
+            <div class="company_boxc">
+                <div class="company_rec">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <foreach name="boroughPriceoffList" item="item">
+                        <tr>
+                            <td align="left" width="60%"><a href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html" class="company_recl" target="_blank"><!--{$item.borough_name}--></a></td>
+                            <td align="right"><font color="#FF0000"><!--{if $item.borough_avgprice}--><!--{$item.borough_avgprice}-->元/平米<!--{else}-->待定<!--{/if}--></font></td>
+                        </tr>
+                        </foreach>
+                    </table>
+                </div><!--end company_rec-->
+            </div><!--end company_boxc-->
+            <div class="company_boxb"></div><!--end company_boxb-->
+        </div><!--end company_box-->
+    </div>
+
+</div>
+<include file="Common/foot"/>
+</body>
+</html>

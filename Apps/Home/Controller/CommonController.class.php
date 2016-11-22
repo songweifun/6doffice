@@ -8,7 +8,7 @@
 namespace Home\Controller;
 use Think\Controller;
 Class CommonController extends Controller{
-    public function _initialize(){
+    public function _initialize(){//用一重
 
         $page=$this;
         require(APP_PATH.'Common/commonphp/page.php');

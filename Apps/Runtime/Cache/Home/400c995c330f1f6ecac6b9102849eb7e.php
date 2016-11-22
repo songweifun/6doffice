@@ -44,7 +44,7 @@
                     <?php if($newsOpen == 1): ?><li><a href="<?php echo ($cfg["url_news"]); ?>">新  闻</a></li><?php endif; ?>
                     <li <?php if($menu == 'sale'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Sell/index');?>">二手房</a></li>
                     <li <?php if($menu == 'rent'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Rent/index');?>">租  房</a></li>
-                    <?php if($newhouseOpen == 1): ?><li <?php if($menu == 'newHouse'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo ($cfg["url_newHouse"]); ?>">新  房</a></li><?php endif; ?>
+                    <?php if($newhouseOpen == 1): ?><li <?php if($menu == 'newHouse'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/NewHouse/index');?>">新  房</a></li><?php endif; ?>
                     <li <?php if($menu == 'broker'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Broker/index');?>">经纪人</a></li>
                     <li <?php if($menu == 'community'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Community/index');?>">小  区</a></li>
                     <li <?php if($menu == 'company'): ?>class="xg_cur"<?php endif; ?>><a href="<?php echo U(MODULE_NAME.'/Company/index');?>">公  司</a></li>
