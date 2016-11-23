@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><!--{$title}--></title>
+    <meta name="keywords" content="<!--{$keyword}-->" />
+    <meta name="description" content="<!--{$housedescription}-->" />
+
+    <css file="__PUBLIC__/css/common.css"/>
+    <css file="__PUBLIC__/css/newHouse.css"/>
+    <css file="__PUBLIC__/css/header.css"/>
+    <css file="__PUBLIC__/css/Home_Home2.css"/>
+
+    <script language="javascript">
+        function changeSearch(formDom){
+            location.href=formDom.value;
+        }
+    </script>
+</head>
+
+<body>
+
+<div id="box">
+    <!-- 头部 -->
+
+    <!-- 头部 结束 -->
+    <!-- 主内容 -->
+    <div id="photoMain">
+        <!-- 总览导航 -->
+        <div class="switchContBox">
+            <div id="communityGeneralTitle" class="switchContBoxTitle">
+                <ul>
+                    <li><a href="<!--{:U('detail')}-->/id/<!--{$dataInfo.id}-->"><span><!--{$dataInfo.borough_name}-->楼盘总览</span></a></li>
+                    <li class="linkOn"><a href="<!--{:U('photo')}-->/id/<!--{$dataInfo.id}-->"><span>项目图片</span></a></li>
+                    <li><a href="<!--{:U('structure')}-->/id/<!--{$dataInfo.id}-->"><span>户型鉴赏</span></a></li>
+                </ul>
+                <span class="photoUploadLink"><a class="color690" href="edit.php#uploadStructure">上传项目图片<span class="familyArial">&gt;&gt;</span></a></span>
+            </div>
+        </div>
+        <!-- 总览导航 结束 -->
+        <!-- 图片区 -->
+        <div class="photoBox">
+            <p class="communityNameTip color690"><!--{$dataInfo.borough_name}--> <span class="color999">项目图片</span></p>
+            <table class="photo" cellpadding="0" cellspacing="15" border="0">
+                <tr>
+                    <foreach  name="boroughImageList" item="item">
+                    <td ><span><a href="__ROOT__/Uploads/<!--{$item.pic_url}-->" target="_blank"><img src="__ROOT__/Uploads/<!--{$item.pic_thumb}-->"  width="240" height="180" /></a><p><a class="colorF90" href="__ROOT__/Uploads/<!--{$item.pic_url}-->" target="_blank"><!--{$item.pic_desc}--></a></p></span></td>
+                    <!--{if $smarty.foreach.borough_img.iteration % 3 ==0}-->
+                </tr>
+                <tr>
+                    <!--{/if}-->
+                    </foreach>
+                    <!--{section name=e loop=$borough_img_num }-->
+                    <td ></td>
+                    <!--{/section}-->
+                </tr>
+            </table>
+        </div>
+        <!-- 图片区 结束 -->
+    </div>
+    <!-- 主内容 结束 -->
+
+</div>
+</body>
+</html>

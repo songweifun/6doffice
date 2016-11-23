@@ -15,6 +15,9 @@ class NewHouseController extends CommonController{
         $this->menu="newHouse";  //分配栏目
     }
 
+    /**
+     * 新房首页
+     */
     public function index(){
         $this->title = $this->city.'新房 - '.$this->titlec;   //网站名称
         //关键词和描述
@@ -228,6 +231,182 @@ class NewHouseController extends CommonController{
         $this->assign('back_to', urlencode($_SERVER['REQUEST_URI']));
 
         $this->display();
+    }
+
+    /**
+     * 新房详情页
+     */
+    public function detail(){
+
+        //小区
+        $borough = D('Borough');
+        //区域字典
+        $cityarea_option =getArray('cityarea');
+        $this->assign('cityarea_option', $cityarea_option);
+
+        //id
+        $id = intval($_GET['id']);
+        if(!$id){
+            $this->redirect(U('index'));
+        }
+
+        //小区详细信息
+        $boroughInfo = D('BoroughView')->where(array('id'=>$id))->find();
+        $boroughInfo['cityarea_name'] = $cityarea_option[$boroughInfo['cityarea_id']];
+        $boroughInfo['borough_section'] = getCaption('borough_section',$boroughInfo['borough_section']);
+        $boroughInfo['borough_support'] = getCaption('borough_support',$boroughInfo['borough_support']);
+        $boroughInfo['borough_sight'] = getCaption('borough_sight',$boroughInfo['borough_sight']);
+        $boroughInfo['borough_type'] = getCaption('borough_type',$boroughInfo['borough_type']);
+        $boroughInfo['unsign_percent_change'] = abs($boroughInfo['percent_change']);
+
+        //小区图片
+        $boroughImageList = $borough->getImgList($id,0,4);
+        $this->assign('boroughImageList', $boroughImageList);
+        $borough_img_num = count($boroughImageList);
+        if($borough_img_num%2){
+            $borough_img_num = 2-$borough_img_num%2;
+            $this->assign('borough_img_num', $borough_img_num);
+        }
+        if(!$boroughInfo['borough_thumb']){
+            if($boroughImageList){
+                $boroughInfo['borough_thumb'] = $boroughImageList[0]['pic_url'];
+                $borough->updateThumb($boroughInfo['id'],$boroughInfo['borough_thumb']);
+            }
+        }
+        $this->assign('dataInfo', $boroughInfo);
+        //p($boroughInfo);die;
+
+
+        //小区户型图
+        $boroughDrawList = $borough->getImgList($id,1,4);
+        $this->assign('boroughDrawList', $boroughDrawList);
+        $borough_draw_num = count($boroughDrawList);
+        if($borough_draw_num%2){
+            $borough_draw_num = 2-$borough_draw_num%2;
+            $this->assign('borough_draw_num', $borough_draw_num);
+        }
+
+        //新盘新闻动态
+        $boroughNewsList = $borough->getNewsList($boroughInfo['id']);
+        $this->assign('boroughNewsList', $boroughNewsList);
+
+        $intentionCount = $borough->getIntentionCount(' and borough_id='.$boroughInfo['id']);
+        $this->assign('intentionCount', $intentionCount);
+
+
+        //价格小区
+        $samePriceBorough =$borough->getList(5,1,' and id<>'.$id.' and isdel =0 and isnew =1 and borough_avgprice >='.($boroughInfo['borough_avgprice']-200).' and borough_avgprice<='.($boroughInfo['borough_avgprice']+200),'borough_avgprice desc');
+        $this->assign('samePriceBorough', $samePriceBorough);
+
+        //cityarea小区
+        $sameCityareaBorough =$borough->getList(5,1,' and id<>'.$id.' and isdel =0 and isnew =1 and cityarea_id = '.$boroughInfo['cityarea_id'],'updated desc');
+        $this->assign('sameCityareaBorough', $sameCityareaBorough);
+
+        //网友察看
+        $boroughClickList =$borough->getList(5,1,' and id<>'.$id.' and isdel =0 and isnew =1','rand() desc');
+        $this->assign('boroughClickList', $boroughClickList);
+
+        //页面标题
+        $this->title = $boroughInfo['borough_name'].'的楼盘概况 - '.$this->title;
+
+
+        //增加计数
+        $borough->increase($boroughInfo['id'],'click_num');
+
+        //$this->assign('boroughAdviserList', $boroughAdviserList);
+
+
+        $this->display();
+
+    }
+
+    /**
+     * 新盘相册
+     */
+    public function photo(){
+
+        //区域字典
+        $cityarea_option = getArray('cityarea');
+        $this->assign('cityarea_option', $cityarea_option);
+
+        //id
+        $id = intval($_GET['id']);
+        if(!$id){
+            $this->redirect(U('index'));
+        }
+
+        //小区
+        $borough = D('Borough');
+
+        //小区详细信息
+        $boroughInfo = $borough->field('id,borough_name')->where(array('id'=>$id))->find();
+        $this->assign('dataInfo', $boroughInfo);
+
+        //小区图片
+        $boroughImageList = $borough->getImgList($id,0);
+        $this->assign('boroughImageList', $boroughImageList);
+        $borough_img_num = count($boroughImageList);
+        if($borough_img_num%3){
+            $borough_img_num = 3-$borough_img_num%3;
+            $this->assign('borough_img_num', $borough_img_num);
+        }
+
+        //页面标题
+        $this->title = $boroughInfo['borough_name'].'的项目图片 - '.$this->title;
+
+
+        $this->display();
+
+    }
+
+    /**
+     * 户型鉴赏
+     */
+    public function structure(){
+        //区域字典
+        $cityarea_option = getArray('cityarea');
+        $this->assign('cityarea_option', $cityarea_option);
+
+        //id
+        $id = intval($_GET['id']);
+        if(!$id){
+            $this->redirect(U('index'));
+        }
+
+        //小区
+        $borough = D('Borough');
+
+        //小区详细信息
+        $boroughInfo = $borough->field('id,borough_name')->where(array('id'=>$id))->find();
+        $this->assign('dataInfo', $boroughInfo);
+
+        //小区图片
+        $boroughImageList = $borough->getImgList($id,1);
+        $this->assign('boroughImageList', $boroughImageList);
+        $borough_img_num = count($boroughImageList);
+        if($borough_img_num%3){
+            $borough_img_num = 3-$borough_img_num%3;
+            $this->assign('borough_img_num', $borough_img_num);
+        }
+
+        //页面标题
+        $this->title = $boroughInfo['borough_name'].'的户型图 - '.$this->title;
+
+        //关键词
+        $this->keyword = '哈尔滨新楼盘,哈尔滨租房,哈尔滨二手房,哈尔滨'.$boroughInfo['borough_name'].'的户型图';
+        $this->display();
+    }
+    /**
+     * 意向表单收集
+     */
+    public function save(){
+        $borough = D('Borough');
+
+        $borough_id = $_GET['borough_id'];
+        $_POST['borough_id'] = $borough_id;
+        $borough->saveIntention($_POST);
+        $this->success('成功提交您的意向',U('detail').'/id/'.$borough_id);
+
     }
 
 }

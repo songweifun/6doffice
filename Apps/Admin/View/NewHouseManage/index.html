@@ -90,7 +90,7 @@
                 <foreach item="item" name="dataList">
                 <tr>
                     <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.borough_name}"></td>
-                    <td><a href="../../newHouse/detail.php?id={$item.id}" target="_blank">{$item.borough_name} </a> &nbsp;</td>
+                    <td><a href="{:U('Home/NewHouse/detail')}/id/{$item.id}" target="_blank">{$item.borough_name} </a> &nbsp;</td>
                     <td class="align_c">{$item.cityarea_id} </td>
                     <td class="align_c">{$item.borough_section}</td>
                     <td class="align_c"><if condition="$item.is_promote eq 1"><span style="color:#FF0000;">是</span><else/>否</if></td>

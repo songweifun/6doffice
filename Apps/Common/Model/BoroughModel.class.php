@@ -110,4 +110,83 @@ class BoroughModel extends Model{
 
     }
 
+    /**
+     * 修改缩略图数据
+     * @param $borough_id
+     * @param $borough_thumb
+     * @return bool
+     */
+    function  updateThumb($borough_id,$borough_thumb)
+    {
+        //return $this->db->execute("update ".$this->tName." set borough_thumb='".$borough_thumb."' where id=".$borough_id);
+        return $this->where(array('id'=>$borough_id))->save(array('borough_thumb'=>$borough_thumb));
+    }
+
+    /**
+     * 取得新盘动态列表
+     * @param $boroughId
+     * @return mixed
+     */
+    function getNewsList($boroughId) {
+        $result=M('borough_news')->where(array('borough_id'=>$boroughId))->order('time desc')->select();
+
+        return $result;
+    }
+
+    /**
+     * 取意向登记人数
+     * @param mixed $ids 选择的ID
+     * @access public
+     * @return bool
+     */
+    function getIntentionCount($where_clouse = '') {
+        $where ="1 = 1";
+        if($where_clouse){
+            $where .= $where_clouse;
+        }
+        //return $this->db->getValue('select count(*) from '.$this->tNameIntention. $where );
+        return M('borough_intention')->where($where)->count();
+    }
+
+    /**
+     * 增加房源数
+     * @param $borough_id
+     * @param string $type
+     * @return bool
+     */
+    function  increase($borough_id,$type = 'sell_num')
+    {
+        //return $this->db->execute("update ".$this->tName." set ".$type."=".$type."+1 where id=".$borough_id);
+        return $this->where(array('id'=>$borough_id))->setInc($type,1);
+    }
+
+    /**
+     * 添加楼盘购买意向
+     * @param array $Intention 基本表单数组
+     * @access public
+     * @return bool
+     */
+    function saveIntention($fileddata) {
+        if($fileddata['link_type']){
+            $fileddata['link_type'] = ','.implode(',',$fileddata['link_type']).',';
+        }
+        $field_array = array(
+            'borough_id'=>intval($fileddata['borough_id']),
+            'link_type'=>$fileddata['link_type'],
+            'content'=>$fileddata['content'],
+            'nickname'=>$fileddata['nickname'],
+            'gender'=>intval($fileddata['gender']),
+            'mobile'=>$fileddata['mobile'],
+            'age'=>intval($fileddata['age']),
+            'qq'=>$fileddata['qq'],
+            'tel'=>$fileddata['tel'],
+            'email'=>$fileddata['email'],
+            'postcode'=>$fileddata['postcode'],
+            'address'=>$fileddata['address'],
+            'addtime'=>time(),
+        );
+        //return $this->db->insert($this->tNameIntention,$field_array);
+        return M('borough_intention')->add($fileddata);
+    }
+
 }

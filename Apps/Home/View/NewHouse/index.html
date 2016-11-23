@@ -111,13 +111,13 @@
         </div>
         <div class="all_fy_bg" style=" margin-top:-1px;">
             <div class="all_fy_bgl">
-                <a href="javascript:void(0)" onclick="quickSearch('sell_num desc','list_order');" class="<!--{if $Think.get.list_order=='sell_num desc'}-->input_mrpxx<!--{else}-->input_mrpx<!--{/if}-->" >
+                <a href="javascript:void(0)" onclick="quickSearch('sell_num desc','list_order');" <if condition="$Think.get.list_order eq 'sell_num desc'">class="input_mrpxx"<else/>class="input_mrpx"</if> >
                     默认排序
                 </a>
-                <a href="javascript:void(0)" onclick="quickSearch('sell_time desc','list_order');" class="<!--{if $Think.get.list_order=='sell_time desc'}-->input_mrpxx<!--{else}-->input_mrpx<!--{/if}-->" >
+                <a href="javascript:void(0)" onclick="quickSearch('sell_time desc','list_order');" <if condition="$Think.get.list_order eq 'sell_time desc'">class="input_mrpxx"<else/>class="input_mrpx"</if> >
                     按开盘时间
                 </a>
-                <a href="javascript:void(0);" onclick="quickSearch('borough_avgprice asc','list_order');return false;" class="<!--{if $Think.get.list_order=='borough_avgprice asc'}-->input_zj<!--{else}-->input_pxbg56<!--{/if}-->" >
+                <a href="javascript:void(0);" onclick="quickSearch('borough_avgprice asc','list_order');return false;" <if condition="$Think.get.list_order eq 'borough_avgprice asc'"> class="input_zj"<else/>class="input_pxbg56"</if> >
                     按均价<if condition="$Think.get.list_order eq 'borough_avgprice asc'"><if condition="$Think.get.list_order eq 'borough_avgprice asc'">&darr;<else/>&uarr;</if><else/>&uarr;</if>
                 </a>
 
@@ -131,10 +131,10 @@
                 <div class="h15"></div>
                 <div class="property2">
                     <div class="photo">
-                        <a href="<!--{$cfg.url_newHouse}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><img src="<if condition='$item.borough_thumb neq null'>__ROOT__/Uploads/<!--{$item.borough_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="100" height="75" alt="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a></div>
+                        <a href="<!--{:U('detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><img src="<if condition='$item.borough_thumb neq null'>__ROOT__/Uploads/<!--{$item.borough_thumb}--><else/>__PUBLIC__/images/housePhotoDefault.gif</if>" width="100" height="75" alt="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" title="<!--{$item.borough_name}-->-<!--{$item.cityarea_name}--><!--{$item.citypart_name}-->" /></a></div>
                     <div class="Community_title" style="margin-left:10px;">
                         <h4>
-                            <a href="<!--{$cfg.url_newHouse}-->d-<!--{$item.id}-->.html" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--><!--{if $item.borough_alias}-->(<!--{$item.borough_alias}-->)<!--{/if}--></a>
+                            <a href="<!--{:U('detail')}-->/id/<!--{$item.id}-->" title="<!--{$item.borough_name}-->" target="_blank"><!--{$item.borough_name}--><if condition="$item.borough_alias neq null">(<!--{$item.borough_alias}-->)</if></a>
 
                             <if condition="$item.borough_properties eq 1">
                             <img src="__PUBLIC__/images/qfys.jpg"/>
@@ -192,7 +192,7 @@
                         <foreach name="boroughPriceoffList" item="item">
                         <tr>
                             <td align="left" width="60%"><a href="<!--{$cfg.url_community}-->g-<!--{$item.id}-->.html" class="company_recl" target="_blank"><!--{$item.borough_name}--></a></td>
-                            <td align="right"><font color="#FF0000"><!--{if $item.borough_avgprice}--><!--{$item.borough_avgprice}-->元/平米<!--{else}-->待定<!--{/if}--></font></td>
+                            <td align="right"><span style="color:#FF0000;"><if condition="$item.borough_avgprice neq null"><!--{$item.borough_avgprice}-->元/平米<else/>待定</if></span></td>
                         </tr>
                         </foreach>
                     </table>

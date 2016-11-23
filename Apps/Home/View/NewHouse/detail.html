@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+    <include file="Common/head"/>
+    <link href="__PUBLIC__/css/show.css" rel="stylesheet" type="text/css" />
+    <META name=GENERATOR content="MSHTML 9.00.8112.16421">
+    <script>
+        function addFav(url,title) {
+            //var url = window.location;
+            //var title = document.title;
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.indexOf("360se") > -1) {
+                alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！");
+            }else if (ua.indexOf("msie 8") > -1) {
+                window.external.AddToFavoritesBar(url, title); //IE8
+            }else if (document.all) {
+                try{
+                    window.external.addFavorite(url, title);
+                }catch(e){
+                    alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+                }
+            } else if (window.sidebar) {
+                window.sidebar.addPanel(title, url, "");
+            } else {
+                alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+            }
+        }
+    </script>
+</HEAD>
+<body>
+<include file="Common/selltop"/>
+<!-- 内容开始 -->
+<div class=content>
+    <a name="top"></a>
+    <!-- 图片与简介开始 -->
+    <div class="pic">
+        <div class="focus">
+            <div id="myfocus"><!--只需定义这个ID即可-->
+                <div class="pics">
+                    <ul>
+                        <li><a href="<!--{:U('photo')}-->/id/<!--{$dataInfo.id}-->" title="<!--{$dataInfo.borough_name}-->"><img src="<if condition='$dataInfo.borough_thumb neq null'>__ROOT__/Uploads/<!--{$dataInfo.borough_thumb}--><else/>__PUBLIC__/images/demoNewhouse.gif</if>" width="515" height="300" /></a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="detail">
+        <h1><!--{$dataInfo.borough_name}--> <span>
+
+    <if condition="$dataInfo.borough_properties eq 1">
+    <img src="__PUBLIC__/images/qfys.jpg"/>
+            <elseif condition="$dataInfo.borough_properties eq 2"/>
+    <img src="__PUBLIC__/images/xprx.jpg"/>
+            <elseif condition="$dataInfo.borough_properties eq 3"/>
+         <img src="__PUBLIC__/images/xfxs.jpg"/>
+            <elseif condition="$dataInfo.borough_properties eq 4"/>
+         <img src="__PUBLIC__/images/sw.jpg"/>
+            </if>
+
+    </span></h1>
+        <dl>
+            <dt>主推户型：<!--{$dataInfo.room_type}--></dt>
+
+            <dd>楼盘地址：<!--{$dataInfo.borough_address}-->（<!--{$dataInfo.cityarea_name}--> <!--{$dataInfo.borough_section}-->） <a href="#ditu">查看地图</a></dd>
+            <dd>物业公司：<!--{$dataInfo.borough_company}--></dd>
+            <dd>开盘时间：<!--{$dataInfo.sell_time}--></dd>
+            <dd>交房时间：<!--{$dataInfo.borough_completion}--></dd>
+            <dd>参考价格：<span class="price"><if condition="$dataInfo.borough_avgprice neq null"><b><!--{$dataInfo.borough_avgprice}--></b>元/平米<else/>待定</if></span> <a target="_blank" href="<!--{:U('Tool/Index/gfnl')}-->" class="jisuan">房贷计算器</a><!-- - <a href="#" class="jiangjia">(降价通知)</a>  --></dd>
+
+        </dl>
+        <div class="contact">
+            <div class="tel">
+                <h2><!--{$dataInfo.sell_phone}--></h2>
+                <span>开发商：<!--{$dataInfo.borough_developer}-->&nbsp;<if condition="$dataInfo.project_site neq null"><a class="color690" href="<!--{$dataInfo.project_site}-->" target="_blank">[项目网站]</a></if>&nbsp;<if condition="$dataInfo.company_site neq null"><a class="color690" href="<!--{$dataInfo.company_site}-->" target="_blank">[公司网站]</a></if></span>
+            </div>
+
+            <div class="but"> <a href="#" class="fav"  onclick="javascript:addFav('?id=<!--{$dataInfo.id}-->',' <!--{$cfg.page.title}-->');return false;">收藏楼盘</a> <a href="#" onClick="window.print();" class="print">打印本页信息</a></div>
+        </div>
+    </div>
+
+    <!-- 图片与简介结束 -->
+
+    <!-- 楼盘介绍开始 -->
+    <div class="about">
+        <div class="a_title"><h1><!--{$dataInfo.borough_name}--></h1> <a href="#dongtai" class="dongtai">最新动态</a><a href="#xiangce" class="xiangce">楼盘相册</a><!--<a href="#" class="taolun">楼盘讨论</a> --><a href="#ditu" class="zhoubian">地图与周边</a></div>
+        <div class="a_left">
+            <div class="a_con">
+                <p class="a_des">
+                    <!--{$dataInfo.borough_content|nl2br}-->
+                </p>
+                <ul class="a_detail">
+                    <li>物业类型：<!--{$dataInfo.borough_type}--></li>
+                    <li>绿化率：<!--{$dataInfo.borough_green}-->%</li>
+                    <li>容 积 率：<!--{$dataInfo.borough_volume}--></li>
+                    <li>建筑面积：<!--{$dataInfo.borough_totalarea}-->平米</li>
+                    <li>占地面积：<!--{$dataInfo.borough_area}-->平米</li>
+                    <li>总 户 数：<!--{$dataInfo.borough_number}--></li>
+
+                    <li>停 车 位：<!--{$dataInfo.borough_parking}--></li>
+                    <li>物 业 费：<!--{$dataInfo.borough_costs}-->元/㎡</li>
+
+
+                </ul>
+                <!-- <a href="#">查看详细介绍>>	</a> -->
+            </div>
+
+            <dl class="news_list"><a name="dongtai"></a>
+                <dt><!--{$dataInfo.borough_name}-->最新动态</dt>
+
+                <foreach name="boroughNewsList" item="item">
+                <dd><a href="#">[<!--{$item.type}-->]  <!--{$item.title}--> </a> (<!--{$item.time|date="Y-m-d",###}-->)</dd>
+                </foreach>
+
+                <!--   <dd><a href="#">查看更多动态和点评>></a><a href="#" class="jiangjia">免费订阅降价通知</a></dd>     -->
+            </dl>
+        </div>
+        <div class="a_right">
+            <ul class="guanzhu_num">
+                <li>浏览次数<br><!--{$dataInfo.click_num}-->次</li>
+                <li>意向人数<br><!--{$intentionCount}--></li>
+            </ul>
+        <span class="tie_num">
+       <!-- <a href="#">房市大讨论(今日：<b>116</b> 贴)</a>
+        <a href="#">购房经验交流(今日：<b>77</b> 贴)</a> -->
+        </span>
+            <div class="ad">
+                <!--<img src="__PUBLIC__/images/ad.jpg" /> -->
+            </div>
+        </div>
+    </div>
+    <!-- 楼盘介绍结束 -->
+    <!-- 相册开始 --><a name="xiangce"></a>
+    <div class="photos clear">
+        <div class="title"><h1><!--{$dataInfo.borough_name}-->的相册</h1><span><a href="#top">返回顶部</a></span></div>
+        <div class="photo_con">
+            <dl>
+                <dt><a target="_blank" href="<!--{:U('structure')}-->/id/<!--{$dataInfo.id}-->">查看全部户型图</a></dt>
+                <foreach name="boroughDrawList" item="item">
+                <dd><a target="_blank" href="__ROOT__/Uploads/<!--{$item.pic_url}-->"><img src="__ROOT__/Uploads/<!--{$item.pic_thumb}-->" width="200" height="149" /></a></dd>
+                </foreach>
+            </dl>
+            <dl style="background:#f0f4f7">
+                <dt><a target="_blank" href="<!--{:U('photo')}-->/id/<!--{$dataInfo.id}-->">查看全部项目图片</a></dt>
+                <foreach  name="boroughImageList" item="item">
+                <dd><a target="_blank" href="__ROOT__/Uploads/<!--{$item.pic_url}-->"><img src="__ROOT__/Uploads/<!--{$item.pic_thumb}-->" width="200" height="149" /></a></dd>
+                </foreach>
+            </dl>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <!-- 相册结束 -->
+
+    <!-- 楼盘视频 -->
+    <div class="map"><a name="ditu"></a>
+        <div class="title"><h1><!--{$dataInfo.borough_name}-->的视频</h1><span><a href="#top">返回顶部</a></span></div>
+        <div class="map_con">
+            <!--{$dataInfo.video}-->
+
+        </div>
+    </div>
+
+    <!-- 楼盘视频 -->
+
+    <!-- 地图开始 -->
+    <div class="map"><a name="ditu"></a>
+        <div class="title"><h1><!--{$dataInfo.borough_name}-->的地图与周边</h1><span><a href="#top">返回顶部</a></span></div>
+        <div class="map_con">
+            <div id="mapDIV">
+                <iframe name="gmap" frameborder="0" width="566" height="245" src="<!--{:U(MODULE_NAME.'/BaiduMap/index')}-->/id/<!--{$dataInfo.id}-->" scrolling="No"></iframe>
+
+            </div>
+            <dl class="near">
+                <dt>周边配套</dt>
+                <dd><span class="jiaoyu">小学：<!--{$dataInfo.elementary_school}--></span></dd>
+                <dd><span class="jiaoyu">中学：<!--{$dataInfo.middle_school}--></span></dd>
+                <dd><span class="shangchang">商场：<!--{$dataInfo.borough_shop}--></span></dd>
+                <dd><span class="yiyuan">医院：<!--{$dataInfo.borough_hospital}--></span></dd>
+                <dd><span class="canting">餐厅：<!--{$dataInfo.borough_dining}--></span></dd>
+                <dd><span class="yinhang">银行：<!--{$dataInfo.borough_bank}--></span></dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- 地图结束 -->
+
+    <!-- 讨论开始 -->
+    <div class="disc"><a name="yixiang"></a>
+        <div class="title"><h1>意向登记</h1><span><a href="#top">返回顶部</a></span></div>
+        <div class="disc_con">
+            <form method="post" action="<!--{:U('save')}-->/borough_id/<!--{$dataInfo.id}-->">
+                <dl>
+                    <dt>我对这个项目很感兴趣，我要登记。(*为必填项)</dt>
+                    <dd class="type">
+
+                        <span><input name="" type="checkbox" value="参加团购" name="link_type[]" id="checkbox">参加该楼盘团购</span>
+                        <span> <input type="checkbox"  value="邮寄楼书发我" name="link_type[]" id="checkbox2" />购邮寄楼书给我</span>
+                        <span> <input type="checkbox"  value="登记现场看房" name="link_type[]" id="checkbox3" />登记现场看房</span>
+
+                        <span> <input type="checkbox"  value="通过电子邮件联系" name="link_type[]" id="checkbox4" />请通过电子邮件联系</span><span><input type="checkbox"  value="通过电话联系" name="link_type[]" id="checkbox5" />请通过电话联系</span></dd>
+
+                    <dd class="message"><span>*给开发商留言：</span><textarea name="" cols="70" rows="5"></textarea></dd>
+                    <dd class="row"><span>*姓名：  <input type="text" name="nickname" id="textfield" /></span>
+
+            <span class="sex"> 性别：<input type="radio" name="gender" id="radio" value="radio" />
+        男
+        <input type="radio" name="gender" id="radio2" value="radio" />
+        女</span></dd>
+                    <dd class="row"><span>*手机：<input type="text" name="mobile" id="textfield2" /></span>
+                        <span>年龄：<input type="text" name="age" id="textfield3" /></span> </dd>
+                    <dd class="row"><span>QQ：<input type="text" name="qq" id="textfield4" /></span>
+                        <span>家庭电话：<input type="text" name="tel" id="textfield8" /></span></dd>
+
+                    <dd class="row"><span>*电子邮件：<input type="text" name="email" id="textfield5" /></span><span>*邮政编码：<input type="text" name="postcode" id="textfield7" /></span></dd>
+                    <dd class="address">*通信地址：<input type="text" name="address" id="textfield6" /></dd>
+                    <dd class="but">  <input class="btn" type="submit" name="button" id="button" value="提交意向" />
+                    </dd>
+                </dl>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- 讨论结束 -->
+    <!-- 更多开始 -->
+    <div class="moreinfo">
+        <div class="title"><h1>了解<!--{$dataInfo.borough_name}-->的更多信息：</h1><span><a href="#top">返回顶部</a></span></div>
+        <div class="moreinfo_con">
+            <dl>
+                <dd>楼盘地址：<!--{$dataInfo.borough_address}-->（<!--{$dataInfo.cityarea_name}--> <!--{$dataInfo.borough_section}-->） <a href="#">查看地图</a></dd>
+                <dd>参考价格：<span class="price"><!--{if $dataInfo.borough_avgprice}--><b><!--{$dataInfo.borough_avgprice}--></b>元/平米<!--{else}-->待定<!--{/if}--></span><!--<a href="#" class="jiangjia">降价通知我</a>  --></dd>
+                <dd>
+                    <ul class="a_detail">
+                        <li>物业类型：<!--{$dataInfo.borough_type}--></li>
+                        <li>绿化率：<!--{$dataInfo.borough_green}-->%</li>
+                        <li>容 积 率：<!--{$dataInfo.borough_volume}--></li>
+                        <li>建筑面积：<!--{$dataInfo.borough_totalarea}-->平米</li>
+                        <li>占地面积：<!--{$dataInfo.borough_area}-->平米</li>
+                        <li>总 户 数：<!--{$dataInfo.borough_number}--></li>
+
+                        <li>停 车 位：<!--{$dataInfo.borough_parking}--></li>
+                        <li>物 业 费：<!--{$dataInfo.borough_costs}-->元/㎡</li>
+
+                    </ul>
+                </dd>
+                <dd class="m_c_deatil"><a href="#dongtai" >最新动态</a><span>|</span><a href="#xiangce">楼盘相册</a><!--<span>|</span><a href="#">楼盘讨论</a> --><span>|</span><a href="#ditu">地图与周边</a></dd>
+
+            </dl>
+            <div class="clear"></div>
+            <div class="contact">
+                <div class="tel">
+                    <h2><!--{$dataInfo.sell_phone}--></h2>
+                    <span>开发商：<!--{$dataInfo.borough_developer}-->&nbsp;<if condition="$dataInfo.project_site neq null"><a class="color690" href="<!--{$dataInfo.project_site}-->" target="_blank">[项目网站]</a></if>&nbsp;<if condition="$dataInfo.company_site neq null"><a class="color690" href="<!--{$dataInfo.company_site}-->" target="_blank">[公司网站]</a></if></span>
+                </div>
+                <div class="but"> <a href="#" class="fav"  onclick="javascript:window.external.AddFav('?id=<!--{$dataInfo.id}-->',' <!--{$cfg.page.title}-->');return false;">收藏楼盘</a> <a href="#" onClick="window.print();" class="print">打印本页信息</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 更多结束 -->
+
+</div>
+<!-- 内容结束 -->
+<include file="Common/foot"/>
+</body>
+</html>
