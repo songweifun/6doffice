@@ -210,7 +210,11 @@
   			'originalPath'=>'company/logo/',
 			'width'=>240,
   			'height'=>70,
-  			'allowType' =>array('jpeg','jpg','gif','bmp','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
   ),
   
@@ -218,14 +222,22 @@
   		'logo'=>array(
   			'noResize'=>1, /* 不进行任何压缩 ，保证图片质量 */
   			'originalPath'=>'city/logo/',
-  			'allowType' =>array('jpeg','jpg','gif','bmp','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
   ),
   'link' => array(
   		'logo'=>array(
   			'noResize'=>1, /* 不进行任何压缩 ，保证图片质量 */
   			'originalPath'=>'outlink/',
-  			'allowType' =>array('jpeg','jpg','gif','bmp','png')
+				'exts' =>array('jpeg','jpg','gif','bmp','png'),
+				'rootPath'=>'./Uploads/',
+				'saveName'=>date('YmdHis').'_'.mt_rand(),
+				'autoSub'=>false,
+			//'subName'=>'',子目录创建方式可以使用函数,当autosub开启才有效
   		),
   ),
 

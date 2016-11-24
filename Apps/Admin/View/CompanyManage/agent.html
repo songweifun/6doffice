@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>六度写字楼网后台管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <js file="__PUBLIC__/js/jeditable/jquery.jeditable.js"/>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+
+    <css file="__PUBLIC__/css/admin.css"/>
+
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+
+            <!--列表-->
+            <table cellpadding="0" cellspacing="1" class="table">
+                <caption>公司列表</caption>
+                <tr>
+                    <td><a href="index.php?type={$Think.get.type}"><span style="color:red;">公司列表</span></a> | <a href="{:U('add')}/type/{$Think.get.type}">添加公司</a></td>
+                </tr>
+            </table>
+            <form name="myform" method="post" action="">
+                <table cellpadding="2" cellspacing="1" class="table">
+                    <caption>公司列表</caption>
+                    <tr>
+                        <th width="50">选中</th>
+                        <th width="200">公司名称</th>
+                        <th>公司地址</th>
+                        <th width="50">状态</th>
+                        <th width="150">操作</th>
+                    </tr>
+                    <tbody>
+                    <foreach item="item" name="companyList">
+                        <tr id="tr_{$item.user_id}">
+                            <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}"></td>
+                            <td class="align_c">{$item.company_name}</td>
+                            <td> {$item.company_address}</td>
+                            <td><if condition="$item.status eq 0">正常<elseif condition="$item.status eq 1"/><span style="color:#FF0000;">推荐</span></if></td>
+                            <td class="align_c"><a href="?action=edit&id={$item.id}&type={$item.type}">编辑</a></td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <div class="button_box">
+                    <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                    <input type="button" value=" 删除 " onclick="if(confirm('确定删除该中介公司么？')){myform.action='index.php?action=delete';myform.submit();}">
+                    <input type="button" value=" 推荐 " onclick="if(confirm('确定推荐该中介公司么？')){myform.action='index.php?action=status&dostatus=1';myform.submit();}">
+                    <input type="button" value=" 取消推荐 " onclick="if(confirm('确定取消推荐该中介公司么？')){myform.action='index.php?action=status&dostatus=0';myform.submit();}">
+                </div>
+                <div class="pagePanel">
+                    {$pagePanel}
+                </div>
+            </form>
+
+
+
+
+
+
+    <!--footer section start-->
+    <include file="Common/footer_section"/>
+    <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+
+
+
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>
