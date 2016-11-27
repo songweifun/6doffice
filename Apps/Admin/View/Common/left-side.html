@@ -96,7 +96,15 @@
                 </ul>
             </li>
 
-            <li><a href="fontawesome.html"><i class="fa fa-bullhorn"></i> <span>Fontawesome</span></a></li>
+            <li class="menu-list <if condition='$cate eq TrendManage'>nav-active</if>"><a href=""><i class="fa fa-bullhorn"></i> <span>房产走势</span></a>
+                <ul class="sub-menu-list">
+                    <li <if condition="$menu eq 'index'">class="active"</if> ><a href="{:U(MODULE_NAME.'/TrendManage/index')}"> 总览</a></li>
+                    <li <if condition="$menu eq 'sell'">class="active"</if> ><a href="{:U(MODULE_NAME.'/TrendManage/sell')}"> 二手房</a></li>
+                    <li <if condition="$menu eq 'rent'">class="active"</if> ><a href="{:U(MODULE_NAME.'/TrendManage/rent')}"> 出租</a></li>
+                    <li <if condition="$menu eq 'newHouse'">class="active"</if> ><a href="{:U(MODULE_NAME.'/TrendManage/newHouse')}"> 新房</a></li>
+                    <li <if condition="$menu eq 'office'">class="active"</if> ><a href="{:U(MODULE_NAME.'/TrendManage/office')}"> 写字楼</a></li>
+                </ul>
+            </li>
 
             <li class="menu-list"><a href=""><i class="fa fa-envelope"></i> <span>Mail</span></a>
                 <ul class="sub-menu-list">
