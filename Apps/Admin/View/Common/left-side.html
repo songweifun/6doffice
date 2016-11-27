@@ -106,25 +106,21 @@
                 </ul>
             </li>
 
-            <li class="menu-list"><a href=""><i class="fa fa-envelope"></i> <span>Mail</span></a>
+            <li class="menu-list <if condition='$cate eq UserManage'>nav-active</if>"><a href=""><i class="fa fa-envelope"></i> <span>会员管理</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="mail.html"> Inbox</a></li>
-                    <li><a href="mail_compose.html"> Compose Mail</a></li>
-                    <li><a href="mail_view.html"> View Mail</a></li>
+                    <li <if condition="$menu eq 'index'">class="active"</if> ><a href="{:U(MODULE_NAME.'/UserManage/index')}"> 系统用户管理</a></li>
+                    <li <if condition="$menu eq 'group'">class="active"</if> ><a href="{:U(MODULE_NAME.'/UserManage/group')}"> 用户组管理</a></li>
                 </ul>
             </li>
 
-            <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>Forms</span></a>
+            <li class="menu-list <if condition='$cate eq MemberManage'>nav-active</if>" ><a href=""><i class="fa fa-tasks"></i> <span>经纪人管理</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="form_layouts.html"> Form Layouts</a></li>
-                    <li><a href="form_advanced_components.html"> Advanced Components</a></li>
-                    <li><a href="form_wizard.html"> Form Wizards</a></li>
-                    <li><a href="form_validation.html"> Form Validation</a></li>
-                    <li><a href="editors.html"> Editors</a></li>
-                    <li><a href="inline_editors.html"> Inline Editors</a></li>
-                    <li><a href="pickers.html"> Pickers</a></li>
-                    <li><a href="dropzone.html"> Dropzone</a></li>
-                    <li><a href="http://www.weidea.net"> More</a></li>
+                    <li <if condition="$menu eq 'member'">class="active"</if> ><a href="{:U(MODULE_NAME.'/UserManage/member')}"> 经纪人管理</a></li>
+                    <li <if condition="$menu eq 'indentity'">class="active"</if> ><a href="{:U(MODULE_NAME.'/UserManage/indentity')}"> 身份审核</a></li>
+                    <li <if condition="$menu eq 'aptitude'">class="active"</if> ><a href="{:U(MODULE_NAME.'/UserManage/aptitude')}"> 资质审核</a></li>
+                    <li <if condition="$menu eq 'avatar'">class="active"</if> ><a href="{:U(MODULE_NAME.'/UserManage/avatar')}"> 头像审核</a></li>
+                    <li <if condition="$menu eq 'evaluate'">class="active"</if> ><a href="{:U(MODULE_NAME.'/UserManage/evaluate')}"> 评价审核</a></li>
+
                 </ul>
             </li>
             <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>Charts</span></a>

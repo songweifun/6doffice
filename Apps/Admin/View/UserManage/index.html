@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>用户管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+        <if condition="$action eq 'add'">
+        <form id="form1" name="form1" method="post" action="user.php?action=save" onsubmit="return validator(this)">
+            <input id="user_id" name="user_id" type="hidden" value="{$userInfo.user_id}" />
+            <table cellpadding="2" cellspacing="1"  class="table_form">
+                <caption>增加后台用户</caption>
+                <tr>
+                    <th><strong>用户名：</strong></th>
+                    <td><input value="{$userInfo.username}" name="username" type="text" id="username" maxlength="16" valid="required" errmsg="用户名不能为空!" /></td>
+                </tr>
+                <tr>
+                    <th><strong>密码：</strong></th>
+                    <td><input name="passwd" type="password" id="passwd" maxlength="16" <if condition="$user_id eq null"> valid="required" errmsg="密码不能为空!"</if>  /></td>
+                </tr>
+                <tr>
+                    <th><strong>确认密码：</strong></td>
+                    <td><input name="passwd2" type="password" id="passwd2" maxlength="16" valid="eqaul" eqaulName="passwd" errmsg="两次密码不同!"  /></td>
+                </tr>
+                <tr>
+                    <th><strong>邮箱地址：</strong></th>
+                    <td><input value="{$userInfo.email}" name="email" type="text" id="email" maxlength="50" valid="required|isEmail" errmsg="Email不能为空|Email格式不对!" /></td>
+                </tr>
+                <tr>
+                    <th><strong>用户名：</strong></th>
+                    <td>{$select}</td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <td><input type="submit" name="submit" value="保存" /></td>
+                </tr>
+            </table>
+        </form>
+        <elseif condition="$action eq 'right'">
+        <form method="post" action="user.php?action=right">
+            <input type="hidden" name="user_id" value="{$user_id}">
+            <input type="hidden" name="groupId" value="{$group_id}">
+            <table cellspacing="1" cellpadding="0" class="table_form" >
+                {foreach item=item from=$menus}
+                <tr>
+                    <td><b>{$item.caption}</b></td>
+                </tr>
+                {foreach item=item2 from=$item.sub key=key}
+                <tr>
+                    <td height="25">&nbsp;&nbsp;<input {if $userRight.$key} checked="checked"{/if} type="checkbox" name="rights[{$key}]" value="1">{$item2.caption}</td>
+                </tr>
+                {/foreach}
+                {/foreach}
+                <tr>
+                    <td><input type="submit" class="button" value="保存"></td>
+                </tr>
+            </table>
+        </form>
+        <else/>
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>后台用户管理</caption>
+            <tr>
+                <td><a href="{:U('index')}"><span style="color:red;">用户列表</span></a> | <a href="{:U('addUser')}">添加用户</a></td>
+            </tr>
+        </table>
+        <form name="myform" method="post" action="user.php?action=delete">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>后台用户列表</caption>
+                <tr>
+                    <th width="60">选中</th>
+                    <th width="200">用户名</th>
+                    <th>Email</th>
+                    <th width="150">操作</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="userList">
+                <tr id="tr_{$item.user_id}">
+                    <td class="align_c" ><input type="checkbox" name="users[]" value="{$item.user_id}"></td>
+                    <td class="align_c">{$item.username}</td>
+                    <td> {$item.email}</td>
+                    <td class="align_c"><a href="{:U('addUser')}/user_id/{$item.user_id}">编辑</a> <a onclick="return confirm('真的要删除吗?')" href="javascript:delUser({$item['user_id']})">删除</a></td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="delete" value=" 删除 " onclick="delTr(document.myform)">
+            </div>
+            {$pagePanel}
+        </form>
+        <script type="text/javascript">
+            function delTr(form) {
+                var a = new Array();
+                if (confirm('真的要删除吗?')) {
+                    for (var i=0;i<form.elements.length;i++) {
+                        var e = form.elements[i];
+                        if (e.checked==true&&e.name=="users[]") {
+                            a.push(e.value);
+                        }
+                    }
+                    if (a.length==0) {
+                        alert('没有选择！');
+                        //return false;
+                    }
+                    for (i in a) {
+                        delUser(a[i]);
+                    }
+                    //return false;
+                } else {
+                    //return false;
+                }
+            }
+            function delUser(user_id) {
+                $.get('{:U("deleteUser")}/user_id/'+user_id+'/t/'+Math.random(),null,function (msg) {
+                    if(msg) {alert(msg.info);window.location.reload();}
+                    else {
+                        window.location.reload();
+                    }
+                });
+            }
+            function resumeUser(user_id) //恢复被删除的用户
+            {
+                $.ajax({type:'post',url:'user.php',data:'action=resume&user_id='+user_id,success:function(msg){
+                    if(msg)alert(msg);else{window.location.reload();}
+                }});
+            }
+        </script>
+        </if>
+    </div>
+    {include file="admin/footer.tpl"}
+
+
+
+
+    <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
+<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>

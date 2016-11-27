@@ -466,4 +466,16 @@ function GetPinyin($str,$ishead=0,$isclose=1)
 	return $restr;
 }
 
+/**
+ * 将提交的数据进行html格式编码
+ * @param array $array 处理的数组
+ * @param array $lists 要处理的数组中key的数组
+ * @return array
+ */
+function specConvert (&$array, $lists) {
+	foreach ($lists as $value) {
+		$array[$value] = htmlspecialchars($array[$value],ENT_COMPAT,'utf8');
+	}
+}
+
 ?>
