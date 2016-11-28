@@ -478,4 +478,18 @@ function specConvert (&$array, $lists) {
 	}
 }
 
+/**
+ * 二维数组转换为1维数组
+ */
+function arr2ToArr1($result){
+	$arr=array();
+	foreach($result as $key=>$v){
+		$arr[]=$v['id'];
+	}
+
+	return $arr;
+
+}
+
+
 ?>

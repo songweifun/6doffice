@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{$title}</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <link href="__PUBLIC__/css/admin.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/css.js"/>
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+
+</head>
+<body>
+<div id="modalWindow">
+    <table class="table" cellpadding="2" cellspacing="0" >
+        <caption>经纪人受理情况列表</caption>
+        <if condition="$dataInfo.user_type eq 1">
+        <tr>
+            <td>姓名：</td>
+            <td><input type="text" id="realname_id" name="realname" value="{$dataInfo.realname}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" name="change" value="修改名字"  class="button_style" onclick="changeName()"></td>
+        </tr>
+        <else/>
+        <tr>
+            <td>姓：</td>
+            <td><input type="text" id="first_name_id"  name="first_name" value="{$dataInfo.first_name}" size="4">名：<input type="text" id="last_name_id" name="last_name" value="{$dataInfo.last_name}"></td>
+        </tr>
+        <tr>
+            <td ></td>
+            <td><input type="button"  name="change" value="修改名字" class="button_style" onclick="changeName()"></td>
+        </tr>
+        </if>
+    </table>
+</div>
+
+
+<script language="javascript">
+
+    function changeName(){
+        if ('{$dataInfo.user_type}' == 1) {
+            var realnamevalue = document.getElementById('realname_id').value;
+            if (!realnamevalue) {
+                alert("请把信息填全");
+                return false;
+            }
+            $.post('{:U("changeName")}/action/save', {
+                id: '{$dataInfo.id}',
+                realname: realnamevalue,
+                user_type: '1'
+            }, function (data) {
+                window.parent.location.reload();
+                //document.location.reload();
+            });
+        }else{
+            var first_name_value = document.getElementById('first_name_id').value;
+            var last_name_value = document.getElementById('last_name_id').value;
+            if(!first_name_value){
+                alert("请填写姓");
+                return false;
+            }
+            $.post('{:U("changeName")}/action/save',{id:'{$dataInfo.id}',first_name:first_name_value,last_name:last_name_value,user_type:'2'},function(data){
+                document.location.reload();
+            });
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

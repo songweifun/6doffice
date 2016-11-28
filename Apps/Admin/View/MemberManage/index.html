@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>经纪人列表</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+    <css file="__PUBLIC__/css/admin.css"/>
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>经纪人管理</caption>
+            <tr>
+                <td>
+                    <a href="index.php"><if condition='($Think.get.status eq 0) and ($Think.get.isindex eq 0) and ($Think.get.avatar eq 0) and ($Think.get.identity eq 0)'><span style="color:red;">全部用户</span><else/>全部用户</if></a> |
+                    <a href="index.php?avatar=1"><if condition='$Think.get.avatar eq 1'><span style="color:red;">有头像用户</span><else/>有头像用户</if></a> |
+                    <a href="index.php?identity=1"><if condition='$Think.get.identity eq 1'><span style="color:red;">已身份认证</span><else/>已身份认证</if></a>
+                    <hr>
+                    <a href="index.php?vip=1"><if condition='$Think.get.vip eq 1'><span style="color:red;">体验套餐</span><else/>体验套餐</if></a> |
+                    <a href="index.php?vip=2"><if condition='$Think.get.vip eq 2'><span style="color:red;">标准套餐</span><else/>标准套餐</if></a>
+                </td>
+            </tr>
+        </table>
+
+        <form name="search" method="get" action="index.php">
+            <input type="hidden" name="action" value="search">
+            <table cellpadding="0" cellspacing="1" class="table">
+                <caption>信息查询</caption>
+                <tr>
+                    <td class="align_c">
+                        用户名：<input type="text" name="username" value="{$Think.get.username}" size="10" />&nbsp;
+                        姓名：<input type="text" name="realname" value="{$Think.get.realname}" size="10" />&nbsp;
+                        电话号码：<input type="text" name="tel" value="{$Think.get.tel}" size="10" />&nbsp;
+                        email：<input type="text" name="email" value="{$Think.get.email}" size="10" />&nbsp;
+                        身份证：<input type="text" name="idcard" value="{$Think.get.idcard}" size="10" />&nbsp;
+                        公司/门店：<input type="text" name="com" value="{$Think.get.com}" size="10" />&nbsp;
+                    </td>
+                    <td>
+                        <input type="submit" name="dosubmit" value=" 查询 " />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>用户信息管理</caption>
+                <tr>
+                    <th>选中</th>
+                    <th>用户名</th>
+                    <th>姓名</th>
+                    <th>头像</th>
+                    <th>电话</th>
+                    <th>Email</th>
+                    <th>用户套餐</th>
+                    <th>积分</th>
+                    <th>状态</th>
+                    <th>帐号状态</th>
+                    <th >管理操作</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="dataList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.username}"></td>
+                    <td><a href="{:U('Home/Shop/index')}/id/{$item.id}" target="_blank">{$item.username} </a></td>
+                    <td class="align_c">
+                        <a href="changeName.php?id={$item.id}" onclick="showBox('{$item.id}');return false;">
+
+                            {$item.member_info.realname}
+
+                        </a>
+                    </td>
+                    <td class="align_c"><if condition='$item.member_info.avatar neq null'><img src="__ROOT__/Uploads/{$item.member_info.avatar}" width="50" height="62"></if> </td>
+                    <td class="align_l">手机：{$item.member_info.mobile}<if condition="$item.member_info.com_tell neq null"><br/>公司电话：{$item.member_info.com_tell}</if> </td>
+                    <td class="align_c">{$item.email} </td>
+                    <td class="align_c">
+
+                        <if condition='$item.vip eq 1'>
+                        <font color="red">体验套餐</font>
+                        <elseif condition='$item.vip eq 2'/>
+                        <span style="color:red">标准套餐</span>
+                        <else/>
+                        普通用户
+                        </if>
+
+                    </td>
+                    <td class="align_c">{$item.scores}</td>
+                    <td class="align_c"><if condition='$item.status eq 0'>正常<else/><a href="index.php?status=1"><font color="red">未开通</font></a></if></td>
+                    <td class="align_c">最后登陆:{$item.last_login|date="Y-m-d H:i",###}<br/>注册时间:{$item.add_time|date="Y-m-d H:i",###}</td>
+                    <td class="align_c">
+                        <a href="?action=view&id={$item.id}">详细</a> | <a href="changePw.php?id={$item.id}" onclick="showBox1('{$item.id}');return false;">密码</a> | <a href="changeSc.php?id={$item.id}" onclick="showBox2('{$item.id}');return false;">积分</a> | <a href="changeVip.php?id={$item.id}" onclick="showBox4('{$item.id}');return false;">套餐</a> | <a href="changeMoney.php?id={$item.id}" onclick="showBox3('{$item.id}');return false;">充值</a>
+                    </td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+
+                <input type="button" name="open" value=" 开通 " onclick="if(confirm('确定开通该账户的使用权限？')){myform.action='index.php?action=status&dostatus=0';myform.submit();}">
+
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('注意：尽量不要删除会员，该会员所有的相关记录以及发布的房源都将呗删除')){myform.action='index.php?action=delete';myform.submit();}">
+                <input type="button" name="avatar" value=" 删除用户头像 " onclick="if(confirm('你确认删除选中的用户的头像么？')){myform.action='index.php?action=avatar';myform.submit();}">
+            </div>
+            <div class="pagePanel">
+                {$pagePanel}
+            </div>
+        </form>
+        <script language="javascript">
+            function showBox(item_id){
+                //TB_show('修改用户姓名','changeName.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+                var url='{:U("changeName")}/id/'+item_id
+                //alert(url)
+                layer.open({
+                    type: 2,
+                    title: ['修改用户姓名', ''],
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area : ['400px' , '200px'],
+                    content: url,
+                    scrollbar: false,
+                });
+            }
+            function showBox2(item_id){
+                TB_show('修改用户积分','changeSc.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+            }
+            function showBox4(item_id){
+                TB_show('修改用户套餐','changeVip.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+            }
+            function showBox3(item_id){
+                TB_show('为用户充值','changeMoney.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+            }
+            function showBox1(item_id){
+                TB_show('修改用户密码','changePw.php?id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
+            }
+        </script>
+
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
+<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
+<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>
