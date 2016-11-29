@@ -120,8 +120,8 @@
 
                         </a>
                     </td>
-                    <td class="align_c"><if condition='$item.member_info.avatar neq null'><img src="__ROOT__/Uploads/{$item.member_info.avatar}" width="50" height="62"></if> </td>
-                    <td class="align_l">手机：{$item.member_info.mobile}<if condition="$item.member_info.com_tell neq null"><br/>公司电话：{$item.member_info.com_tell}</if> </td>
+                    <td class="align_c"><if condition='$item["member_info"]["avatar"] neq null'><img src="__ROOT__/Uploads/{$item.member_info.avatar}" width="50" height="62"></if> </td>
+                    <td class="align_l">手机：{$item.member_info.mobile}<if condition="$item['member_info']['com_tell'] neq null"><br/>公司电话：{$item.member_info.com_tell}</if> </td>
                     <td class="align_c">{$item.email} </td>
                     <td class="align_c">
 
@@ -138,7 +138,7 @@
                     <td class="align_c"><if condition='$item.status eq 0'>正常<else/><a href="index.php?status=1"><font color="red">未开通</font></a></if></td>
                     <td class="align_c">最后登陆:{$item.last_login|date="Y-m-d H:i",###}<br/>注册时间:{$item.add_time|date="Y-m-d H:i",###}</td>
                     <td class="align_c">
-                        <a href="?action=view&id={$item.id}">详细</a> | <a href="changePw.php?id={$item.id}" onclick="showBox1('{$item.id}');return false;">密码</a> | <a href="changeSc.php?id={$item.id}" onclick="showBox2('{$item.id}');return false;">积分</a> | <a href="changeVip.php?id={$item.id}" onclick="showBox4('{$item.id}');return false;">套餐</a> | <a href="changeMoney.php?id={$item.id}" onclick="showBox3('{$item.id}');return false;">充值</a>
+                        <a href="{:U('memberView')}/id/{$item.id}">详细</a> | <a href="{:U('changePw')}/id/{$item.id}" onclick="showBox1('{$item.id}');return false;">密码</a> | <a href="{:U('changeSc')}/id/{$item.id}" onclick="showBox2('{$item.id}');return false;">积分</a> | <a href="{:U('changeVip')}/id/{$item.id}" onclick="showBox4('{$item.id}');return false;">套餐</a> | <a href="{:U('changeMoney')}/id/{$item.id}" onclick="showBox3('{$item.id}');return false;">充值</a>
                     </td>
                 </tr>
                 </foreach>
@@ -172,16 +172,59 @@
                 });
             }
             function showBox2(item_id){
-                TB_show('修改用户积分','changeSc.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+                //TB_show('修改用户积分','changeSc.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+                var url='{:U("changeSc")}/id/'+item_id
+                //alert(url)
+                layer.open({
+                    type: 2,
+                    title: ['修改用户积分', ''],
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area : ['400px' , '250px'],
+                    content: url,
+                    scrollbar: false,
+                });
             }
             function showBox4(item_id){
-                TB_show('修改用户套餐','changeVip.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+                //TB_show('修改用户套餐','changeVip.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+                var url='{:U("changeVip")}/id/'+item_id
+                layer.open({
+                    type: 2,
+                    title: ['修改用户套餐', ''],
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area : ['400px' , '250px'],
+                    content: url,
+                    scrollbar: false,
+                });
             }
             function showBox3(item_id){
-                TB_show('为用户充值','changeMoney.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+                //TB_show('为用户充值','changeMoney.php?id='+item_id+'&height=200&width=400&modal=true&rnd='+Math.random(),false);
+                var url='{:U("changeMoney")}/id/'+item_id
+                //alert(url)
+                layer.open({
+                    type: 2,
+                    title: ['为用户充值', ''],
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area : ['400px' , '250px'],
+                    content: url,
+                    scrollbar: false,
+                });
             }
             function showBox1(item_id){
-                TB_show('修改用户密码','changePw.php?id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
+                //TB_show('修改用户密码','changePw.php?id='+item_id+'&height=150&width=400&modal=true&rnd='+Math.random(),false);
+                var url='{:U("changePw")}/id/'+item_id
+                //alert(url)
+                layer.open({
+                    type: 2,
+                    title: ['修改用户密码', ''],
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area : ['400px' , '250px'],
+                    content: url,
+                    scrollbar: false,
+                });
             }
         </script>
 

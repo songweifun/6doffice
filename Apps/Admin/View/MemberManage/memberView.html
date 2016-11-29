@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>六度写字楼网后台管理</title>
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+        <table class="table" cellpadding="2" cellspacing="1">
+            <caption>用户基本信息信息</caption>
+            <tr>
+                <th width="17%"><strong>登陆用户名：</strong></th>
+                <td width="33%" >{$dataInfo.username}</td>
+                <th width="17%"><strong>Email：</strong></th>
+                <td width="33%">{$dataInfo.email}&nbsp;<if condition='$dataInfo.user_type eq 2'><input type="checkbox" name="email_publish" <if condition='$dataInfo.email_publish'>checked</if> >公开</if></td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>账户余额：</strong></th>
+                <td>{$dataInfo.money}元</td>
+                <th width="17%"><strong>登陆次数：</strong></th>
+                <td>{$dataInfo.logins}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>积分：</strong></th>
+                <td>{$dataInfo.scores}</td>
+                <th width="17%"><strong>最后登陆时间：</strong></th>
+                <td>{$dataInfo.last_login|date="Y-m-d",###}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>加急标签：</strong></th>
+                <td>{$dataInfo.vexation}</td>
+                <th width="17%"><strong>注册时间：</strong></th>
+                <td>{$dataInfo.add_time|date="Y-m-d",###}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>用户状态：</strong></th>
+                <td><if condition='$dataInfo.status eq 0'>正常</if><if condition='$dataInfo.status eq 1'><span style="color:red;">未开通</span></if></td>
+                <th width="17%"><strong>用户套餐：</strong></th>
+                <td><if condition='$dataInfo.vip eq 1'>体验套餐<elseif condition='$dataInfo.vip eq 2'/>标准套餐<else/>普通用户</if></td>
+            </tr>
+
+        </table>
+        <if condition='$dataInfo.user_type  eq  1'>
+        <table class="table" cellpadding="2" cellspacing="1">
+            <caption>经纪人详细信息</caption>
+            <tr>
+                <th width="17%"><strong>真实姓名：</strong></th>
+                <td width="33%">{$dataInfo.realname}</td>
+                <th width="17%"><strong>服务区域：</strong></th>
+                <td width="33%">{$dataInfo.cityarea_id}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>移动电话：</strong></th>
+                <td>{$dataInfo.mobile}</td>
+                <th width="17%"><strong>身份证号：</strong></th>
+                <td>{$dataInfo.idcard}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>身份证照片：</strong></th>
+                <td><if condition='$dataInfo.idcard_pic neq null'><img src="__ROOT__/Uploads//{$dataInfo.idcard_pic}"></if></td>
+                <th width="17%"><strong>执业资格证书：</strong></th>
+                <td><if condition='$dataInfo.aptitude neq null'><img src="__ROOT__/Uploads//{$dataInfo.aptitude}"></if></td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>头像：</strong></th>
+                <td><if condition='$dataInfo.avatar neq null'><img src="__ROOT__/Uploads//{$dataInfo.avatar}"></if></td>
+                <th width="17%"><strong>公司：</strong></th>
+                <td>{$dataInfo.company}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>签名：</strong></th>
+                <td>{$dataInfo.signed}</td>
+                <th width="17%"><strong>门店：</strong></th>
+                <td>{$dataInfo.outlet}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>门店地址：</strong></th>
+                <td>{$dataInfo.outlet_addr}</td>
+                <th width="17%"><strong>邮政编码：</strong></th>
+                <td>{$dataInfo.post_code}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>公司电话：</strong></th>
+                <td>{$dataInfo.com_tell}</td>
+                <th width="17%"><strong>公司传真：</strong></th>
+                <td>{$dataInfo.com_fax}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>性别：</strong></th>
+                <td>{$dataInfo.gender}</td>
+                <th width="17%"><strong>现住小区：</strong></th>
+                <td>{$dataInfo.borough_id}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>QQ：</strong></th>
+                <td>{$dataInfo.qq}</td>
+                <th width="17%"><strong>MSN：</strong></th>
+                <td>{$dataInfo.MSN}</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>自我介绍：</strong></th>
+                <td colspan="3">{$dataInfo.introduce}</td>
+            </tr>
+
+        </table>
+        <else/>
+        <table class="table" cellpadding="2" cellspacing="1">
+            <caption>业主详细信息</caption>
+            <tr>
+                <th width="17%"><strong>真实姓名：</strong></th>
+                <td width="33%">{$dataInfo.first_name}{$dataInfo.last_name}&nbsp;<input type="checkbox" name="name_publish" <if condition='$dataInfo.name_publish neq null'>checked</if> >公开</td>
+                <th width="17%"><strong>移动电话：</strong></th>
+                <td width="33%">{$dataInfo.mobile}&nbsp;<input type="checkbox" name="mobile_publish" <if condition='$dataInfo.mobile_publish neq null'>checked</if> >公开</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>固定电话：</strong></th>
+                <td>{$dataInfo.tell}&nbsp;<input type="checkbox" name="tell_publish" <if condition='$dataInfo.tell_publish neq null'>checked</if> >公开</td>
+                <th width="17%"><strong>QQ：</strong></th>
+                <td>{$dataInfo.qq}&nbsp;<input type="checkbox" name="qq_publish" <if condition='$dataInfo.qq_publish neq null'>checked</if> >公开</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>MSN：</strong></th>
+                <td>{$dataInfo.msn}&nbsp;<input type="checkbox" name="msn_publish" <if condition='$dataInfo.msn_publish neq null'>checked</if> >公开</td>
+                <th width="17%"><strong>性别：</strong></th>
+                <td>{$dataInfo.gender}&nbsp;<input type="checkbox" name="gender_publish" <if condition='$dataInfo.gender_publish neq null'>checked</if> >公开</td>
+            </tr>
+            <tr>
+                <th width="17%"><strong>头像：</strong></th>
+                <td><if condition='$dataInfo.avatar'><img src="__ROOT__/Uploads//{$dataInfo.avatar}"></if></td>
+                <th width="17%"><strong>签名：</strong></th>
+                <td>{$dataInfo.signed}</td>
+            </tr>
+        </table>
+
+        </if>
+        <div class="button_box">
+            <input type="button" name="return" class="btn btn-primary" value=" 返回 " onclick="javascript:history.go(-1);">
+        </div>
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
+<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
+<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>

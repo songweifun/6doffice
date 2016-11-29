@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{$title}</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <link href="__PUBLIC__/css/admin.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/css.js"/>
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+
+</head>
+<body>
+<div id="modalWindow">
+    <table class="table” cellpadding="2" cellspacing="0" >
+        <caption>
+		<span class="hbox_toptext"><strong>当前的账户余额：<span style="color:#FF0000">
+            {$datainfo.money}
+            元</span></strong> | 当前套餐：<font color="#FF0000">
+            <if condition='$datainfo.vip eq 0'>
+            无套餐
+            <elseif condition='$datainfo.vip eq 1'/>
+            体验套餐
+            <elseif condition='$datainfo.vip eq 2'/>
+            标准套餐
+            </if>
+        </font></span>
+        </caption>
+        <tr>
+            <td>用户名：<span style="color:red;">{$datainfo.username}</span></td>
+            <td>
+                <form id="form1" name="form1" method="post" action="{:U('changeVip')}/action/save/type/0" >
+                <input name="id" type="hidden" value="{$id}" />
+                <input type="button" name="submit" value="取消套餐" url="{:U('changeVip')}/action/save/type/0" onclick="changeName(this)"/>
+            </form>
+            </td>
+        </tr>
+        <tr>
+            <td><span class="img1">售<span style="color:#FF0000">
+                {$vip1SaleNum}
+            </span>条、租<span style="color:#FF0000">
+                {$vip1RentNum}
+            </span>条 | <span style="color:#FF0000">加急</span>、<span style="color:red;">置顶</span>标签各<span style="color:#FF0000">
+                {$vip1Vexation}
+            </span>个</span></td>
+            <td><form id="form1" name="form1" method="post" action="{:U('changeVip')}/action/save/type/1" >
+                <input name="id" type="hidden" value="{$id}" />
+                <input type="button" name="submit" value="体验套餐" url="{:U('changeVip')}/action/save/type/1" onclick="changeName(this)"/>
+            </form></td>
+        </tr>
+        <tr>
+            <td><span class="img1">售<span style="color:#FF0000">
+                {$vip2SaleNum}
+            </span>条、租<span style="color: #FF0000">
+                {$vip2RentNum}
+            </span>条 | <span style="color:red;">加急</span>、<span style="color:red;">置顶</span>标签各<span style="color:#FF0000">
+                {$vip2Vexation}
+            </span>个</span></td>
+            <td><form id="form1" name="form1" method="post" action="{:U('changeVip')}/action/save/type/2" >
+                <input name="id" type="hidden" value="{$id}" />
+                <input type="button" name="submit" value="标准套餐" url="{:U('changeVip')}/action/save/type/2" onclick="changeName(this)"/>
+            </form></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function changeName(obj){
+        var id='{$id}'
+        var url=$(obj).attr('url');
+
+        $.ajax({
+            url:url,
+            data:{'id':id},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status==1){
+
+                    window.parent.location.reload();
+                }
+            }
+        })
+        return false;
+    }
+</script>
+</body>
+</html>

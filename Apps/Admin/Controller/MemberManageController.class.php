@@ -89,6 +89,9 @@ class MemberManageController extends CommonController{
         $this->display();
     }
 
+    /**
+     * 修改名字弹窗
+     */
     public function changeName(){
 
         $this->title =  $this->title.' - 委托信息';
@@ -122,6 +125,165 @@ class MemberManageController extends CommonController{
             $this->assign('dataInfo', $memberInfo);
         }
 
+        $this->display();
+
+    }
+
+    /**
+     * 修改密码弹窗
+     */
+    public function changePw(){
+
+        $member = D('Member');
+        $action=I('get.action');
+
+        $this->title =  $this->title.' - 委托信息';
+        $id = intval($_GET['id']);
+        $datainfo = $member->getInfo($id,'*',false);
+        $this->assign('datainfo', $datainfo);
+        $this->assign('id', $id);
+        if($action == 'update'){
+
+                $id = intval($_POST['id']);
+                $passwd = md5($_POST['passwd']);
+                $data = array('passwd'=>$passwd);
+
+                if($member->updateInfo($id,$data,false,0)){
+                    $this->ajaxReturn(array('status'=>1));
+
+                }else{
+                    $this->ajaxReturn(array('status'=>0));
+                }
+
+        }
+
+        $this->display();
+    }
+
+    /**
+     * 修改积分弹窗
+     */
+    public function changeSc(){
+        $member = D('Member');
+        $action=I('get.action');
+        $this->title =  $this->title.' - 用户积分';
+        $id = intval($_GET['id']);
+        $datainfo = $member->getInfo($id,'*',false);
+        $this->assign('datainfo', $datainfo);
+        $this->assign('id', $id);
+        if($action == 'update'){
+
+                $id = intval($_POST['id']);
+                $scores = intval($_POST['scores']);
+            if($member->updateScore($id,$scores)){
+                $this->ajaxReturn(array('status'=>1));
+            }else{
+                $this->ajaxReturn(array('status'=>0));
+            }
+            exit;
+        }
+        $this->display();
+    }
+
+    /**
+     * 修改套餐弹窗
+     */
+    public function changeVip(){
+
+        $member = D('Member');
+        $action=I('get.action');
+        $id = intval($_GET['id']);
+        $datainfo = $member->getInfo($id,'*',false);
+        $this->assign('datainfo', $datainfo);
+        $this->assign('id', $id);
+        $money = intval($_POST['money']);
+        $vip =  intval($_POST['vip']);
+        $this->assign('id', $id);
+
+        if($_GET['realname']){
+            $ids_realname = $member->searchMember('realname',trim($_GET['realname']));
+        }
+
+        if($action == 'save') {
+            $_POST['member_id'] = intval($_POST['id']);
+
+            if ($_GET['type'] == 1) {
+                $_POST['to_time'] = 2592000 + time();    //30天
+            }
+            if ($_GET['type'] == 2) {
+                $_POST['to_time'] = 7776000 + time();   //90天
+            }
+
+
+            //更改会员标识 并写入时间表
+            $member->vipSave($_POST,$_GET['type']);
+            $this->ajaxReturn(array('status'=>1));
+
+            exit;
+        }
+
+        $this->display();
+
+    }
+
+    /**
+     * 充值弹窗
+     */
+    public function changeMoney(){
+
+        $member = D('Member');
+        $action=I('get.action');
+
+        $this->title =  $this->title.' - 用户余额';
+        $id = intval($_GET['id']);
+        $datainfo = $member->getInfo($id,'*',false);
+        $this->assign('datainfo', $datainfo);
+        $this->assign('id', $id);
+        if($action == 'update'){
+
+                $id = intval($_POST['id']);
+                $money = intval($_POST['money']);
+                if($member->updatemoney($id,$money)){
+                    $this->ajaxReturn(array('status'=>1));
+
+
+                }else{
+                    $this->ajaxReturn(array('status'=>0));
+
+                }
+
+            exit;
+        }
+
+        $this->display();
+
+    }
+
+    /**
+     * 详细
+     */
+    public function memberView(){
+        $this->menu='index';
+        import('Class.Dd',APP_PATH);
+
+
+        $member = D('Member');
+        $id = intval($_GET['id']);
+        $userInfo = $member->getInfo($id,'*',true);
+        $dd = D('Dd');
+        if($userInfo['cityarea_id']){
+            $cityarea_arr = \Dd::getArray('cityarea');
+            $userInfo['cityarea_id'] = $cityarea_arr[$userInfo['cityarea_id']];
+        }
+        if($userInfo['broker_type']){
+            $broker_type = \Dd::getArray('broker_type');
+            $userInfo['broker_type'] = $broker_type[$userInfo['broker_type']];
+        }
+        $borough = D('Borough');
+        if($userInfo['borough_id']){
+            $userInfo['borough_id'] = $borough->getInfo($userInfo['borough_id'],'borough_name');
+        }
+        $this->assign('dataInfo',$userInfo);
         $this->display();
 
     }

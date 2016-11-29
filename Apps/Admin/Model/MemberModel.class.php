@@ -167,11 +167,89 @@ class MemberModel extends Model{
         if($isInfo){
 
             //$this->db->update($this->tNameBrokerInfo,$fieldArray,' id ='.$id);
-            M('broker_info')->where(array('id'=>$id))->save($fieldArray);
+            return M('broker_info')->where(array('id'=>$id))->save($fieldArray);
         }else{
             //$this->db->update($this->tName,$fieldArray,' id ='.$id);
-            $this->where(array('id'=>$id))->save($fieldArray);
+            return $this->where(array('id'=>$id))->save($fieldArray);
         }
+
+    }
+
+
+    /**
+     * 修改积分
+     */
+    function updateScore($member_id,$scores){
+        //return $this->db->execute("update ".$this->tName." set scores = ".$scores." where id=".$member_id);
+        return $this->where(array('id'=>$member_id))->save(array('scores'=>$scores));
+    }
+
+    /**
+     * 升级vip
+     * @param array $days 天数
+     * @access public
+     * @return bool
+     */
+    function vipSave($fileddata,$value) {
+        $field_array  = array(
+            'member_id'=>$fileddata['member_id'],
+            'add_time'=>time(),
+            'to_time'=>$fileddata['to_time'],
+        );
+
+        $config=C('BASE');
+
+
+
+        //增加急售标签
+        if($value==1){
+            $this->where(array('id'=>$fileddata['member_id']))->save(array('vexation'=>$config['vip_vip1_vexation']));
+        }
+        if($value==2){
+            $this->where(array('id'=>$fileddata['member_id']))->save(array('vexation'=>$config['vip_vip2_vexation']));
+        }
+
+
+
+        //如果有之前有会员vip记录 要删除
+        if($this->getVipTime($fileddata['member_id'],'*')){
+            $this->deleteVip($fileddata['member_id']);
+        }
+        $this->where(array('id'=>$fileddata['member_id']))->save(array('vip'=>$value));
+        return M('member_vip')->add($field_array);
+    }
+
+    /**
+     * 查询VIP表字段
+     * @param string $memberId 用户ID
+     * @param string $field 字段
+     * @access public
+     * @return array
+     */
+    function getVipTime($memberId, $field = '*') {
+        return M('member_vip')->where(array('member_id'=>$memberId))->field($field)->find();
+    }
+
+    /**
+     * 删除vip记录
+     * @param array $days 天数
+     * @access public
+     * @return bool
+     */
+    function deleteVip($id) {
+        return M('member_vip')->where(array('member_id'=>$id))->delete();
+    }
+
+
+    /**
+     * 用户充值
+     * @access public
+     * @return bool
+     */
+    function updatemoney($id,$value) {
+        //return $this->db->execute('update '.$this->tName.' set money = money +'.$value.' where id='.$id);
+        $money=$this->where(array('id'=>$id))->getField('money');
+        return $this->where(array('id'=>$id))->save(array('money'=>$money+$value));
     }
 
 

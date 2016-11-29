@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{$title}</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <link href="__PUBLIC__/css/admin.css" rel="stylesheet">
+    <js file="__PUBLIC__/js/css.js"/>
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+
+</head>
+<body>
+<div id="modalWindow">
+    <table class="table" cellpadding="2" cellspacing="0" >
+        <caption>修改用户积分</caption>
+        <form id="form1" name="form1" method="post" action="{:U('changeSc')}/action/update" >
+
+            <input name="id" type="hidden" value="{$id}" />
+            <tr>
+                <td>用户名：</td>
+                <td>{$datainfo.username}</td>
+            </tr>
+            <tr>
+                <td>新积分：</td>
+                <td><input name="scores" type="text" maxlength="16" id="scores_id"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" name="submit" value="修改积分" onclick="changeName()" /></td>
+            </tr>
+        </form>
+    </table>
+</div>
+<script>
+    function changeName(){
+        var scores = document.getElementById('scores_id').value;
+        var id='{$id}'
+
+        $.ajax({
+            url:'{:U("changeSc")}/action/update',
+            data:{'id':id,'scores':scores},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status==1){
+                    alert('更新成功');
+                    window.parent.location.reload();
+                }
+            }
+        })
+        return false;
+    }
+</script>
+</body>
+</html>
