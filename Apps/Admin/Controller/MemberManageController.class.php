@@ -21,71 +21,127 @@ class MemberManageController extends CommonController{
         $this->menu=ACTION_NAME;
         import('Class.Dd',APP_PATH);
         $member=D('Member');
-        $where = '1=1 and user_type=1';
-        if($_GET['status']){
-            $where .= ' and status ='.intval($_GET['status']);
-        }
-        if($_GET['vip']){
-            $where .= ' and vip ='.intval($_GET['vip']);
-        }
-        if($_GET['isindex']){
-            $where .= ' and is_index ='.intval($_GET['isindex']);
-        }
-        if($_GET['is_open']){
-            $where .= ' and is_open ='.intval($_GET['is_open']);
-        }
-        if($_GET['username']){
-            $where .=" and username like '%".trim($_GET['username'])."%'";
-        }
+        $action=I('get.action');
+        if($action=='avatar'){//删除用户头像
 
-        if($_GET['realname']){
-            $ids_realname = $member->searchMember('realname',trim($_GET['realname']));
-        }
-        if($_GET['tel']){
-            $ids_tel = $member->searchMember('tel',trim($_GET['tel']));
-        }
-        if($_GET['email']){
-            $where .=" and email like '%".trim($_GET['email'])."%'";
-        }
-        if($_GET['idcard']){
-            $ids_idcard = $member->searchMember('idcard',trim($_GET['idcard']));
-        }
-        if($_GET['com']){
-            $ids_com = $member->searchMember('com',trim($_GET['com']));
-        }
-        if($_GET['avatar']){
-            $ids_avatar = $member->searchMember('avatar',$_GET['avatar']);
-        }
-        if($_GET['identity']){
-            $ids_idcard = $member->searchMember('identity',$_GET['identity']);
-        }
-        if($_GET['realname'] || $_GET['tel'] || $_GET['email'] || $_GET['idcard'] || $_GET['com'] || $_GET['avatar'] || $_GET['identity'] ){
-            $ids = array_merge((array)$ids_realname,(array)$ids_tel,(array)$ids_idcard,(array)$ids_com,(array)$ids_avatar,(array)$ids_idcard);
-            $ids = array_unique($ids);
-            if($ids){
-                $where .=" and id in (".implode(',',$ids).")";
-            }else{
-                $where .=" and 0";
+            $back_url = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
             }
-        }
-        $user_type = \Dd::getArray('user_type');
+            try{
+                $fieldData = array('avatar'=>'');
+                foreach($ids as $id){
+                    $member->updateInfo($id,$fieldData,true,1);
+                }
 
-        $Page = new \Think\Page($member->getCount($where), 10);
-        $Page->setConfig('header', '共%TOTAL_ROW%条');
-        $Page->setConfig('first', '首页');
-        $Page->setConfig('last', '共%TOTAL_PAGE%页');
-        $Page->setConfig('prev', '上一页');
-        $Page->setConfig('next', '下一页');
-        $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
-        $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+                $this->error('删除用户头像成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
 
-        $pageLimit = $Page->firstRow . ',' . $Page->listRows;
-        $memberList = $member->getList($pageLimit,'*',$where,'add_time desc');
-        foreach ($memberList as $key => $value){
-            $memberList[$key]['member_info'] = $member->getMoreInfo($value['id'],1);
+        }elseif($action=='view'){
+
+        }elseif($action=='delete'){
+            $back_url = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+            try{
+
+                $member->deleteMember($ids,2);
+                $this->success('删除用户成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='isindex'){
+
+        }elseif($action=='status'){
+            $back_url = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            $dostatus = intval($_GET['dostatus']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择需要操作的条目');
+            }
+            try{
+                $member->changeStatus($ids,$dostatus);
+                $this->success('操作成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+        }else {
+            $where = '1=1 and user_type=1';
+            if ($_GET['status']) {
+                $where .= ' and status =' . intval($_GET['status']);
+            }
+            if ($_GET['vip']) {
+                $where .= ' and vip =' . intval($_GET['vip']);
+            }
+            if ($_GET['isindex']) {
+                $where .= ' and is_index =' . intval($_GET['isindex']);
+            }
+            if ($_GET['is_open']) {
+                $where .= ' and is_open =' . intval($_GET['is_open']);
+            }
+            if ($_GET['username']) {
+                $where .= " and username like '%" . trim($_GET['username']) . "%'";
+            }
+
+            if ($_GET['realname']) {
+                $ids_realname = $member->searchMember('realname', trim($_GET['realname']));
+            }
+            if ($_GET['tel']) {
+                $ids_tel = $member->searchMember('tel', trim($_GET['tel']));
+            }
+            if ($_GET['email']) {
+                $where .= " and email like '%" . trim($_GET['email']) . "%'";
+            }
+            if ($_GET['idcard']) {
+                $ids_idcard = $member->searchMember('idcard', trim($_GET['idcard']));
+            }
+            if ($_GET['com']) {
+                $ids_com = $member->searchMember('com', trim($_GET['com']));
+            }
+            if ($_GET['avatar']) {
+                $ids_avatar = $member->searchMember('avatar', $_GET['avatar']);
+            }
+            if ($_GET['identity']) {
+                $ids_idcard = $member->searchMember('identity', $_GET['identity']);
+            }
+            if ($_GET['realname'] || $_GET['tel'] || $_GET['email'] || $_GET['idcard'] || $_GET['com'] || $_GET['avatar'] || $_GET['identity']) {
+                $ids = array_merge((array)$ids_realname, (array)$ids_tel, (array)$ids_idcard, (array)$ids_com, (array)$ids_avatar, (array)$ids_idcard);
+                $ids = array_unique($ids);
+                if ($ids) {
+                    $where .= " and id in (" . implode(',', $ids) . ")";
+                } else {
+                    $where .= " and 0";
+                }
+            }
+            $user_type = \Dd::getArray('user_type');
+
+            $Page = new \Think\Page($member->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $memberList = $member->getList($pageLimit, '*', $where, 'add_time desc');
+            foreach ($memberList as $key => $value) {
+                $memberList[$key]['member_info'] = $member->getMoreInfo($value['id'], 1);
+            }
+            $this->assign('dataList', $memberList);
+            $this->assign('pagePanel', $Page->show());//分页条
         }
-        $this->assign('dataList', $memberList);
-        $this->assign('pagePanel',$Page->show());//分页条
         $this->display();
     }
 
@@ -286,5 +342,135 @@ class MemberManageController extends CommonController{
         $this->assign('dataInfo',$userInfo);
         $this->display();
 
+    }
+
+    /**
+     * 身份审核
+     */
+    public function indentity(){
+        $this->menu=ACTION_NAME;
+
+        import('Class.Dd',APP_PATH);
+        $identity = D('BrokerIdentity');
+        $action=I('get.action');
+
+        if($action=='search'){
+
+        }elseif($action=='delete'){
+            $ids = $_POST['ids'];
+            $back_url = $_SERVER['HTTP_REFERER'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+            try{
+                $identity->deleteInfo($ids);
+                $this->success('删除成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='status'){
+            $back_url = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            $dostatus = intval($_GET['dostatus']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择需要操作的条目');
+            }
+            $member = D('Member');
+            $messageRule = D('MessageRule');
+            $innernote =D('Innernote');
+            $integral = D('IntegralRule');
+            try{
+                if($dostatus==1){
+                    //通过，更该用户信息
+                    foreach($ids as $a_id){
+                        //修改单条信息
+                        $identity->changeStatus($a_id,$dostatus);
+
+                        $dataInfo = $identity->getInfo($a_id);
+
+                        if($member->getMoreInfo($dataInfo['broker_id'],1)){
+                            $updateField = array (
+                                'idcard'=>$dataInfo['idcard'],
+                                'idcard_pic'=>$dataInfo['idcard_pic'],
+                            );
+                            $member->updateInfo($dataInfo['broker_id'],$updateField,true,1);
+                        }else{
+                            $insertField = array (
+                                'id'=>$dataInfo['broker_id'],
+                                'idcard'=>$dataInfo['idcard'],
+                                'idcard_pic'=>$dataInfo['idcard_pic'],
+                            );
+                            $member->insertInfo($insertField,true,1);
+                        }
+                        //增加积分
+                        if(!$integral->getLogByRuleId($dataInfo['broker_id'],5)){
+                            $integral->addScore($dataInfo['broker_id'],5);
+                        }
+                        $ruleInfo = $integral->getInfo(5);
+                        //发送站内信
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(10,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $message = sprintf($message,$real_name,$ruleInfo['rule_score']);
+                            //p($username);die;
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+                }else{
+                    //其他更改标志即可，无需更改用户信息
+                    $identity->changeStatus($ids,$dostatus);
+                    //发送站内信
+                    foreach($ids as $a_id){
+                        $dataInfo = $identity->getInfo($a_id);
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(9,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $message = sprintf($message,$real_name);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+                }
+                $this->success('操作成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }else{
+            if(isset($_GET['status'])){
+                $where = ' status ='.intval($_GET['status']);
+            }
+
+            $Page = new \Think\Page($identity->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $identityList = $identity->getList($pageLimit,'*',$where,'add_time desc ');
+            $member = D('Member');
+            foreach ($identityList as $key => $value){
+                $identityList[$key]['user'] = $member->getInfo($value['broker_id'],'*',true);
+                $identityList[$key]['idcard_exist'] = $member->checkIdcardUnique($value['idcard']);
+            }
+
+
+            $this->assign('dataList', $identityList);
+            $this->assign('pagePanel', $Page->show());//分页条
+
+        }
+
+        $this->display();
     }
 }

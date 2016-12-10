@@ -175,6 +175,21 @@ class MemberModel extends Model{
 
     }
 
+    /**
+     * 插入扩展用户信息
+     * 例如：
+     * $member->insertInfo($id , $basicArray, $isInfo=false ,$user_type=1);
+     *
+     * @param array $fieldArray
+     * @param 1 or 2 $user_type
+     */
+    function insertInfo($fieldArray, $isInfo=false ,$user_type=1){
+
+        //$this->db->insert($this->tNameBrokerInfo,$fieldArray);
+        M('broker_info')->add($fieldArray);
+
+    }
+
 
     /**
      * 修改积分
@@ -250,6 +265,117 @@ class MemberModel extends Model{
         //return $this->db->execute('update '.$this->tName.' set money = money +'.$value.' where id='.$id);
         $money=$this->where(array('id'=>$id))->getField('money');
         return $this->where(array('id'=>$id))->save(array('money'=>$money+$value));
+    }
+
+    /**
+     * 操作用户状态 不物理删除
+     * @param mixed $members 用户ID
+     * @access public
+     * @return bool
+     */
+    function changeStatus($members,$status) {
+        if (is_array($members)) {
+            $members = implode(',',$members);
+            $where = ' id in (' . $members . ')';
+        } else {
+            $where = ' id=' . intval($members);
+        }
+        //return $this->db->execute('update '.$this->tName.' set status = '.$status.' where ' . $where);
+        return $this->where($where)->setField('status',$status);
+    }
+
+    /**
+     * 删除用户信息
+     * @param mixed $members 用户ID
+     * @access public
+     * @return bool
+     */
+    function deleteMember($members) {
+        if (is_array($members)) {
+            $members = implode(',',$members);
+            $where = ' id in (' . $members . ')';
+            $shopwhere = ' broker_id in (' . $members . ')';
+            $memberwhere = ' member_id in (' . $members . ')';
+
+        } else {
+            $where = ' id=' . intval($members);
+            $shopwhere = ' broker_id=' . intval($members);
+            $memberwhere = ' member_id=' . intval($members);
+
+        }
+        $username=$this->where($where)->field('username')->select();
+        //$username = $this->db->select('select username from '.$this->tName.' where '.$where);
+
+        //删除出售房源记录
+        M('housesell')->where($shopwhere)->delete();
+
+        //删除出租房源记录
+        M('houserent')->where($shopwhere)->delete();
+
+        //删除fke_member_loginlog会员登录记录
+        foreach ($username as $value){
+            M('member_loginlog')->where(array('username'=>$value['username']))->delete();
+        }
+
+        //删除会员fke_borker_info 经纪人表信息
+        M('broker_info')->where($where)->delete();
+
+        //删除会员fke_borker_identity 经纪人身份认证表信息
+        M('broker_identity')->where($shopwhere)->delete();
+
+        //删除会员fke_borker_friends 经纪人好友表信息
+        M('broker_friends')->where($shopwhere)->delete();
+
+        //删除会员fke_broker_avatar 经纪人头像表信息
+        M('broker_avatar')->where($shopwhere)->delete();
+
+
+        //删除会员fke_broker_aptitude 经纪人执业认证表信息
+        M('broker_aptitude')->where($shopwhere)->delete();
+
+
+        //删除fke_innernote会员站内信接收记录
+        foreach ($username as $value){
+            M('innernote')->where(array('msg_to'=>$value['username']))->delete();
+
+        }
+
+        //删除fke_innernote会员站内信发送记录
+        foreach ($username as $value){
+            M('innernote')->where(array('msg_from'=>$value['username']))->delete();
+
+        }
+
+        //删除会员fke_integral_log 积分记录
+        M('integral_log')->where($memberwhere)->delete();
+
+
+        //如果是经纪人删除fke_shop_conf经纪人网店信息
+        M('shop_conf')->where($shopwhere)->delete();
+
+
+        //删除店铺fke_shop_viewlog 好友信息
+        M('shop_viewlog')->where($shopwhere)->delete();
+
+
+        //删除会员fke_member 表信息
+        $this->where($where)->delete();
+
+        return true;
+
+
+    }
+
+    /**
+     * 检查是否有重复的身份证，认证审核时使用
+     * @access public
+     *
+     * @param string $username
+     * @return bool
+     **/
+    function checkIdcardUnique($idcard){
+        //return $this->db->getValue('select id from '.$this->tNameBrokerInfo.' where idcard =\''. $idcard.'\'');
+        return M('broker_info')->where(array('idcard'=>$idcard))->getField('id');
     }
 
 

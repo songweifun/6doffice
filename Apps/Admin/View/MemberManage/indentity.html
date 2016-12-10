@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>经纪人列表</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+    <css file="__PUBLIC__/css/admin.css"/>
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>身份认证审核管理</caption>
+            <tr>
+                <td>
+                    <a href="{:U('indentity')}"><if condition="$Think.get.status eq null"><span style="color:red;">全部</span><else/>全部</if></a> |
+                    <a href="{:U('indentity')}/status/0"><if condition="($Think.get.status neq null) and ($Think.get.status eq 0)"><span style="color:red;">未审核</span><else/>未审核</if></a> |
+                    <a href="{:U('indentity')}/status/1"><if condition='$Think.get.status eq 1'> <span style="color:red;">已审核</span><else/>已审核</if></a>
+
+                </td>
+            </tr>
+        </table>
+        <!--
+        <form name="search" method="get" action="identity.php">
+        <input type="hidden" name="action" value="search">
+        <table cellpadding="0" cellspacing="1" class="table_form">
+            <caption>信息查询</caption>
+            <tr>
+                <td class="align_c">
+                    <input type="text" name="q" onblur="if(this.value ==''||this.value == '请输入申请人姓名'){this.value = '请输入申请人姓名';this.style.color = '#999999';}" onfocus="if(this.value == '请输入申请人姓名'){this.value = '';this.style.color = '#333333';}" value="<if condition='$q'> {$q}<else/>请输入申请人姓名</if>" size="35" />&nbsp;
+        <input type="submit" name="dosubmit" value=" 查询 " />
+        </td>
+        </tr>
+        </table>
+        </form>
+        -->
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>信息列表</caption>
+                <tr>
+                    <th width="30">选中</th>
+
+                    <th>身份证号码</th>
+                    <th>身份证图片</th>
+                    <th>申请人用户名</th>
+                    <th>状态</th>
+                    <th>申请时间</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="dataList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.username}"></td>
+                    <td class="align_c">{$item.idcard}<if condition='$item.idcard_exist neq null'> <span style="color:red"><a href="{$cfg.url_shop}{$item.idcard_exist}">[已存在]</a></span></if></td>
+                    <td class="align_c">
+                        <if condition='$item.idcard_pic'> 
+                        <a href="#" onmouseover="showPic('{$item.idcard_pic}');return false;">
+                            <img src="__ROOT__/Uploads/{$item.idcard_pic}" width="80" height="64">
+                        </a>
+                        </if>
+                    </td>
+                    <td class="align_c"><a href="{$cfg.url_shop}{$item.user.id}">{$item.user.username}<if condition='$item.user.realname neq null'> [{$item.user.realname}]</if></td>
+                    <td class="align_c"><if condition='$item.status eq 0'> 正常</if><if condition='$item.status eq 1'> <span style="color:red">已通过</span></if><if condition='$item.status eq 2'> <span style="color:red">已删除</span></if></td>
+                    <td class="align_c">{$item.add_time|date="Y-m-d",###}</td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="lock" value=" 审核通过 " onclick="if(confirm('你确认审核通过选中的条目么？')){myform.action='?action=status&dostatus=1';myform.submit();}">
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='?action=delete';myform.submit();}">
+            </div>
+            {$pagePanel}
+
+        </form>
+        <div id="pic_shower" style="position:absolute;color:white; width:640px; right:-30px; top:-10px; z-index:10000;background-color:#6680aa;display:none;"></div>
+        <script language="javascript">
+            function showPic(picUrl){
+                //alert('aaaa');
+                if (!e) var e = window.event ||arguments[0];
+
+                if(!document.all){
+                    mouse_x=e.pageX;
+                    mouse_y=e.pageY;
+                }else{
+                    mouse_x=document.body.scrollLeft+event.clientX;
+                    mouse_y=document.body.scrollTop+event.clientY;
+                }
+                //便于跟踪调试
+                $('#pic_shower').html('<img src="__ROOT__/Uploads/'+picUrl+'">');
+                $('#pic_shower').css('left',mouse_x+10).css('top',mouse_y+10).css('display','block');
+
+            }
+            function hidePic(){
+                //alert('bbb');
+                $('#pic_shower').css('display','none');
+            }
+            $(document).click(function(){hidePic();});
+        </script>
+
+
+
+
+
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
+<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
+<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>

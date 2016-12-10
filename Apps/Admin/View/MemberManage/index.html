@@ -147,10 +147,10 @@
             <div class="button_box">
                 <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
 
-                <input type="button" name="open" value=" 开通 " onclick="if(confirm('确定开通该账户的使用权限？')){myform.action='index.php?action=status&dostatus=0';myform.submit();}">
+                <input type="button" name="open" value=" 开通 " onclick="if(confirm('确定开通该账户的使用权限？')){myform.action='?action=status&dostatus=0';myform.submit();}">
 
-                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('注意：尽量不要删除会员，该会员所有的相关记录以及发布的房源都将呗删除')){myform.action='index.php?action=delete';myform.submit();}">
-                <input type="button" name="avatar" value=" 删除用户头像 " onclick="if(confirm('你确认删除选中的用户的头像么？')){myform.action='index.php?action=avatar';myform.submit();}">
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('注意：尽量不要删除会员，该会员所有的相关记录以及发布的房源都将呗删除')){myform.action='?action=delete';myform.submit();}">
+                <input type="button" name="avatar" value=" 删除用户头像 " onclick="if(confirm('你确认删除选中的用户的头像么？')){myform.action='?action=avatar';myform.submit();}">
             </div>
             <div class="pagePanel">
                 {$pagePanel}
