@@ -473,4 +473,280 @@ class MemberManageController extends CommonController{
 
         $this->display();
     }
+    /**
+     * 资质审核
+     */
+    public function aptitude(){
+        $this->menu=ACTION_NAME;
+
+        import('Class.Dd',APP_PATH);
+        $aptitude = D('BrokerAptitude');
+        $action=I('get.action');
+        if($action=='search'){
+
+        }elseif($action=='delete'){
+            $ids = $_POST['ids'];
+            $back_url = $_SERVER['HTTP_REFERER'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+            try{
+                $aptitude->deleteInfo($ids);
+                $this->success('删除成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='status'){
+            $ids = $_POST['ids'];
+            $back_url = $_SERVER['HTTP_REFERER'];
+            $dostatus = intval($_GET['dostatus']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择需要操作的条目');
+            }
+            $member = D('Member');
+            $messageRule = D('MessageRule');
+            $innernote =D('Innernote');
+            $integral = D('IntegralRule');
+            try{
+                if($dostatus==1){
+                    //通过，更该用户信息
+                    foreach($ids as $a_id){
+                        //修改单条信息
+                        $aptitude->changeStatus($a_id,$dostatus);
+
+                        $dataInfo = $aptitude->getInfo($a_id);
+                        $updateField = array (
+                            'aptitude'=>$dataInfo['aptitude_pic']
+                        );
+                        $member->updateInfo($dataInfo['broker_id'],$updateField,true,1);
+                        //增加积分
+                        if(!$integral->getLogByRuleId($dataInfo['broker_id'],6)){
+                            $integral->addScore($dataInfo['broker_id'],6);
+                        }
+                        $ruleInfo = $integral->getInfo(6);
+                        //发送站内信
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(12,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $message = sprintf($message,$real_name,$ruleInfo['rule_score']);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+                }else{
+                    //其他更改标志即可，无需更改用户信息
+                    $aptitude->changeStatus($ids,$dostatus);
+                    //发送站内信
+                    foreach($ids as $a_id){
+                        $dataInfo = $aptitude->getInfo($a_id);
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(11,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $message = sprintf($message,$real_name);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+                }
+                $this->success('操作成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+
+        }else{
+            if(isset($_GET['status'])){
+                $where = ' status ='.intval($_GET['status']);
+            }
+
+            $Page = new \Think\Page($aptitude->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $aptitudeList = $aptitude->getList($pageLimit,'*',$where,'add_time desc');
+            $member = D('Member');
+            foreach ($aptitudeList as $key => $value){
+                $aptitudeList[$key]['user'] = $member->getInfo($value['broker_id'],'*',true);
+            }
+           $this->assign('dataList', $aptitudeList);
+           $this->assign('pagePanel', $Page->show());//分页条
+
+
+
+
+
+        }
+        $this->display();
+
+    }
+    /**
+     * 头像审核
+     */
+    public function avatar(){
+        $this->menu=ACTION_NAME;
+
+        import('Class.Dd',APP_PATH);
+        $avatar = D('BrokerAvatar');
+        $action=I('get.action');
+        if($action=='search'){
+
+        }elseif($action=='delete'){
+            $ids = $_POST['ids'];
+            $back_url = $_SERVER['HTTP_REFERER'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+            try{
+                $avatar->deleteInfo($ids);
+                $this->success('删除成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='status'){
+            $back_url = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            $dostatus = intval($_GET['dostatus']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择需要操作的条目');
+            }
+            $member = D('Member');
+            $messageRule = D('MessageRule');
+            $innernote =D('Innernote');
+            $integral = D('IntegralRule');
+            try{
+                if($dostatus==1){
+                    //通过，更该用户信息
+                    foreach($ids as $a_id){
+                        //修改单条信息
+                        $avatar->changeStatus($a_id,$dostatus);
+
+                        $dataInfo = $avatar->getInfo($a_id);
+                        $updateField = array (
+                            'avatar'=>$dataInfo['avatar_pic']
+                        );
+                        $member->updateInfo($dataInfo['broker_id'],$updateField,true,1);
+                        //发送站内信
+
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(14,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $message = sprintf($message,$real_name,U('Home/Shop/index'),$dataInfo['broker_id']);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+                }else{
+                    //其他更改标志即可，无需更改用户信息
+                    $avatar->changeStatus($ids,$dostatus);
+                    //发送站内信
+                    foreach($ids as $a_id){
+                        $dataInfo = $avatar->getInfo($a_id);
+                        if($dataInfo['broker_id']){
+                            $message = $messageRule->getInfo(13,'rule_remark')['rule_remark'];
+                            $real_name = $member->getRealName($dataInfo['broker_id'],1);
+                            $username = $member->getInfo($dataInfo['broker_id'],'username')['username'];
+                            $message = sprintf($message,$real_name);
+                            $innernote->send('系统',$username,'系统消息',$message);
+                        }
+                    }
+                }
+                $this->success('操作成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }else{
+            if(isset($_GET['status'])){
+                $where = ' status ='.intval($_GET['status']);
+            }
+            $Page = new \Think\Page($avatar->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $avatarList = $avatar->getList($pageLimit,'*',$where,'add_time desc ');
+            $member = D('Member');
+            foreach ($avatarList as $key => $value){
+                $avatarList[$key]['user'] = $member->getInfo($value['broker_id'],'*',true);
+            }
+           $this->assign('dataList', $avatarList);
+           $this->assign('pagePanel', $Page->show());//分页条
+
+
+
+        }
+        $this->display();
+
+    }
+    /**
+     * 评价审核
+     */
+    public function evaluate(){
+        $this->menu=ACTION_NAME;
+
+        import('Class.Dd',APP_PATH);
+        $member = D('Member');
+
+        $action=I('get.action');
+        if($action=='delete'){
+
+            $back_url = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+            try{
+                $member->deleteEvaluate($ids);
+                $this->success('删除成功',$back_url);
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }else{
+            $where = '1 ';
+            $Page = new \Think\Page($member->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $evaluateList = $member->getEvaluateList($pageLimit,'*',$where,'time desc');
+
+            foreach ($evaluateList as $key => $item){
+                $evaluateList[$key]['broker_info'] = $member->getInfo($item['broker_id'],'*',true);
+            }
+
+           $this->assign('dataList', $evaluateList);
+           $this->assign('pagePanel', $Page->show());//分页条
+        }
+
+        $this->display();
+    }
 }

@@ -378,5 +378,35 @@ class MemberModel extends Model{
         return M('broker_info')->where(array('idcard'=>$idcard))->getField('id');
     }
 
+    /**
+     * 取得会员评价信息列表
+     * @access public
+     *
+     * @param array $pageLimit
+     * @return array
+     **/
+    function getEvaluateList($pageLimit, $fileld='*' ,$where='', $order='id desc ') {
+        $result=M('broker_evaluate')->where($where)->order($order)->limit($pageLimit)->select();
+
+        return $result;
+    }
+
+    /**
+     * 删除经纪人评价
+     * @param array $days 天数
+     * @access public
+     * @return bool
+     */
+    function deleteEvaluate($id) {
+        if (is_array($id)) {
+            $id = implode(',',$id);
+            $where = ' id in (' . $id . ')';
+
+        } else {
+            $where = ' id=' . intval($id);
+        }
+        M('broker_evaluate')->where($where)->delete();
+    }
+
 
 }

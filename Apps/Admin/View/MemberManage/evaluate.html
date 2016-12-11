@@ -8,7 +8,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>经纪人列表</title>
+    <title>评价审核</title>
     <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
 
     <!-- bootstrap -->
@@ -55,6 +55,52 @@
         <!-- header section start-->
         <include file="Common:header_section"/>
         <!-- header section end-->
+
+        <!--列表-->
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>评价信息管理</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th>经纪人姓名</th>
+                    <th>房屋信息</th>
+                    <th>服务态度</th>
+                    <th>业务水平</th>
+                    <th>评价内容</th>
+                    <th>经纪人回复</th>
+                    <th>评价时间</th>
+
+                </tr>
+                <tbody>
+                <foreach item="item" name="dataList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.username}"></td>
+
+                    <td><a href="{:U('Home/Shop/index')}/id/{$item.id}" target="_blank">{$item.broker_info.realname} </a></td>
+                    <td class="align_c">
+                        {$item.accurate} 分
+                    </td>
+                    <td class="align_c">{$item.satisfaction} 分</td>
+                    <td class="align_l">{$item.specialty} 分</td>
+                    <td class="align_c"><if condition='$item.content neq null'>{$item.content}<else/>无内容</if> </td>
+                    <td class="align_c"><if condition='$item.reply neq null'>{$item.reply}<else/>无回复</if> </td>
+                    <td class="align_c">{$item.time|date="m月d日",###}</td>
+
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('确认删除该条信息么')){myform.action='?action=delete';myform.submit();}">
+
+            </div>
+            {$pagePanel}
+
+        </form>
+
+
 
 
 

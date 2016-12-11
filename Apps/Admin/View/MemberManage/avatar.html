@@ -8,7 +8,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>经纪人列表</title>
+    <title>头像审核</title>
     <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
 
     <!-- bootstrap -->
@@ -55,6 +55,96 @@
         <!-- header section start-->
         <include file="Common:header_section"/>
         <!-- header section end-->
+
+        <!--列表-->
+        <table cellpadding="0" cellspacing="1" class="table_info">
+            <caption>头像审核管理</caption>
+            <tr>
+                <td>
+                    <a href="{:U('avatar')}"><if condition='$Think.get.status eq null'><span style="color:red;">全部</span><else/>全部</if></a> |
+                    <a href="{:U('avatar')}/status/0"><if condition='($Think.get.status neq null) and ($Think.get.status eq 0)'><span style="color:red;">未审核</span><else/>未审核</if></a> |
+                    <a href="{:U('avatar')}/status/1"><if condition='$Think.get.status eq 1'><span style="color:red;">已审核</span><else/>已审核</if></a>
+
+                </td>
+            </tr>
+        </table>
+        <!--
+        <form name="search" method="get" action="avatar.php">
+        <input type="hidden" name="action" value="search">
+        <table cellpadding="0" cellspacing="1" class="table_form">
+            <caption>信息查询</caption>
+            <tr>
+                <td class="align_c">
+                    <input type="text" name="q" onblur="if(this.value ==''||this.value == '请输入申请人姓名'){this.value = '请输入申请人姓名';this.style.color = '#999999';}" onfocus="if(this.value == '请输入申请人姓名'){this.value = '';this.style.color = '#333333';}" value="<if condition='$q'>{$q}{else}请输入申请人姓名</if>" size="35" />&nbsp;
+        <input type="submit" name="dosubmit" value=" 查询 " />
+        </td>
+        </tr>
+        </table>
+        </form>
+        -->
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>信息列表</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th>姓名</th>
+                    <th>头像图片</th>
+                    <th>申请人用户名</th>
+                    <th>状态</th>
+                    <th>申请时间</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="dataList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.username}"></td>
+                    <td class="align_c">{$item.user.realname}</td>
+                    <td class="align_c">
+                        <if condition='$item.avatar_pic'>
+                        <a href="#" onmouseover="showPic('{$item.avatar_pic}');return false;">
+                            <img src="__ROOT__/Uploads/{$item.avatar_pic}" width="80" height="64">
+                        </a>
+                        </if>
+                    </td>
+                    <td class="align_c">{$item.user.username}</td>
+                    <td class="align_c"><if condition='$item.status eq 0'>正常</if><if condition='$item.status eq 1'><span style="color:red;">已通过</span></if><if condition='$item.status eq 2'><span style="color:red;">已删除</span></if></td>
+                    <td class="align_c">{$item.add_time|date="Y-m-d"}</td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="lock" value=" 审核通过 " onclick="if(confirm('你确认审核通过选中的条目么？')){myform.action='?action=status&dostatus=1';myform.submit();}">
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='?action=delete';myform.submit();}">
+            </div>
+            {$pagePanel}
+
+        </form>
+        <div id="pic_shower" style="position:absolute;color:white; width:106px; right:-30px; top:-10px; z-index:10000;background-color:#6680aa;display:none;"></div>
+        <script language="javascript">
+            function showPic(picUrl){
+                //alert('aaaa');
+                if (!e) var e = window.event||arguments[0];
+
+                if(!document.all){
+                    mouse_x=e.pageX;
+                    mouse_y=e.pageY;
+                }else{
+                    mouse_x=document.body.scrollLeft+event.clientX;
+                    mouse_y=document.body.scrollTop+event.clientY;
+                }
+                //便于跟踪调试
+                $('#pic_shower').html('<img src="__ROOT__/Uploads/'+picUrl+'">');
+                $('#pic_shower').css('left',mouse_x+10).css('top',mouse_y+10).css('display','block');
+
+            }
+            function hidePic(){
+                //alert('bbb');
+                $('#pic_shower').css('display','none');
+            }
+            $(document).click(function(){hidePic();});
+        </script>
+
 
 
 
