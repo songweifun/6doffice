@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>城市管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+    <css file="__PUBLIC__/css/admin.css"/>
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+
+        <!--列表-->
+
+        <table cellpadding="0" cellspacing="1" class="table">
+            <caption>多城市管理</caption>
+            <tr>
+                <td>
+                    <a href="{:U('index')}/action/add">城市添加</a>
+                </td>
+            </tr>
+        </table>
+        <form name="myform" method="post" action="">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <input type="hidden" name="place_id" value="{$place_id}">
+                <caption>城市列表</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th>城市LOGO</th>
+                    <th>城市名称</th>
+                    <th>城市连接地址</th>
+                    <th>是否加盟</th>
+                    <th>是否热门</th>
+                    <th>状态</th>
+                    <th>排序</th>
+                    <th>管理操作</th>
+                </tr>
+                <tbody>
+                <foreach item="item" name="dataList">
+                <tr>
+                    <td class="align_c" ><input type="checkbox" name="ids[]" value="{$item.id}" title="{$item.name}"></td>
+                    <td class="align_c"><img src="__ROOT__/Uploads/{$item.logo}" width="85" height="85" ></td>
+                    <td class="align_c">{$item.name}</td>
+                    <td class="align_c"><a href="{$item.url}"  target="_blank">{$item.url}</a></td>
+                    <td class="align_c"><if condition='$item.is_proxy eq 0'>直营<elseif condition='$item.is_proxy eq 1'/>加盟</if></td>
+                    <td class="align_c"><if condition='$item.is_hot eq 0'>否<elseif condition='$item.is_hot eq 1'/><span style="color:Red">是</span></if></td>
+                    <td class="align_c"><if condition='$item.status  eq  0'>开通<elseif  condition='$item.status  eq  1'/><span style="color:Red">未开通</span></if></td>
+                    <td class="align_c">{$item.pid}</td>
+                    <td class="align_c"><a href="{:U('index')}/action/add/id/{$item.id}">修改</a></td>
+                </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.action='?action=delete';myform.submit();}">
+                <input type="button" name="lock" value=" 未开通 " onclick="if(confirm('你确认锁定选中的条目么？')){myform.action='?action=lock';myform.submit();}">
+                <input type="button" name="unlock" value=" 开通 " onclick="if(confirm('你确认解锁选中的条目么？')){myform.action='?action=unlock';myform.submit();}">
+            </div>
+            {$pagePanel}
+
+        </form>
+
+
+
+
+
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
+<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
+<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>
