@@ -123,12 +123,14 @@
 
                 </ul>
             </li>
-            <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>Charts</span></a>
+            <li class="menu-list <if condition='$cate eq About'>nav-active</if>" ><a href=""><i class="fa fa-bar-chart-o"></i> <span>关于我们</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="flot_chart.html"> Flot Charts</a></li>
-                    <li><a href="morris.html"> Morris Charts</a></li>
-                    <li><a href="chartjs.html"> Chartjs</a></li>
-                    <li><a href="c3chart.html"> C3 Charts</a></li>
+                    <li <if condition="$menu eq 'about'">class="active"</if> ><a href="{:U(MODULE_NAME.'/About/about')}"> 关于我们</a></li>
+                    <li <if condition="$menu eq 'talented'">class="active"</if> ><a href="{:U(MODULE_NAME.'/About/talented')}"> 人才招聘</a></li>
+                    <li <if condition="$menu eq 'agreenment'">class="active"</if> ><a href="{:U(MODULE_NAME.'/About/agreenment')}"> 用户协议</a></li>
+                    <li <if condition="$menu eq 'copyright'">class="active"</if> ><a href="{:U(MODULE_NAME.'/About/copyright')}"> 版权声明</a></li>
+                    <li <if condition="$menu eq 'contact'">class="active"</if> ><a href="{:U(MODULE_NAME.'/About/contact')}"> 联系我们</a></li>
+
                 </ul>
             </li>
             <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>
