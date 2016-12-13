@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>城市管理</title>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="__PUBLIC__/css/clndr.css" rel="stylesheet">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="__PUBLIC__/js/morris-chart/morris.css">
+
+    <!--common-->
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style-responsive.css" rel="stylesheet">
+
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/js/respond.min.js"></script>
+    <![endif]-->
+    <css file="__PUBLIC__/css/admin.css"/>
+    <js file="__PUBLIC__/js/layer/layer.js"/>
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <include file="Common/left-side"/>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <include file="Common:header_section"/>
+        <!-- header section end-->
+
+     <if condition="$action eq 'edit'">
+        <if condition="$dd_id eq '1'">
+            <form name="addItem" method="post" action="{:U('dd')}/action/edit" onsubmit="return validator(this)">
+                <input type="hidden" name="di_id" value="{$diInfo.di_id}" />
+                <input type="hidden" name="dd_id" value="{$dd_id}" />
+                <table cellpadding="1" class="table">
+                    <caption>增加新字典值</caption>
+                    <tr>
+                        <td>
+                            值：<input name="di_value" value="{$diInfo.di_value}" valid="required|isNumber|isNo" noValue="0" errmsg="值不能为空!|值必须为数字|值不允许为0" />
+                            所属区域：
+                            <select name="p_id">
+                                <option value="0" style="color:red">一级区域</option>
+                                <foreach item="item" name="list1">
+                                <option value="{$item.di_id}" <if condition='$item.di_id eq $diInfo.p_id '>selected</if>>{$item.di_caption}</option>
+                                </foreach>
+                            </select>
+                            名称:<input name="di_caption" value="{$diInfo.di_caption}" valid="required" errmsg="名称不能为空!" /> <input type="submit" value="保存" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        <else/>
+        <form name="addItem" method="post" action="{:U('dd')}/action/edit" onsubmit="return validator(this)">
+            <input type="hidden" name="di_id" value="{$diInfo.di_id}" />
+            <input type="hidden" name="dd_id" value="{$dd_id}" />
+            <table cellpadding="1" class="table">
+                <caption>增加新字典值</caption>
+                <tr>
+                    <td>
+                        值：<input name="di_value" value="{$diInfo.di_value}" valid="required|isNumber|isNo" noValue="0" errmsg="值不能为空!|值必须为数字|值不允许为0" />
+                        名称:<input name="di_caption" value="{$diInfo.di_caption}" valid="required" errmsg="名称不能为空!" /> <input type="submit" value="保存" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        </if>
+
+
+        <form name="myform" method="post" action="{:U('dd')}/action/delete/dd_id/{$dd_id}">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>字典值列表</caption>
+                <tr>
+                    <th width="30">选中</th>
+                    <th width="60">排序</th>
+                    <th width="200">值</th>
+                    <th>名称</th>
+                    <th width="60">分组</th>
+                    <th width="150">操作</th>
+                </tr>
+                <if condition="$dd_id eq '1'">
+                    
+                    <foreach name="class" item="item">
+
+                    <tr style="background:#E7F5FE">
+                        <td class="align_c"><input type="checkbox" name="dds[]" value="{$item.di_id}"></td>
+                        <td class="align_c"><input type="text" name="list_order[{$item.di_id}]" value="{$item.list_order}" size="3"></td>
+                        <td class="align_c"><b>{$item.di_value}</b></td>
+                        <td> <b>{$item.di_caption}</b></td>
+                        <td><input type="text" name="list_group[{$item.di_id}]" value="{$item.list_group}" size="3"></td>
+                        <td class="align_c"><a href="?action=edit&di_id={$item.di_id}&dd_id={$dd_id}">编辑</a></td>
+                    </tr>
+                     <foreach name="item.son" item="itemson" key="k">
+                    <tr>
+                        <td class="align_c"><input type="checkbox" name="dds[]" value="{$itemson.di_id}"></td>
+                        <td class="align_c"><input type="text" name="list_order[{$itemson.di_id}]" value="{$itemson.list_order}" size="3"></td>
+                        <td class="align_c">{$itemson.di_value}</td>
+                        <td>&nbsp;-{$itemson.di_caption}</td>
+                        <td><input type="text" name="list_group[{$itemson.di_id}]" value="{$itemson.list_group}" size="3"></td>
+                        <td class="align_c"><a href="?action=edit&di_id={$itemson.di_id}&dd_id={$dd_id}">编辑</a></td>
+                    </tr>
+                    </foreach>
+                    </foreach>
+
+
+
+
+                <else/>
+                    <foreach item="item" name="list">
+                    <tr>
+                        <td class="align_c"><input type="checkbox" name="dds[]" value="{$item.di_id}"></td>
+                        <td class="align_c"><input type="text" name="list_order[{$item.di_id}]" value="{$item.list_order}" size="3"></td>
+                        <td class="align_c">{$item.di_value}</td>
+                        <td>{$item.di_caption}</td>
+                        <td><input type="text" name="list_group[{$item.di_id}]" value="{$item.list_group}" size="3"></td>
+                        <td class="align_c"><a href="?action=edit&di_id={$item.di_id}&dd_id={$dd_id}">编辑</a></td>
+                    </tr>
+                    </foreach>
+                </if>
+            </table>
+            <div class="button_box">
+                <span style="width:60px"><a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', true);return false;">全选</a>/<a href="#" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a></span>
+                <input type="button" name="delete" value=" 排序 " onclick="myform.action='?action=order&dd_id={$dd_id}';myform.submit();">
+                <input type="button" name="delete" value=" 删除 " onclick="if(confirm('你确认删除选中的条目么？')){myform.submit();}">
+            </div>
+        </form>
+        <else/>
+        <form name="myform" method="post" action="{:U('dd')}/action/delete">
+            <table cellpadding="2" cellspacing="1" class="table">
+                <caption>字典列表</caption>
+                <tr >
+                    <th width="30">ID</th>
+                    <th>名称</th>
+                    <th width="150">操作</th>
+                </tr>
+                <foreach item="item" name="list">
+                    <tr>
+                        <td class="align_c">{$item.dd_id}</td>
+                        <td>{$item.dd_caption}</td>
+                        <td class="align_c"><a href="{:U('dd')}/action/edit/dd_id/{$item.dd_id}">编辑</a></td>
+                    </tr>
+                </foreach>
+            </table>
+        </form>
+        </if>
+
+
+
+
+
+
+
+
+
+
+
+        <!--footer section start-->
+        <include file="Common/footer_section"/>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--easy pie chart-->
+<script src="__PUBLIC__/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="__PUBLIC__/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="__PUBLIC__/js/sparkline/jquery.sparkline.js"></script>
+<script src="__PUBLIC__/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="__PUBLIC__/js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="__PUBLIC__/js/morris-chart/morris.js"></script>
+<script src="__PUBLIC__/js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="__PUBLIC__/js/calendar/clndr.js"></script>
+<script src="__PUBLIC__/js/calendar/evnt.calendar.init.js"></script>
+<script src="__PUBLIC__/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="__PUBLIC__/js/dashboard-chart-init.js"></script>
+
+
+</body>
+</html>
