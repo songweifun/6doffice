@@ -82,5 +82,80 @@ class SystemManageController extends CommonController{
 
     }
 
+    /**
+     * 房源预约刷新
+     */
+    public function appointment(){
+        $this->menu = ACTION_NAME;//分配小栏目
+        $appomuch=D('Appomuch');
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $appTime = is_numeric($_POST['appTime'])?$_POST['appTime']:1;
+            $appNum = is_numeric($_POST['appNum'])?$_POST['appNum']:1;
+            $appCountNum = is_numeric($_POST['appCountNum'])?$_POST['appCountNum']:1;
+            $appInterest = is_array($_POST['appInterest'])?serialize($_POST['appInterest']):serialize(array(0));
+
+            $appomuch->updateapp($appTime,'appTime');
+            $appomuch->updateapp($appNum,'appNum');
+            $appomuch->updateapp($appCountNum,'appCountNum');
+            $appomuch->updateapp($appInterest,'appInterest');
+
+
+            echo '<script>alert("更新成功！")</script>';
+        }
+
+        $arr=$appomuch->select();
+        foreach($arr as $k=>$v){
+
+            if($v['appo_name']=='appInterest'){
+                $v['appo_value'] = unserialize($v['appo_value']);
+            }
+
+            $result[$v['appo_name']]=$v['appo_value'];
+
+        }
+
+        $this->assign('appo',$result);
+
+
+
+
+        $this->display();
+    }
+
+    /**
+     * 计划任务执行
+     */
+    public function crontab(){
+        $this->menu = ACTION_NAME;//分配小栏目
+        $config=D('WebConfig');
+        $action=I('get.action');
+        if ($action=='save') {
+            $_POST['webConfig']['borough_avg_time'] = $_POST['webConfig']['borough_avg_time']*24*60*60;
+            $_POST['webConfig']['member_num_time'] = $_POST['webConfig']['member_num_time']*24*60*60;
+            $_POST['webConfig']['broker_integral_time'] = $_POST['webConfig']['broker_integral_time']*24*60*60;
+            $_POST['webConfig']['broker_active_Rate_time'] = $_POST['webConfig']['broker_active_Rate_time']*24*60*60;
+            $_POST['webConfig']['statistics_time'] = $_POST['webConfig']['statistics_time']*24*60*60;
+            $_POST['webConfig']['borough_pic_num_time'] = $_POST['webConfig']['borough_pic_num_time']*24*60*60;
+            $_POST['webConfig']['house_invalid_time'] = $_POST['webConfig']['house_invalid_time']*24*60*60;
+
+            $config->saveConf($_POST['webConfig']);
+            $this->success('保存成功',U('crontab'));
+            exit;
+        }else{
+            
+            $webConfig = $config->getInfo(1,'*');
+            $webConfig['borough_avg_time'] = $webConfig['borough_avg_time']/60/60/24;
+            $webConfig['member_num_time'] = $webConfig['member_num_time']/60/60/24;
+            $webConfig['broker_integral_time'] = $webConfig['broker_integral_time']/60/60/24;
+            $webConfig['broker_active_Rate_time'] = $webConfig['broker_active_Rate_time']/60/60/24;
+            $webConfig['statistics_time'] = $webConfig['statistics_time']/60/60/24;
+            $webConfig['borough_pic_num_time'] = $webConfig['borough_pic_num_time']/60/60/24;
+            $webConfig['house_invalid_time'] = $webConfig['house_invalid_time']/60/60/24;
+            $this->assign('webConfig', $webConfig);
+        }
+        $this->display();
+    }
+
 
 }

@@ -56,7 +56,7 @@
   'borough_avg_time' => '1296000',
   'member_num_time' => '86400',
   'broker_integral_time' => '86400',
-  'broker_active_rate_time' => '86400',
+  'broker_active_rate_time' => '0',
   'statistics_time' => '86400',
   'borough_pic_num_time' => '432000',
   'expired_switch' => '2',
