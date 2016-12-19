@@ -157,5 +157,189 @@ class SystemManageController extends CommonController{
         $this->display();
     }
 
+    /**
+     * 积分规则
+     */
+    public function integrationRule(){
+
+        $this->menu = ACTION_NAME;//分配小栏目
+        import('Class.Dd',APP_PATH);
+
+        $integral = D('IntegralRule');
+        $action=I('get.action');
+        if($action=='add'){
+            $rule_class = \Dd::getArray('integral_ruleclass');
+            $this->assign('rule_class', $rule_class);
+
+            $id = intval($_GET['id']);
+            if($id){
+                $dataInfo=$integral->getInfo($id);
+                $this->assign('dataInfo', $dataInfo);
+            }
+            $this->display('integralEdit');
+            exit;
+
+        }elseif($action=='save'){
+            try{
+                $integral->saveIntergraRule($_POST);
+                $this->success('保存成功',U('integrationRule'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+            exit;
+
+        }elseif($action=='status'){
+            $ids = $_POST['ids'];
+            $status=intval($_GET['status']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+
+            try{
+                //删除自己的条目
+                $integral->changeStatus($ids,$status);
+
+                $this->success('操作成功',U('integrationRule'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='delete'){
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+
+            try{
+                //删除自己的条目
+                $integral->deleteRule($ids);
+
+                $this->success('删除成功',U('integrationRule'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }else{
+            $rule_class = \Dd::getArray('integral_ruleclass');
+            $this->assign('rule_class', $rule_class);
+            $where=' 1=1 ';
+            $Page = new \Think\Page($integral->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $dataList = $integral->getList($pageLimit,'*',$where,'rule_class asc,id asc');
+            //p($dataList);die;
+            foreach ($dataList as $key=>$item){
+                $dataList[$key]['rule_class'] = $rule_class[$item['rule_class']];
+            }
+            $this->assign('dataList', $dataList);
+            $this->assign('pagePanel', $Page->show());//分页条
+        }
+        $this->display();
+
+    }
+
+    /**
+     * 自动站内信规则
+     */
+    public function MessageRule(){
+
+        $this->menu = ACTION_NAME;//分配小栏目
+        import('Class.Dd',APP_PATH);
+
+        $messageRule = D('MessageRule');
+        $action=I('get.action');
+        if($action=='add'){
+            $rule_class = \Dd::getArray('message_ruleclass');
+            $this->assign('rule_class', $rule_class);
+
+
+            $id = intval($_GET['id']);
+            if($id){
+                $dataInfo=$messageRule->getInfo($id);
+                $this->assign('dataInfo', $dataInfo);
+            }
+            $this->display('MessageEdit');
+            exit;
+
+        }elseif($action=='save'){
+            try{
+                $messageRule->saveMessageRule($_POST);
+                $this->success('保存成功',U('MessageRule'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+            exit;
+
+        }elseif($action=='status'){
+            $ids = $_POST['ids'];
+            $status=intval($_GET['status']);
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+
+            try{
+                //删除自己的条目
+                $messageRule->changeStatus($ids,$status);
+
+                $this->success('操作成功',U('MessageRule'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='delete'){
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+
+            try{
+                //删除自己的条目
+                $messageRule->deleteRule($ids);
+
+                $this->success('删除成功',U('integrationRule'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }else{
+            $rule_class = \Dd::getArray('integral_ruleclass');
+            $this->assign('rule_class', $rule_class);
+            $where=' 1=1 ';
+            $Page = new \Think\Page($messageRule->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $dataList = $messageRule->getList($pageLimit,'*',$where,'rule_class asc,id asc');
+            foreach ($dataList as $key=>$item){
+                $dataList[$key]['rule_class'] = $rule_class[$item['rule_class']];
+            }
+            $this->assign('dataList', $dataList);
+            $this->assign('pagePanel', $Page->show());//分页条
+        }
+        $this->display();
+
+    }
+
 
 }
