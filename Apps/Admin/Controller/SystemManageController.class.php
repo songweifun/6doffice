@@ -342,4 +342,174 @@ class SystemManageController extends CommonController{
     }
 
 
+    /**
+     * 站内信
+     */
+    public function Innernote(){
+        $this->menu=ACTION_NAME;
+        $action=I('get.action');
+        $innernote = D('Innernote');
+        $user=D('Users');
+        if($action=='add'){
+            $this->display('innernoteEdit');
+            exit;
+        }elseif($action=='save'){
+            try{
+                //发送模具
+                $msg_from = $user->getAuthInfo('username');
+                $model_id = $innernote->send($msg_from,$_POST['msg_to'],$_POST['msg_title'],$_POST['msg_content']);
+                //根据信息
+                $msg_from = "系统";
+                $reciever = explode(',',$_POST['msg_to']);
+                $member = D('Member');
+                if(is_array($reciever)){
+                    foreach ($reciever as $a_reviever){
+                        $a_reviever = trim($a_reviever);
+                        if($a_reviever == ''){
+                            continue;
+                        }
+                        if($a_reviever == "[所有经纪人]"){
+                            $a_reviever = $member->getAll(1,'id,username');
+                        }
+                        if($a_reviever == "[所有业主]"){
+                            $a_reviever = $member->getAll(2,'id,username');
+                        }
+                        if(is_array($a_reviever)){
+                            foreach($a_reviever as $a_r){
+                                $innernote->send($msg_from,$a_r['username'],$_POST['msg_title'],$_POST['msg_content'],0,$model_id);
+                            }
+                        }else{
+                            $innernote->send($msg_from,$a_reviever,$_POST['msg_title'],$_POST['msg_content'],0,$model_id);
+                        }
+                    }
+                }
+                $this->success('发送短信成功',U('Innernote'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+            exit;
+
+        }elseif($action=='delete'){//彻底删除
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+
+            try{
+                //删除自己的条目
+                $innernote->deleteInfo($ids);
+                //删除附属条目
+                $innernote->deleteBelongsTo($ids);
+
+                $this->success('删除成功',U('Innernote'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            exit;
+
+        }elseif($action=='fromDel'){
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+            try{
+                $innernote->fromDel($ids);
+                $this->success('删除成功',U('Innernote'));
+            }catch (Exception $e){
+                $$this->error($e->getMessage());
+            }
+
+            exit;
+
+
+        }else{
+            $where = ' msg_from =\''.$user->getAuthInfo('username').'\' and from_del = 0';
+            $Page = new \Think\Page($innernote->getCount($where), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $innernoteList = $innernote->getList($pageLimit,'*',$where,'add_time desc ');
+
+            $this->assign('dataList', $innernoteList);
+            $this->assign('pagePanel', $Page->show());//分页条
+        }
+        $this->display();
+    }
+
+    /**
+     * 地图区域
+     */
+    public function cityareaList(){
+        $this->menu=ACTION_NAME;
+        $action=I('get.action');
+        $cmap=D('Map');
+        if($action=='edit'){
+            $id = $_GET['id'];
+            $cmapInfo = $cmap->getInfo($id,'*');
+            $this->assign('dataInfo', $cmapInfo);
+
+
+        }elseif($action=='save'){
+            if($_POST['id']){
+                //编辑
+                try {
+                    $cmap->saveInfo($_POST);
+                } catch (Exception $e) {
+                    $this->error($e->getMessage(),U('cityareaList').'?action=edit&id=' . $_GET['id'] );
+                }
+            }else{
+                try {
+                    $cmap->saveInfo($_POST);
+                } catch (Exception $e) {
+                    $this->error( $e->getMessage(),U('cityareaList').'?action=edit&id=' . $_GET['id']);
+                }
+            }
+
+
+        }elseif($action=='delete') {
+            $back_to = $_SERVER['HTTP_REFERER'];
+            $ids = $_POST['ids'];
+            if(!is_array($ids) || empty($ids)){
+                $this->error('没有选择删除条目');
+            }
+            try{
+                $cmap->deleteInfo($ids);
+                $this->success('删除成功',U('cityareaList'));
+            }catch (Exception $e){
+                $this->error($e->getMessage());
+                //$page->back('删除失败');
+            }
+
+            exit;
+
+        }
+
+
+            $Page = new \Think\Page($cmap->getCount('1=1'), 10);
+            $Page->setConfig('header', '共%TOTAL_ROW%条');
+            $Page->setConfig('first', '首页');
+            $Page->setConfig('last', '共%TOTAL_PAGE%页');
+            $Page->setConfig('prev', '上一页');
+            $Page->setConfig('next', '下一页');
+            $Page->setConfig('link', 'indexpagenumb');//pagenumb 会替换成页码
+            $Page->setConfig('theme', '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+
+            $pageLimit = $Page->firstRow . ',' . $Page->listRows;
+            $list = $cmap->getList('*','1=1',' sort asc ');
+            $this->assign('list', $list);
+            $this->assign('pagePanel', $Page->show());//·ÖÒ³Ìõ
+
+
+        $this->display();
+
+    }
+
+
 }

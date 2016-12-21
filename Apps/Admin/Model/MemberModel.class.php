@@ -409,4 +409,19 @@ class MemberModel extends Model{
     }
 
 
+    /**
+     * 取得所有类型的用户
+     * @param int $user_type
+     * @param string $field
+     * @return mixed
+     * @param int $user_type 1：经纪人；2：业主 0：所有
+     */
+    function getAll($user_type=0,$field='*'){
+        if($user_type ){
+            $where = 'user_type = '.$user_type;
+        }
+        return $this->field($field)->where($where)->select();
+    }
+
+
 }
